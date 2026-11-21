@@ -624,8 +624,7 @@ export class MessDashboardService {
         href: `/mess/${slug}/rooms?action=add`,
         permission: 'rooms.create',
         isAllowed: has('rooms.create'),
-        isImplemented: false,
-        moduleNote: 'Room & Seat Inventory launches in Task 31',
+        isImplemented: true,
       },
       {
         id: 'record-bazar',

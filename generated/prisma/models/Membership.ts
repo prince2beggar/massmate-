@@ -257,6 +257,7 @@ export type MembershipWhereInput = {
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   role?: Prisma.XOR<Prisma.RoleScalarRelationFilter, Prisma.RoleWhereInput>
+  roomAssignments?: Prisma.RoomAssignmentListRelationFilter
 }
 
 export type MembershipOrderByWithRelationInput = {
@@ -277,6 +278,7 @@ export type MembershipOrderByWithRelationInput = {
   user?: Prisma.UserOrderByWithRelationInput
   tenant?: Prisma.TenantOrderByWithRelationInput
   role?: Prisma.RoleOrderByWithRelationInput
+  roomAssignments?: Prisma.RoomAssignmentOrderByRelationAggregateInput
 }
 
 export type MembershipWhereUniqueInput = Prisma.AtLeast<{
@@ -301,6 +303,7 @@ export type MembershipWhereUniqueInput = Prisma.AtLeast<{
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   role?: Prisma.XOR<Prisma.RoleScalarRelationFilter, Prisma.RoleWhereInput>
+  roomAssignments?: Prisma.RoomAssignmentListRelationFilter
 }, "id" | "userId_tenantId">
 
 export type MembershipOrderByWithAggregationInput = {
@@ -358,6 +361,7 @@ export type MembershipCreateInput = {
   user: Prisma.UserCreateNestedOneWithoutMembershipsInput
   tenant: Prisma.TenantCreateNestedOneWithoutMembershipsInput
   role: Prisma.RoleCreateNestedOneWithoutMembershipsInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateInput = {
@@ -375,6 +379,7 @@ export type MembershipUncheckedCreateInput = {
   leftAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUpdateInput = {
@@ -392,6 +397,7 @@ export type MembershipUpdateInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutMembershipsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutMembershipsNestedInput
   role?: Prisma.RoleUpdateOneRequiredWithoutMembershipsNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateInput = {
@@ -409,6 +415,7 @@ export type MembershipUncheckedUpdateInput = {
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipCreateManyInput = {
@@ -523,6 +530,11 @@ export type MembershipMinOrderByAggregateInput = {
   leftAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type MembershipScalarRelationFilter = {
+  is?: Prisma.MembershipWhereInput
+  isNot?: Prisma.MembershipWhereInput
 }
 
 export type MembershipCreateNestedManyWithoutUserInput = {
@@ -655,6 +667,20 @@ export type EnumMembershipStatusFieldUpdateOperationsInput = {
   set?: $Enums.MembershipStatus
 }
 
+export type MembershipCreateNestedOneWithoutRoomAssignmentsInput = {
+  create?: Prisma.XOR<Prisma.MembershipCreateWithoutRoomAssignmentsInput, Prisma.MembershipUncheckedCreateWithoutRoomAssignmentsInput>
+  connectOrCreate?: Prisma.MembershipCreateOrConnectWithoutRoomAssignmentsInput
+  connect?: Prisma.MembershipWhereUniqueInput
+}
+
+export type MembershipUpdateOneRequiredWithoutRoomAssignmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.MembershipCreateWithoutRoomAssignmentsInput, Prisma.MembershipUncheckedCreateWithoutRoomAssignmentsInput>
+  connectOrCreate?: Prisma.MembershipCreateOrConnectWithoutRoomAssignmentsInput
+  upsert?: Prisma.MembershipUpsertWithoutRoomAssignmentsInput
+  connect?: Prisma.MembershipWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MembershipUpdateToOneWithWhereWithoutRoomAssignmentsInput, Prisma.MembershipUpdateWithoutRoomAssignmentsInput>, Prisma.MembershipUncheckedUpdateWithoutRoomAssignmentsInput>
+}
+
 export type MembershipCreateWithoutUserInput = {
   id?: string
   status?: $Enums.MembershipStatus
@@ -669,6 +695,7 @@ export type MembershipCreateWithoutUserInput = {
   updatedAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutMembershipsInput
   role: Prisma.RoleCreateNestedOneWithoutMembershipsInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutUserInput = {
@@ -685,6 +712,7 @@ export type MembershipUncheckedCreateWithoutUserInput = {
   leftAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutUserInput = {
@@ -747,6 +775,7 @@ export type MembershipCreateWithoutTenantInput = {
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutMembershipsInput
   role: Prisma.RoleCreateNestedOneWithoutMembershipsInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutTenantInput = {
@@ -763,6 +792,7 @@ export type MembershipUncheckedCreateWithoutTenantInput = {
   leftAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutTenantInput = {
@@ -805,6 +835,7 @@ export type MembershipCreateWithoutRoleInput = {
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutMembershipsInput
   tenant: Prisma.TenantCreateNestedOneWithoutMembershipsInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutRoleInput = {
@@ -820,6 +851,7 @@ export type MembershipUncheckedCreateWithoutRoleInput = {
   leftAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutRoleInput = {
@@ -846,6 +878,90 @@ export type MembershipUpdateWithWhereUniqueWithoutRoleInput = {
 export type MembershipUpdateManyWithWhereWithoutRoleInput = {
   where: Prisma.MembershipScalarWhereInput
   data: Prisma.XOR<Prisma.MembershipUpdateManyMutationInput, Prisma.MembershipUncheckedUpdateManyWithoutRoleInput>
+}
+
+export type MembershipCreateWithoutRoomAssignmentsInput = {
+  id?: string
+  status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
+  joinedAt?: Date | string | null
+  invitedAt?: Date | string | null
+  leftAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutMembershipsInput
+  tenant: Prisma.TenantCreateNestedOneWithoutMembershipsInput
+  role: Prisma.RoleCreateNestedOneWithoutMembershipsInput
+}
+
+export type MembershipUncheckedCreateWithoutRoomAssignmentsInput = {
+  id?: string
+  userId: string
+  tenantId: string
+  roleId: string
+  status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
+  joinedAt?: Date | string | null
+  invitedAt?: Date | string | null
+  leftAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type MembershipCreateOrConnectWithoutRoomAssignmentsInput = {
+  where: Prisma.MembershipWhereUniqueInput
+  create: Prisma.XOR<Prisma.MembershipCreateWithoutRoomAssignmentsInput, Prisma.MembershipUncheckedCreateWithoutRoomAssignmentsInput>
+}
+
+export type MembershipUpsertWithoutRoomAssignmentsInput = {
+  update: Prisma.XOR<Prisma.MembershipUpdateWithoutRoomAssignmentsInput, Prisma.MembershipUncheckedUpdateWithoutRoomAssignmentsInput>
+  create: Prisma.XOR<Prisma.MembershipCreateWithoutRoomAssignmentsInput, Prisma.MembershipUncheckedCreateWithoutRoomAssignmentsInput>
+  where?: Prisma.MembershipWhereInput
+}
+
+export type MembershipUpdateToOneWithWhereWithoutRoomAssignmentsInput = {
+  where?: Prisma.MembershipWhereInput
+  data: Prisma.XOR<Prisma.MembershipUpdateWithoutRoomAssignmentsInput, Prisma.MembershipUncheckedUpdateWithoutRoomAssignmentsInput>
+}
+
+export type MembershipUpdateWithoutRoomAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutMembershipsNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutMembershipsNestedInput
+  role?: Prisma.RoleUpdateOneRequiredWithoutMembershipsNestedInput
+}
+
+export type MembershipUncheckedUpdateWithoutRoomAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  roleId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MembershipCreateManyUserInput = {
@@ -878,6 +994,7 @@ export type MembershipUpdateWithoutUserInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutMembershipsNestedInput
   role?: Prisma.RoleUpdateOneRequiredWithoutMembershipsNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutUserInput = {
@@ -894,6 +1011,7 @@ export type MembershipUncheckedUpdateWithoutUserInput = {
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateManyWithoutUserInput = {
@@ -942,6 +1060,7 @@ export type MembershipUpdateWithoutTenantInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutMembershipsNestedInput
   role?: Prisma.RoleUpdateOneRequiredWithoutMembershipsNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutTenantInput = {
@@ -958,6 +1077,7 @@ export type MembershipUncheckedUpdateWithoutTenantInput = {
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateManyWithoutTenantInput = {
@@ -1005,6 +1125,7 @@ export type MembershipUpdateWithoutRoleInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutMembershipsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutMembershipsNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutRoleInput = {
@@ -1020,6 +1141,7 @@ export type MembershipUncheckedUpdateWithoutRoleInput = {
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateManyWithoutRoleInput = {
@@ -1037,6 +1159,35 @@ export type MembershipUncheckedUpdateManyWithoutRoleInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type MembershipCountOutputType
+ */
+
+export type MembershipCountOutputType = {
+  roomAssignments: number
+}
+
+export type MembershipCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  roomAssignments?: boolean | MembershipCountOutputTypeCountRoomAssignmentsArgs
+}
+
+/**
+ * MembershipCountOutputType without action
+ */
+export type MembershipCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MembershipCountOutputType
+   */
+  select?: Prisma.MembershipCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * MembershipCountOutputType without action
+ */
+export type MembershipCountOutputTypeCountRoomAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RoomAssignmentWhereInput
+}
 
 
 export type MembershipSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1057,6 +1208,8 @@ export type MembershipSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   role?: boolean | Prisma.RoleDefaultArgs<ExtArgs>
+  roomAssignments?: boolean | Prisma.Membership$roomAssignmentsArgs<ExtArgs>
+  _count?: boolean | Prisma.MembershipCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["membership"]>
 
 export type MembershipSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1121,6 +1274,8 @@ export type MembershipInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   role?: boolean | Prisma.RoleDefaultArgs<ExtArgs>
+  roomAssignments?: boolean | Prisma.Membership$roomAssignmentsArgs<ExtArgs>
+  _count?: boolean | Prisma.MembershipCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MembershipIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1139,6 +1294,7 @@ export type $MembershipPayload<ExtArgs extends runtime.Types.Extensions.Internal
     user: Prisma.$UserPayload<ExtArgs>
     tenant: Prisma.$TenantPayload<ExtArgs>
     role: Prisma.$RolePayload<ExtArgs>
+    roomAssignments: Prisma.$RoomAssignmentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1552,6 +1708,7 @@ export interface Prisma__MembershipClient<T, Null = never, ExtArgs extends runti
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   role<T extends Prisma.RoleDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RoleDefaultArgs<ExtArgs>>): Prisma.Prisma__RoleClient<runtime.Types.Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  roomAssignments<T extends Prisma.Membership$roomAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Membership$roomAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1993,6 +2150,30 @@ export type MembershipDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Limit how many Memberships to delete.
    */
   limit?: number
+}
+
+/**
+ * Membership.roomAssignments
+ */
+export type Membership$roomAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RoomAssignment
+   */
+  select?: Prisma.RoomAssignmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RoomAssignment
+   */
+  omit?: Prisma.RoomAssignmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RoomAssignmentInclude<ExtArgs> | null
+  where?: Prisma.RoomAssignmentWhereInput
+  orderBy?: Prisma.RoomAssignmentOrderByWithRelationInput | Prisma.RoomAssignmentOrderByWithRelationInput[]
+  cursor?: Prisma.RoomAssignmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RoomAssignmentScalarFieldEnum | Prisma.RoomAssignmentScalarFieldEnum[]
 }
 
 /**

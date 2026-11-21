@@ -250,6 +250,8 @@ export type UserWhereInput = {
   assignedTickets?: Prisma.SupportTicketListRelationFilter
   ticketMessages?: Prisma.SupportTicketMessageListRelationFilter
   notifications?: Prisma.PlatformNotificationListRelationFilter
+  assignedRoomAssignments?: Prisma.RoomAssignmentListRelationFilter
+  reviewedBookings?: Prisma.BookingRequestListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -277,6 +279,8 @@ export type UserOrderByWithRelationInput = {
   assignedTickets?: Prisma.SupportTicketOrderByRelationAggregateInput
   ticketMessages?: Prisma.SupportTicketMessageOrderByRelationAggregateInput
   notifications?: Prisma.PlatformNotificationOrderByRelationAggregateInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentOrderByRelationAggregateInput
+  reviewedBookings?: Prisma.BookingRequestOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -307,6 +311,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   assignedTickets?: Prisma.SupportTicketListRelationFilter
   ticketMessages?: Prisma.SupportTicketMessageListRelationFilter
   notifications?: Prisma.PlatformNotificationListRelationFilter
+  assignedRoomAssignments?: Prisma.RoomAssignmentListRelationFilter
+  reviewedBookings?: Prisma.BookingRequestListRelationFilter
 }, "id" | "email" | "phone">
 
 export type UserOrderByWithAggregationInput = {
@@ -370,6 +376,8 @@ export type UserCreateInput = {
   assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -397,6 +405,8 @@ export type UserUncheckedCreateInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserUpdateInput = {
@@ -424,6 +434,8 @@ export type UserUpdateInput = {
   assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -451,6 +463,8 @@ export type UserUncheckedUpdateInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -763,6 +777,38 @@ export type UserUpdateOneWithoutNotificationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotificationsInput, Prisma.UserUpdateWithoutNotificationsInput>, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
 }
 
+export type UserCreateNestedOneWithoutAssignedRoomAssignmentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAssignedRoomAssignmentsInput, Prisma.UserUncheckedCreateWithoutAssignedRoomAssignmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssignedRoomAssignmentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutAssignedRoomAssignmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAssignedRoomAssignmentsInput, Prisma.UserUncheckedCreateWithoutAssignedRoomAssignmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssignedRoomAssignmentsInput
+  upsert?: Prisma.UserUpsertWithoutAssignedRoomAssignmentsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAssignedRoomAssignmentsInput, Prisma.UserUpdateWithoutAssignedRoomAssignmentsInput>, Prisma.UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput>
+}
+
+export type UserCreateNestedOneWithoutReviewedBookingsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedBookingsInput, Prisma.UserUncheckedCreateWithoutReviewedBookingsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedBookingsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutReviewedBookingsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedBookingsInput, Prisma.UserUncheckedCreateWithoutReviewedBookingsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedBookingsInput
+  upsert?: Prisma.UserUpsertWithoutReviewedBookingsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewedBookingsInput, Prisma.UserUpdateWithoutReviewedBookingsInput>, Prisma.UserUncheckedUpdateWithoutReviewedBookingsInput>
+}
+
 export type UserCreateWithoutReviewedVerificationsInput = {
   id?: string
   name: string
@@ -787,6 +833,8 @@ export type UserCreateWithoutReviewedVerificationsInput = {
   assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserUncheckedCreateWithoutReviewedVerificationsInput = {
@@ -813,6 +861,8 @@ export type UserUncheckedCreateWithoutReviewedVerificationsInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserCreateOrConnectWithoutReviewedVerificationsInput = {
@@ -855,6 +905,8 @@ export type UserUpdateWithoutReviewedVerificationsInput = {
   assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedVerificationsInput = {
@@ -881,6 +933,8 @@ export type UserUncheckedUpdateWithoutReviewedVerificationsInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserCreateWithoutMembershipsInput = {
@@ -907,6 +961,8 @@ export type UserCreateWithoutMembershipsInput = {
   assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserUncheckedCreateWithoutMembershipsInput = {
@@ -933,6 +989,8 @@ export type UserUncheckedCreateWithoutMembershipsInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -975,6 +1033,8 @@ export type UserUpdateWithoutMembershipsInput = {
   assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMembershipsInput = {
@@ -1001,6 +1061,8 @@ export type UserUncheckedUpdateWithoutMembershipsInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -1027,6 +1089,8 @@ export type UserCreateWithoutAuditLogsInput = {
   assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -1053,6 +1117,8 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -1095,6 +1161,8 @@ export type UserUpdateWithoutAuditLogsInput = {
   assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -1121,6 +1189,8 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserCreateWithoutApprovedSubscriptionsInput = {
@@ -1147,6 +1217,8 @@ export type UserCreateWithoutApprovedSubscriptionsInput = {
   assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserUncheckedCreateWithoutApprovedSubscriptionsInput = {
@@ -1173,6 +1245,8 @@ export type UserUncheckedCreateWithoutApprovedSubscriptionsInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserCreateOrConnectWithoutApprovedSubscriptionsInput = {
@@ -1215,6 +1289,8 @@ export type UserUpdateWithoutApprovedSubscriptionsInput = {
   assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedSubscriptionsInput = {
@@ -1241,6 +1317,8 @@ export type UserUncheckedUpdateWithoutApprovedSubscriptionsInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserCreateWithoutConfirmedInvoicesInput = {
@@ -1267,6 +1345,8 @@ export type UserCreateWithoutConfirmedInvoicesInput = {
   assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserUncheckedCreateWithoutConfirmedInvoicesInput = {
@@ -1293,6 +1373,8 @@ export type UserUncheckedCreateWithoutConfirmedInvoicesInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserCreateOrConnectWithoutConfirmedInvoicesInput = {
@@ -1335,6 +1417,8 @@ export type UserUpdateWithoutConfirmedInvoicesInput = {
   assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConfirmedInvoicesInput = {
@@ -1361,6 +1445,8 @@ export type UserUncheckedUpdateWithoutConfirmedInvoicesInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserCreateWithoutAssignedInquiriesInput = {
@@ -1387,6 +1473,8 @@ export type UserCreateWithoutAssignedInquiriesInput = {
   assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserUncheckedCreateWithoutAssignedInquiriesInput = {
@@ -1413,6 +1501,8 @@ export type UserUncheckedCreateWithoutAssignedInquiriesInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserCreateOrConnectWithoutAssignedInquiriesInput = {
@@ -1455,6 +1545,8 @@ export type UserUpdateWithoutAssignedInquiriesInput = {
   assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedInquiriesInput = {
@@ -1481,6 +1573,8 @@ export type UserUncheckedUpdateWithoutAssignedInquiriesInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserCreateWithoutPreparedQuotationsInput = {
@@ -1507,6 +1601,8 @@ export type UserCreateWithoutPreparedQuotationsInput = {
   assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserUncheckedCreateWithoutPreparedQuotationsInput = {
@@ -1533,6 +1629,8 @@ export type UserUncheckedCreateWithoutPreparedQuotationsInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserCreateOrConnectWithoutPreparedQuotationsInput = {
@@ -1564,6 +1662,8 @@ export type UserCreateWithoutApprovedQuotationsInput = {
   assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserUncheckedCreateWithoutApprovedQuotationsInput = {
@@ -1590,6 +1690,8 @@ export type UserUncheckedCreateWithoutApprovedQuotationsInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserCreateOrConnectWithoutApprovedQuotationsInput = {
@@ -1632,6 +1734,8 @@ export type UserUpdateWithoutPreparedQuotationsInput = {
   assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPreparedQuotationsInput = {
@@ -1658,6 +1762,8 @@ export type UserUncheckedUpdateWithoutPreparedQuotationsInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserUpsertWithoutApprovedQuotationsInput = {
@@ -1695,6 +1801,8 @@ export type UserUpdateWithoutApprovedQuotationsInput = {
   assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedQuotationsInput = {
@@ -1721,6 +1829,8 @@ export type UserUncheckedUpdateWithoutApprovedQuotationsInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserCreateWithoutRequestedTicketsInput = {
@@ -1747,6 +1857,8 @@ export type UserCreateWithoutRequestedTicketsInput = {
   assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserUncheckedCreateWithoutRequestedTicketsInput = {
@@ -1773,6 +1885,8 @@ export type UserUncheckedCreateWithoutRequestedTicketsInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserCreateOrConnectWithoutRequestedTicketsInput = {
@@ -1804,6 +1918,8 @@ export type UserCreateWithoutAssignedTicketsInput = {
   requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
   ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserUncheckedCreateWithoutAssignedTicketsInput = {
@@ -1830,6 +1946,8 @@ export type UserUncheckedCreateWithoutAssignedTicketsInput = {
   requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserCreateOrConnectWithoutAssignedTicketsInput = {
@@ -1872,6 +1990,8 @@ export type UserUpdateWithoutRequestedTicketsInput = {
   assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequestedTicketsInput = {
@@ -1898,6 +2018,8 @@ export type UserUncheckedUpdateWithoutRequestedTicketsInput = {
   assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserUpsertWithoutAssignedTicketsInput = {
@@ -1935,6 +2057,8 @@ export type UserUpdateWithoutAssignedTicketsInput = {
   requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedTicketsInput = {
@@ -1961,6 +2085,8 @@ export type UserUncheckedUpdateWithoutAssignedTicketsInput = {
   requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserCreateWithoutTicketMessagesInput = {
@@ -1987,6 +2113,8 @@ export type UserCreateWithoutTicketMessagesInput = {
   requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
   assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserUncheckedCreateWithoutTicketMessagesInput = {
@@ -2013,6 +2141,8 @@ export type UserUncheckedCreateWithoutTicketMessagesInput = {
   requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
   assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserCreateOrConnectWithoutTicketMessagesInput = {
@@ -2055,6 +2185,8 @@ export type UserUpdateWithoutTicketMessagesInput = {
   requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
   assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTicketMessagesInput = {
@@ -2081,6 +2213,8 @@ export type UserUncheckedUpdateWithoutTicketMessagesInput = {
   requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
   assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -2107,6 +2241,8 @@ export type UserCreateWithoutNotificationsInput = {
   requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
   assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -2133,6 +2269,8 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
   assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -2175,6 +2313,8 @@ export type UserUpdateWithoutNotificationsInput = {
   requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
   assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -2201,6 +2341,264 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
   assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
   ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+}
+
+export type UserCreateWithoutAssignedRoomAssignmentsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+}
+
+export type UserUncheckedCreateWithoutAssignedRoomAssignmentsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+}
+
+export type UserCreateOrConnectWithoutAssignedRoomAssignmentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAssignedRoomAssignmentsInput, Prisma.UserUncheckedCreateWithoutAssignedRoomAssignmentsInput>
+}
+
+export type UserUpsertWithoutAssignedRoomAssignmentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAssignedRoomAssignmentsInput, Prisma.UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAssignedRoomAssignmentsInput, Prisma.UserUncheckedCreateWithoutAssignedRoomAssignmentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAssignedRoomAssignmentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAssignedRoomAssignmentsInput, Prisma.UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput>
+}
+
+export type UserUpdateWithoutAssignedRoomAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+}
+
+export type UserCreateWithoutReviewedBookingsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+}
+
+export type UserUncheckedCreateWithoutReviewedBookingsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+}
+
+export type UserCreateOrConnectWithoutReviewedBookingsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedBookingsInput, Prisma.UserUncheckedCreateWithoutReviewedBookingsInput>
+}
+
+export type UserUpsertWithoutReviewedBookingsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReviewedBookingsInput, Prisma.UserUncheckedUpdateWithoutReviewedBookingsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedBookingsInput, Prisma.UserUncheckedCreateWithoutReviewedBookingsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReviewedBookingsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReviewedBookingsInput, Prisma.UserUncheckedUpdateWithoutReviewedBookingsInput>
+}
+
+export type UserUpdateWithoutReviewedBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReviewedBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
 }
 
 
@@ -2221,6 +2619,8 @@ export type UserCountOutputType = {
   assignedTickets: number
   ticketMessages: number
   notifications: number
+  assignedRoomAssignments: number
+  reviewedBookings: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2236,6 +2636,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   assignedTickets?: boolean | UserCountOutputTypeCountAssignedTicketsArgs
   ticketMessages?: boolean | UserCountOutputTypeCountTicketMessagesArgs
   notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
+  assignedRoomAssignments?: boolean | UserCountOutputTypeCountAssignedRoomAssignmentsArgs
+  reviewedBookings?: boolean | UserCountOutputTypeCountReviewedBookingsArgs
 }
 
 /**
@@ -2332,6 +2734,20 @@ export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.PlatformNotificationWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAssignedRoomAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RoomAssignmentWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewedBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BookingRequestWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2358,6 +2774,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   assignedTickets?: boolean | Prisma.User$assignedTicketsArgs<ExtArgs>
   ticketMessages?: boolean | Prisma.User$ticketMessagesArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
+  assignedRoomAssignments?: boolean | Prisma.User$assignedRoomAssignmentsArgs<ExtArgs>
+  reviewedBookings?: boolean | Prisma.User$reviewedBookingsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2420,6 +2838,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   assignedTickets?: boolean | Prisma.User$assignedTicketsArgs<ExtArgs>
   ticketMessages?: boolean | Prisma.User$ticketMessagesArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
+  assignedRoomAssignments?: boolean | Prisma.User$assignedRoomAssignmentsArgs<ExtArgs>
+  reviewedBookings?: boolean | Prisma.User$reviewedBookingsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2440,6 +2860,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     assignedTickets: Prisma.$SupportTicketPayload<ExtArgs>[]
     ticketMessages: Prisma.$SupportTicketMessagePayload<ExtArgs>[]
     notifications: Prisma.$PlatformNotificationPayload<ExtArgs>[]
+    assignedRoomAssignments: Prisma.$RoomAssignmentPayload<ExtArgs>[]
+    reviewedBookings: Prisma.$BookingRequestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2860,6 +3282,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   assignedTickets<T extends Prisma.User$assignedTicketsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedTicketsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SupportTicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ticketMessages<T extends Prisma.User$ticketMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ticketMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SupportTicketMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlatformNotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  assignedRoomAssignments<T extends Prisma.User$assignedRoomAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedRoomAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewedBookings<T extends Prisma.User$reviewedBookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedBookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookingRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3579,6 +4003,54 @@ export type User$notificationsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.PlatformNotificationScalarFieldEnum | Prisma.PlatformNotificationScalarFieldEnum[]
+}
+
+/**
+ * User.assignedRoomAssignments
+ */
+export type User$assignedRoomAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RoomAssignment
+   */
+  select?: Prisma.RoomAssignmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RoomAssignment
+   */
+  omit?: Prisma.RoomAssignmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RoomAssignmentInclude<ExtArgs> | null
+  where?: Prisma.RoomAssignmentWhereInput
+  orderBy?: Prisma.RoomAssignmentOrderByWithRelationInput | Prisma.RoomAssignmentOrderByWithRelationInput[]
+  cursor?: Prisma.RoomAssignmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RoomAssignmentScalarFieldEnum | Prisma.RoomAssignmentScalarFieldEnum[]
+}
+
+/**
+ * User.reviewedBookings
+ */
+export type User$reviewedBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BookingRequest
+   */
+  select?: Prisma.BookingRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BookingRequest
+   */
+  omit?: Prisma.BookingRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BookingRequestInclude<ExtArgs> | null
+  where?: Prisma.BookingRequestWhereInput
+  orderBy?: Prisma.BookingRequestOrderByWithRelationInput | Prisma.BookingRequestOrderByWithRelationInput[]
+  cursor?: Prisma.BookingRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookingRequestScalarFieldEnum | Prisma.BookingRequestScalarFieldEnum[]
 }
 
 /**

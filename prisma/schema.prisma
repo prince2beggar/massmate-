@@ -215,6 +215,49 @@ enum NotificationType {
   SYSTEM_ALERT
 }
 
+enum RoomStatus {
+  AVAILABLE
+  OCCUPIED
+  MAINTENANCE
+  INACTIVE
+}
+
+enum BedStatus {
+  AVAILABLE
+  OCCUPIED
+  MAINTENANCE
+  INACTIVE
+}
+
+enum AssignmentStatus {
+  ACTIVE
+  TRANSFERRED
+  MOVED_OUT
+  CANCELLED
+}
+
+enum RentalListingStatus {
+  DRAFT
+  PUBLISHED
+  PAUSED
+  ARCHIVED
+}
+
+enum BookingStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+  COMPLETED
+}
+
+enum BookingPaymentStatus {
+  UNPAID
+  MANUAL_PENDING
+  CONFIRMED
+  REFUNDED
+}
+
 // -----------------------------------------------------------------------------
 // USER (Platform-wide Identity)
 // -----------------------------------------------------------------------------
@@ -245,6 +288,8 @@ model User {
   assignedTickets       SupportTicket[]       @relation("AssignedTickets")
   ticketMessages        SupportTicketMessage[]
   notifications         PlatformNotification[]
+  assignedRoomAssignments RoomAssignment[]      @relation("AssignedRoomAssignments")
+  reviewedBookings        BookingRequest[]      @relation("ReviewedBookings")
 
   @@index([status])
   @@index([platformRole])
@@ -284,6 +329,11 @@ model Tenant {
   invoices     SubscriptionInvoice[]
   domains      Domain[]
   supportTickets SupportTicket[]
+  rooms          Room[]
+  beds           Bed[]
+  roomAssignments RoomAssignment[]
+  rentalListings RentalListing[]
+  bookingRequests BookingRequest[]
 
   @@index([status])
   @@index([verificationStatus])
@@ -444,6 +494,7 @@ model Membership {
   user   User   @relation(fields: [userId], references: [id], onDelete: Restrict)
   tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   role   Role   @relation(fields: [roleId, tenantId], references: [id, tenantId], onDelete: Restrict)
+  roomAssignments RoomAssignment[]
 
   @@unique([userId, tenantId])
   @@index([tenantId])
@@ -760,5 +811,155 @@ model PlatformNotification {
   @@index([type])
   @@index([createdAt])
   @@map("platform_notifications")
+}
+
+// -----------------------------------------------------------------------------
+// ROOM & ACCOMMODATION (Task 32)
+// -----------------------------------------------------------------------------
+
+model Room {
+  id            String      @id @default(cuid())
+  tenantId      String      @map("tenant_id")
+  roomNumber    String      @map("room_number")
+  name          String?
+  floor         String?
+  building      String?
+  capacity      Int         @default(1)
+  defaultRent   Decimal     @default(0) @db.Decimal(10, 2) @map("default_rent")
+  facilities    Json        // string[] e.g. ["Attached Bath", "Balcony", "WiFi"]
+  status        RoomStatus  @default(AVAILABLE)
+  description   String?
+  internalNotes String?     @map("internal_notes")
+  createdAt     DateTime    @default(now()) @map("created_at")
+  updatedAt     DateTime    @updatedAt @map("updated_at")
+
+  tenant         Tenant           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  beds           Bed[]
+  assignments    RoomAssignment[]
+  rentalListings RentalListing[]
+
+  @@unique([tenantId, roomNumber])
+  @@index([tenantId])
+  @@index([status])
+  @@map("rooms")
+}
+
+model Bed {
+  id         String     @id @default(cuid())
+  tenantId   String     @map("tenant_id")
+  roomId     String     @map("room_id")
+  bedNumber  String     @map("bed_number")
+  status     BedStatus  @default(AVAILABLE)
+  rentAmount Decimal?   @db.Decimal(10, 2) @map("rent_amount")
+  createdAt  DateTime   @default(now()) @map("created_at")
+  updatedAt  DateTime   @updatedAt @map("updated_at")
+
+  tenant      Tenant           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  room        Room             @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  assignments RoomAssignment[]
+
+  @@unique([roomId, bedNumber])
+  @@index([roomId])
+  @@index([tenantId])
+  @@index([status])
+  @@map("beds")
+}
+
+model RoomAssignment {
+  id               String           @id @default(cuid())
+  tenantId         String           @map("tenant_id")
+  roomId           String           @map("room_id")
+  bedId            String?          @map("bed_id")
+  membershipId     String           @map("membership_id")
+  startDate        DateTime         @map("start_date")
+  endDate          DateTime?        @map("end_date")
+  monthlyRent      Decimal          @db.Decimal(10, 2) @map("monthly_rent")
+  rentCycleBasis   String           @default("MONTHLY") @map("rent_cycle_basis")
+  status           AssignmentStatus @default(ACTIVE)
+  notes            String?
+  moveOutReason    String?          @map("move_out_reason")
+  assignedByUserId String?          @map("assigned_by_user_id")
+  createdAt        DateTime         @default(now()) @map("created_at")
+  updatedAt        DateTime         @updatedAt @map("updated_at")
+
+  tenant     Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  room       Room       @relation(fields: [roomId], references: [id], onDelete: Restrict)
+  bed        Bed?       @relation(fields: [bedId], references: [id], onDelete: SetNull)
+  membership Membership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  assignedBy User?      @relation("AssignedRoomAssignments", fields: [assignedByUserId], references: [id], onDelete: SetNull)
+
+  @@index([tenantId])
+  @@index([roomId])
+  @@index([bedId])
+  @@index([membershipId])
+  @@index([status])
+  @@map("room_assignments")
+}
+
+// -----------------------------------------------------------------------------
+// RENTAL MANAGEMENT & GUEST BOOKINGS (Task 32)
+// -----------------------------------------------------------------------------
+
+model RentalListing {
+  id             String              @id @default(cuid())
+  tenantId       String              @map("tenant_id")
+  roomId         String?             @map("room_id")
+  title          String
+  description    String?
+  facilities     Json                // string[]
+  photos         Json                // string[] image paths/URLs
+  capacity       Int                 @default(1)
+  houseRules     String?             @map("house_rules")
+  dailyRate      Decimal?            @db.Decimal(10, 2) @map("daily_rate")
+  monthlyRate    Decimal?            @db.Decimal(10, 2) @map("monthly_rate")
+  currency       String              @default("BDT")
+  isPublic       Boolean             @default(true) @map("is_public")
+  contactMethod  String?             @map("contact_method")
+  status         RentalListingStatus @default(DRAFT)
+  availableFrom  DateTime?           @map("available_from")
+  availableUntil DateTime?           @map("available_until")
+  createdAt      DateTime            @default(now()) @map("created_at")
+  updatedAt      DateTime            @updatedAt @map("updated_at")
+
+  tenant   Tenant           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  room     Room?            @relation(fields: [roomId], references: [id], onDelete: SetNull)
+  bookings BookingRequest[]
+
+  @@index([tenantId])
+  @@index([status])
+  @@index([isPublic])
+  @@map("rental_listings")
+}
+
+model BookingRequest {
+  id               String               @id @default(cuid())
+  tenantId         String               @map("tenant_id")
+  listingId        String               @map("listing_id")
+  guestName        String               @map("guest_name")
+  guestEmail       String?              @map("guest_email")
+  guestPhone       String               @map("guest_phone")
+  checkInDate      DateTime             @map("check_in_date")
+  checkOutDate     DateTime             @map("check_out_date")
+  durationDays     Int                  @map("duration_days")
+  totalAmount      Decimal              @default(0) @db.Decimal(10, 2) @map("total_amount")
+  message          String?
+  status           BookingStatus        @default(PENDING)
+  paymentStatus    BookingPaymentStatus @default(UNPAID) @map("payment_status")
+  reviewedByUserId String?              @map("reviewed_by_user_id")
+  reviewedAt       DateTime?            @map("reviewed_at")
+  rejectionReason  String?              @map("rejection_reason")
+  createdAt        DateTime             @default(now()) @map("created_at")
+  updatedAt        DateTime             @updatedAt @map("updated_at")
+
+  tenant     Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  listing    RentalListing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  reviewedBy User?         @relation("ReviewedBookings", fields: [reviewedByUserId], references: [id], onDelete: SetNull)
+
+  @@index([tenantId])
+  @@index([listingId])
+  @@index([status])
+  @@index([paymentStatus])
+  @@index([checkInDate, checkOutDate])
+  @@map("booking_requests")
 }
 

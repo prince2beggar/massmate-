@@ -25,6 +25,17 @@ import type {
   SupportTicket as PrismaSupportTicket,
   SupportTicketMessage as PrismaSupportTicketMessage,
   PlatformNotification as PrismaPlatformNotification,
+  Room as PrismaRoom,
+  Bed as PrismaBed,
+  RoomAssignment as PrismaRoomAssignment,
+  RentalListing as PrismaRentalListing,
+  BookingRequest as PrismaBookingRequest,
+  RoomStatus,
+  BedStatus,
+  AssignmentStatus,
+  RentalListingStatus,
+  BookingStatus,
+  BookingPaymentStatus,
   UserStatus,
   TenantType,
   TenantStatus,
@@ -82,6 +93,12 @@ export type {
   SupportTicketPriority,
   SupportTicketStatus,
   NotificationType,
+  RoomStatus,
+  BedStatus,
+  AssignmentStatus,
+  RentalListingStatus,
+  BookingStatus,
+  BookingPaymentStatus,
 };
 
 // Re-export Base Models
@@ -98,6 +115,11 @@ export type TenantVerification = PrismaTenantVerification;
 export type Plan = PrismaPlan;
 export type Subscription = PrismaSubscription;
 export type SubscriptionInvoice = PrismaSubscriptionInvoice;
+export type Room = PrismaRoom;
+export type Bed = PrismaBed;
+export type RoomAssignment = PrismaRoomAssignment;
+export type RentalListing = PrismaRentalListing;
+export type BookingRequest = PrismaBookingRequest;
 export type CustomPlanInquiry = PrismaCustomPlanInquiry;
 export type CustomQuotation = PrismaCustomQuotation;
 export type Domain = PrismaDomain;

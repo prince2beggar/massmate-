@@ -644,15 +644,15 @@ describe('Task 29–30: Mess Admin Dashboard Foundation & Analytics', () => {
     const actualNavIds = MESS_NAV_ITEMS.map((item) => item.id);
     assert.deepEqual(actualNavIds, expectedNavIds);
 
-    // Overview and Members are implemented
-    const overviewItem = MESS_NAV_ITEMS.find((item) => item.id === 'overview');
-    const membersItem = MESS_NAV_ITEMS.find((item) => item.id === 'members');
-    assert.equal(overviewItem?.isImplemented, true);
-    assert.equal(membersItem?.isImplemented, true);
+    // Overview, Members, Rooms, and Rental are implemented
+    const implementedIds = ['overview', 'members', 'rooms', 'rental'];
+    for (const id of implementedIds) {
+      assert.equal(MESS_NAV_ITEMS.find((item) => item.id === id)?.isImplemented, true);
+    }
 
     // Remaining items are marked placeholder with task notes
     const placeholderItems = MESS_NAV_ITEMS.filter(
-      (item) => item.id !== 'overview' && item.id !== 'members'
+      (item) => !implementedIds.includes(item.id)
     );
     assert.equal(placeholderItems.every((item) => item.isImplemented === false), true);
   });

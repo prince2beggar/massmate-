@@ -286,3 +286,64 @@ export const NotificationType = {
 } as const
 
 export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]
+
+
+export const RoomStatus = {
+  AVAILABLE: 'AVAILABLE',
+  OCCUPIED: 'OCCUPIED',
+  MAINTENANCE: 'MAINTENANCE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type RoomStatus = (typeof RoomStatus)[keyof typeof RoomStatus]
+
+
+export const BedStatus = {
+  AVAILABLE: 'AVAILABLE',
+  OCCUPIED: 'OCCUPIED',
+  MAINTENANCE: 'MAINTENANCE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type BedStatus = (typeof BedStatus)[keyof typeof BedStatus]
+
+
+export const AssignmentStatus = {
+  ACTIVE: 'ACTIVE',
+  TRANSFERRED: 'TRANSFERRED',
+  MOVED_OUT: 'MOVED_OUT',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type AssignmentStatus = (typeof AssignmentStatus)[keyof typeof AssignmentStatus]
+
+
+export const RentalListingStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  PAUSED: 'PAUSED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type RentalListingStatus = (typeof RentalListingStatus)[keyof typeof RentalListingStatus]
+
+
+export const BookingStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type BookingStatus = (typeof BookingStatus)[keyof typeof BookingStatus]
+
+
+export const BookingPaymentStatus = {
+  UNPAID: 'UNPAID',
+  MANUAL_PENDING: 'MANUAL_PENDING',
+  CONFIRMED: 'CONFIRMED',
+  REFUNDED: 'REFUNDED'
+} as const
+
+export type BookingPaymentStatus = (typeof BookingPaymentStatus)[keyof typeof BookingPaymentStatus]

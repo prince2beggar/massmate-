@@ -69,7 +69,12 @@ export const ModelName = {
   Domain: 'Domain',
   SupportTicket: 'SupportTicket',
   SupportTicketMessage: 'SupportTicketMessage',
-  PlatformNotification: 'PlatformNotification'
+  PlatformNotification: 'PlatformNotification',
+  Room: 'Room',
+  Bed: 'Bed',
+  RoomAssignment: 'RoomAssignment',
+  RentalListing: 'RentalListing',
+  BookingRequest: 'BookingRequest'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -438,6 +443,110 @@ export const PlatformNotificationScalarFieldEnum = {
 } as const
 
 export type PlatformNotificationScalarFieldEnum = (typeof PlatformNotificationScalarFieldEnum)[keyof typeof PlatformNotificationScalarFieldEnum]
+
+
+export const RoomScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  roomNumber: 'roomNumber',
+  name: 'name',
+  floor: 'floor',
+  building: 'building',
+  capacity: 'capacity',
+  defaultRent: 'defaultRent',
+  facilities: 'facilities',
+  status: 'status',
+  description: 'description',
+  internalNotes: 'internalNotes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RoomScalarFieldEnum = (typeof RoomScalarFieldEnum)[keyof typeof RoomScalarFieldEnum]
+
+
+export const BedScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  roomId: 'roomId',
+  bedNumber: 'bedNumber',
+  status: 'status',
+  rentAmount: 'rentAmount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BedScalarFieldEnum = (typeof BedScalarFieldEnum)[keyof typeof BedScalarFieldEnum]
+
+
+export const RoomAssignmentScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  roomId: 'roomId',
+  bedId: 'bedId',
+  membershipId: 'membershipId',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  monthlyRent: 'monthlyRent',
+  rentCycleBasis: 'rentCycleBasis',
+  status: 'status',
+  notes: 'notes',
+  moveOutReason: 'moveOutReason',
+  assignedByUserId: 'assignedByUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RoomAssignmentScalarFieldEnum = (typeof RoomAssignmentScalarFieldEnum)[keyof typeof RoomAssignmentScalarFieldEnum]
+
+
+export const RentalListingScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  roomId: 'roomId',
+  title: 'title',
+  description: 'description',
+  facilities: 'facilities',
+  photos: 'photos',
+  capacity: 'capacity',
+  houseRules: 'houseRules',
+  dailyRate: 'dailyRate',
+  monthlyRate: 'monthlyRate',
+  currency: 'currency',
+  isPublic: 'isPublic',
+  contactMethod: 'contactMethod',
+  status: 'status',
+  availableFrom: 'availableFrom',
+  availableUntil: 'availableUntil',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RentalListingScalarFieldEnum = (typeof RentalListingScalarFieldEnum)[keyof typeof RentalListingScalarFieldEnum]
+
+
+export const BookingRequestScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  listingId: 'listingId',
+  guestName: 'guestName',
+  guestEmail: 'guestEmail',
+  guestPhone: 'guestPhone',
+  checkInDate: 'checkInDate',
+  checkOutDate: 'checkOutDate',
+  durationDays: 'durationDays',
+  totalAmount: 'totalAmount',
+  message: 'message',
+  status: 'status',
+  paymentStatus: 'paymentStatus',
+  reviewedByUserId: 'reviewedByUserId',
+  reviewedAt: 'reviewedAt',
+  rejectionReason: 'rejectionReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BookingRequestScalarFieldEnum = (typeof BookingRequestScalarFieldEnum)[keyof typeof BookingRequestScalarFieldEnum]
 
 
 export const SortOrder = {

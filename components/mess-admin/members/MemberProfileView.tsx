@@ -258,13 +258,24 @@ export function MemberProfileView({
 
       {activeTab === 'room' && (
         <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-xs space-y-3">
-          <BedDouble className="mx-auto h-10 w-10 text-slate-300" />
+          <BedDouble className="mx-auto h-10 w-10 text-primary" />
           <h3 className="text-sm font-bold text-slate-800">
-            Room & Bed Assignment
+            Room & Bed Allocation
           </h3>
           <p className="text-xs text-slate-500 max-w-sm mx-auto">
-            {member.roomAssignment.note}
+            {member.roomAssignment.isAssigned
+              ? `Assigned to Room ${member.roomAssignment.roomNumber} (${member.roomAssignment.bedNumber || 'Seat'})`
+              : member.roomAssignment.note}
           </p>
+          <div className="pt-2">
+            <Link
+              href={`/mess/${tenantSlug}/rooms`}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-primary text-white hover:bg-primary/90 transition"
+            >
+              <BedDouble className="w-3.5 h-3.5" />
+              <span>Go to Room Directory</span>
+            </Link>
+          </div>
         </div>
       )}
 

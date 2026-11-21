@@ -294,6 +294,11 @@ export type TenantWhereInput = {
   invoices?: Prisma.SubscriptionInvoiceListRelationFilter
   domains?: Prisma.DomainListRelationFilter
   supportTickets?: Prisma.SupportTicketListRelationFilter
+  rooms?: Prisma.RoomListRelationFilter
+  beds?: Prisma.BedListRelationFilter
+  roomAssignments?: Prisma.RoomAssignmentListRelationFilter
+  rentalListings?: Prisma.RentalListingListRelationFilter
+  bookingRequests?: Prisma.BookingRequestListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
@@ -323,6 +328,11 @@ export type TenantOrderByWithRelationInput = {
   invoices?: Prisma.SubscriptionInvoiceOrderByRelationAggregateInput
   domains?: Prisma.DomainOrderByRelationAggregateInput
   supportTickets?: Prisma.SupportTicketOrderByRelationAggregateInput
+  rooms?: Prisma.RoomOrderByRelationAggregateInput
+  beds?: Prisma.BedOrderByRelationAggregateInput
+  roomAssignments?: Prisma.RoomAssignmentOrderByRelationAggregateInput
+  rentalListings?: Prisma.RentalListingOrderByRelationAggregateInput
+  bookingRequests?: Prisma.BookingRequestOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -355,6 +365,11 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   invoices?: Prisma.SubscriptionInvoiceListRelationFilter
   domains?: Prisma.DomainListRelationFilter
   supportTickets?: Prisma.SupportTicketListRelationFilter
+  rooms?: Prisma.RoomListRelationFilter
+  beds?: Prisma.BedListRelationFilter
+  roomAssignments?: Prisma.RoomAssignmentListRelationFilter
+  rentalListings?: Prisma.RentalListingListRelationFilter
+  bookingRequests?: Prisma.BookingRequestListRelationFilter
 }, "id" | "slug">
 
 export type TenantOrderByWithAggregationInput = {
@@ -432,6 +447,11 @@ export type TenantCreateInput = {
   invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
   domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
@@ -461,6 +481,11 @@ export type TenantUncheckedCreateInput = {
   invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
   domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
@@ -490,6 +515,11 @@ export type TenantUpdateInput = {
   invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
   domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
@@ -519,6 +549,11 @@ export type TenantUncheckedUpdateInput = {
   invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
   domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
@@ -785,6 +820,76 @@ export type TenantUpdateOneWithoutSupportTicketsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutSupportTicketsInput, Prisma.TenantUpdateWithoutSupportTicketsInput>, Prisma.TenantUncheckedUpdateWithoutSupportTicketsInput>
 }
 
+export type TenantCreateNestedOneWithoutRoomsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutRoomsInput, Prisma.TenantUncheckedCreateWithoutRoomsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutRoomsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutRoomsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutRoomsInput, Prisma.TenantUncheckedCreateWithoutRoomsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutRoomsInput
+  upsert?: Prisma.TenantUpsertWithoutRoomsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutRoomsInput, Prisma.TenantUpdateWithoutRoomsInput>, Prisma.TenantUncheckedUpdateWithoutRoomsInput>
+}
+
+export type TenantCreateNestedOneWithoutBedsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutBedsInput, Prisma.TenantUncheckedCreateWithoutBedsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutBedsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutBedsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutBedsInput, Prisma.TenantUncheckedCreateWithoutBedsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutBedsInput
+  upsert?: Prisma.TenantUpsertWithoutBedsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutBedsInput, Prisma.TenantUpdateWithoutBedsInput>, Prisma.TenantUncheckedUpdateWithoutBedsInput>
+}
+
+export type TenantCreateNestedOneWithoutRoomAssignmentsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutRoomAssignmentsInput, Prisma.TenantUncheckedCreateWithoutRoomAssignmentsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutRoomAssignmentsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutRoomAssignmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutRoomAssignmentsInput, Prisma.TenantUncheckedCreateWithoutRoomAssignmentsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutRoomAssignmentsInput
+  upsert?: Prisma.TenantUpsertWithoutRoomAssignmentsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutRoomAssignmentsInput, Prisma.TenantUpdateWithoutRoomAssignmentsInput>, Prisma.TenantUncheckedUpdateWithoutRoomAssignmentsInput>
+}
+
+export type TenantCreateNestedOneWithoutRentalListingsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutRentalListingsInput, Prisma.TenantUncheckedCreateWithoutRentalListingsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutRentalListingsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutRentalListingsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutRentalListingsInput, Prisma.TenantUncheckedCreateWithoutRentalListingsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutRentalListingsInput
+  upsert?: Prisma.TenantUpsertWithoutRentalListingsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutRentalListingsInput, Prisma.TenantUpdateWithoutRentalListingsInput>, Prisma.TenantUncheckedUpdateWithoutRentalListingsInput>
+}
+
+export type TenantCreateNestedOneWithoutBookingRequestsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutBookingRequestsInput, Prisma.TenantUncheckedCreateWithoutBookingRequestsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutBookingRequestsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutBookingRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutBookingRequestsInput, Prisma.TenantUncheckedCreateWithoutBookingRequestsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutBookingRequestsInput
+  upsert?: Prisma.TenantUpsertWithoutBookingRequestsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutBookingRequestsInput, Prisma.TenantUpdateWithoutBookingRequestsInput>, Prisma.TenantUncheckedUpdateWithoutBookingRequestsInput>
+}
+
 export type TenantCreateWithoutVerificationInput = {
   id?: string
   name: string
@@ -811,6 +916,11 @@ export type TenantCreateWithoutVerificationInput = {
   invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
   domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutVerificationInput = {
@@ -839,6 +949,11 @@ export type TenantUncheckedCreateWithoutVerificationInput = {
   invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
   domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutVerificationInput = {
@@ -883,6 +998,11 @@ export type TenantUpdateWithoutVerificationInput = {
   invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
   domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutVerificationInput = {
@@ -911,6 +1031,11 @@ export type TenantUncheckedUpdateWithoutVerificationInput = {
   invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
   domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRolesInput = {
@@ -939,6 +1064,11 @@ export type TenantCreateWithoutRolesInput = {
   invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
   domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRolesInput = {
@@ -967,6 +1097,11 @@ export type TenantUncheckedCreateWithoutRolesInput = {
   invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
   domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRolesInput = {
@@ -1011,6 +1146,11 @@ export type TenantUpdateWithoutRolesInput = {
   invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
   domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRolesInput = {
@@ -1039,6 +1179,11 @@ export type TenantUncheckedUpdateWithoutRolesInput = {
   invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
   domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMembershipsInput = {
@@ -1067,6 +1212,11 @@ export type TenantCreateWithoutMembershipsInput = {
   invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
   domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMembershipsInput = {
@@ -1095,6 +1245,11 @@ export type TenantUncheckedCreateWithoutMembershipsInput = {
   invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
   domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMembershipsInput = {
@@ -1139,6 +1294,11 @@ export type TenantUpdateWithoutMembershipsInput = {
   invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
   domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMembershipsInput = {
@@ -1167,6 +1327,11 @@ export type TenantUncheckedUpdateWithoutMembershipsInput = {
   invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
   domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAuditLogsInput = {
@@ -1195,6 +1360,11 @@ export type TenantCreateWithoutAuditLogsInput = {
   invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
   domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAuditLogsInput = {
@@ -1223,6 +1393,11 @@ export type TenantUncheckedCreateWithoutAuditLogsInput = {
   invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
   domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAuditLogsInput = {
@@ -1267,6 +1442,11 @@ export type TenantUpdateWithoutAuditLogsInput = {
   invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
   domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAuditLogsInput = {
@@ -1295,6 +1475,11 @@ export type TenantUncheckedUpdateWithoutAuditLogsInput = {
   invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
   domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSubscriptionInput = {
@@ -1323,6 +1508,11 @@ export type TenantCreateWithoutSubscriptionInput = {
   invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
   domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSubscriptionInput = {
@@ -1351,6 +1541,11 @@ export type TenantUncheckedCreateWithoutSubscriptionInput = {
   invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
   domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSubscriptionInput = {
@@ -1395,6 +1590,11 @@ export type TenantUpdateWithoutSubscriptionInput = {
   invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
   domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSubscriptionInput = {
@@ -1423,6 +1623,11 @@ export type TenantUncheckedUpdateWithoutSubscriptionInput = {
   invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
   domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInvoicesInput = {
@@ -1451,6 +1656,11 @@ export type TenantCreateWithoutInvoicesInput = {
   subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
   domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInvoicesInput = {
@@ -1479,6 +1689,11 @@ export type TenantUncheckedCreateWithoutInvoicesInput = {
   subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
   domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInvoicesInput = {
@@ -1523,6 +1738,11 @@ export type TenantUpdateWithoutInvoicesInput = {
   subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
   domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInvoicesInput = {
@@ -1551,6 +1771,11 @@ export type TenantUncheckedUpdateWithoutInvoicesInput = {
   subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
   domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDomainsInput = {
@@ -1579,6 +1804,11 @@ export type TenantCreateWithoutDomainsInput = {
   subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
   invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
   supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDomainsInput = {
@@ -1607,6 +1837,11 @@ export type TenantUncheckedCreateWithoutDomainsInput = {
   subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
   invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
   supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDomainsInput = {
@@ -1651,6 +1886,11 @@ export type TenantUpdateWithoutDomainsInput = {
   subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
   invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
   supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDomainsInput = {
@@ -1679,6 +1919,11 @@ export type TenantUncheckedUpdateWithoutDomainsInput = {
   subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
   invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
   supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSupportTicketsInput = {
@@ -1707,6 +1952,11 @@ export type TenantCreateWithoutSupportTicketsInput = {
   subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
   invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
   domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSupportTicketsInput = {
@@ -1735,6 +1985,11 @@ export type TenantUncheckedCreateWithoutSupportTicketsInput = {
   subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
   invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
   domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSupportTicketsInput = {
@@ -1779,6 +2034,11 @@ export type TenantUpdateWithoutSupportTicketsInput = {
   subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
   invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
   domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSupportTicketsInput = {
@@ -1807,6 +2067,751 @@ export type TenantUncheckedUpdateWithoutSupportTicketsInput = {
   subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
   invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
   domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutRoomsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutRoomsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutRoomsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutRoomsInput, Prisma.TenantUncheckedCreateWithoutRoomsInput>
+}
+
+export type TenantUpsertWithoutRoomsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutRoomsInput, Prisma.TenantUncheckedUpdateWithoutRoomsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutRoomsInput, Prisma.TenantUncheckedCreateWithoutRoomsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutRoomsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutRoomsInput, Prisma.TenantUncheckedUpdateWithoutRoomsInput>
+}
+
+export type TenantUpdateWithoutRoomsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutRoomsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutBedsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutBedsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutBedsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutBedsInput, Prisma.TenantUncheckedCreateWithoutBedsInput>
+}
+
+export type TenantUpsertWithoutBedsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutBedsInput, Prisma.TenantUncheckedUpdateWithoutBedsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutBedsInput, Prisma.TenantUncheckedCreateWithoutBedsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutBedsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutBedsInput, Prisma.TenantUncheckedUpdateWithoutBedsInput>
+}
+
+export type TenantUpdateWithoutBedsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutBedsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutRoomAssignmentsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutRoomAssignmentsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutRoomAssignmentsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutRoomAssignmentsInput, Prisma.TenantUncheckedCreateWithoutRoomAssignmentsInput>
+}
+
+export type TenantUpsertWithoutRoomAssignmentsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutRoomAssignmentsInput, Prisma.TenantUncheckedUpdateWithoutRoomAssignmentsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutRoomAssignmentsInput, Prisma.TenantUncheckedCreateWithoutRoomAssignmentsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutRoomAssignmentsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutRoomAssignmentsInput, Prisma.TenantUncheckedUpdateWithoutRoomAssignmentsInput>
+}
+
+export type TenantUpdateWithoutRoomAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutRoomAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutRentalListingsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutRentalListingsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutRentalListingsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutRentalListingsInput, Prisma.TenantUncheckedCreateWithoutRentalListingsInput>
+}
+
+export type TenantUpsertWithoutRentalListingsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutRentalListingsInput, Prisma.TenantUncheckedUpdateWithoutRentalListingsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutRentalListingsInput, Prisma.TenantUncheckedCreateWithoutRentalListingsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutRentalListingsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutRentalListingsInput, Prisma.TenantUncheckedUpdateWithoutRentalListingsInput>
+}
+
+export type TenantUpdateWithoutRentalListingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutRentalListingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutBookingRequestsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutBookingRequestsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutBookingRequestsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutBookingRequestsInput, Prisma.TenantUncheckedCreateWithoutBookingRequestsInput>
+}
+
+export type TenantUpsertWithoutBookingRequestsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutBookingRequestsInput, Prisma.TenantUncheckedUpdateWithoutBookingRequestsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutBookingRequestsInput, Prisma.TenantUncheckedCreateWithoutBookingRequestsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutBookingRequestsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutBookingRequestsInput, Prisma.TenantUncheckedUpdateWithoutBookingRequestsInput>
+}
+
+export type TenantUpdateWithoutBookingRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutBookingRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 
@@ -1821,6 +2826,11 @@ export type TenantCountOutputType = {
   invoices: number
   domains: number
   supportTickets: number
+  rooms: number
+  beds: number
+  roomAssignments: number
+  rentalListings: number
+  bookingRequests: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1830,6 +2840,11 @@ export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   invoices?: boolean | TenantCountOutputTypeCountInvoicesArgs
   domains?: boolean | TenantCountOutputTypeCountDomainsArgs
   supportTickets?: boolean | TenantCountOutputTypeCountSupportTicketsArgs
+  rooms?: boolean | TenantCountOutputTypeCountRoomsArgs
+  beds?: boolean | TenantCountOutputTypeCountBedsArgs
+  roomAssignments?: boolean | TenantCountOutputTypeCountRoomAssignmentsArgs
+  rentalListings?: boolean | TenantCountOutputTypeCountRentalListingsArgs
+  bookingRequests?: boolean | TenantCountOutputTypeCountBookingRequestsArgs
 }
 
 /**
@@ -1884,6 +2899,41 @@ export type TenantCountOutputTypeCountSupportTicketsArgs<ExtArgs extends runtime
   where?: Prisma.SupportTicketWhereInput
 }
 
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountRoomsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RoomWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountBedsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BedWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountRoomAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RoomAssignmentWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountRentalListingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RentalListingWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountBookingRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BookingRequestWhereInput
+}
+
 
 export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1912,6 +2962,11 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   invoices?: boolean | Prisma.Tenant$invoicesArgs<ExtArgs>
   domains?: boolean | Prisma.Tenant$domainsArgs<ExtArgs>
   supportTickets?: boolean | Prisma.Tenant$supportTicketsArgs<ExtArgs>
+  rooms?: boolean | Prisma.Tenant$roomsArgs<ExtArgs>
+  beds?: boolean | Prisma.Tenant$bedsArgs<ExtArgs>
+  roomAssignments?: boolean | Prisma.Tenant$roomAssignmentsArgs<ExtArgs>
+  rentalListings?: boolean | Prisma.Tenant$rentalListingsArgs<ExtArgs>
+  bookingRequests?: boolean | Prisma.Tenant$bookingRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -1988,6 +3043,11 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   invoices?: boolean | Prisma.Tenant$invoicesArgs<ExtArgs>
   domains?: boolean | Prisma.Tenant$domainsArgs<ExtArgs>
   supportTickets?: boolean | Prisma.Tenant$supportTicketsArgs<ExtArgs>
+  rooms?: boolean | Prisma.Tenant$roomsArgs<ExtArgs>
+  beds?: boolean | Prisma.Tenant$bedsArgs<ExtArgs>
+  roomAssignments?: boolean | Prisma.Tenant$roomAssignmentsArgs<ExtArgs>
+  rentalListings?: boolean | Prisma.Tenant$rentalListingsArgs<ExtArgs>
+  bookingRequests?: boolean | Prisma.Tenant$bookingRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2004,6 +3064,11 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     invoices: Prisma.$SubscriptionInvoicePayload<ExtArgs>[]
     domains: Prisma.$DomainPayload<ExtArgs>[]
     supportTickets: Prisma.$SupportTicketPayload<ExtArgs>[]
+    rooms: Prisma.$RoomPayload<ExtArgs>[]
+    beds: Prisma.$BedPayload<ExtArgs>[]
+    roomAssignments: Prisma.$RoomAssignmentPayload<ExtArgs>[]
+    rentalListings: Prisma.$RentalListingPayload<ExtArgs>[]
+    bookingRequests: Prisma.$BookingRequestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2426,6 +3491,11 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   invoices<T extends Prisma.Tenant$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionInvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   domains<T extends Prisma.Tenant$domainsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$domainsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DomainPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   supportTickets<T extends Prisma.Tenant$supportTicketsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$supportTicketsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SupportTicketPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  rooms<T extends Prisma.Tenant$roomsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$roomsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  beds<T extends Prisma.Tenant$bedsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$bedsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BedPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  roomAssignments<T extends Prisma.Tenant$roomAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$roomAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  rentalListings<T extends Prisma.Tenant$rentalListingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$rentalListingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RentalListingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bookingRequests<T extends Prisma.Tenant$bookingRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$bookingRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookingRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3045,6 +4115,126 @@ export type Tenant$supportTicketsArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.SupportTicketScalarFieldEnum | Prisma.SupportTicketScalarFieldEnum[]
+}
+
+/**
+ * Tenant.rooms
+ */
+export type Tenant$roomsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Room
+   */
+  select?: Prisma.RoomSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Room
+   */
+  omit?: Prisma.RoomOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RoomInclude<ExtArgs> | null
+  where?: Prisma.RoomWhereInput
+  orderBy?: Prisma.RoomOrderByWithRelationInput | Prisma.RoomOrderByWithRelationInput[]
+  cursor?: Prisma.RoomWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RoomScalarFieldEnum | Prisma.RoomScalarFieldEnum[]
+}
+
+/**
+ * Tenant.beds
+ */
+export type Tenant$bedsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Bed
+   */
+  select?: Prisma.BedSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Bed
+   */
+  omit?: Prisma.BedOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BedInclude<ExtArgs> | null
+  where?: Prisma.BedWhereInput
+  orderBy?: Prisma.BedOrderByWithRelationInput | Prisma.BedOrderByWithRelationInput[]
+  cursor?: Prisma.BedWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BedScalarFieldEnum | Prisma.BedScalarFieldEnum[]
+}
+
+/**
+ * Tenant.roomAssignments
+ */
+export type Tenant$roomAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RoomAssignment
+   */
+  select?: Prisma.RoomAssignmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RoomAssignment
+   */
+  omit?: Prisma.RoomAssignmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RoomAssignmentInclude<ExtArgs> | null
+  where?: Prisma.RoomAssignmentWhereInput
+  orderBy?: Prisma.RoomAssignmentOrderByWithRelationInput | Prisma.RoomAssignmentOrderByWithRelationInput[]
+  cursor?: Prisma.RoomAssignmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RoomAssignmentScalarFieldEnum | Prisma.RoomAssignmentScalarFieldEnum[]
+}
+
+/**
+ * Tenant.rentalListings
+ */
+export type Tenant$rentalListingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RentalListing
+   */
+  select?: Prisma.RentalListingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RentalListing
+   */
+  omit?: Prisma.RentalListingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RentalListingInclude<ExtArgs> | null
+  where?: Prisma.RentalListingWhereInput
+  orderBy?: Prisma.RentalListingOrderByWithRelationInput | Prisma.RentalListingOrderByWithRelationInput[]
+  cursor?: Prisma.RentalListingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RentalListingScalarFieldEnum | Prisma.RentalListingScalarFieldEnum[]
+}
+
+/**
+ * Tenant.bookingRequests
+ */
+export type Tenant$bookingRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BookingRequest
+   */
+  select?: Prisma.BookingRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BookingRequest
+   */
+  omit?: Prisma.BookingRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BookingRequestInclude<ExtArgs> | null
+  where?: Prisma.BookingRequestWhereInput
+  orderBy?: Prisma.BookingRequestOrderByWithRelationInput | Prisma.BookingRequestOrderByWithRelationInput[]
+  cursor?: Prisma.BookingRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookingRequestScalarFieldEnum | Prisma.BookingRequestScalarFieldEnum[]
 }
 
 /**

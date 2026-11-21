@@ -112,3 +112,28 @@ export type SupportTicketMessage = Prisma.SupportTicketMessageModel
  * 
  */
 export type PlatformNotification = Prisma.PlatformNotificationModel
+/**
+ * Model Room
+ * 
+ */
+export type Room = Prisma.RoomModel
+/**
+ * Model Bed
+ * 
+ */
+export type Bed = Prisma.BedModel
+/**
+ * Model RoomAssignment
+ * 
+ */
+export type RoomAssignment = Prisma.RoomAssignmentModel
+/**
+ * Model RentalListing
+ * 
+ */
+export type RentalListing = Prisma.RentalListingModel
+/**
+ * Model BookingRequest
+ * 
+ */
+export type BookingRequest = Prisma.BookingRequestModel
