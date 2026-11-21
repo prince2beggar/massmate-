@@ -48,6 +48,20 @@ export class ConflictError extends AppError {
   }
 }
 
+export class ForbiddenError extends AppError {
+  constructor(message = 'Access forbidden.') {
+    super(message, 'PERMISSION_DENIED', 403);
+    this.name = 'ForbiddenError';
+  }
+}
+
+export class UnauthorizedError extends AppError {
+  constructor(message = 'Authentication required.') {
+    super(message, 'UNAUTHENTICATED', 401);
+    this.name = 'UnauthorizedError';
+  }
+}
+
 export class RateLimitError extends AppError {
   constructor(message = 'Too many requests. Please try again later.') {
     super(message, 'RATE_LIMITED', 429);

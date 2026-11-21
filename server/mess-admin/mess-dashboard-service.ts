@@ -615,8 +615,7 @@ export class MessDashboardService {
         href: `/mess/${slug}/members?action=add`,
         permission: 'members.create',
         isAllowed: has('members.create') || has('members.invite'),
-        isImplemented: false,
-        moduleNote: 'Member Management module launches in Task 30',
+        isImplemented: true,
       },
       {
         id: 'add-room',

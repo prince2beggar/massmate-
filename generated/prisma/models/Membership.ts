@@ -30,6 +30,10 @@ export type MembershipMinAggregateOutputType = {
   tenantId: string | null
   roleId: string | null
   status: $Enums.MembershipStatus | null
+  memberCode: string | null
+  emergencyContactName: string | null
+  emergencyContactPhone: string | null
+  notes: string | null
   joinedAt: Date | null
   invitedAt: Date | null
   leftAt: Date | null
@@ -43,6 +47,10 @@ export type MembershipMaxAggregateOutputType = {
   tenantId: string | null
   roleId: string | null
   status: $Enums.MembershipStatus | null
+  memberCode: string | null
+  emergencyContactName: string | null
+  emergencyContactPhone: string | null
+  notes: string | null
   joinedAt: Date | null
   invitedAt: Date | null
   leftAt: Date | null
@@ -56,6 +64,10 @@ export type MembershipCountAggregateOutputType = {
   tenantId: number
   roleId: number
   status: number
+  memberCode: number
+  emergencyContactName: number
+  emergencyContactPhone: number
+  notes: number
   joinedAt: number
   invitedAt: number
   leftAt: number
@@ -71,6 +83,10 @@ export type MembershipMinAggregateInputType = {
   tenantId?: true
   roleId?: true
   status?: true
+  memberCode?: true
+  emergencyContactName?: true
+  emergencyContactPhone?: true
+  notes?: true
   joinedAt?: true
   invitedAt?: true
   leftAt?: true
@@ -84,6 +100,10 @@ export type MembershipMaxAggregateInputType = {
   tenantId?: true
   roleId?: true
   status?: true
+  memberCode?: true
+  emergencyContactName?: true
+  emergencyContactPhone?: true
+  notes?: true
   joinedAt?: true
   invitedAt?: true
   leftAt?: true
@@ -97,6 +117,10 @@ export type MembershipCountAggregateInputType = {
   tenantId?: true
   roleId?: true
   status?: true
+  memberCode?: true
+  emergencyContactName?: true
+  emergencyContactPhone?: true
+  notes?: true
   joinedAt?: true
   invitedAt?: true
   leftAt?: true
@@ -183,6 +207,10 @@ export type MembershipGroupByOutputType = {
   tenantId: string
   roleId: string
   status: $Enums.MembershipStatus
+  memberCode: string | null
+  emergencyContactName: string | null
+  emergencyContactPhone: string | null
+  notes: string | null
   joinedAt: Date | null
   invitedAt: Date | null
   leftAt: Date | null
@@ -217,6 +245,10 @@ export type MembershipWhereInput = {
   tenantId?: Prisma.StringFilter<"Membership"> | string
   roleId?: Prisma.StringFilter<"Membership"> | string
   status?: Prisma.EnumMembershipStatusFilter<"Membership"> | $Enums.MembershipStatus
+  memberCode?: Prisma.StringNullableFilter<"Membership"> | string | null
+  emergencyContactName?: Prisma.StringNullableFilter<"Membership"> | string | null
+  emergencyContactPhone?: Prisma.StringNullableFilter<"Membership"> | string | null
+  notes?: Prisma.StringNullableFilter<"Membership"> | string | null
   joinedAt?: Prisma.DateTimeNullableFilter<"Membership"> | Date | string | null
   invitedAt?: Prisma.DateTimeNullableFilter<"Membership"> | Date | string | null
   leftAt?: Prisma.DateTimeNullableFilter<"Membership"> | Date | string | null
@@ -233,6 +265,10 @@ export type MembershipOrderByWithRelationInput = {
   tenantId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  memberCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  emergencyContactName?: Prisma.SortOrderInput | Prisma.SortOrder
+  emergencyContactPhone?: Prisma.SortOrderInput | Prisma.SortOrder
+  notes?: Prisma.SortOrderInput | Prisma.SortOrder
   joinedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   invitedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   leftAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -253,6 +289,10 @@ export type MembershipWhereUniqueInput = Prisma.AtLeast<{
   tenantId?: Prisma.StringFilter<"Membership"> | string
   roleId?: Prisma.StringFilter<"Membership"> | string
   status?: Prisma.EnumMembershipStatusFilter<"Membership"> | $Enums.MembershipStatus
+  memberCode?: Prisma.StringNullableFilter<"Membership"> | string | null
+  emergencyContactName?: Prisma.StringNullableFilter<"Membership"> | string | null
+  emergencyContactPhone?: Prisma.StringNullableFilter<"Membership"> | string | null
+  notes?: Prisma.StringNullableFilter<"Membership"> | string | null
   joinedAt?: Prisma.DateTimeNullableFilter<"Membership"> | Date | string | null
   invitedAt?: Prisma.DateTimeNullableFilter<"Membership"> | Date | string | null
   leftAt?: Prisma.DateTimeNullableFilter<"Membership"> | Date | string | null
@@ -269,6 +309,10 @@ export type MembershipOrderByWithAggregationInput = {
   tenantId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  memberCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  emergencyContactName?: Prisma.SortOrderInput | Prisma.SortOrder
+  emergencyContactPhone?: Prisma.SortOrderInput | Prisma.SortOrder
+  notes?: Prisma.SortOrderInput | Prisma.SortOrder
   joinedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   invitedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   leftAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -288,6 +332,10 @@ export type MembershipScalarWhereWithAggregatesInput = {
   tenantId?: Prisma.StringWithAggregatesFilter<"Membership"> | string
   roleId?: Prisma.StringWithAggregatesFilter<"Membership"> | string
   status?: Prisma.EnumMembershipStatusWithAggregatesFilter<"Membership"> | $Enums.MembershipStatus
+  memberCode?: Prisma.StringNullableWithAggregatesFilter<"Membership"> | string | null
+  emergencyContactName?: Prisma.StringNullableWithAggregatesFilter<"Membership"> | string | null
+  emergencyContactPhone?: Prisma.StringNullableWithAggregatesFilter<"Membership"> | string | null
+  notes?: Prisma.StringNullableWithAggregatesFilter<"Membership"> | string | null
   joinedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Membership"> | Date | string | null
   invitedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Membership"> | Date | string | null
   leftAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Membership"> | Date | string | null
@@ -298,6 +346,10 @@ export type MembershipScalarWhereWithAggregatesInput = {
 export type MembershipCreateInput = {
   id?: string
   status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
   joinedAt?: Date | string | null
   invitedAt?: Date | string | null
   leftAt?: Date | string | null
@@ -314,6 +366,10 @@ export type MembershipUncheckedCreateInput = {
   tenantId: string
   roleId: string
   status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
   joinedAt?: Date | string | null
   invitedAt?: Date | string | null
   leftAt?: Date | string | null
@@ -324,6 +380,10 @@ export type MembershipUncheckedCreateInput = {
 export type MembershipUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -340,6 +400,10 @@ export type MembershipUncheckedUpdateInput = {
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -353,6 +417,10 @@ export type MembershipCreateManyInput = {
   tenantId: string
   roleId: string
   status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
   joinedAt?: Date | string | null
   invitedAt?: Date | string | null
   leftAt?: Date | string | null
@@ -363,6 +431,10 @@ export type MembershipCreateManyInput = {
 export type MembershipUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -376,6 +448,10 @@ export type MembershipUncheckedUpdateManyInput = {
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -404,6 +480,10 @@ export type MembershipCountOrderByAggregateInput = {
   tenantId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  memberCode?: Prisma.SortOrder
+  emergencyContactName?: Prisma.SortOrder
+  emergencyContactPhone?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   joinedAt?: Prisma.SortOrder
   invitedAt?: Prisma.SortOrder
   leftAt?: Prisma.SortOrder
@@ -417,6 +497,10 @@ export type MembershipMaxOrderByAggregateInput = {
   tenantId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  memberCode?: Prisma.SortOrder
+  emergencyContactName?: Prisma.SortOrder
+  emergencyContactPhone?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   joinedAt?: Prisma.SortOrder
   invitedAt?: Prisma.SortOrder
   leftAt?: Prisma.SortOrder
@@ -430,6 +514,10 @@ export type MembershipMinOrderByAggregateInput = {
   tenantId?: Prisma.SortOrder
   roleId?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  memberCode?: Prisma.SortOrder
+  emergencyContactName?: Prisma.SortOrder
+  emergencyContactPhone?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   joinedAt?: Prisma.SortOrder
   invitedAt?: Prisma.SortOrder
   leftAt?: Prisma.SortOrder
@@ -570,6 +658,10 @@ export type EnumMembershipStatusFieldUpdateOperationsInput = {
 export type MembershipCreateWithoutUserInput = {
   id?: string
   status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
   joinedAt?: Date | string | null
   invitedAt?: Date | string | null
   leftAt?: Date | string | null
@@ -584,6 +676,10 @@ export type MembershipUncheckedCreateWithoutUserInput = {
   tenantId: string
   roleId: string
   status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
   joinedAt?: Date | string | null
   invitedAt?: Date | string | null
   leftAt?: Date | string | null
@@ -626,6 +722,10 @@ export type MembershipScalarWhereInput = {
   tenantId?: Prisma.StringFilter<"Membership"> | string
   roleId?: Prisma.StringFilter<"Membership"> | string
   status?: Prisma.EnumMembershipStatusFilter<"Membership"> | $Enums.MembershipStatus
+  memberCode?: Prisma.StringNullableFilter<"Membership"> | string | null
+  emergencyContactName?: Prisma.StringNullableFilter<"Membership"> | string | null
+  emergencyContactPhone?: Prisma.StringNullableFilter<"Membership"> | string | null
+  notes?: Prisma.StringNullableFilter<"Membership"> | string | null
   joinedAt?: Prisma.DateTimeNullableFilter<"Membership"> | Date | string | null
   invitedAt?: Prisma.DateTimeNullableFilter<"Membership"> | Date | string | null
   leftAt?: Prisma.DateTimeNullableFilter<"Membership"> | Date | string | null
@@ -636,6 +736,10 @@ export type MembershipScalarWhereInput = {
 export type MembershipCreateWithoutTenantInput = {
   id?: string
   status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
   joinedAt?: Date | string | null
   invitedAt?: Date | string | null
   leftAt?: Date | string | null
@@ -650,6 +754,10 @@ export type MembershipUncheckedCreateWithoutTenantInput = {
   userId: string
   roleId: string
   status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
   joinedAt?: Date | string | null
   invitedAt?: Date | string | null
   leftAt?: Date | string | null
@@ -686,6 +794,10 @@ export type MembershipUpdateManyWithWhereWithoutTenantInput = {
 export type MembershipCreateWithoutRoleInput = {
   id?: string
   status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
   joinedAt?: Date | string | null
   invitedAt?: Date | string | null
   leftAt?: Date | string | null
@@ -699,6 +811,10 @@ export type MembershipUncheckedCreateWithoutRoleInput = {
   id?: string
   userId: string
   status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
   joinedAt?: Date | string | null
   invitedAt?: Date | string | null
   leftAt?: Date | string | null
@@ -737,6 +853,10 @@ export type MembershipCreateManyUserInput = {
   tenantId: string
   roleId: string
   status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
   joinedAt?: Date | string | null
   invitedAt?: Date | string | null
   leftAt?: Date | string | null
@@ -747,6 +867,10 @@ export type MembershipCreateManyUserInput = {
 export type MembershipUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -761,6 +885,10 @@ export type MembershipUncheckedUpdateWithoutUserInput = {
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -773,6 +901,10 @@ export type MembershipUncheckedUpdateManyWithoutUserInput = {
   tenantId?: Prisma.StringFieldUpdateOperationsInput | string
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -785,6 +917,10 @@ export type MembershipCreateManyTenantInput = {
   userId: string
   roleId: string
   status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
   joinedAt?: Date | string | null
   invitedAt?: Date | string | null
   leftAt?: Date | string | null
@@ -795,6 +931,10 @@ export type MembershipCreateManyTenantInput = {
 export type MembershipUpdateWithoutTenantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -809,6 +949,10 @@ export type MembershipUncheckedUpdateWithoutTenantInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -821,6 +965,10 @@ export type MembershipUncheckedUpdateManyWithoutTenantInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   roleId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -832,6 +980,10 @@ export type MembershipCreateManyRoleInput = {
   id?: string
   userId: string
   status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
   joinedAt?: Date | string | null
   invitedAt?: Date | string | null
   leftAt?: Date | string | null
@@ -842,6 +994,10 @@ export type MembershipCreateManyRoleInput = {
 export type MembershipUpdateWithoutRoleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -855,6 +1011,10 @@ export type MembershipUncheckedUpdateWithoutRoleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -866,6 +1026,10 @@ export type MembershipUncheckedUpdateManyWithoutRoleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -881,6 +1045,10 @@ export type MembershipSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   tenantId?: boolean
   roleId?: boolean
   status?: boolean
+  memberCode?: boolean
+  emergencyContactName?: boolean
+  emergencyContactPhone?: boolean
+  notes?: boolean
   joinedAt?: boolean
   invitedAt?: boolean
   leftAt?: boolean
@@ -897,6 +1065,10 @@ export type MembershipSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   tenantId?: boolean
   roleId?: boolean
   status?: boolean
+  memberCode?: boolean
+  emergencyContactName?: boolean
+  emergencyContactPhone?: boolean
+  notes?: boolean
   joinedAt?: boolean
   invitedAt?: boolean
   leftAt?: boolean
@@ -913,6 +1085,10 @@ export type MembershipSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   tenantId?: boolean
   roleId?: boolean
   status?: boolean
+  memberCode?: boolean
+  emergencyContactName?: boolean
+  emergencyContactPhone?: boolean
+  notes?: boolean
   joinedAt?: boolean
   invitedAt?: boolean
   leftAt?: boolean
@@ -929,6 +1105,10 @@ export type MembershipSelectScalar = {
   tenantId?: boolean
   roleId?: boolean
   status?: boolean
+  memberCode?: boolean
+  emergencyContactName?: boolean
+  emergencyContactPhone?: boolean
+  notes?: boolean
   joinedAt?: boolean
   invitedAt?: boolean
   leftAt?: boolean
@@ -936,7 +1116,7 @@ export type MembershipSelectScalar = {
   updatedAt?: boolean
 }
 
-export type MembershipOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "tenantId" | "roleId" | "status" | "joinedAt" | "invitedAt" | "leftAt" | "createdAt" | "updatedAt", ExtArgs["result"]["membership"]>
+export type MembershipOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "tenantId" | "roleId" | "status" | "memberCode" | "emergencyContactName" | "emergencyContactPhone" | "notes" | "joinedAt" | "invitedAt" | "leftAt" | "createdAt" | "updatedAt", ExtArgs["result"]["membership"]>
 export type MembershipInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
@@ -966,6 +1146,10 @@ export type $MembershipPayload<ExtArgs extends runtime.Types.Extensions.Internal
     tenantId: string
     roleId: string
     status: $Enums.MembershipStatus
+    memberCode: string | null
+    emergencyContactName: string | null
+    emergencyContactPhone: string | null
+    notes: string | null
     joinedAt: Date | null
     invitedAt: Date | null
     leftAt: Date | null
@@ -1402,6 +1586,10 @@ export interface MembershipFieldRefs {
   readonly tenantId: Prisma.FieldRef<"Membership", 'String'>
   readonly roleId: Prisma.FieldRef<"Membership", 'String'>
   readonly status: Prisma.FieldRef<"Membership", 'MembershipStatus'>
+  readonly memberCode: Prisma.FieldRef<"Membership", 'String'>
+  readonly emergencyContactName: Prisma.FieldRef<"Membership", 'String'>
+  readonly emergencyContactPhone: Prisma.FieldRef<"Membership", 'String'>
+  readonly notes: Prisma.FieldRef<"Membership", 'String'>
   readonly joinedAt: Prisma.FieldRef<"Membership", 'DateTime'>
   readonly invitedAt: Prisma.FieldRef<"Membership", 'DateTime'>
   readonly leftAt: Prisma.FieldRef<"Membership", 'DateTime'>
