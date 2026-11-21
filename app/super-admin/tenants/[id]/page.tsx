@@ -7,7 +7,7 @@ import { TenantDetailsView } from '@/components/admin/tenants/TenantDetailsView'
 export default async function SuperAdminTenantDetailsPage({
   params,
 }: {
-  params: Promise<{ id: string }> | { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const platformSession = await getPlatformSession();
 
