@@ -15,12 +15,15 @@ import type {
   RoleTemplatePermission as PrismaRoleTemplatePermission,
   Membership as PrismaMembership,
   AuditLog as PrismaAuditLog,
+  TenantVerification as PrismaTenantVerification,
   UserStatus,
   TenantType,
   TenantStatus,
   MembershipStatus,
   RoleStatus,
   PlatformRole,
+  VerificationStatus,
+  VerificationDocumentType,
   Prisma,
 } from '@/generated/prisma/client';
 
@@ -32,6 +35,8 @@ export type {
   MembershipStatus,
   RoleStatus,
   PlatformRole,
+  VerificationStatus,
+  VerificationDocumentType,
 };
 
 // Re-export Base Models
@@ -44,6 +49,7 @@ export type RolePermission = PrismaRolePermission;
 export type RoleTemplatePermission = PrismaRoleTemplatePermission;
 export type Membership = PrismaMembership;
 export type AuditLog = PrismaAuditLog;
+export type TenantVerification = PrismaTenantVerification;
 
 // -----------------------------------------------------------------------------
 // COMPOSITE & RELATIONAL TYPES

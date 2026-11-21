@@ -10,6 +10,7 @@
  */
 export type * from './models/User.ts'
 export type * from './models/Tenant.ts'
+export type * from './models/TenantVerification.ts'
 export type * from './models/Role.ts'
 export type * from './models/RoleTemplate.ts'
 export type * from './models/Permission.ts'

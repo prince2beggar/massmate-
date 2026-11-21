@@ -41,7 +41,7 @@ export function withPlatformAuth(
 ) {
   return async (
     req: Request,
-    routeProps?: { params?: Promise<any> | any }
+    routeProps: { params: Promise<any> | any }
   ): Promise<NextResponse> => {
     try {
       const resolvedParams = routeProps?.params ? await Promise.resolve(routeProps.params) : {};

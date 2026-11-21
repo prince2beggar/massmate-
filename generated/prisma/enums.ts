@@ -66,3 +66,25 @@ export const PlatformRole = {
 } as const
 
 export type PlatformRole = (typeof PlatformRole)[keyof typeof PlatformRole]
+
+
+export const VerificationStatus = {
+  NOT_SUBMITTED: 'NOT_SUBMITTED',
+  PENDING_REVIEW: 'PENDING_REVIEW',
+  ADDITIONAL_INFO_REQUIRED: 'ADDITIONAL_INFO_REQUIRED',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type VerificationStatus = (typeof VerificationStatus)[keyof typeof VerificationStatus]
+
+
+export const VerificationDocumentType = {
+  TRADE_LICENSE: 'TRADE_LICENSE',
+  NATIONAL_ID: 'NATIONAL_ID',
+  UTILITY_BILL: 'UTILITY_BILL',
+  RENTAL_AGREEMENT: 'RENTAL_AGREEMENT',
+  OTHER: 'OTHER'
+} as const
+
+export type VerificationDocumentType = (typeof VerificationDocumentType)[keyof typeof VerificationDocumentType]

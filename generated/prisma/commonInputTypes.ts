@@ -183,6 +183,13 @@ export type EnumTenantStatusFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumTenantStatusFilter<$PrismaModel> | $Enums.TenantStatus
 }
 
+export type EnumVerificationStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.VerificationStatus | Prisma.EnumVerificationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.VerificationStatus[] | Prisma.ListEnumVerificationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VerificationStatus[] | Prisma.ListEnumVerificationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVerificationStatusFilter<$PrismaModel> | $Enums.VerificationStatus
+}
+
 export type EnumTenantTypeWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.TenantType | Prisma.EnumTenantTypeFieldRefInput<$PrismaModel>
   in?: $Enums.TenantType[] | Prisma.ListEnumTenantTypeFieldRefInput<$PrismaModel>
@@ -201,6 +208,33 @@ export type EnumTenantStatusWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumTenantStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumTenantStatusFilter<$PrismaModel>
+}
+
+export type EnumVerificationStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VerificationStatus | Prisma.EnumVerificationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.VerificationStatus[] | Prisma.ListEnumVerificationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VerificationStatus[] | Prisma.ListEnumVerificationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVerificationStatusWithAggregatesFilter<$PrismaModel> | $Enums.VerificationStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVerificationStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVerificationStatusFilter<$PrismaModel>
+}
+
+export type EnumVerificationDocumentTypeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.VerificationDocumentType | Prisma.EnumVerificationDocumentTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.VerificationDocumentType[] | Prisma.ListEnumVerificationDocumentTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.VerificationDocumentType[] | Prisma.ListEnumVerificationDocumentTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumVerificationDocumentTypeNullableFilter<$PrismaModel> | $Enums.VerificationDocumentType | null
+}
+
+export type EnumVerificationDocumentTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VerificationDocumentType | Prisma.EnumVerificationDocumentTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.VerificationDocumentType[] | Prisma.ListEnumVerificationDocumentTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.VerificationDocumentType[] | Prisma.ListEnumVerificationDocumentTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumVerificationDocumentTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.VerificationDocumentType | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVerificationDocumentTypeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVerificationDocumentTypeNullableFilter<$PrismaModel>
 }
 
 export type BoolFilter<$PrismaModel = never> = {
@@ -483,6 +517,13 @@ export type NestedEnumTenantStatusFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumTenantStatusFilter<$PrismaModel> | $Enums.TenantStatus
 }
 
+export type NestedEnumVerificationStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.VerificationStatus | Prisma.EnumVerificationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.VerificationStatus[] | Prisma.ListEnumVerificationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VerificationStatus[] | Prisma.ListEnumVerificationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVerificationStatusFilter<$PrismaModel> | $Enums.VerificationStatus
+}
+
 export type NestedEnumTenantTypeWithAggregatesFilter<$PrismaModel = never> = {
   equals?: $Enums.TenantType | Prisma.EnumTenantTypeFieldRefInput<$PrismaModel>
   in?: $Enums.TenantType[] | Prisma.ListEnumTenantTypeFieldRefInput<$PrismaModel>
@@ -501,6 +542,33 @@ export type NestedEnumTenantStatusWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumTenantStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumTenantStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumVerificationStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VerificationStatus | Prisma.EnumVerificationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.VerificationStatus[] | Prisma.ListEnumVerificationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VerificationStatus[] | Prisma.ListEnumVerificationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVerificationStatusWithAggregatesFilter<$PrismaModel> | $Enums.VerificationStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVerificationStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVerificationStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumVerificationDocumentTypeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.VerificationDocumentType | Prisma.EnumVerificationDocumentTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.VerificationDocumentType[] | Prisma.ListEnumVerificationDocumentTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.VerificationDocumentType[] | Prisma.ListEnumVerificationDocumentTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumVerificationDocumentTypeNullableFilter<$PrismaModel> | $Enums.VerificationDocumentType | null
+}
+
+export type NestedEnumVerificationDocumentTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VerificationDocumentType | Prisma.EnumVerificationDocumentTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.VerificationDocumentType[] | Prisma.ListEnumVerificationDocumentTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.VerificationDocumentType[] | Prisma.ListEnumVerificationDocumentTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumVerificationDocumentTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.VerificationDocumentType | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVerificationDocumentTypeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVerificationDocumentTypeNullableFilter<$PrismaModel>
 }
 
 export type NestedBoolFilter<$PrismaModel = never> = {

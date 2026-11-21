@@ -399,6 +399,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   User: 'User',
   Tenant: 'Tenant',
+  TenantVerification: 'TenantVerification',
   Role: 'Role',
   RoleTemplate: 'RoleTemplate',
   Permission: 'Permission',
@@ -421,7 +422,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "tenant" | "role" | "roleTemplate" | "permission" | "rolePermission" | "roleTemplatePermission" | "membership" | "auditLog"
+    modelProps: "user" | "tenant" | "tenantVerification" | "role" | "roleTemplate" | "permission" | "rolePermission" | "roleTemplatePermission" | "membership" | "auditLog"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -570,6 +571,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.TenantCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.TenantCountAggregateOutputType> | number
+        }
+      }
+    }
+    TenantVerification: {
+      payload: Prisma.$TenantVerificationPayload<ExtArgs>
+      fields: Prisma.TenantVerificationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TenantVerificationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantVerificationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TenantVerificationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantVerificationPayload>
+        }
+        findFirst: {
+          args: Prisma.TenantVerificationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantVerificationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TenantVerificationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantVerificationPayload>
+        }
+        findMany: {
+          args: Prisma.TenantVerificationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantVerificationPayload>[]
+        }
+        create: {
+          args: Prisma.TenantVerificationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantVerificationPayload>
+        }
+        createMany: {
+          args: Prisma.TenantVerificationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TenantVerificationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantVerificationPayload>[]
+        }
+        delete: {
+          args: Prisma.TenantVerificationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantVerificationPayload>
+        }
+        update: {
+          args: Prisma.TenantVerificationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantVerificationPayload>
+        }
+        deleteMany: {
+          args: Prisma.TenantVerificationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TenantVerificationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TenantVerificationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantVerificationPayload>[]
+        }
+        upsert: {
+          args: Prisma.TenantVerificationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantVerificationPayload>
+        }
+        aggregate: {
+          args: Prisma.TenantVerificationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTenantVerification>
+        }
+        groupBy: {
+          args: Prisma.TenantVerificationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TenantVerificationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TenantVerificationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TenantVerificationCountAggregateOutputType> | number
         }
       }
     }
@@ -1163,11 +1238,32 @@ export const TenantScalarFieldEnum = {
   timezone: 'timezone',
   tenantType: 'tenantType',
   status: 'status',
+  verificationStatus: 'verificationStatus',
+  verifiedAt: 'verifiedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type TenantScalarFieldEnum = (typeof TenantScalarFieldEnum)[keyof typeof TenantScalarFieldEnum]
+
+
+export const TenantVerificationScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  status: 'status',
+  documentType: 'documentType',
+  documentNumber: 'documentNumber',
+  documentFileUrl: 'documentFileUrl',
+  submittedAt: 'submittedAt',
+  reviewedAt: 'reviewedAt',
+  reviewerUserId: 'reviewerUserId',
+  rejectionReason: 'rejectionReason',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TenantVerificationScalarFieldEnum = (typeof TenantVerificationScalarFieldEnum)[keyof typeof TenantVerificationScalarFieldEnum]
 
 
 export const RoleScalarFieldEnum = {
@@ -1398,6 +1494,34 @@ export type ListEnumTenantStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
 
 
 /**
+ * Reference to a field of type 'VerificationStatus'
+ */
+export type EnumVerificationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VerificationStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'VerificationStatus[]'
+ */
+export type ListEnumVerificationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VerificationStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'VerificationDocumentType'
+ */
+export type EnumVerificationDocumentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VerificationDocumentType'>
+    
+
+
+/**
+ * Reference to a field of type 'VerificationDocumentType[]'
+ */
+export type ListEnumVerificationDocumentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VerificationDocumentType[]'>
+    
+
+
+/**
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
@@ -1612,6 +1736,7 @@ export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaC
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   tenant?: Prisma.TenantOmit
+  tenantVerification?: Prisma.TenantVerificationOmit
   role?: Prisma.RoleOmit
   roleTemplate?: Prisma.RoleTemplateOmit
   permission?: Prisma.PermissionOmit

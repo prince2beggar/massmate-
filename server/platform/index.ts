@@ -4,3 +4,4 @@ export * from './platform-auth';
 export * from './with-platform-auth';
 export * from './platform-session';
 export * from './platform-overview-service';
+export * from './platform-tenant-service';

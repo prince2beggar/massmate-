@@ -55,6 +55,22 @@ enum PlatformRole {
   FINANCE_STAFF
 }
 
+enum VerificationStatus {
+  NOT_SUBMITTED
+  PENDING_REVIEW
+  ADDITIONAL_INFO_REQUIRED
+  APPROVED
+  REJECTED
+}
+
+enum VerificationDocumentType {
+  TRADE_LICENSE
+  NATIONAL_ID
+  UTILITY_BILL
+  RENTAL_AGREEMENT
+  OTHER
+}
+
 // -----------------------------------------------------------------------------
 // USER (Platform-wide Identity)
 // -----------------------------------------------------------------------------
@@ -73,8 +89,9 @@ model User {
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
 
-  memberships     Membership[]
-  auditLogs       AuditLog[]
+  memberships          Membership[]
+  auditLogs            AuditLog[]
+  reviewedVerifications TenantVerification[]
 
   @@index([status])
   @@index([platformRole])
@@ -87,31 +104,62 @@ model User {
 // -----------------------------------------------------------------------------
 
 model Tenant {
-  id          String        @id @default(cuid())
-  name        String
-  slug        String        @unique
-  description String?
-  logo        String?
-  coverImage  String?
-  email       String?
-  phone       String?
-  address     String?
-  city        String?
-  country     String        @default("Bangladesh")
-  timezone    String        @default("Asia/Dhaka")
-  tenantType  TenantType    @default(BACHELOR_MESS)
-  status      TenantStatus  @default(ACTIVE)
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  id                 String              @id @default(cuid())
+  name               String
+  slug               String              @unique
+  description        String?
+  logo               String?
+  coverImage         String?
+  email              String?
+  phone              String?
+  address            String?
+  city               String?
+  country            String              @default("Bangladesh")
+  timezone           String              @default("Asia/Dhaka")
+  tenantType         TenantType          @default(BACHELOR_MESS)
+  status             TenantStatus        @default(ACTIVE)
+  verificationStatus VerificationStatus  @default(NOT_SUBMITTED)
+  verifiedAt         DateTime?
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
 
-  memberships Membership[]
-  roles       Role[]
-  auditLogs   AuditLog[]
+  memberships  Membership[]
+  roles        Role[]
+  auditLogs    AuditLog[]
+  verification TenantVerification?
 
   @@index([status])
+  @@index([verificationStatus])
   @@index([tenantType])
   @@index([city])
   @@map("tenants")
+}
+
+// -----------------------------------------------------------------------------
+// TENANT VERIFICATION (Restricted Identity & Compliance Documentation)
+// -----------------------------------------------------------------------------
+
+model TenantVerification {
+  id              String                    @id @default(cuid())
+  tenantId        String                    @unique
+  status          VerificationStatus        @default(NOT_SUBMITTED)
+  documentType    VerificationDocumentType?
+  documentNumber  String?                   // Masked/redacted document number
+  documentFileUrl String?                   // Private internal storage path (never public)
+  submittedAt     DateTime?
+  reviewedAt      DateTime?
+  reviewerUserId  String?
+  rejectionReason String?
+  notes           String?
+  createdAt       DateTime                  @default(now())
+  updatedAt       DateTime                  @updatedAt
+
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  reviewer User?  @relation(fields: [reviewerUserId], references: [id], onDelete: SetNull)
+
+  @@index([status])
+  @@index([submittedAt])
+  @@map("tenant_verifications")
 }
 
 // -----------------------------------------------------------------------------

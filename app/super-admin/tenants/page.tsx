@@ -1,20 +1,23 @@
 import React from 'react';
-import { Building2 } from 'lucide-react';
-import { UpcomingModuleView } from '@/components/admin/UpcomingModuleView';
+import { redirect } from 'next/navigation';
+import { getPlatformSession } from '@/server/platform/platform-session';
+import { platformTenantService } from '@/server/platform/platform-tenant-service';
+import { TenantDirectoryView } from '@/components/admin/tenants/TenantDirectoryView';
 
-export default function SuperAdminTenantsPage() {
+export default async function SuperAdminTenantsPage() {
+  const platformSession = await getPlatformSession();
+
+  if (!platformSession) {
+    redirect('/super-admin/access-denied');
+  }
+
+  // Pre-load initial page on the server
+  const result = await platformTenantService.listTenants({ page: 1, limit: 10 });
+
   return (
-    <UpcomingModuleView
-      title="Mess & Tenant Management"
-      modulePhase="Task 25 Upcoming"
-      icon={Building2}
-      description="Monitor registered messes, student hostels, bachelor apartments, and boarding organizations."
-      plannedFeatures={[
-        'Full tenant directory with search and filter by type (Student, Bachelor, Hostel)',
-        'Approval queue for pending mess registrations',
-        'Emergency suspension and reactivation controls',
-        'Tenant data overview, room counts, and active member limits',
-      ]}
+    <TenantDirectoryView
+      initialTenants={result.tenants}
+      initialPagination={result.pagination}
     />
   );
 }

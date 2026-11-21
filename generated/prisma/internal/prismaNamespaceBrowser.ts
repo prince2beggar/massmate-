@@ -53,6 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Tenant: 'Tenant',
+  TenantVerification: 'TenantVerification',
   Role: 'Role',
   RoleTemplate: 'RoleTemplate',
   Permission: 'Permission',
@@ -111,11 +112,32 @@ export const TenantScalarFieldEnum = {
   timezone: 'timezone',
   tenantType: 'tenantType',
   status: 'status',
+  verificationStatus: 'verificationStatus',
+  verifiedAt: 'verifiedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type TenantScalarFieldEnum = (typeof TenantScalarFieldEnum)[keyof typeof TenantScalarFieldEnum]
+
+
+export const TenantVerificationScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  status: 'status',
+  documentType: 'documentType',
+  documentNumber: 'documentNumber',
+  documentFileUrl: 'documentFileUrl',
+  submittedAt: 'submittedAt',
+  reviewedAt: 'reviewedAt',
+  reviewerUserId: 'reviewerUserId',
+  rejectionReason: 'rejectionReason',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TenantVerificationScalarFieldEnum = (typeof TenantVerificationScalarFieldEnum)[keyof typeof TenantVerificationScalarFieldEnum]
 
 
 export const RoleScalarFieldEnum = {

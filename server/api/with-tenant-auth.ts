@@ -40,7 +40,7 @@ export function withTenantAuth(
   options: TenantAuthOptions,
   handler: AuthenticatedTenantHandler
 ) {
-  return async (req: Request, routeProps?: { params?: Promise<any> | any }): Promise<NextResponse> => {
+  return async (req: Request, routeProps: { params: Promise<any> | any }): Promise<NextResponse> => {
     try {
       const resolvedParams = routeProps?.params ? await Promise.resolve(routeProps.params) : {};
 

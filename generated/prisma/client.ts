@@ -52,6 +52,11 @@ export type User = Prisma.UserModel
  */
 export type Tenant = Prisma.TenantModel
 /**
+ * Model TenantVerification
+ * 
+ */
+export type TenantVerification = Prisma.TenantVerificationModel
+/**
  * Model Role
  * 
  */

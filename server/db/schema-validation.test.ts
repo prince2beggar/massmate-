@@ -50,6 +50,8 @@ describe('Task 19 & 20: Multi-Tenant Schema & Relational Integrity Verification'
       timezone: 'Asia/Dhaka',
       tenantType: 'STUDENT_MESS' as TenantType,
       status: 'ACTIVE' as TenantStatus,
+      verificationStatus: 'NOT_SUBMITTED',
+      verifiedAt: null,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -69,6 +71,8 @@ describe('Task 19 & 20: Multi-Tenant Schema & Relational Integrity Verification'
       timezone: 'Asia/Dhaka',
       tenantType: 'BACHELOR_MESS' as TenantType,
       status: 'ACTIVE' as TenantStatus,
+      verificationStatus: 'NOT_SUBMITTED',
+      verifiedAt: null,
       createdAt: new Date(),
       updatedAt: new Date(),
     };

@@ -39,6 +39,8 @@ export type TenantMinAggregateOutputType = {
   timezone: string | null
   tenantType: $Enums.TenantType | null
   status: $Enums.TenantStatus | null
+  verificationStatus: $Enums.VerificationStatus | null
+  verifiedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -58,6 +60,8 @@ export type TenantMaxAggregateOutputType = {
   timezone: string | null
   tenantType: $Enums.TenantType | null
   status: $Enums.TenantStatus | null
+  verificationStatus: $Enums.VerificationStatus | null
+  verifiedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -77,6 +81,8 @@ export type TenantCountAggregateOutputType = {
   timezone: number
   tenantType: number
   status: number
+  verificationStatus: number
+  verifiedAt: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -98,6 +104,8 @@ export type TenantMinAggregateInputType = {
   timezone?: true
   tenantType?: true
   status?: true
+  verificationStatus?: true
+  verifiedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -117,6 +125,8 @@ export type TenantMaxAggregateInputType = {
   timezone?: true
   tenantType?: true
   status?: true
+  verificationStatus?: true
+  verifiedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -136,6 +146,8 @@ export type TenantCountAggregateInputType = {
   timezone?: true
   tenantType?: true
   status?: true
+  verificationStatus?: true
+  verifiedAt?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -228,6 +240,8 @@ export type TenantGroupByOutputType = {
   timezone: string
   tenantType: $Enums.TenantType
   status: $Enums.TenantStatus
+  verificationStatus: $Enums.VerificationStatus
+  verifiedAt: Date | null
   createdAt: Date
   updatedAt: Date
   _count: TenantCountAggregateOutputType | null
@@ -268,11 +282,14 @@ export type TenantWhereInput = {
   timezone?: Prisma.StringFilter<"Tenant"> | string
   tenantType?: Prisma.EnumTenantTypeFilter<"Tenant"> | $Enums.TenantType
   status?: Prisma.EnumTenantStatusFilter<"Tenant"> | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFilter<"Tenant"> | $Enums.VerificationStatus
+  verifiedAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   memberships?: Prisma.MembershipListRelationFilter
   roles?: Prisma.RoleListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
+  verification?: Prisma.XOR<Prisma.TenantVerificationNullableScalarRelationFilter, Prisma.TenantVerificationWhereInput> | null
 }
 
 export type TenantOrderByWithRelationInput = {
@@ -290,11 +307,14 @@ export type TenantOrderByWithRelationInput = {
   timezone?: Prisma.SortOrder
   tenantType?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  verificationStatus?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   memberships?: Prisma.MembershipOrderByRelationAggregateInput
   roles?: Prisma.RoleOrderByRelationAggregateInput
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
+  verification?: Prisma.TenantVerificationOrderByWithRelationInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -315,11 +335,14 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   timezone?: Prisma.StringFilter<"Tenant"> | string
   tenantType?: Prisma.EnumTenantTypeFilter<"Tenant"> | $Enums.TenantType
   status?: Prisma.EnumTenantStatusFilter<"Tenant"> | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFilter<"Tenant"> | $Enums.VerificationStatus
+  verifiedAt?: Prisma.DateTimeNullableFilter<"Tenant"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tenant"> | Date | string
   memberships?: Prisma.MembershipListRelationFilter
   roles?: Prisma.RoleListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
+  verification?: Prisma.XOR<Prisma.TenantVerificationNullableScalarRelationFilter, Prisma.TenantVerificationWhereInput> | null
 }, "id" | "slug">
 
 export type TenantOrderByWithAggregationInput = {
@@ -337,6 +360,8 @@ export type TenantOrderByWithAggregationInput = {
   timezone?: Prisma.SortOrder
   tenantType?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  verificationStatus?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.TenantCountOrderByAggregateInput
@@ -362,6 +387,8 @@ export type TenantScalarWhereWithAggregatesInput = {
   timezone?: Prisma.StringWithAggregatesFilter<"Tenant"> | string
   tenantType?: Prisma.EnumTenantTypeWithAggregatesFilter<"Tenant"> | $Enums.TenantType
   status?: Prisma.EnumTenantStatusWithAggregatesFilter<"Tenant"> | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusWithAggregatesFilter<"Tenant"> | $Enums.VerificationStatus
+  verifiedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Tenant"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Tenant"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Tenant"> | Date | string
 }
@@ -381,11 +408,14 @@ export type TenantCreateInput = {
   timezone?: string
   tenantType?: $Enums.TenantType
   status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
@@ -403,11 +433,14 @@ export type TenantUncheckedCreateInput = {
   timezone?: string
   tenantType?: $Enums.TenantType
   status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
@@ -425,11 +458,14 @@ export type TenantUpdateInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
@@ -447,11 +483,14 @@ export type TenantUncheckedUpdateInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
@@ -469,6 +508,8 @@ export type TenantCreateManyInput = {
   timezone?: string
   tenantType?: $Enums.TenantType
   status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -488,6 +529,8 @@ export type TenantUpdateManyMutationInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -507,6 +550,8 @@ export type TenantUncheckedUpdateManyInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -526,6 +571,8 @@ export type TenantCountOrderByAggregateInput = {
   timezone?: Prisma.SortOrder
   tenantType?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  verificationStatus?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -545,6 +592,8 @@ export type TenantMaxOrderByAggregateInput = {
   timezone?: Prisma.SortOrder
   tenantType?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  verificationStatus?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -564,6 +613,8 @@ export type TenantMinOrderByAggregateInput = {
   timezone?: Prisma.SortOrder
   tenantType?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  verificationStatus?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -584,6 +635,24 @@ export type EnumTenantTypeFieldUpdateOperationsInput = {
 
 export type EnumTenantStatusFieldUpdateOperationsInput = {
   set?: $Enums.TenantStatus
+}
+
+export type EnumVerificationStatusFieldUpdateOperationsInput = {
+  set?: $Enums.VerificationStatus
+}
+
+export type TenantCreateNestedOneWithoutVerificationInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutVerificationInput, Prisma.TenantUncheckedCreateWithoutVerificationInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutVerificationInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutVerificationNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutVerificationInput, Prisma.TenantUncheckedCreateWithoutVerificationInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutVerificationInput
+  upsert?: Prisma.TenantUpsertWithoutVerificationInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutVerificationInput, Prisma.TenantUpdateWithoutVerificationInput>, Prisma.TenantUncheckedUpdateWithoutVerificationInput>
 }
 
 export type TenantCreateNestedOneWithoutRolesInput = {
@@ -630,6 +699,118 @@ export type TenantUpdateOneWithoutAuditLogsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutAuditLogsInput, Prisma.TenantUpdateWithoutAuditLogsInput>, Prisma.TenantUncheckedUpdateWithoutAuditLogsInput>
 }
 
+export type TenantCreateWithoutVerificationInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutVerificationInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutVerificationInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutVerificationInput, Prisma.TenantUncheckedCreateWithoutVerificationInput>
+}
+
+export type TenantUpsertWithoutVerificationInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutVerificationInput, Prisma.TenantUncheckedUpdateWithoutVerificationInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutVerificationInput, Prisma.TenantUncheckedCreateWithoutVerificationInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutVerificationInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutVerificationInput, Prisma.TenantUncheckedUpdateWithoutVerificationInput>
+}
+
+export type TenantUpdateWithoutVerificationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutVerificationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+}
+
 export type TenantCreateWithoutRolesInput = {
   id?: string
   name: string
@@ -645,10 +826,13 @@ export type TenantCreateWithoutRolesInput = {
   timezone?: string
   tenantType?: $Enums.TenantType
   status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRolesInput = {
@@ -666,10 +850,13 @@ export type TenantUncheckedCreateWithoutRolesInput = {
   timezone?: string
   tenantType?: $Enums.TenantType
   status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRolesInput = {
@@ -703,10 +890,13 @@ export type TenantUpdateWithoutRolesInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRolesInput = {
@@ -724,10 +914,13 @@ export type TenantUncheckedUpdateWithoutRolesInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMembershipsInput = {
@@ -745,10 +938,13 @@ export type TenantCreateWithoutMembershipsInput = {
   timezone?: string
   tenantType?: $Enums.TenantType
   status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMembershipsInput = {
@@ -766,10 +962,13 @@ export type TenantUncheckedCreateWithoutMembershipsInput = {
   timezone?: string
   tenantType?: $Enums.TenantType
   status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMembershipsInput = {
@@ -803,10 +1002,13 @@ export type TenantUpdateWithoutMembershipsInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMembershipsInput = {
@@ -824,10 +1026,13 @@ export type TenantUncheckedUpdateWithoutMembershipsInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAuditLogsInput = {
@@ -845,10 +1050,13 @@ export type TenantCreateWithoutAuditLogsInput = {
   timezone?: string
   tenantType?: $Enums.TenantType
   status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAuditLogsInput = {
@@ -866,10 +1074,13 @@ export type TenantUncheckedCreateWithoutAuditLogsInput = {
   timezone?: string
   tenantType?: $Enums.TenantType
   status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAuditLogsInput = {
@@ -903,10 +1114,13 @@ export type TenantUpdateWithoutAuditLogsInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAuditLogsInput = {
@@ -924,10 +1138,13 @@ export type TenantUncheckedUpdateWithoutAuditLogsInput = {
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
   tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
   status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
 }
 
 
@@ -994,11 +1211,14 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   timezone?: boolean
   tenantType?: boolean
   status?: boolean
+  verificationStatus?: boolean
+  verifiedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   memberships?: boolean | Prisma.Tenant$membershipsArgs<ExtArgs>
   roles?: boolean | Prisma.Tenant$rolesArgs<ExtArgs>
   auditLogs?: boolean | Prisma.Tenant$auditLogsArgs<ExtArgs>
+  verification?: boolean | Prisma.Tenant$verificationArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -1017,6 +1237,8 @@ export type TenantSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   timezone?: boolean
   tenantType?: boolean
   status?: boolean
+  verificationStatus?: boolean
+  verifiedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["tenant"]>
@@ -1036,6 +1258,8 @@ export type TenantSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   timezone?: boolean
   tenantType?: boolean
   status?: boolean
+  verificationStatus?: boolean
+  verifiedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["tenant"]>
@@ -1055,15 +1279,18 @@ export type TenantSelectScalar = {
   timezone?: boolean
   tenantType?: boolean
   status?: boolean
+  verificationStatus?: boolean
+  verifiedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type TenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "description" | "logo" | "coverImage" | "email" | "phone" | "address" | "city" | "country" | "timezone" | "tenantType" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["tenant"]>
+export type TenantOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "description" | "logo" | "coverImage" | "email" | "phone" | "address" | "city" | "country" | "timezone" | "tenantType" | "status" | "verificationStatus" | "verifiedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["tenant"]>
 export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   memberships?: boolean | Prisma.Tenant$membershipsArgs<ExtArgs>
   roles?: boolean | Prisma.Tenant$rolesArgs<ExtArgs>
   auditLogs?: boolean | Prisma.Tenant$auditLogsArgs<ExtArgs>
+  verification?: boolean | Prisma.Tenant$verificationArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1075,6 +1302,7 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     memberships: Prisma.$MembershipPayload<ExtArgs>[]
     roles: Prisma.$RolePayload<ExtArgs>[]
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
+    verification: Prisma.$TenantVerificationPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1091,6 +1319,8 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     timezone: string
     tenantType: $Enums.TenantType
     status: $Enums.TenantStatus
+    verificationStatus: $Enums.VerificationStatus
+    verifiedAt: Date | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["tenant"]>
@@ -1490,6 +1720,7 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   memberships<T extends Prisma.Tenant$membershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$membershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   roles<T extends Prisma.Tenant$rolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$rolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   auditLogs<T extends Prisma.Tenant$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  verification<T extends Prisma.Tenant$verificationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$verificationArgs<ExtArgs>>): Prisma.Prisma__TenantVerificationClient<runtime.Types.Result.GetResult<Prisma.$TenantVerificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1533,6 +1764,8 @@ export interface TenantFieldRefs {
   readonly timezone: Prisma.FieldRef<"Tenant", 'String'>
   readonly tenantType: Prisma.FieldRef<"Tenant", 'TenantType'>
   readonly status: Prisma.FieldRef<"Tenant", 'TenantStatus'>
+  readonly verificationStatus: Prisma.FieldRef<"Tenant", 'VerificationStatus'>
+  readonly verifiedAt: Prisma.FieldRef<"Tenant", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Tenant", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Tenant", 'DateTime'>
 }
@@ -1997,6 +2230,25 @@ export type Tenant$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
+}
+
+/**
+ * Tenant.verification
+ */
+export type Tenant$verificationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TenantVerification
+   */
+  select?: Prisma.TenantVerificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TenantVerification
+   */
+  omit?: Prisma.TenantVerificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TenantVerificationInclude<ExtArgs> | null
+  where?: Prisma.TenantVerificationWhereInput
 }
 
 /**
