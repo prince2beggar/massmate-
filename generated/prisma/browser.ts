@@ -67,3 +67,28 @@ export type Membership = Prisma.MembershipModel
  * 
  */
 export type AuditLog = Prisma.AuditLogModel
+/**
+ * Model Plan
+ * 
+ */
+export type Plan = Prisma.PlanModel
+/**
+ * Model Subscription
+ * 
+ */
+export type Subscription = Prisma.SubscriptionModel
+/**
+ * Model SubscriptionInvoice
+ * 
+ */
+export type SubscriptionInvoice = Prisma.SubscriptionInvoiceModel
+/**
+ * Model CustomPlanInquiry
+ * 
+ */
+export type CustomPlanInquiry = Prisma.CustomPlanInquiryModel
+/**
+ * Model CustomQuotation
+ * 
+ */
+export type CustomQuotation = Prisma.CustomQuotationModel

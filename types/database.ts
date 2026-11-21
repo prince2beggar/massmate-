@@ -16,6 +16,11 @@ import type {
   Membership as PrismaMembership,
   AuditLog as PrismaAuditLog,
   TenantVerification as PrismaTenantVerification,
+  Plan as PrismaPlan,
+  Subscription as PrismaSubscription,
+  SubscriptionInvoice as PrismaSubscriptionInvoice,
+  CustomPlanInquiry as PrismaCustomPlanInquiry,
+  CustomQuotation as PrismaCustomQuotation,
   UserStatus,
   TenantType,
   TenantStatus,
@@ -24,6 +29,15 @@ import type {
   PlatformRole,
   VerificationStatus,
   VerificationDocumentType,
+  PlanType,
+  PlanStatus,
+  BillingInterval,
+  SubscriptionStatus,
+  TrialStatus,
+  PaymentStatus,
+  PaymentMethod,
+  InquiryStatus,
+  QuotationStatus,
   Prisma,
 } from '@/generated/prisma/client';
 
@@ -37,6 +51,15 @@ export type {
   PlatformRole,
   VerificationStatus,
   VerificationDocumentType,
+  PlanType,
+  PlanStatus,
+  BillingInterval,
+  SubscriptionStatus,
+  TrialStatus,
+  PaymentStatus,
+  PaymentMethod,
+  InquiryStatus,
+  QuotationStatus,
 };
 
 // Re-export Base Models
@@ -50,6 +73,11 @@ export type RoleTemplatePermission = PrismaRoleTemplatePermission;
 export type Membership = PrismaMembership;
 export type AuditLog = PrismaAuditLog;
 export type TenantVerification = PrismaTenantVerification;
+export type Plan = PrismaPlan;
+export type Subscription = PrismaSubscription;
+export type SubscriptionInvoice = PrismaSubscriptionInvoice;
+export type CustomPlanInquiry = PrismaCustomPlanInquiry;
+export type CustomQuotation = PrismaCustomQuotation;
 
 // -----------------------------------------------------------------------------
 // COMPOSITE & RELATIONAL TYPES

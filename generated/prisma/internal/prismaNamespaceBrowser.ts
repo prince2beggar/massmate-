@@ -60,7 +60,12 @@ export const ModelName = {
   RolePermission: 'RolePermission',
   RoleTemplatePermission: 'RoleTemplatePermission',
   Membership: 'Membership',
-  AuditLog: 'AuditLog'
+  AuditLog: 'AuditLog',
+  Plan: 'Plan',
+  Subscription: 'Subscription',
+  SubscriptionInvoice: 'SubscriptionInvoice',
+  CustomPlanInquiry: 'CustomPlanInquiry',
+  CustomQuotation: 'CustomQuotation'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -236,6 +241,124 @@ export const AuditLogScalarFieldEnum = {
 export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
 
 
+export const PlanScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  planType: 'planType',
+  priceMonthly: 'priceMonthly',
+  currency: 'currency',
+  billingInterval: 'billingInterval',
+  trialEligible: 'trialEligible',
+  trialDays: 'trialDays',
+  entitlements: 'entitlements',
+  limits: 'limits',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PlanScalarFieldEnum = (typeof PlanScalarFieldEnum)[keyof typeof PlanScalarFieldEnum]
+
+
+export const SubscriptionScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  planId: 'planId',
+  subscriptionType: 'subscriptionType',
+  status: 'status',
+  trialStatus: 'trialStatus',
+  trialStartsAt: 'trialStartsAt',
+  trialEndsAt: 'trialEndsAt',
+  currentPeriodStartsAt: 'currentPeriodStartsAt',
+  currentPeriodEndsAt: 'currentPeriodEndsAt',
+  cancelledAt: 'cancelledAt',
+  priceLocked: 'priceLocked',
+  currency: 'currency',
+  billingInterval: 'billingInterval',
+  entitlements: 'entitlements',
+  limits: 'limits',
+  autoRenewConsent: 'autoRenewConsent',
+  autoRenewConsentAt: 'autoRenewConsentAt',
+  approvedByUserId: 'approvedByUserId',
+  approvedAt: 'approvedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
+
+
+export const SubscriptionInvoiceScalarFieldEnum = {
+  id: 'id',
+  invoiceNumber: 'invoiceNumber',
+  subscriptionId: 'subscriptionId',
+  tenantId: 'tenantId',
+  amount: 'amount',
+  currency: 'currency',
+  periodStart: 'periodStart',
+  periodEnd: 'periodEnd',
+  dueDate: 'dueDate',
+  paidAt: 'paidAt',
+  paymentStatus: 'paymentStatus',
+  paymentMethod: 'paymentMethod',
+  transactionReference: 'transactionReference',
+  confirmedByUserId: 'confirmedByUserId',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SubscriptionInvoiceScalarFieldEnum = (typeof SubscriptionInvoiceScalarFieldEnum)[keyof typeof SubscriptionInvoiceScalarFieldEnum]
+
+
+export const CustomPlanInquiryScalarFieldEnum = {
+  id: 'id',
+  businessName: 'businessName',
+  businessCategory: 'businessCategory',
+  contactName: 'contactName',
+  contactEmail: 'contactEmail',
+  contactPhone: 'contactPhone',
+  propertyCount: 'propertyCount',
+  estimatedMembers: 'estimatedMembers',
+  requiredFeatures: 'requiredFeatures',
+  additionalRequirements: 'additionalRequirements',
+  status: 'status',
+  assignedToUserId: 'assignedToUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CustomPlanInquiryScalarFieldEnum = (typeof CustomPlanInquiryScalarFieldEnum)[keyof typeof CustomPlanInquiryScalarFieldEnum]
+
+
+export const CustomQuotationScalarFieldEnum = {
+  id: 'id',
+  inquiryId: 'inquiryId',
+  tenantId: 'tenantId',
+  businessName: 'businessName',
+  propertyCount: 'propertyCount',
+  estimatedMembers: 'estimatedMembers',
+  monthlyPrice: 'monthlyPrice',
+  currency: 'currency',
+  billingInterval: 'billingInterval',
+  includedFeatures: 'includedFeatures',
+  usageLimits: 'usageLimits',
+  proposalValidUntil: 'proposalValidUntil',
+  status: 'status',
+  internalNotes: 'internalNotes',
+  customerNotes: 'customerNotes',
+  preparedByUserId: 'preparedByUserId',
+  approvedByUserId: 'approvedByUserId',
+  approvedAt: 'approvedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CustomQuotationScalarFieldEnum = (typeof CustomQuotationScalarFieldEnum)[keyof typeof CustomQuotationScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -250,6 +373,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {

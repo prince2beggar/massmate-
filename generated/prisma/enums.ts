@@ -88,3 +88,103 @@ export const VerificationDocumentType = {
 } as const
 
 export type VerificationDocumentType = (typeof VerificationDocumentType)[keyof typeof VerificationDocumentType]
+
+
+export const PlanType = {
+  STARTER: 'STARTER',
+  CUSTOM_BUSINESS: 'CUSTOM_BUSINESS',
+  ENTERPRISE: 'ENTERPRISE',
+  STANDARD: 'STANDARD'
+} as const
+
+export type PlanType = (typeof PlanType)[keyof typeof PlanType]
+
+
+export const PlanStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type PlanStatus = (typeof PlanStatus)[keyof typeof PlanStatus]
+
+
+export const BillingInterval = {
+  MONTHLY: 'MONTHLY',
+  QUARTERLY: 'QUARTERLY',
+  YEARLY: 'YEARLY',
+  CUSTOM: 'CUSTOM'
+} as const
+
+export type BillingInterval = (typeof BillingInterval)[keyof typeof BillingInterval]
+
+
+export const SubscriptionStatus = {
+  TRIALING: 'TRIALING',
+  ACTIVE: 'ACTIVE',
+  PAST_DUE: 'PAST_DUE',
+  EXPIRED: 'EXPIRED',
+  CANCELLED: 'CANCELLED',
+  SUSPENDED: 'SUSPENDED'
+} as const
+
+export type SubscriptionStatus = (typeof SubscriptionStatus)[keyof typeof SubscriptionStatus]
+
+
+export const TrialStatus = {
+  NOT_STARTED: 'NOT_STARTED',
+  ACTIVE: 'ACTIVE',
+  EXPIRED: 'EXPIRED',
+  CONVERTED: 'CONVERTED'
+} as const
+
+export type TrialStatus = (typeof TrialStatus)[keyof typeof TrialStatus]
+
+
+export const PaymentStatus = {
+  PENDING: 'PENDING',
+  CONFIRMED: 'CONFIRMED',
+  FAILED: 'FAILED',
+  REJECTED: 'REJECTED',
+  REFUNDED: 'REFUNDED',
+  PARTIALLY_PAID: 'PARTIALLY_PAID'
+} as const
+
+export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
+
+
+export const PaymentMethod = {
+  CASH: 'CASH',
+  BANK_TRANSFER: 'BANK_TRANSFER',
+  BKASH: 'BKASH',
+  NAGAD: 'NAGAD',
+  ROCKET: 'ROCKET',
+  ONLINE_GATEWAY: 'ONLINE_GATEWAY',
+  OTHER: 'OTHER'
+} as const
+
+export type PaymentMethod = (typeof PaymentMethod)[keyof typeof PaymentMethod]
+
+
+export const InquiryStatus = {
+  NEW: 'NEW',
+  REVIEWING: 'REVIEWING',
+  PROPOSAL_SENT: 'PROPOSAL_SENT',
+  NEGOTIATION: 'NEGOTIATION',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  CLOSED: 'CLOSED'
+} as const
+
+export type InquiryStatus = (typeof InquiryStatus)[keyof typeof InquiryStatus]
+
+
+export const QuotationStatus = {
+  DRAFT: 'DRAFT',
+  SENT: 'SENT',
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED',
+  EXPIRED: 'EXPIRED'
+} as const
+
+export type QuotationStatus = (typeof QuotationStatus)[keyof typeof QuotationStatus]

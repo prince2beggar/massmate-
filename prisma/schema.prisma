@@ -71,6 +71,79 @@ enum VerificationDocumentType {
   OTHER
 }
 
+enum PlanType {
+  STARTER
+  CUSTOM_BUSINESS
+  ENTERPRISE
+  STANDARD
+}
+
+enum PlanStatus {
+  ACTIVE
+  INACTIVE
+  ARCHIVED
+}
+
+enum BillingInterval {
+  MONTHLY
+  QUARTERLY
+  YEARLY
+  CUSTOM
+}
+
+enum SubscriptionStatus {
+  TRIALING
+  ACTIVE
+  PAST_DUE
+  EXPIRED
+  CANCELLED
+  SUSPENDED
+}
+
+enum TrialStatus {
+  NOT_STARTED
+  ACTIVE
+  EXPIRED
+  CONVERTED
+}
+
+enum PaymentStatus {
+  PENDING
+  CONFIRMED
+  FAILED
+  REJECTED
+  REFUNDED
+  PARTIALLY_PAID
+}
+
+enum PaymentMethod {
+  CASH
+  BANK_TRANSFER
+  BKASH
+  NAGAD
+  ROCKET
+  ONLINE_GATEWAY
+  OTHER
+}
+
+enum InquiryStatus {
+  NEW
+  REVIEWING
+  PROPOSAL_SENT
+  NEGOTIATION
+  APPROVED
+  REJECTED
+  CLOSED
+}
+
+enum QuotationStatus {
+  DRAFT
+  SENT
+  ACCEPTED
+  REJECTED
+  EXPIRED
+}
+
 // -----------------------------------------------------------------------------
 // USER (Platform-wide Identity)
 // -----------------------------------------------------------------------------
@@ -89,9 +162,14 @@ model User {
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
 
-  memberships          Membership[]
-  auditLogs            AuditLog[]
+  memberships           Membership[]
+  auditLogs             AuditLog[]
   reviewedVerifications TenantVerification[]
+  approvedSubscriptions Subscription[]        @relation("ApprovedSubscriptions")
+  confirmedInvoices     SubscriptionInvoice[] @relation("ConfirmedInvoices")
+  assignedInquiries     CustomPlanInquiry[]   @relation("AssignedInquiries")
+  preparedQuotations    CustomQuotation[]     @relation("PreparedQuotations")
+  approvedQuotations    CustomQuotation[]     @relation("ApprovedQuotations")
 
   @@index([status])
   @@index([platformRole])
@@ -127,6 +205,8 @@ model Tenant {
   roles        Role[]
   auditLogs    AuditLog[]
   verification TenantVerification?
+  subscription Subscription?
+  invoices     SubscriptionInvoice[]
 
   @@index([status])
   @@index([verificationStatus])
@@ -321,5 +401,172 @@ model AuditLog {
   @@index([entityType, entityId])
   @@index([createdAt])
   @@map("audit_logs")
+}
+
+// -----------------------------------------------------------------------------
+// SUBSCRIPTION PLAN (Configurable SaaS Packages)
+// -----------------------------------------------------------------------------
+
+model Plan {
+  id              String          @id @default(cuid())
+  name            String
+  slug            String          @unique
+  description     String?
+  planType        PlanType        @default(STARTER)
+  priceMonthly    Decimal         @default(99.00) @db.Decimal(10, 2)
+  currency        String          @default("BDT")
+  billingInterval BillingInterval @default(MONTHLY)
+  trialEligible   Boolean         @default(true)
+  trialDays       Int             @default(7)
+  entitlements    Json            // Array of enabled feature keys: string[]
+  limits          Json            // Object map of usage limits: Record<string, number>
+  status          PlanStatus      @default(ACTIVE)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  subscriptions   Subscription[]
+
+  @@index([status])
+  @@index([planType])
+  @@map("plans")
+}
+
+// -----------------------------------------------------------------------------
+// TENANT SUBSCRIPTION (Active Subscription & Trial Record)
+// -----------------------------------------------------------------------------
+
+model Subscription {
+  id                    String             @id @default(cuid())
+  tenantId              String             @unique
+  planId                String
+  subscriptionType      PlanType           @default(STARTER)
+  status                SubscriptionStatus @default(TRIALING)
+  trialStatus           TrialStatus        @default(NOT_STARTED)
+  trialStartsAt         DateTime?
+  trialEndsAt           DateTime?
+  currentPeriodStartsAt DateTime?
+  currentPeriodEndsAt   DateTime?
+  cancelledAt           DateTime?
+  priceLocked           Decimal            @db.Decimal(10, 2)
+  currency              String             @default("BDT")
+  billingInterval       BillingInterval    @default(MONTHLY)
+  entitlements          Json?              // Custom entitlements or snapshot
+  limits                Json?              // Custom usage limits or snapshot
+  autoRenewConsent      Boolean            @default(false)
+  autoRenewConsentAt    DateTime?
+  approvedByUserId      String?
+  approvedAt            DateTime?
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+
+  tenant     Tenant                @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  plan       Plan                  @relation(fields: [planId], references: [id], onDelete: Restrict)
+  approvedBy User?                 @relation("ApprovedSubscriptions", fields: [approvedByUserId], references: [id], onDelete: SetNull)
+  invoices   SubscriptionInvoice[]
+
+  @@index([status])
+  @@index([trialStatus])
+  @@index([planId])
+  @@map("subscriptions")
+}
+
+// -----------------------------------------------------------------------------
+// SUBSCRIPTION INVOICE & BILLING RECORD
+// -----------------------------------------------------------------------------
+
+model SubscriptionInvoice {
+  id                   String         @id @default(cuid())
+  invoiceNumber        String         @unique
+  subscriptionId       String
+  tenantId             String
+  amount               Decimal        @db.Decimal(10, 2)
+  currency             String         @default("BDT")
+  periodStart          DateTime
+  periodEnd            DateTime
+  dueDate              DateTime
+  paidAt               DateTime?
+  paymentStatus        PaymentStatus  @default(PENDING)
+  paymentMethod        PaymentMethod?
+  transactionReference String?
+  confirmedByUserId    String?
+  notes                String?
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+  tenant       Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  confirmedBy  User?        @relation("ConfirmedInvoices", fields: [confirmedByUserId], references: [id], onDelete: SetNull)
+
+  @@index([subscriptionId])
+  @@index([tenantId])
+  @@index([paymentStatus])
+  @@index([transactionReference])
+  @@index([createdAt])
+  @@map("subscription_invoices")
+}
+
+// -----------------------------------------------------------------------------
+// CUSTOM BUSINESS PLAN INQUIRY
+// -----------------------------------------------------------------------------
+
+model CustomPlanInquiry {
+  id                     String        @id @default(cuid())
+  businessName           String
+  businessCategory       String
+  contactName            String
+  contactEmail           String?
+  contactPhone           String?
+  propertyCount          Int           @default(1)
+  estimatedMembers       Int           @default(10)
+  requiredFeatures       Json          // string[]
+  additionalRequirements String?
+  status                 InquiryStatus @default(NEW)
+  assignedToUserId       String?
+  createdAt              DateTime      @default(now())
+  updatedAt              DateTime      @updatedAt
+
+  assignedTo User?             @relation("AssignedInquiries", fields: [assignedToUserId], references: [id], onDelete: SetNull)
+  quotations CustomQuotation[]
+
+  @@index([status])
+  @@index([businessCategory])
+  @@index([createdAt])
+  @@map("custom_plan_inquiries")
+}
+
+// -----------------------------------------------------------------------------
+// CUSTOM QUOTATION & PROPOSAL
+// -----------------------------------------------------------------------------
+
+model CustomQuotation {
+  id                 String          @id @default(cuid())
+  inquiryId          String
+  tenantId           String?
+  businessName       String
+  propertyCount      Int
+  estimatedMembers   Int
+  monthlyPrice       Decimal         @db.Decimal(10, 2)
+  currency           String          @default("BDT")
+  billingInterval    BillingInterval @default(MONTHLY)
+  includedFeatures   Json            // string[]
+  usageLimits        Json            // Record<string, number>
+  proposalValidUntil DateTime
+  status             QuotationStatus @default(DRAFT)
+  internalNotes      String?
+  customerNotes      String?
+  preparedByUserId   String?
+  approvedByUserId   String?
+  approvedAt         DateTime?
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+
+  inquiry    CustomPlanInquiry @relation(fields: [inquiryId], references: [id], onDelete: Cascade)
+  preparedBy User?             @relation("PreparedQuotations", fields: [preparedByUserId], references: [id], onDelete: SetNull)
+  approvedBy User?             @relation("ApprovedQuotations", fields: [approvedByUserId], references: [id], onDelete: SetNull)
+
+  @@index([inquiryId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("custom_quotations")
 }
 

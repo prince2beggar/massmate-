@@ -1,20 +1,31 @@
 import React from 'react';
-import { CreditCard } from 'lucide-react';
-import { UpcomingModuleView } from '@/components/admin/UpcomingModuleView';
+import { redirect } from 'next/navigation';
+import { getPlatformSession } from '@/server/platform/platform-session';
+import { subscriptionService } from '@/server/subscription/subscription-service';
+import { customProposalService } from '@/server/subscription/custom-proposal-service';
+import { subscriptionAnalyticsService } from '@/server/subscription/subscription-analytics-service';
+import { SubscriptionDirectoryView } from '@/components/admin/subscriptions/SubscriptionDirectoryView';
 
-export default function SuperAdminSubscriptionsPage() {
+export default async function SuperAdminSubscriptionsPage() {
+  const platformSession = await getPlatformSession();
+
+  if (!platformSession) {
+    redirect('/super-admin/access-denied');
+  }
+
+  // Pre-load data on the server
+  const [subResult, inquiries, analytics] = await Promise.all([
+    subscriptionService.listSubscriptions({ page: 1, limit: 10 }),
+    customProposalService.listInquiries(),
+    subscriptionAnalyticsService.getSubscriptionAnalytics(),
+  ]);
+
   return (
-    <UpcomingModuleView
-      title="SaaS Subscriptions"
-      modulePhase="Phase 3 Pending"
-      icon={CreditCard}
-      description="Track active recurring subscriptions, trial accounts, renewals, and billing lifecycles."
-      plannedFeatures={[
-        'Live subscriptions table with expiration countdowns',
-        'Trial account conversion funnels and automated reminders',
-        'Direct subscription tier overrides and manual license extensions',
-        'Failed renewal tracking and automated grace periods',
-      ]}
+    <SubscriptionDirectoryView
+      initialSubscriptions={subResult.subscriptions}
+      initialPagination={subResult.pagination}
+      initialInquiries={inquiries}
+      initialAnalytics={analytics}
     />
   );
 }
