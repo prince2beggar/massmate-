@@ -1,20 +1,23 @@
 import React from 'react';
-import { Users } from 'lucide-react';
-import { UpcomingModuleView } from '@/components/admin/UpcomingModuleView';
+import { redirect } from 'next/navigation';
+import { getPlatformSession } from '@/server/platform/platform-session';
+import { platformUserService } from '@/server/platform/platform-user-service';
+import { UserDirectoryView } from '@/components/admin/users/UserDirectoryView';
 
-export default function SuperAdminUsersPage() {
+export default async function SuperAdminUsersPage() {
+  const platformSession = await getPlatformSession();
+
+  if (!platformSession) {
+    redirect('/super-admin/access-denied');
+  }
+
+  const result = await platformUserService.listUsers({ page: 1, limit: 10 });
+
   return (
-    <UpcomingModuleView
-      title="Platform Users"
-      modulePhase="Phase 3 Pending"
-      icon={Users}
-      description="Global user identities, cross-mess memberships, and platform administrator roles."
-      plannedFeatures={[
-        'Global directory of all platform users with search by name, email, phone',
-        'Platform administrator role assignments (Platform Owner, Admin, Support, Finance)',
-        'Multi-tenant membership inspection across all messes for any user',
-        'Account lifecycle actions: suspend, reactivate, or reset verification status',
-      ]}
+    <UserDirectoryView
+      initialUsers={result.users}
+      initialPagination={result.pagination}
+      currentUserRole={platformSession.platformRole}
     />
   );
 }

@@ -78,9 +78,7 @@ export const ADMIN_NAV_ITEMS: AdminNavItem[] = [
     label: 'Platform Users',
     href: '/super-admin/users',
     icon: Users,
-    badge: 'Phase 3',
-    badgeVariant: 'neutral',
-    status: 'upcoming',
+    status: 'active',
     description: 'Global identities, multi-tenant memberships, and platform roles',
   },
   {
@@ -88,9 +86,7 @@ export const ADMIN_NAV_ITEMS: AdminNavItem[] = [
     label: 'Support Center',
     href: '/super-admin/support',
     icon: Headphones,
-    badge: 'Phase 3',
-    badgeVariant: 'neutral',
-    status: 'upcoming',
+    status: 'active',
     description: 'Tenant inquiries, support tickets, and urgent resolutions',
   },
   {
@@ -108,9 +104,7 @@ export const ADMIN_NAV_ITEMS: AdminNavItem[] = [
     label: 'Analytics & Reports',
     href: '/super-admin/analytics',
     icon: BarChart3,
-    badge: 'Phase 3',
-    badgeVariant: 'neutral',
-    status: 'upcoming',
+    status: 'active',
     description: 'In-depth growth metrics, retention, and platform usage reports',
   },
   {

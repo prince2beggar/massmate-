@@ -55,3 +55,17 @@ export class PlatformUserInactiveError extends PlatformAuthError {
     this.name = 'PlatformUserInactiveError';
   }
 }
+
+export class PlatformNotFoundError extends PlatformAuthError {
+  constructor(message = 'Platform resource not found.') {
+    super(message, 'NOT_FOUND', 404);
+    this.name = 'PlatformNotFoundError';
+  }
+}
+
+export class PlatformValidationError extends PlatformAuthError {
+  constructor(message = 'Validation error.') {
+    super(message, 'VALIDATION_ERROR', 400);
+    this.name = 'PlatformValidationError';
+  }
+}

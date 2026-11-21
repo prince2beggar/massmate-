@@ -237,3 +237,52 @@ export const DomainStatus = {
 } as const
 
 export type DomainStatus = (typeof DomainStatus)[keyof typeof DomainStatus]
+
+
+export const SupportTicketCategory = {
+  ACCOUNT_LOGIN: 'ACCOUNT_LOGIN',
+  SUBSCRIPTION_BILLING: 'SUBSCRIPTION_BILLING',
+  DOMAIN_WEBSITE: 'DOMAIN_WEBSITE',
+  TECHNICAL_ISSUE: 'TECHNICAL_ISSUE',
+  FEATURE_REQUEST: 'FEATURE_REQUEST',
+  GENERAL_INQUIRY: 'GENERAL_INQUIRY',
+  OTHER: 'OTHER'
+} as const
+
+export type SupportTicketCategory = (typeof SupportTicketCategory)[keyof typeof SupportTicketCategory]
+
+
+export const SupportTicketPriority = {
+  LOW: 'LOW',
+  NORMAL: 'NORMAL',
+  HIGH: 'HIGH',
+  URGENT: 'URGENT'
+} as const
+
+export type SupportTicketPriority = (typeof SupportTicketPriority)[keyof typeof SupportTicketPriority]
+
+
+export const SupportTicketStatus = {
+  NEW: 'NEW',
+  OPEN: 'OPEN',
+  IN_PROGRESS: 'IN_PROGRESS',
+  WAITING_CUSTOMER: 'WAITING_CUSTOMER',
+  RESOLVED: 'RESOLVED',
+  CLOSED: 'CLOSED'
+} as const
+
+export type SupportTicketStatus = (typeof SupportTicketStatus)[keyof typeof SupportTicketStatus]
+
+
+export const NotificationType = {
+  NEW_TENANT: 'NEW_TENANT',
+  TRIAL_EXPIRING: 'TRIAL_EXPIRING',
+  PENDING_PAYMENT: 'PENDING_PAYMENT',
+  DOMAIN_REQUEST: 'DOMAIN_REQUEST',
+  SUPPORT_TICKET_NEW: 'SUPPORT_TICKET_NEW',
+  SUPPORT_TICKET_REPLY: 'SUPPORT_TICKET_REPLY',
+  SUPPORT_TICKET_URGENT: 'SUPPORT_TICKET_URGENT',
+  SYSTEM_ALERT: 'SYSTEM_ALERT'
+} as const
+
+export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]

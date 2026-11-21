@@ -178,6 +178,43 @@ enum DomainStatus {
   REMOVED
 }
 
+enum SupportTicketCategory {
+  ACCOUNT_LOGIN
+  SUBSCRIPTION_BILLING
+  DOMAIN_WEBSITE
+  TECHNICAL_ISSUE
+  FEATURE_REQUEST
+  GENERAL_INQUIRY
+  OTHER
+}
+
+enum SupportTicketPriority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
+}
+
+enum SupportTicketStatus {
+  NEW
+  OPEN
+  IN_PROGRESS
+  WAITING_CUSTOMER
+  RESOLVED
+  CLOSED
+}
+
+enum NotificationType {
+  NEW_TENANT
+  TRIAL_EXPIRING
+  PENDING_PAYMENT
+  DOMAIN_REQUEST
+  SUPPORT_TICKET_NEW
+  SUPPORT_TICKET_REPLY
+  SUPPORT_TICKET_URGENT
+  SYSTEM_ALERT
+}
+
 // -----------------------------------------------------------------------------
 // USER (Platform-wide Identity)
 // -----------------------------------------------------------------------------
@@ -204,6 +241,10 @@ model User {
   assignedInquiries     CustomPlanInquiry[]   @relation("AssignedInquiries")
   preparedQuotations    CustomQuotation[]     @relation("PreparedQuotations")
   approvedQuotations    CustomQuotation[]     @relation("ApprovedQuotations")
+  requestedTickets      SupportTicket[]       @relation("RequesterTickets")
+  assignedTickets       SupportTicket[]       @relation("AssignedTickets")
+  ticketMessages        SupportTicketMessage[]
+  notifications         PlatformNotification[]
 
   @@index([status])
   @@index([platformRole])
@@ -242,6 +283,7 @@ model Tenant {
   subscription Subscription?
   invoices     SubscriptionInvoice[]
   domains      Domain[]
+  supportTickets SupportTicket[]
 
   @@index([status])
   @@index([verificationStatus])
@@ -635,5 +677,84 @@ model Domain {
   @@index([verificationStatus])
   @@index([domainType])
   @@map("domains")
+}
+
+// -----------------------------------------------------------------------------
+// SUPPORT TICKETS & CONVERSATIONS
+// -----------------------------------------------------------------------------
+
+model SupportTicket {
+  id              String                @id @default(cuid())
+  ticketNumber    String                @unique @map("ticket_number")
+  subject         String
+  description     String?
+  category        SupportTicketCategory @default(GENERAL_INQUIRY)
+  priority        SupportTicketPriority @default(NORMAL)
+  status          SupportTicketStatus   @default(NEW)
+  requesterUserId String                @map("requester_user_id")
+  tenantId        String?               @map("tenant_id")
+  assignedStaffId String?               @map("assigned_staff_id")
+  resolvedAt      DateTime?             @map("resolved_at")
+  closedAt        DateTime?             @map("closed_at")
+  createdAt       DateTime              @default(now()) @map("created_at")
+  updatedAt       DateTime              @updatedAt @map("updated_at")
+
+  requester     User                   @relation("RequesterTickets", fields: [requesterUserId], references: [id], onDelete: Restrict)
+  assignedStaff User?                  @relation("AssignedTickets", fields: [assignedStaffId], references: [id], onDelete: SetNull)
+  tenant        Tenant?                @relation(fields: [tenantId], references: [id], onDelete: SetNull)
+  messages      SupportTicketMessage[]
+
+  @@index([requesterUserId])
+  @@index([tenantId])
+  @@index([assignedStaffId])
+  @@index([status])
+  @@index([priority])
+  @@index([category])
+  @@index([createdAt])
+  @@map("support_tickets")
+}
+
+model SupportTicketMessage {
+  id           String   @id @default(cuid())
+  ticketId     String   @map("ticket_id")
+  authorUserId String   @map("author_user_id")
+  message      String
+  isInternal   Boolean  @default(false) @map("is_internal")
+  attachments  Json?    @map("attachments")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  ticket SupportTicket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  author User          @relation(fields: [authorUserId], references: [id], onDelete: Restrict)
+
+  @@index([ticketId])
+  @@index([authorUserId])
+  @@index([createdAt])
+  @@map("support_ticket_messages")
+}
+
+// -----------------------------------------------------------------------------
+// PLATFORM NOTIFICATIONS
+// -----------------------------------------------------------------------------
+
+model PlatformNotification {
+  id        String           @id @default(cuid())
+  userId    String?          @map("user_id")
+  type      NotificationType @default(SYSTEM_ALERT)
+  title     String
+  message   String
+  link      String?
+  isRead    Boolean          @default(false) @map("is_read")
+  readAt    DateTime?        @map("read_at")
+  metadata  Json?
+  createdAt DateTime         @default(now()) @map("created_at")
+  updatedAt DateTime         @updatedAt @map("updated_at")
+
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([isRead])
+  @@index([type])
+  @@index([createdAt])
+  @@map("platform_notifications")
 }
 

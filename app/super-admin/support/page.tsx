@@ -1,20 +1,27 @@
 import React from 'react';
-import { Headphones } from 'lucide-react';
-import { UpcomingModuleView } from '@/components/admin/UpcomingModuleView';
+import { redirect } from 'next/navigation';
+import { getPlatformSession } from '@/server/platform/platform-session';
+import { supportTicketService } from '@/server/support/support-ticket-service';
+import { SupportCenterView } from '@/components/admin/support/SupportCenterView';
 
-export default function SuperAdminSupportPage() {
+export default async function SuperAdminSupportPage() {
+  const platformSession = await getPlatformSession();
+
+  if (!platformSession) {
+    redirect('/super-admin/access-denied');
+  }
+
+  const [ticketResult, stats] = await Promise.all([
+    supportTicketService.listTickets({ page: 1, limit: 10 }),
+    supportTicketService.getTicketStats(),
+  ]);
+
   return (
-    <UpcomingModuleView
-      title="Support Center"
-      modulePhase="Phase 3 Pending"
-      icon={Headphones}
-      description="Tenant helpdesk, escalation tickets, emergency alerts, and dispute resolutions."
-      plannedFeatures={[
-        'Unified ticket inbox categorized by priority (Urgent, Billing, Technical)',
-        'Tenant context preview directly alongside ticket conversation',
-        'Emergency meal dispute mediation workflows',
-        'Knowledge base article publication and broadcast notices',
-      ]}
+    <SupportCenterView
+      initialTickets={ticketResult.tickets}
+      initialPagination={ticketResult.pagination}
+      initialStats={stats}
+      currentUserRole={platformSession.platformRole}
     />
   );
 }

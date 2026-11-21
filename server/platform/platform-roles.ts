@@ -13,12 +13,14 @@ export type PlatformPermissionKey =
   | 'support.view'
   | 'support.manage'
   | 'audit.view'
-  | 'settings.manage';
+  | 'settings.manage'
+  | 'analytics.view'
+  | 'reports.export';
 
 export interface PlatformPermissionDefinition {
   key: PlatformPermissionKey;
   name: string;
-  module: 'tenants' | 'users' | 'subscriptions' | 'revenue' | 'domains' | 'support' | 'audit' | 'settings';
+  module: 'tenants' | 'users' | 'subscriptions' | 'revenue' | 'domains' | 'support' | 'audit' | 'settings' | 'analytics' | 'reports';
   description: string;
 }
 
@@ -101,6 +103,18 @@ export const PLATFORM_PERMISSIONS: PlatformPermissionDefinition[] = [
     module: 'settings',
     description: 'Update platform-level configurations, subdomains, features, and security gates.',
   },
+  {
+    key: 'analytics.view',
+    name: 'View Platform Analytics',
+    module: 'analytics',
+    description: 'Inspect multi-tenant KPIs, growth trends, cohorts, and operational statistics.',
+  },
+  {
+    key: 'reports.export',
+    name: 'Export Platform Reports',
+    module: 'reports',
+    description: 'Generate and download authorized CSV reports of platform datasets.',
+  },
 ];
 
 export const PLATFORM_ROLE_PERMISSIONS: Record<PlatformRole, PlatformPermissionKey[]> = {
@@ -118,6 +132,8 @@ export const PLATFORM_ROLE_PERMISSIONS: Record<PlatformRole, PlatformPermissionK
     'support.manage',
     'audit.view',
     'settings.manage',
+    'analytics.view',
+    'reports.export',
   ],
   PLATFORM_ADMIN: [
     'tenants.view',
@@ -130,6 +146,8 @@ export const PLATFORM_ROLE_PERMISSIONS: Record<PlatformRole, PlatformPermissionK
     'support.view',
     'support.manage',
     'audit.view',
+    'analytics.view',
+    'reports.export',
   ],
   SUPPORT_STAFF: [
     'tenants.view',
@@ -138,12 +156,15 @@ export const PLATFORM_ROLE_PERMISSIONS: Record<PlatformRole, PlatformPermissionK
     'support.view',
     'support.manage',
     'audit.view',
+    'analytics.view',
   ],
   FINANCE_STAFF: [
     'tenants.view',
     'subscriptions.view',
     'subscriptions.manage',
     'revenue.view',
+    'analytics.view',
+    'reports.export',
   ],
 };
 

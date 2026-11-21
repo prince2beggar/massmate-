@@ -1,20 +1,26 @@
 import React from 'react';
-import { BarChart3 } from 'lucide-react';
-import { UpcomingModuleView } from '@/components/admin/UpcomingModuleView';
+import { redirect } from 'next/navigation';
+import { getPlatformSession } from '@/server/platform/platform-session';
+import {
+  platformAnalyticsService,
+  resolveDateRange,
+} from '@/server/platform/platform-analytics-service';
+import { PlatformAnalyticsView } from '@/components/admin/analytics/PlatformAnalyticsView';
 
-export default function SuperAdminAnalyticsPage() {
+export default async function SuperAdminAnalyticsPage() {
+  const platformSession = await getPlatformSession();
+
+  if (!platformSession) {
+    redirect('/super-admin/access-denied');
+  }
+
+  const dateFilter = resolveDateRange('30d');
+  const analytics = await platformAnalyticsService.getAnalytics(dateFilter);
+
   return (
-    <UpcomingModuleView
-      title="Analytics & Deep Reports"
-      modulePhase="Phase 3 Pending"
-      icon={BarChart3}
-      description="Deep cohort analytics, churn metrics, peak meal usage periods, and revenue projections."
-      plannedFeatures={[
-        'Cohort retention analysis for student vs bachelor messes',
-        'Meal volume spikes and seasonal meal suspension patterns',
-        'Platform-wide financial reconciliation and exportable CSV ledgers',
-        'Regional heatmap of messes across Dhaka, Chittagong, and university zones',
-      ]}
+    <PlatformAnalyticsView
+      initialAnalytics={analytics}
+      currentUserRole={platformSession.platformRole}
     />
   );
 }

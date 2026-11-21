@@ -97,3 +97,18 @@ export type CustomQuotation = Prisma.CustomQuotationModel
  * 
  */
 export type Domain = Prisma.DomainModel
+/**
+ * Model SupportTicket
+ * 
+ */
+export type SupportTicket = Prisma.SupportTicketModel
+/**
+ * Model SupportTicketMessage
+ * 
+ */
+export type SupportTicketMessage = Prisma.SupportTicketMessageModel
+/**
+ * Model PlatformNotification
+ * 
+ */
+export type PlatformNotification = Prisma.PlatformNotificationModel

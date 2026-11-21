@@ -22,6 +22,9 @@ import type {
   CustomPlanInquiry as PrismaCustomPlanInquiry,
   CustomQuotation as PrismaCustomQuotation,
   Domain as PrismaDomain,
+  SupportTicket as PrismaSupportTicket,
+  SupportTicketMessage as PrismaSupportTicketMessage,
+  PlatformNotification as PrismaPlatformNotification,
   UserStatus,
   TenantType,
   TenantStatus,
@@ -44,6 +47,10 @@ import type {
   DnsStatus,
   SslStatus,
   DomainStatus,
+  SupportTicketCategory,
+  SupportTicketPriority,
+  SupportTicketStatus,
+  NotificationType,
   Prisma,
 } from '@/generated/prisma/client';
 
@@ -71,6 +78,10 @@ export type {
   DnsStatus,
   SslStatus,
   DomainStatus,
+  SupportTicketCategory,
+  SupportTicketPriority,
+  SupportTicketStatus,
+  NotificationType,
 };
 
 // Re-export Base Models
@@ -90,6 +101,9 @@ export type SubscriptionInvoice = PrismaSubscriptionInvoice;
 export type CustomPlanInquiry = PrismaCustomPlanInquiry;
 export type CustomQuotation = PrismaCustomQuotation;
 export type Domain = PrismaDomain;
+export type SupportTicket = PrismaSupportTicket;
+export type SupportTicketMessage = PrismaSupportTicketMessage;
+export type PlatformNotification = PrismaPlatformNotification;
 
 // -----------------------------------------------------------------------------
 // COMPOSITE & RELATIONAL TYPES

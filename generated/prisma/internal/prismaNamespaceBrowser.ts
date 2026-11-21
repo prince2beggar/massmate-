@@ -66,7 +66,10 @@ export const ModelName = {
   SubscriptionInvoice: 'SubscriptionInvoice',
   CustomPlanInquiry: 'CustomPlanInquiry',
   CustomQuotation: 'CustomQuotation',
-  Domain: 'Domain'
+  Domain: 'Domain',
+  SupportTicket: 'SupportTicket',
+  SupportTicketMessage: 'SupportTicketMessage',
+  PlatformNotification: 'PlatformNotification'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -381,6 +384,56 @@ export const DomainScalarFieldEnum = {
 } as const
 
 export type DomainScalarFieldEnum = (typeof DomainScalarFieldEnum)[keyof typeof DomainScalarFieldEnum]
+
+
+export const SupportTicketScalarFieldEnum = {
+  id: 'id',
+  ticketNumber: 'ticketNumber',
+  subject: 'subject',
+  description: 'description',
+  category: 'category',
+  priority: 'priority',
+  status: 'status',
+  requesterUserId: 'requesterUserId',
+  tenantId: 'tenantId',
+  assignedStaffId: 'assignedStaffId',
+  resolvedAt: 'resolvedAt',
+  closedAt: 'closedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SupportTicketScalarFieldEnum = (typeof SupportTicketScalarFieldEnum)[keyof typeof SupportTicketScalarFieldEnum]
+
+
+export const SupportTicketMessageScalarFieldEnum = {
+  id: 'id',
+  ticketId: 'ticketId',
+  authorUserId: 'authorUserId',
+  message: 'message',
+  isInternal: 'isInternal',
+  attachments: 'attachments',
+  createdAt: 'createdAt'
+} as const
+
+export type SupportTicketMessageScalarFieldEnum = (typeof SupportTicketMessageScalarFieldEnum)[keyof typeof SupportTicketMessageScalarFieldEnum]
+
+
+export const PlatformNotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  title: 'title',
+  message: 'message',
+  link: 'link',
+  isRead: 'isRead',
+  readAt: 'readAt',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PlatformNotificationScalarFieldEnum = (typeof PlatformNotificationScalarFieldEnum)[keyof typeof PlatformNotificationScalarFieldEnum]
 
 
 export const SortOrder = {
