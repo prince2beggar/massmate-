@@ -1,0 +1,18 @@
+// MessMate — Prisma 7 Connection Bootstrap Schema (Task 17)
+//
+// IMPORTANT:
+// - Intentionally contains NO business tables or domain models yet.
+// - Datasource connection URLs are configured externally via `prisma.config.ts`
+//   (DIRECT_URL for CLI/migrations) and `server/db/prisma.ts` (DATABASE_URL
+//   pooled connection via `@prisma/adapter-pg`).
+// - Business tables, multi-tenant models, and RLS migrations will be authored
+//   in upcoming schema-design tasks.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}

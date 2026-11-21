@@ -1,0 +1,236 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  /* Typography Tokens */
+  --font-display: var(--font-plus-jakarta), var(--font-hind-siliguri), system-ui, sans-serif;
+  --font-heading: var(--font-plus-jakarta), var(--font-hind-siliguri), system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), var(--font-hind-siliguri), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  /* Brand & Core Semantic Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Extended MessMate Status & Surface Tokens */
+  --color-surface-subtle: var(--surface-subtle);
+  --color-navy: var(--secondary-navy);
+  --color-sky-accent: var(--accent-sky);
+  --color-body: var(--text-body);
+  --color-success: var(--success);
+  --color-success-subtle: var(--success-subtle);
+  --color-warning: var(--warning);
+  --color-warning-subtle: var(--warning-subtle);
+  --color-info: var(--info);
+  --color-info-subtle: var(--info-subtle);
+
+  /* Radius Scale */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+}
+
+:root {
+  /* Core Surfaces & Typography */
+  --background: #FFFFFF;
+  --foreground: #172B4D;
+  --card: #FFFFFF;
+  --card-foreground: #172B4D;
+  --popover: #FFFFFF;
+  --popover-foreground: #172B4D;
+  --surface-subtle: #F8F9FE;
+  --text-body: #525F7F;
+
+  /* Brand Identity */
+  --primary: #324CDD;
+  --primary-hover: #263DC2;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F1F5F9;
+  --secondary-foreground: #172B4D;
+  --secondary-navy: #172B4D;
+  --accent: #EEF2FF;
+  --accent-foreground: #324CDD;
+  --accent-sky: #11CDEF;
+
+  /* Neutrals & Borders */
+  --muted: #F8F9FE;
+  --muted-foreground: #64748B;
+  --border: #E2E8F0;
+  --input: #CBD5E1;
+  --ring: #5E72E4;
+
+  /* Semantic Feedback Colors */
+  --success: #059669;
+  --success-subtle: #ECFDF5;
+  --warning: #D97706;
+  --warning-subtle: #FFFBEB;
+  --destructive: #DC2626;
+  --error-subtle: #FEF2F2;
+  --info: #0284C7;
+  --info-subtle: #F0F9FF;
+
+  /* Geometry & Elevation */
+  --radius: 0.625rem;
+  --shadow-xs: 0 1px 2px rgba(23, 43, 77, 0.05);
+  --shadow-surface: 0 4px 14px rgba(23, 43, 77, 0.06), 0 1px 3px rgba(23, 43, 77, 0.04);
+  --shadow-elevated: 0 15px 35px rgba(50, 50, 93, 0.08), 0 5px 15px rgba(0, 0, 0, 0.04);
+}
+
+.dark {
+  --background: #0B1324;
+  --foreground: #F8FAFC;
+  --card: #111C33;
+  --card-foreground: #F8FAFC;
+  --popover: #111C33;
+  --popover-foreground: #F8FAFC;
+  --surface-subtle: #0F172A;
+  --text-body: #CBD5E1;
+  --primary: #5E72E4;
+  --primary-hover: #7082EC;
+  --primary-foreground: #FFFFFF;
+  --secondary: #1E293B;
+  --secondary-foreground: #F8FAFC;
+  --muted: #1E293B;
+  --muted-foreground: #94A3B8;
+  --accent: #1E2A4A;
+  --accent-foreground: #93C5FD;
+  --destructive: #F87171;
+  --border: #1E293B;
+  --input: #334155;
+  --ring: #5E72E4;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color: var(--foreground);
+    background-color: var(--background);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--text-body);
+    background-color: var(--background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html[lang="bn"] body,
+  html[lang="bn"] h1,
+  html[lang="bn"] h2,
+  html[lang="bn"] h3,
+  html[lang="bn"] h4 {
+    font-family: var(--font-hind-siliguri), var(--font-dm-sans), system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--foreground);
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+}
+
+.argon-hero-gradient {
+  background: linear-gradient(135deg, #172B4D 0%, #1E3A8A 52%, #324CDD 100%);
+}
+
+.argon-cta-gradient {
+  background: linear-gradient(125deg, #172B4D 0%, #263E8A 55%, #475BE8 100%);
+}
+
+.shadow-surface {
+  box-shadow: var(--shadow-surface);
+}
+
+.argon-card-shadow {
+  box-shadow: var(--shadow-elevated);
+}
+
+.argon-card-shadow-hover {
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.argon-card-shadow-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(50, 50, 93, 0.12), 0 8px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* Scroll-Driven Animations: Parallax & Scrollytelling Enhancements */
+@supports ((animation-timeline: view()) and (animation-range: entry)) {
+  @keyframes parallax-sky {
+    from { transform: translateY(0); }
+    to { transform: translateY(80px); }
+  }
+
+  @keyframes parallax-skyline {
+    from { transform: translateY(0); }
+    to { transform: translateY(140px); }
+  }
+
+  @keyframes parallax-residence {
+    from { transform: translateY(0); }
+    to { transform: translateY(220px); }
+  }
+
+  .css-parallax-wrapper {
+    view-timeline: --hero-wrapper;
+  }
+
+  .css-parallax-sky {
+    animation: parallax-sky linear both;
+    animation-timeline: --hero-wrapper;
+    animation-range: entry 0% exit 100%;
+  }
+
+  .css-parallax-skyline {
+    animation: parallax-skyline linear both;
+    animation-timeline: --hero-wrapper;
+    animation-range: entry 0% exit 100%;
+  }
+
+  .css-parallax-residence {
+    animation: parallax-residence linear both;
+    animation-timeline: --hero-wrapper;
+    animation-range: entry 0% exit 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .css-parallax-sky,
+  .css-parallax-skyline,
+  .css-parallax-residence {
+    animation: none !important;
+    transform: none !important;
+  }
+}

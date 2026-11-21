@@ -1,0 +1,11 @@
+export { HeroSection } from '@/components/home/HeroSection';
+export { TrustBenefitsSection as TrustIndicatorsSection } from '@/components/home/TrustBenefitsSection';
+export { FeaturesOverviewSection } from '@/components/home/FeaturesOverviewSection';
+export { HowItWorksSection } from '@/components/home/HowItWorksSection';
+export { RoomRentalShowcase as RoomRentalPreviewSection } from '@/components/home/RoomRentalShowcase';
+export { PricingSection as PricingPreviewSection } from '@/components/home/PricingSection';
+export { EmergencySafetySection as EmergencySafetyPreviewSection } from '@/components/home/EmergencySafetySection';
+export { AboutSection } from '@/components/home/AboutSection';
+export { ContactSection } from '@/components/home/ContactSection';
+export { FaqPreviewSection } from '@/components/home/FaqPreviewSection';
+export { FinalCtaSection } from '@/components/home/FinalCtaSection';

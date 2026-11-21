@@ -1,0 +1,6 @@
+{
+  "name": "MessMate",
+  "description": "Modern Mess & Shared Living Management SaaS platform for student messes, bachelor messes, job-holder messes, and shared apartments.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
