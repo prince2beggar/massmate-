@@ -57,3 +57,8 @@ export type RoleTemplatePermission = Prisma.RoleTemplatePermissionModel
  * 
  */
 export type Membership = Prisma.MembershipModel
+/**
+ * Model AuditLog
+ * 
+ */
+export type AuditLog = Prisma.AuditLogModel

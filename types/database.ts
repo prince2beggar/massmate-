@@ -14,6 +14,7 @@ import type {
   RolePermission as PrismaRolePermission,
   RoleTemplatePermission as PrismaRoleTemplatePermission,
   Membership as PrismaMembership,
+  AuditLog as PrismaAuditLog,
   UserStatus,
   TenantType,
   TenantStatus,
@@ -40,6 +41,7 @@ export type Permission = PrismaPermission;
 export type RolePermission = PrismaRolePermission;
 export type RoleTemplatePermission = PrismaRoleTemplatePermission;
 export type Membership = PrismaMembership;
+export type AuditLog = PrismaAuditLog;
 
 // -----------------------------------------------------------------------------
 // COMPOSITE & RELATIONAL TYPES

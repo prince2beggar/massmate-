@@ -66,6 +66,7 @@ model User {
   updatedAt       DateTime    @updatedAt
 
   memberships     Membership[]
+  auditLogs       AuditLog[]
 
   @@index([status])
   @@index([createdAt])
@@ -96,6 +97,7 @@ model Tenant {
 
   memberships Membership[]
   roles       Role[]
+  auditLogs   AuditLog[]
 
   @@index([status])
   @@index([tenantType])
@@ -233,3 +235,34 @@ model Membership {
   @@index([tenantId, status])
   @@map("memberships")
 }
+
+// -----------------------------------------------------------------------------
+// AUDIT LOG (Append-Only Event Ledger)
+// -----------------------------------------------------------------------------
+
+model AuditLog {
+  id                String   @id @default(cuid())
+  tenantId          String?  // Nullable for platform-level governance events
+  actorUserId       String?  // Global user ID who performed the action
+  actorMembershipId String?  // Specific membership context if tenant-scoped
+  action            String   // e.g. "member.create", "role.update", "tenant.suspend"
+  entityType        String   // e.g. "membership", "role", "tenant", "user"
+  entityId          String?  // Primary key of affected entity
+  description       String?  // Human-readable audit narrative
+  beforeData        Json?    // State before mutation
+  afterData         Json?    // State after mutation
+  metadata          Json?    // Contextual metadata (route, correlationId, userAgent)
+  ipAddress         String?  // Client IP (sanitized/redacted)
+  createdAt         DateTime @default(now())
+
+  tenant    Tenant? @relation(fields: [tenantId], references: [id], onDelete: SetNull)
+  actorUser User?   @relation(fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([tenantId])
+  @@index([actorUserId])
+  @@index([action])
+  @@index([entityType, entityId])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
+
