@@ -116,3 +116,8 @@ export type CustomPlanInquiry = Prisma.CustomPlanInquiryModel
  * 
  */
 export type CustomQuotation = Prisma.CustomQuotationModel
+/**
+ * Model Domain
+ * 
+ */
+export type Domain = Prisma.DomainModel

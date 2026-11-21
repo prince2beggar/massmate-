@@ -401,9 +401,9 @@ export function TenantDetailsView({ initialDetails }: TenantDetailsViewProps) {
 
               <div className="rounded-lg border border-slate-100 bg-slate-50/80 p-4 space-y-2">
                 <span className="font-bold text-slate-800 block">Custom Domain Mapping</span>
-                <p className="text-slate-500">No custom domain configured for this mess.</p>
+                <p className="text-slate-500">Manageable via the central Super Admin Domain Management module.</p>
                 <span className="text-[10px] text-slate-400 block">
-                  Custom domain DNS mapping (e.g. mess.princemess.com) is scheduled for the Phase 3 Domains module.
+                  Custom domain DNS TXT challenge verification and CNAME ingress routing can be configured in the Domains directory.
                 </span>
               </div>
             </div>

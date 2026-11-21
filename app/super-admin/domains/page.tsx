@@ -1,19 +1,22 @@
 import React from 'react';
-import { Globe } from 'lucide-react';
-import { UpcomingModuleView } from '@/components/admin/UpcomingModuleView';
+import { redirect } from 'next/navigation';
+import { getPlatformSession } from '@/server/platform/platform-session';
+import { domainService } from '@/server/domain/domain-service';
+import { DomainDirectoryView } from '@/components/admin/domains/DomainDirectoryView';
 
-export default function SuperAdminDomainsPage() {
+export default async function SuperAdminDomainsPage() {
+  const platformSession = await getPlatformSession();
+
+  if (!platformSession) {
+    redirect('/super-admin/access-denied');
+  }
+
+  const result = await domainService.listDomains({ page: 1, limit: 10 });
+
   return (
-    <UpcomingModuleView
-      title="Domain & Subdomain Management"
-      modulePhase="Phase 3 Pending"
-      icon={Globe}
-      description="Inspect custom domain verification requests, DNS checks, and messmate.bd subdomains."
-      plannedFeatures={[
-        'Tenant subdomain routing and reserved name governance',
-        'Custom CNAME and SSL certificate status automated checks',
-        'DNS propagation diagnostics and domain approval queue',
-      ]}
+    <DomainDirectoryView
+      initialDomains={result.domains}
+      initialPagination={result.pagination}
     />
   );
 }

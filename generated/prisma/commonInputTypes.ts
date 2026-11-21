@@ -593,6 +593,91 @@ export type EnumQuotationStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumQuotationStatusFilter<$PrismaModel>
 }
 
+export type EnumDomainTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.DomainType | Prisma.EnumDomainTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.DomainType[] | Prisma.ListEnumDomainTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DomainType[] | Prisma.ListEnumDomainTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDomainTypeFilter<$PrismaModel> | $Enums.DomainType
+}
+
+export type EnumDomainVerificationStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.DomainVerificationStatus | Prisma.EnumDomainVerificationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DomainVerificationStatus[] | Prisma.ListEnumDomainVerificationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DomainVerificationStatus[] | Prisma.ListEnumDomainVerificationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDomainVerificationStatusFilter<$PrismaModel> | $Enums.DomainVerificationStatus
+}
+
+export type EnumDnsStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.DnsStatus | Prisma.EnumDnsStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DnsStatus[] | Prisma.ListEnumDnsStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DnsStatus[] | Prisma.ListEnumDnsStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDnsStatusFilter<$PrismaModel> | $Enums.DnsStatus
+}
+
+export type EnumSslStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.SslStatus | Prisma.EnumSslStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.SslStatus[] | Prisma.ListEnumSslStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SslStatus[] | Prisma.ListEnumSslStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSslStatusFilter<$PrismaModel> | $Enums.SslStatus
+}
+
+export type EnumDomainStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.DomainStatus | Prisma.EnumDomainStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DomainStatus[] | Prisma.ListEnumDomainStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DomainStatus[] | Prisma.ListEnumDomainStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDomainStatusFilter<$PrismaModel> | $Enums.DomainStatus
+}
+
+export type EnumDomainTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DomainType | Prisma.EnumDomainTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.DomainType[] | Prisma.ListEnumDomainTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DomainType[] | Prisma.ListEnumDomainTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDomainTypeWithAggregatesFilter<$PrismaModel> | $Enums.DomainType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDomainTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDomainTypeFilter<$PrismaModel>
+}
+
+export type EnumDomainVerificationStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DomainVerificationStatus | Prisma.EnumDomainVerificationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DomainVerificationStatus[] | Prisma.ListEnumDomainVerificationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DomainVerificationStatus[] | Prisma.ListEnumDomainVerificationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDomainVerificationStatusWithAggregatesFilter<$PrismaModel> | $Enums.DomainVerificationStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDomainVerificationStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDomainVerificationStatusFilter<$PrismaModel>
+}
+
+export type EnumDnsStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DnsStatus | Prisma.EnumDnsStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DnsStatus[] | Prisma.ListEnumDnsStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DnsStatus[] | Prisma.ListEnumDnsStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDnsStatusWithAggregatesFilter<$PrismaModel> | $Enums.DnsStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDnsStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDnsStatusFilter<$PrismaModel>
+}
+
+export type EnumSslStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SslStatus | Prisma.EnumSslStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.SslStatus[] | Prisma.ListEnumSslStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SslStatus[] | Prisma.ListEnumSslStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSslStatusWithAggregatesFilter<$PrismaModel> | $Enums.SslStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSslStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSslStatusFilter<$PrismaModel>
+}
+
+export type EnumDomainStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DomainStatus | Prisma.EnumDomainStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DomainStatus[] | Prisma.ListEnumDomainStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DomainStatus[] | Prisma.ListEnumDomainStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDomainStatusWithAggregatesFilter<$PrismaModel> | $Enums.DomainStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDomainStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDomainStatusFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -1129,6 +1214,91 @@ export type NestedEnumQuotationStatusWithAggregatesFilter<$PrismaModel = never> 
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumQuotationStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumQuotationStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumDomainTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.DomainType | Prisma.EnumDomainTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.DomainType[] | Prisma.ListEnumDomainTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DomainType[] | Prisma.ListEnumDomainTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDomainTypeFilter<$PrismaModel> | $Enums.DomainType
+}
+
+export type NestedEnumDomainVerificationStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.DomainVerificationStatus | Prisma.EnumDomainVerificationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DomainVerificationStatus[] | Prisma.ListEnumDomainVerificationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DomainVerificationStatus[] | Prisma.ListEnumDomainVerificationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDomainVerificationStatusFilter<$PrismaModel> | $Enums.DomainVerificationStatus
+}
+
+export type NestedEnumDnsStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.DnsStatus | Prisma.EnumDnsStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DnsStatus[] | Prisma.ListEnumDnsStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DnsStatus[] | Prisma.ListEnumDnsStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDnsStatusFilter<$PrismaModel> | $Enums.DnsStatus
+}
+
+export type NestedEnumSslStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.SslStatus | Prisma.EnumSslStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.SslStatus[] | Prisma.ListEnumSslStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SslStatus[] | Prisma.ListEnumSslStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSslStatusFilter<$PrismaModel> | $Enums.SslStatus
+}
+
+export type NestedEnumDomainStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.DomainStatus | Prisma.EnumDomainStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DomainStatus[] | Prisma.ListEnumDomainStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DomainStatus[] | Prisma.ListEnumDomainStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDomainStatusFilter<$PrismaModel> | $Enums.DomainStatus
+}
+
+export type NestedEnumDomainTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DomainType | Prisma.EnumDomainTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.DomainType[] | Prisma.ListEnumDomainTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DomainType[] | Prisma.ListEnumDomainTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDomainTypeWithAggregatesFilter<$PrismaModel> | $Enums.DomainType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDomainTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDomainTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumDomainVerificationStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DomainVerificationStatus | Prisma.EnumDomainVerificationStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DomainVerificationStatus[] | Prisma.ListEnumDomainVerificationStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DomainVerificationStatus[] | Prisma.ListEnumDomainVerificationStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDomainVerificationStatusWithAggregatesFilter<$PrismaModel> | $Enums.DomainVerificationStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDomainVerificationStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDomainVerificationStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumDnsStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DnsStatus | Prisma.EnumDnsStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DnsStatus[] | Prisma.ListEnumDnsStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DnsStatus[] | Prisma.ListEnumDnsStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDnsStatusWithAggregatesFilter<$PrismaModel> | $Enums.DnsStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDnsStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDnsStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumSslStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SslStatus | Prisma.EnumSslStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.SslStatus[] | Prisma.ListEnumSslStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SslStatus[] | Prisma.ListEnumSslStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSslStatusWithAggregatesFilter<$PrismaModel> | $Enums.SslStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSslStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSslStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumDomainStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DomainStatus | Prisma.EnumDomainStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.DomainStatus[] | Prisma.ListEnumDomainStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DomainStatus[] | Prisma.ListEnumDomainStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDomainStatusWithAggregatesFilter<$PrismaModel> | $Enums.DomainStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDomainStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDomainStatusFilter<$PrismaModel>
 }
 
 

@@ -411,7 +411,8 @@ export const ModelName = {
   Subscription: 'Subscription',
   SubscriptionInvoice: 'SubscriptionInvoice',
   CustomPlanInquiry: 'CustomPlanInquiry',
-  CustomQuotation: 'CustomQuotation'
+  CustomQuotation: 'CustomQuotation',
+  Domain: 'Domain'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -427,7 +428,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "tenant" | "tenantVerification" | "role" | "roleTemplate" | "permission" | "rolePermission" | "roleTemplatePermission" | "membership" | "auditLog" | "plan" | "subscription" | "subscriptionInvoice" | "customPlanInquiry" | "customQuotation"
+    modelProps: "user" | "tenant" | "tenantVerification" | "role" | "roleTemplate" | "permission" | "rolePermission" | "roleTemplatePermission" | "membership" | "auditLog" | "plan" | "subscription" | "subscriptionInvoice" | "customPlanInquiry" | "customQuotation" | "domain"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1541,6 +1542,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Domain: {
+      payload: Prisma.$DomainPayload<ExtArgs>
+      fields: Prisma.DomainFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DomainFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DomainPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DomainFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DomainPayload>
+        }
+        findFirst: {
+          args: Prisma.DomainFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DomainPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DomainFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DomainPayload>
+        }
+        findMany: {
+          args: Prisma.DomainFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DomainPayload>[]
+        }
+        create: {
+          args: Prisma.DomainCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DomainPayload>
+        }
+        createMany: {
+          args: Prisma.DomainCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DomainCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DomainPayload>[]
+        }
+        delete: {
+          args: Prisma.DomainDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DomainPayload>
+        }
+        update: {
+          args: Prisma.DomainUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DomainPayload>
+        }
+        deleteMany: {
+          args: Prisma.DomainDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DomainUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DomainUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DomainPayload>[]
+        }
+        upsert: {
+          args: Prisma.DomainUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DomainPayload>
+        }
+        aggregate: {
+          args: Prisma.DomainAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDomain>
+        }
+        groupBy: {
+          args: Prisma.DomainGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DomainGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DomainCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DomainCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1853,6 +1928,29 @@ export const CustomQuotationScalarFieldEnum = {
 } as const
 
 export type CustomQuotationScalarFieldEnum = (typeof CustomQuotationScalarFieldEnum)[keyof typeof CustomQuotationScalarFieldEnum]
+
+
+export const DomainScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  domainName: 'domainName',
+  domainType: 'domainType',
+  isPrimary: 'isPrimary',
+  verificationStatus: 'verificationStatus',
+  verificationToken: 'verificationToken',
+  verificationExpiresAt: 'verificationExpiresAt',
+  verificationAttempts: 'verificationAttempts',
+  verificationFailedReason: 'verificationFailedReason',
+  dnsStatus: 'dnsStatus',
+  sslStatus: 'sslStatus',
+  status: 'status',
+  verifiedAt: 'verifiedAt',
+  activatedAt: 'activatedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DomainScalarFieldEnum = (typeof DomainScalarFieldEnum)[keyof typeof DomainScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -2225,6 +2323,76 @@ export type ListEnumQuotationStatusFieldRefInput<$PrismaModel> = FieldRefInputTy
 
 
 /**
+ * Reference to a field of type 'DomainType'
+ */
+export type EnumDomainTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DomainType'>
+    
+
+
+/**
+ * Reference to a field of type 'DomainType[]'
+ */
+export type ListEnumDomainTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DomainType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DomainVerificationStatus'
+ */
+export type EnumDomainVerificationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DomainVerificationStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'DomainVerificationStatus[]'
+ */
+export type ListEnumDomainVerificationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DomainVerificationStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DnsStatus'
+ */
+export type EnumDnsStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DnsStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'DnsStatus[]'
+ */
+export type ListEnumDnsStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DnsStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'SslStatus'
+ */
+export type EnumSslStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SslStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'SslStatus[]'
+ */
+export type ListEnumSslStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SslStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DomainStatus'
+ */
+export type EnumDomainStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DomainStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'DomainStatus[]'
+ */
+export type ListEnumDomainStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DomainStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -2403,6 +2571,7 @@ export type GlobalOmitConfig = {
   subscriptionInvoice?: Prisma.SubscriptionInvoiceOmit
   customPlanInquiry?: Prisma.CustomPlanInquiryOmit
   customQuotation?: Prisma.CustomQuotationOmit
+  domain?: Prisma.DomainOmit
 }
 
 /* Types for Logging */

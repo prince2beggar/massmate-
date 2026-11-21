@@ -65,7 +65,8 @@ export const ModelName = {
   Subscription: 'Subscription',
   SubscriptionInvoice: 'SubscriptionInvoice',
   CustomPlanInquiry: 'CustomPlanInquiry',
-  CustomQuotation: 'CustomQuotation'
+  CustomQuotation: 'CustomQuotation',
+  Domain: 'Domain'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -357,6 +358,29 @@ export const CustomQuotationScalarFieldEnum = {
 } as const
 
 export type CustomQuotationScalarFieldEnum = (typeof CustomQuotationScalarFieldEnum)[keyof typeof CustomQuotationScalarFieldEnum]
+
+
+export const DomainScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  domainName: 'domainName',
+  domainType: 'domainType',
+  isPrimary: 'isPrimary',
+  verificationStatus: 'verificationStatus',
+  verificationToken: 'verificationToken',
+  verificationExpiresAt: 'verificationExpiresAt',
+  verificationAttempts: 'verificationAttempts',
+  verificationFailedReason: 'verificationFailedReason',
+  dnsStatus: 'dnsStatus',
+  sslStatus: 'sslStatus',
+  status: 'status',
+  verifiedAt: 'verifiedAt',
+  activatedAt: 'activatedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DomainScalarFieldEnum = (typeof DomainScalarFieldEnum)[keyof typeof DomainScalarFieldEnum]
 
 
 export const SortOrder = {

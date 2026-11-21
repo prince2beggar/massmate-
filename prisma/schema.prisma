@@ -144,6 +144,40 @@ enum QuotationStatus {
   EXPIRED
 }
 
+enum DomainType {
+  PLATFORM_SUBDOMAIN
+  CUSTOM_DOMAIN
+}
+
+enum DomainVerificationStatus {
+  NOT_REQUIRED
+  PENDING
+  VERIFIED
+  FAILED
+  EXPIRED
+}
+
+enum DnsStatus {
+  PENDING_CONFIGURATION
+  CONFIGURED
+  FAILED
+}
+
+enum SslStatus {
+  NOT_CONFIGURED
+  PENDING
+  ACTIVE
+  FAILED
+  EXPIRED
+}
+
+enum DomainStatus {
+  ACTIVE
+  PENDING_VERIFICATION
+  SUSPENDED
+  REMOVED
+}
+
 // -----------------------------------------------------------------------------
 // USER (Platform-wide Identity)
 // -----------------------------------------------------------------------------
@@ -207,6 +241,7 @@ model Tenant {
   verification TenantVerification?
   subscription Subscription?
   invoices     SubscriptionInvoice[]
+  domains      Domain[]
 
   @@index([status])
   @@index([verificationStatus])
@@ -568,5 +603,37 @@ model CustomQuotation {
   @@index([status])
   @@index([createdAt])
   @@map("custom_quotations")
+}
+
+// -----------------------------------------------------------------------------
+// DOMAIN (Platform Subdomains & Custom Domains)
+// -----------------------------------------------------------------------------
+
+model Domain {
+  id                       String                   @id @default(cuid())
+  tenantId                 String
+  domainName               String                   @unique
+  domainType               DomainType               @default(PLATFORM_SUBDOMAIN)
+  isPrimary                Boolean                  @default(false)
+  verificationStatus       DomainVerificationStatus @default(NOT_REQUIRED)
+  verificationToken        String?
+  verificationExpiresAt    DateTime?
+  verificationAttempts     Int                      @default(0)
+  verificationFailedReason String?
+  dnsStatus                DnsStatus                @default(PENDING_CONFIGURATION)
+  sslStatus                SslStatus                @default(NOT_CONFIGURED)
+  status                   DomainStatus             @default(ACTIVE)
+  verifiedAt               DateTime?
+  activatedAt              DateTime?
+  createdAt                DateTime                 @default(now())
+  updatedAt                DateTime                 @updatedAt
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@index([status])
+  @@index([verificationStatus])
+  @@index([domainType])
+  @@map("domains")
 }
 

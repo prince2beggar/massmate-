@@ -188,3 +188,52 @@ export const QuotationStatus = {
 } as const
 
 export type QuotationStatus = (typeof QuotationStatus)[keyof typeof QuotationStatus]
+
+
+export const DomainType = {
+  PLATFORM_SUBDOMAIN: 'PLATFORM_SUBDOMAIN',
+  CUSTOM_DOMAIN: 'CUSTOM_DOMAIN'
+} as const
+
+export type DomainType = (typeof DomainType)[keyof typeof DomainType]
+
+
+export const DomainVerificationStatus = {
+  NOT_REQUIRED: 'NOT_REQUIRED',
+  PENDING: 'PENDING',
+  VERIFIED: 'VERIFIED',
+  FAILED: 'FAILED',
+  EXPIRED: 'EXPIRED'
+} as const
+
+export type DomainVerificationStatus = (typeof DomainVerificationStatus)[keyof typeof DomainVerificationStatus]
+
+
+export const DnsStatus = {
+  PENDING_CONFIGURATION: 'PENDING_CONFIGURATION',
+  CONFIGURED: 'CONFIGURED',
+  FAILED: 'FAILED'
+} as const
+
+export type DnsStatus = (typeof DnsStatus)[keyof typeof DnsStatus]
+
+
+export const SslStatus = {
+  NOT_CONFIGURED: 'NOT_CONFIGURED',
+  PENDING: 'PENDING',
+  ACTIVE: 'ACTIVE',
+  FAILED: 'FAILED',
+  EXPIRED: 'EXPIRED'
+} as const
+
+export type SslStatus = (typeof SslStatus)[keyof typeof SslStatus]
+
+
+export const DomainStatus = {
+  ACTIVE: 'ACTIVE',
+  PENDING_VERIFICATION: 'PENDING_VERIFICATION',
+  SUSPENDED: 'SUSPENDED',
+  REMOVED: 'REMOVED'
+} as const
+
+export type DomainStatus = (typeof DomainStatus)[keyof typeof DomainStatus]

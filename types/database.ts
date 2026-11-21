@@ -21,6 +21,7 @@ import type {
   SubscriptionInvoice as PrismaSubscriptionInvoice,
   CustomPlanInquiry as PrismaCustomPlanInquiry,
   CustomQuotation as PrismaCustomQuotation,
+  Domain as PrismaDomain,
   UserStatus,
   TenantType,
   TenantStatus,
@@ -38,6 +39,11 @@ import type {
   PaymentMethod,
   InquiryStatus,
   QuotationStatus,
+  DomainType,
+  DomainVerificationStatus,
+  DnsStatus,
+  SslStatus,
+  DomainStatus,
   Prisma,
 } from '@/generated/prisma/client';
 
@@ -60,6 +66,11 @@ export type {
   PaymentMethod,
   InquiryStatus,
   QuotationStatus,
+  DomainType,
+  DomainVerificationStatus,
+  DnsStatus,
+  SslStatus,
+  DomainStatus,
 };
 
 // Re-export Base Models
@@ -78,6 +89,7 @@ export type Subscription = PrismaSubscription;
 export type SubscriptionInvoice = PrismaSubscriptionInvoice;
 export type CustomPlanInquiry = PrismaCustomPlanInquiry;
 export type CustomQuotation = PrismaCustomQuotation;
+export type Domain = PrismaDomain;
 
 // -----------------------------------------------------------------------------
 // COMPOSITE & RELATIONAL TYPES

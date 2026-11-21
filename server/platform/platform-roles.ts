@@ -8,6 +8,8 @@ export type PlatformPermissionKey =
   | 'subscriptions.view'
   | 'subscriptions.manage'
   | 'revenue.view'
+  | 'domains.view'
+  | 'domains.manage'
   | 'support.view'
   | 'support.manage'
   | 'audit.view'
@@ -16,7 +18,7 @@ export type PlatformPermissionKey =
 export interface PlatformPermissionDefinition {
   key: PlatformPermissionKey;
   name: string;
-  module: 'tenants' | 'users' | 'subscriptions' | 'revenue' | 'support' | 'audit' | 'settings';
+  module: 'tenants' | 'users' | 'subscriptions' | 'revenue' | 'domains' | 'support' | 'audit' | 'settings';
   description: string;
 }
 
@@ -64,6 +66,18 @@ export const PLATFORM_PERMISSIONS: PlatformPermissionDefinition[] = [
     description: 'Access financial summaries, collected revenue, payments, and billing analytics.',
   },
   {
+    key: 'domains.view',
+    name: 'View Domains',
+    module: 'domains',
+    description: 'Inspect platform subdomains, custom domains, DNS statuses, and SSL provisioning.',
+  },
+  {
+    key: 'domains.manage',
+    name: 'Manage Domains',
+    module: 'domains',
+    description: 'Approve, verify, suspend, or configure tenant custom domains and primary routing.',
+  },
+  {
     key: 'support.view',
     name: 'View Support Tickets',
     module: 'support',
@@ -98,6 +112,8 @@ export const PLATFORM_ROLE_PERMISSIONS: Record<PlatformRole, PlatformPermissionK
     'subscriptions.view',
     'subscriptions.manage',
     'revenue.view',
+    'domains.view',
+    'domains.manage',
     'support.view',
     'support.manage',
     'audit.view',
@@ -109,6 +125,8 @@ export const PLATFORM_ROLE_PERMISSIONS: Record<PlatformRole, PlatformPermissionK
     'users.view',
     'subscriptions.view',
     'subscriptions.manage',
+    'domains.view',
+    'domains.manage',
     'support.view',
     'support.manage',
     'audit.view',
@@ -116,6 +134,7 @@ export const PLATFORM_ROLE_PERMISSIONS: Record<PlatformRole, PlatformPermissionK
   SUPPORT_STAFF: [
     'tenants.view',
     'users.view',
+    'domains.view',
     'support.view',
     'support.manage',
     'audit.view',

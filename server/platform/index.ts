@@ -6,3 +6,4 @@ export * from './platform-session';
 export * from './platform-overview-service';
 export * from './platform-tenant-service';
 export * from '../subscription';
+export * from '../domain';
