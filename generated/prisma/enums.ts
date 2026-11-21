@@ -56,3 +56,13 @@ export const RoleStatus = {
 } as const
 
 export type RoleStatus = (typeof RoleStatus)[keyof typeof RoleStatus]
+
+
+export const PlatformRole = {
+  PLATFORM_OWNER: 'PLATFORM_OWNER',
+  PLATFORM_ADMIN: 'PLATFORM_ADMIN',
+  SUPPORT_STAFF: 'SUPPORT_STAFF',
+  FINANCE_STAFF: 'FINANCE_STAFF'
+} as const
+
+export type PlatformRole = (typeof PlatformRole)[keyof typeof PlatformRole]

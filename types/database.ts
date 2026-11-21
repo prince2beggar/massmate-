@@ -20,6 +20,7 @@ import type {
   TenantStatus,
   MembershipStatus,
   RoleStatus,
+  PlatformRole,
   Prisma,
 } from '@/generated/prisma/client';
 
@@ -30,6 +31,7 @@ export type {
   TenantStatus,
   MembershipStatus,
   RoleStatus,
+  PlatformRole,
 };
 
 // Re-export Base Models

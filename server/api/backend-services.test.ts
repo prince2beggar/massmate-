@@ -174,8 +174,10 @@ describe('Task 23: Core Backend Services & API Foundation', () => {
     assert.equal(event.action, 'role.update');
 
     // 13. Sensitive information redacted from logs
-    assert.equal(event.afterData.passwordHash, '[REDACTED]');
-    assert.equal(event.metadata.authToken, '[REDACTED]');
+    const afterData = event.afterData as Record<string, any> | null;
+    const metadata = event.metadata as Record<string, any> | null;
+    assert.equal(afterData?.passwordHash, '[REDACTED]');
+    assert.equal(metadata?.authToken, '[REDACTED]');
 
     // 11. Invalid audit event rejection (mandatory event with missing action)
     await assert.rejects(

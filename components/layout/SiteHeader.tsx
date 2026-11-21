@@ -27,6 +27,7 @@ import { cn } from '@/lib/utils';
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const isAdminRoute = pathname?.startsWith('/super-admin') || pathname?.startsWith('/admin');
   const isHomePage = pathname === '/';
   const { locale, setLocale, t } = useLanguage();
   const activeSection = useActiveSection(isHomePage);
@@ -68,6 +69,10 @@ export function SiteHeader() {
 
   const getStartedHref = isHomePage ? '#get-started' : '/#get-started';
   const closeMobileMenu = () => setOpenForPath(null);
+
+  if (isAdminRoute) {
+    return null;
+  }
 
   return (
     <>

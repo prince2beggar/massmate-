@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { inspectDatabaseConfig, type DatabaseConfigInspection } from '@/server/db/config';
+import { inspectDatabaseConfig, type DatabaseConfigStatus } from '@/server/db/config';
 
 /**
  * Server Environment Variables Schema
@@ -18,7 +18,7 @@ export interface EnvironmentValidationReport {
   valid: boolean;
   environment: EnvConfig['NODE_ENV'];
   issues: string[];
-  database: DatabaseConfigInspection;
+  database: DatabaseConfigStatus;
 }
 
 /**

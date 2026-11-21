@@ -48,6 +48,13 @@ enum RoleStatus {
   ARCHIVED
 }
 
+enum PlatformRole {
+  PLATFORM_OWNER
+  PLATFORM_ADMIN
+  SUPPORT_STAFF
+  FINANCE_STAFF
+}
+
 // -----------------------------------------------------------------------------
 // USER (Platform-wide Identity)
 // -----------------------------------------------------------------------------
@@ -59,16 +66,18 @@ model User {
   phone           String?     @unique
   passwordHash    String?
   profileImage    String?
-  status          UserStatus  @default(ACTIVE)
+  status          UserStatus    @default(ACTIVE)
+  platformRole    PlatformRole?
   emailVerifiedAt DateTime?
   phoneVerifiedAt DateTime?
-  createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @updatedAt
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
 
   memberships     Membership[]
   auditLogs       AuditLog[]
 
   @@index([status])
+  @@index([platformRole])
   @@index([createdAt])
   @@map("users")
 }

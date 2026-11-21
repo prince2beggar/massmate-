@@ -88,6 +88,7 @@ describe('Task 19 & 20: Multi-Tenant Schema & Relational Integrity Verification'
       passwordHash: null,
       profileImage: null,
       status: 'ACTIVE' as UserStatus,
+      platformRole: null,
       emailVerifiedAt: new Date(),
       phoneVerifiedAt: null,
       createdAt: new Date(),

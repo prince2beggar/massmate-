@@ -1,11 +1,14 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { ArrowUp } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useLanguage } from '@/context/LanguageContext';
 
 export function ScrollToTopButton() {
+  const pathname = usePathname();
+  const isAdminRoute = pathname?.startsWith('/super-admin') || pathname?.startsWith('/admin');
   const { locale } = useLanguage();
   const prefersReduced = useReducedMotion();
   const [visible, setVisible] = useState(false);
@@ -38,6 +41,10 @@ export function ScrollToTopButton() {
       behavior: prefersReduced ? 'auto' : 'smooth',
     });
   };
+
+  if (isAdminRoute) {
+    return null;
+  }
 
   return (
     <AnimatePresence>

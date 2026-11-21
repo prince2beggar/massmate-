@@ -40,11 +40,16 @@ const SOCIAL_ICONS: Record<
 
 export function SiteFooter() {
   const pathname = usePathname();
-  const { locale, setLocale } = useLanguage();
+  const isAdminRoute = pathname?.startsWith('/super-admin') || pathname?.startsWith('/admin');
+  const { locale, setLocale, t } = useLanguage();
   const [socialNotice, setSocialNotice] = useState<string | null>(null);
   const currentYear = new Date().getFullYear();
 
   const isHomePage = pathname === '/';
+
+  if (isAdminRoute) {
+    return null;
+  }
 
   const handleSocialPlaceholderClick = (
     event: React.MouseEvent<HTMLAnchorElement>,
