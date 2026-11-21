@@ -135,7 +135,7 @@ export async function runScenariosVerification(): Promise<boolean> {
     console.log(`    - ${mealManager.permissionKeys.slice(0, 4).join(', ')}...`);
 
     const accountantHasFinance = accountant.permissionKeys.includes('finance.manage');
-    const mealManagerHasMeals = mealManager.permissionKeys.includes('meals.manage');
+    const mealManagerHasMeals = accountant.permissionKeys.includes('finance.view') && mealManager.permissionKeys.includes('meals.manage_settings');
     const mealManagerNoFinance = !mealManager.permissionKeys.includes('finance.manage');
 
     if (accountantHasFinance && mealManagerHasMeals && mealManagerNoFinance) {

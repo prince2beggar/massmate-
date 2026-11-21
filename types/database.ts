@@ -111,4 +111,16 @@ export interface TenantContext {
   permissions: string[];
 }
 
+// Re-export RBAC Authorization Types
+export type {
+  PermissionKey,
+  PermissionModule,
+  PermissionDefinition,
+} from '@/server/rbac/permissions';
+export type {
+  SystemRoleSlug,
+  SystemRoleTemplateDefinition,
+} from '@/server/rbac/role-templates';
+export type { VerifiedTenantAccess } from '@/server/rbac/authorization-service';
+
 export type { Prisma };

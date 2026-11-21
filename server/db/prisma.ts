@@ -1,4 +1,6 @@
-import 'server-only';
+if (typeof window !== 'undefined') {
+  throw new Error('Prisma client can only be executed in a server environment.');
+}
 import { Pool } from 'pg';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@/generated/prisma/client';

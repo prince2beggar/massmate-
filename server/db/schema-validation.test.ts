@@ -183,16 +183,16 @@ describe('Task 19 & 20: Multi-Tenant Schema & Relational Integrity Verification'
 
     // Accountant has finance and payments, but not meal management
     assert.ok(accountantTemplate.permissionKeys.includes('finance.view'));
-    assert.ok(accountantTemplate.permissionKeys.includes('payments.manage'));
-    assert.ok(!accountantTemplate.permissionKeys.includes('meals.manage'));
+    assert.ok(accountantTemplate.permissionKeys.includes('payments.confirm'));
+    assert.ok(!accountantTemplate.permissionKeys.includes('meals.manage_settings'));
 
     // Meal manager has meal management, but not financial close
-    assert.ok(mealManagerTemplate.permissionKeys.includes('meals.manage'));
+    assert.ok(mealManagerTemplate.permissionKeys.includes('meals.manage_settings'));
     assert.ok(!mealManagerTemplate.permissionKeys.includes('finance.manage'));
 
     // Member has view-only permissions
     assert.ok(memberTemplate.permissionKeys.includes('meals.view'));
-    assert.ok(!memberTemplate.permissionKeys.includes('meals.manage'));
+    assert.ok(!memberTemplate.permissionKeys.includes('meals.manage_settings'));
     assert.ok(!memberTemplate.permissionKeys.includes('members.delete'));
   });
 
