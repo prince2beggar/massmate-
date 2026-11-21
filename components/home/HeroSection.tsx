@@ -1,27 +1,16 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { ArrowRight, CheckCircle2, ChevronDown, ShieldCheck } from 'lucide-react';
-import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
+import React from 'react';
+import { ArrowRight, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { HeroProductPreview } from '@/components/home/HeroProductPreview';
-import { HeroParallaxBackground } from '@/components/home/HeroParallaxBackground';
 
 export function HeroSection() {
   const { locale, t } = useLanguage();
   const prefersReduced = useReducedMotion();
-  const sectionRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  });
-
-  // Subtle foreground narrative fade & drift as user scrolls down
-  const contentY = useTransform(scrollYProgress, [0, 0.7], ['0px', '-40px']);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.15]);
 
   const highlights =
     locale === 'en'
@@ -30,57 +19,69 @@ export function HeroSection() {
 
   return (
     <section
-      ref={sectionRef}
       id="hero"
-      className="relative min-h-[100dvh] overflow-hidden flex flex-col justify-between pt-20 pb-8 sm:pt-24 sm:pb-12 lg:pt-28 lg:pb-16 scroll-mt-16"
+      className="relative overflow-x-clip bg-gradient-to-b from-white via-[#F8F9FE]/75 to-white pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pt-18 lg:pb-22 xl:pt-20 xl:pb-24 border-b border-slate-200/70 scroll-mt-16"
     >
-      {/* ------------------------------------------------------------------ */}
-      {/* 1. Immersive Multi-Layer Parallax Background                       */}
-      {/* ------------------------------------------------------------------ */}
-      <HeroParallaxBackground />
+      {/* Subtle architectural soft radial tint behind product visual */}
+      <motion.div
+        aria-hidden="true"
+        animate={
+          prefersReduced
+            ? undefined
+            : {
+                scale: [1, 1.05, 1],
+                opacity: [0.65, 0.95, 0.65],
+              }
+        }
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        className="pointer-events-none absolute -top-24 right-0 h-[360px] w-[360px] sm:h-[480px] sm:w-[560px] rounded-full bg-[#324CDD]/[0.055] blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.35]"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle at 1px 1px, rgba(148,163,184,0.35) 1px, transparent 0)',
+          backgroundSize: '28px 28px',
+        }}
+      />
 
-      {/* ------------------------------------------------------------------ */}
-      {/* 2. Central Editorial Content & 3D Workspace Stage                  */}
-      {/* ------------------------------------------------------------------ */}
-      <Container className="relative z-10 my-auto py-6 sm:py-8 lg:py-10">
-        <motion.div
-          style={prefersReduced ? undefined : { y: contentY, opacity: contentOpacity }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 xl:gap-14 items-center"
-        >
+      <Container className="relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 xl:gap-12 items-center">
           {/* Left Narrative Column */}
           <motion.div
-            initial={prefersReduced ? false : { opacity: 0, y: 22 }}
+            initial={prefersReduced ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 min-w-0 space-y-6 sm:space-y-7"
+            transition={{ duration: 0.36, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 min-w-0 space-y-5 sm:space-y-6"
           >
-            {/* Editorial Kicker Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-3.5 py-1 text-xs font-semibold tracking-wider text-amber-300 backdrop-blur-md shadow-xs">
-              <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" aria-hidden="true" />
+            <p className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold tracking-tight text-[#324CDD]">
               <span>{t.hero.kicker}</span>
-            </div>
+            </p>
 
-            {/* Large Cinematic Editorial Headline */}
-            <h1 className="text-[clamp(2.1rem,4.2vw+0.9rem,3.85rem)] font-extrabold tracking-tight text-white leading-[1.08] text-balance drop-shadow-md">
+            <h1 className="text-[clamp(1.875rem,3.6vw+0.85rem,3.25rem)] font-bold tracking-tight text-[#172B4D] leading-[1.12] text-balance">
               {t.hero.headline}
             </h1>
 
-            {/* Editorial Subheadline */}
-            <p className="text-[1.025rem] sm:text-lg leading-relaxed text-slate-200/90 max-w-xl font-normal drop-shadow-xs">
+            <p className="text-[0.975rem] sm:text-lg leading-relaxed text-[#525F7F] max-w-xl">
               {t.hero.subheadline}
             </p>
 
-            {/* Primary & Secondary Action CTAs */}
-            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3.5 pt-1">
+            {/* Primary & Secondary CTAs */}
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 pt-1">
               <Button
                 href="#get-started"
                 variant="primary"
                 size="lg"
-                className="group w-full sm:w-auto bg-gradient-to-r from-[#324CDD] to-[#4F46E5] text-white hover:from-[#263DC2] hover:to-[#4338CA] shadow-[0_0_28px_rgba(50,76,221,0.55)] border border-white/20 font-semibold px-6 py-3 rounded-xl hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
+                className="group w-full sm:w-auto hover:-translate-y-0.5"
               >
                 <span>{t.hero.primaryCta}</span>
                 <ArrowRight
-                  className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-1"
+                  className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5"
                   aria-hidden="true"
                 />
               </Button>
@@ -88,26 +89,26 @@ export function HeroSection() {
                 href="#features"
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto border border-white/25 bg-white/10 text-white hover:bg-white/20 hover:border-white/40 backdrop-blur-md font-semibold px-6 py-3 rounded-xl hover:-translate-y-0.5 transition-all duration-200 cursor-pointer shadow-xs"
+                className="w-full sm:w-auto hover:-translate-y-0.5"
               >
                 <span>{t.hero.secondaryCta}</span>
               </Button>
             </div>
 
-            {/* Trust Message & Compact Verified Highlights */}
-            <div className="pt-5 border-t border-white/15 space-y-3">
-              <p className="flex items-start gap-2.5 text-sm font-medium text-slate-300 drop-shadow-xs">
+            {/* Trust Message & Compact Value Highlights */}
+            <div className="pt-4 border-t border-slate-200/80 space-y-3">
+              <p className="flex items-start gap-2 text-sm font-medium text-[#525F7F]">
                 <ShieldCheck
-                  className="h-4 w-4 shrink-0 text-[#38BDF8] mt-0.5"
+                  className="h-4 w-4 shrink-0 text-[#324CDD] mt-0.5"
                   aria-hidden="true"
                 />
                 <span>{t.hero.trustMessage}</span>
               </p>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium text-slate-300/90">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs font-medium text-[#64748B]">
                 {highlights.map((item) => (
                   <span key={item} className="inline-flex items-center gap-1.5">
                     <CheckCircle2
-                      className="h-3.5 w-3.5 text-emerald-400 shrink-0"
+                      className="h-3.5 w-3.5 text-[#059669] shrink-0"
                       aria-hidden="true"
                     />
                     <span>{item}</span>
@@ -119,76 +120,19 @@ export function HeroSection() {
 
           {/* Right Product Preview Composition */}
           <motion.div
-            initial={prefersReduced ? false : { opacity: 0, y: 28, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
+            initial={prefersReduced ? false : { opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 0.55,
-              delay: prefersReduced ? 0 : 0.1,
+              duration: 0.42,
+              delay: prefersReduced ? 0 : 0.08,
               ease: [0.16, 1, 0.3, 1],
             }}
             className="lg:col-span-7 min-w-0"
           >
-            {/* Elevated 3D Glass Stage Container with Ambient Glow */}
-            <div className="relative group">
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#324CDD]/30 via-[#38BDF8]/20 to-amber-400/20 opacity-70 blur-xl transition-opacity duration-500 group-hover:opacity-100"
-              />
-              <div className="relative rounded-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5),0_0_35px_rgba(50,76,221,0.2)]">
-                <HeroProductPreview />
-              </div>
-            </div>
+            <HeroProductPreview />
           </motion.div>
-        </motion.div>
+        </div>
       </Container>
-
-      {/* ------------------------------------------------------------------ */}
-      {/* 3. Cinematic "Scroll to Explore" Affordance & Story Bridge        */}
-      {/* ------------------------------------------------------------------ */}
-      <div className="relative z-10 flex flex-col items-center justify-center pt-2">
-        <a
-          href="#trust"
-          aria-label={locale === 'bn' ? 'পরবর্তী সেকশনে স্ক্রল করুন' : 'Scroll down to explore story'}
-          className="group inline-flex flex-col items-center gap-1.5 text-slate-300 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5E72E4] rounded-lg p-1"
-        >
-          <span className="text-[11px] font-semibold tracking-widest uppercase opacity-80 group-hover:opacity-100">
-            {locale === 'bn' ? 'স্ক্রল করে জানুন' : 'Scroll to Explore'}
-          </span>
-          <motion.div
-            animate={
-              prefersReduced
-                ? undefined
-                : {
-                    y: [0, 5, 0],
-                  }
-            }
-            transition={{
-              duration: 1.8,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            className="flex h-7 w-4 items-start justify-center rounded-full border border-white/30 p-1"
-          >
-            <motion.div
-              animate={
-                prefersReduced
-                  ? undefined
-                  : {
-                      y: [0, 8, 0],
-                      opacity: [1, 0.2, 1],
-                    }
-              }
-              transition={{
-                duration: 1.8,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-              className="h-1.5 w-1 rounded-full bg-amber-400"
-            />
-          </motion.div>
-          <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 -mt-0.5" />
-        </a>
-      </div>
     </section>
   );
 }
