@@ -137,3 +137,33 @@ export type RentalListing = Prisma.RentalListingModel
  * 
  */
 export type BookingRequest = Prisma.BookingRequestModel
+/**
+ * Model MealSetting
+ * 
+ */
+export type MealSetting = Prisma.MealSettingModel
+/**
+ * Model MealDailyLog
+ * 
+ */
+export type MealDailyLog = Prisma.MealDailyLogModel
+/**
+ * Model MemberMealEntry
+ * 
+ */
+export type MemberMealEntry = Prisma.MemberMealEntryModel
+/**
+ * Model MealOffRequest
+ * 
+ */
+export type MealOffRequest = Prisma.MealOffRequestModel
+/**
+ * Model GuestMeal
+ * 
+ */
+export type GuestMeal = Prisma.GuestMealModel
+/**
+ * Model MealPeriodLock
+ * 
+ */
+export type MealPeriodLock = Prisma.MealPeriodLockModel

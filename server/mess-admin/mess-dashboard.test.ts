@@ -644,8 +644,8 @@ describe('Task 29–30: Mess Admin Dashboard Foundation & Analytics', () => {
     const actualNavIds = MESS_NAV_ITEMS.map((item) => item.id);
     assert.deepEqual(actualNavIds, expectedNavIds);
 
-    // Overview, Members, Rooms, and Rental are implemented
-    const implementedIds = ['overview', 'members', 'rooms', 'rental'];
+    // Overview, Members, Rooms, Rental, and Meals are implemented
+    const implementedIds = ['overview', 'members', 'rooms', 'rental', 'meals'];
     for (const id of implementedIds) {
       assert.equal(MESS_NAV_ITEMS.find((item) => item.id === id)?.isImplemented, true);
     }

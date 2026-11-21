@@ -74,7 +74,13 @@ export const ModelName = {
   Bed: 'Bed',
   RoomAssignment: 'RoomAssignment',
   RentalListing: 'RentalListing',
-  BookingRequest: 'BookingRequest'
+  BookingRequest: 'BookingRequest',
+  MealSetting: 'MealSetting',
+  MealDailyLog: 'MealDailyLog',
+  MemberMealEntry: 'MemberMealEntry',
+  MealOffRequest: 'MealOffRequest',
+  GuestMeal: 'GuestMeal',
+  MealPeriodLock: 'MealPeriodLock'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -547,6 +553,129 @@ export const BookingRequestScalarFieldEnum = {
 } as const
 
 export type BookingRequestScalarFieldEnum = (typeof BookingRequestScalarFieldEnum)[keyof typeof BookingRequestScalarFieldEnum]
+
+
+export const MealSettingScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  mealSystem: 'mealSystem',
+  breakfastEnabled: 'breakfastEnabled',
+  lunchEnabled: 'lunchEnabled',
+  dinnerEnabled: 'dinnerEnabled',
+  breakfastWeight: 'breakfastWeight',
+  lunchWeight: 'lunchWeight',
+  dinnerWeight: 'dinnerWeight',
+  breakfastCutoff: 'breakfastCutoff',
+  lunchCutoff: 'lunchCutoff',
+  dinnerCutoff: 'dinnerCutoff',
+  defaultCutoffTime: 'defaultCutoffTime',
+  autoApproveMealOff: 'autoApproveMealOff',
+  guestMealChargeType: 'guestMealChargeType',
+  guestMealFixedRatePoisha: 'guestMealFixedRatePoisha',
+  guestMealMultiplier: 'guestMealMultiplier',
+  eligibleExpenseCategories: 'eligibleExpenseCategories',
+  allowLateMealOffWithReason: 'allowLateMealOffWithReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MealSettingScalarFieldEnum = (typeof MealSettingScalarFieldEnum)[keyof typeof MealSettingScalarFieldEnum]
+
+
+export const MealDailyLogScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  dateString: 'dateString',
+  breakfastMenu: 'breakfastMenu',
+  lunchMenu: 'lunchMenu',
+  dinnerMenu: 'dinnerMenu',
+  specialNotes: 'specialNotes',
+  isLocked: 'isLocked',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MealDailyLogScalarFieldEnum = (typeof MealDailyLogScalarFieldEnum)[keyof typeof MealDailyLogScalarFieldEnum]
+
+
+export const MemberMealEntryScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  membershipId: 'membershipId',
+  dateString: 'dateString',
+  breakfastCount: 'breakfastCount',
+  lunchCount: 'lunchCount',
+  dinnerCount: 'dinnerCount',
+  customCount: 'customCount',
+  totalChargeableUnits: 'totalChargeableUnits',
+  isFixedParticipating: 'isFixedParticipating',
+  notes: 'notes',
+  isLocked: 'isLocked',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MemberMealEntryScalarFieldEnum = (typeof MemberMealEntryScalarFieldEnum)[keyof typeof MemberMealEntryScalarFieldEnum]
+
+
+export const MealOffRequestScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  membershipId: 'membershipId',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  mealTypes: 'mealTypes',
+  reason: 'reason',
+  status: 'status',
+  reviewedById: 'reviewedById',
+  reviewNote: 'reviewNote',
+  reviewedAt: 'reviewedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MealOffRequestScalarFieldEnum = (typeof MealOffRequestScalarFieldEnum)[keyof typeof MealOffRequestScalarFieldEnum]
+
+
+export const GuestMealScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  hostMembershipId: 'hostMembershipId',
+  guestName: 'guestName',
+  dateString: 'dateString',
+  mealType: 'mealType',
+  count: 'count',
+  unitRatePoisha: 'unitRatePoisha',
+  totalAmountPoisha: 'totalAmountPoisha',
+  isPaid: 'isPaid',
+  paymentNote: 'paymentNote',
+  recordedByUserId: 'recordedByUserId',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GuestMealScalarFieldEnum = (typeof GuestMealScalarFieldEnum)[keyof typeof GuestMealScalarFieldEnum]
+
+
+export const MealPeriodLockScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  monthString: 'monthString',
+  isLocked: 'isLocked',
+  lockedAt: 'lockedAt',
+  lockedByUserId: 'lockedByUserId',
+  finalMealRatePoisha: 'finalMealRatePoisha',
+  totalEligibleExpensesPoisha: 'totalEligibleExpensesPoisha',
+  totalChargeableUnits: 'totalChargeableUnits',
+  totalMemberMeals: 'totalMemberMeals',
+  totalGuestMeals: 'totalGuestMeals',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MealPeriodLockScalarFieldEnum = (typeof MealPeriodLockScalarFieldEnum)[keyof typeof MealPeriodLockScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -653,8 +653,7 @@ export class MessDashboardService {
         href: `/mess/${slug}/meals?action=update`,
         permission: 'meals.update',
         isAllowed: has('meals.update') || has('meals.create'),
-        isImplemented: false,
-        moduleNote: 'Daily Meal Management launches in Task 32',
+        isImplemented: true,
       },
       {
         id: 'publish-notice',

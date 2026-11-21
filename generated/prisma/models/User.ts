@@ -252,6 +252,9 @@ export type UserWhereInput = {
   notifications?: Prisma.PlatformNotificationListRelationFilter
   assignedRoomAssignments?: Prisma.RoomAssignmentListRelationFilter
   reviewedBookings?: Prisma.BookingRequestListRelationFilter
+  reviewedMealOffRequests?: Prisma.MealOffRequestListRelationFilter
+  recordedGuestMeals?: Prisma.GuestMealListRelationFilter
+  lockedMealPeriods?: Prisma.MealPeriodLockListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -281,6 +284,9 @@ export type UserOrderByWithRelationInput = {
   notifications?: Prisma.PlatformNotificationOrderByRelationAggregateInput
   assignedRoomAssignments?: Prisma.RoomAssignmentOrderByRelationAggregateInput
   reviewedBookings?: Prisma.BookingRequestOrderByRelationAggregateInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestOrderByRelationAggregateInput
+  recordedGuestMeals?: Prisma.GuestMealOrderByRelationAggregateInput
+  lockedMealPeriods?: Prisma.MealPeriodLockOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -313,6 +319,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   notifications?: Prisma.PlatformNotificationListRelationFilter
   assignedRoomAssignments?: Prisma.RoomAssignmentListRelationFilter
   reviewedBookings?: Prisma.BookingRequestListRelationFilter
+  reviewedMealOffRequests?: Prisma.MealOffRequestListRelationFilter
+  recordedGuestMeals?: Prisma.GuestMealListRelationFilter
+  lockedMealPeriods?: Prisma.MealPeriodLockListRelationFilter
 }, "id" | "email" | "phone">
 
 export type UserOrderByWithAggregationInput = {
@@ -378,6 +387,9 @@ export type UserCreateInput = {
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -407,6 +419,9 @@ export type UserUncheckedCreateInput = {
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserUpdateInput = {
@@ -436,6 +451,9 @@ export type UserUpdateInput = {
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -465,6 +483,9 @@ export type UserUncheckedUpdateInput = {
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -809,6 +830,54 @@ export type UserUpdateOneWithoutReviewedBookingsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewedBookingsInput, Prisma.UserUpdateWithoutReviewedBookingsInput>, Prisma.UserUncheckedUpdateWithoutReviewedBookingsInput>
 }
 
+export type UserCreateNestedOneWithoutReviewedMealOffRequestsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedMealOffRequestsInput, Prisma.UserUncheckedCreateWithoutReviewedMealOffRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedMealOffRequestsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutReviewedMealOffRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedMealOffRequestsInput, Prisma.UserUncheckedCreateWithoutReviewedMealOffRequestsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedMealOffRequestsInput
+  upsert?: Prisma.UserUpsertWithoutReviewedMealOffRequestsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewedMealOffRequestsInput, Prisma.UserUpdateWithoutReviewedMealOffRequestsInput>, Prisma.UserUncheckedUpdateWithoutReviewedMealOffRequestsInput>
+}
+
+export type UserCreateNestedOneWithoutRecordedGuestMealsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRecordedGuestMealsInput, Prisma.UserUncheckedCreateWithoutRecordedGuestMealsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRecordedGuestMealsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutRecordedGuestMealsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRecordedGuestMealsInput, Prisma.UserUncheckedCreateWithoutRecordedGuestMealsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRecordedGuestMealsInput
+  upsert?: Prisma.UserUpsertWithoutRecordedGuestMealsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRecordedGuestMealsInput, Prisma.UserUpdateWithoutRecordedGuestMealsInput>, Prisma.UserUncheckedUpdateWithoutRecordedGuestMealsInput>
+}
+
+export type UserCreateNestedOneWithoutLockedMealPeriodsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLockedMealPeriodsInput, Prisma.UserUncheckedCreateWithoutLockedMealPeriodsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLockedMealPeriodsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutLockedMealPeriodsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLockedMealPeriodsInput, Prisma.UserUncheckedCreateWithoutLockedMealPeriodsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLockedMealPeriodsInput
+  upsert?: Prisma.UserUpsertWithoutLockedMealPeriodsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLockedMealPeriodsInput, Prisma.UserUpdateWithoutLockedMealPeriodsInput>, Prisma.UserUncheckedUpdateWithoutLockedMealPeriodsInput>
+}
+
 export type UserCreateWithoutReviewedVerificationsInput = {
   id?: string
   name: string
@@ -835,6 +904,9 @@ export type UserCreateWithoutReviewedVerificationsInput = {
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewedVerificationsInput = {
@@ -863,6 +935,9 @@ export type UserUncheckedCreateWithoutReviewedVerificationsInput = {
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewedVerificationsInput = {
@@ -907,6 +982,9 @@ export type UserUpdateWithoutReviewedVerificationsInput = {
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedVerificationsInput = {
@@ -935,6 +1013,9 @@ export type UserUncheckedUpdateWithoutReviewedVerificationsInput = {
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserCreateWithoutMembershipsInput = {
@@ -963,6 +1044,9 @@ export type UserCreateWithoutMembershipsInput = {
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserUncheckedCreateWithoutMembershipsInput = {
@@ -991,6 +1075,9 @@ export type UserUncheckedCreateWithoutMembershipsInput = {
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -1035,6 +1122,9 @@ export type UserUpdateWithoutMembershipsInput = {
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMembershipsInput = {
@@ -1063,6 +1153,9 @@ export type UserUncheckedUpdateWithoutMembershipsInput = {
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -1091,6 +1184,9 @@ export type UserCreateWithoutAuditLogsInput = {
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -1119,6 +1215,9 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -1163,6 +1262,9 @@ export type UserUpdateWithoutAuditLogsInput = {
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -1191,6 +1293,9 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserCreateWithoutApprovedSubscriptionsInput = {
@@ -1219,6 +1324,9 @@ export type UserCreateWithoutApprovedSubscriptionsInput = {
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserUncheckedCreateWithoutApprovedSubscriptionsInput = {
@@ -1247,6 +1355,9 @@ export type UserUncheckedCreateWithoutApprovedSubscriptionsInput = {
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserCreateOrConnectWithoutApprovedSubscriptionsInput = {
@@ -1291,6 +1402,9 @@ export type UserUpdateWithoutApprovedSubscriptionsInput = {
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedSubscriptionsInput = {
@@ -1319,6 +1433,9 @@ export type UserUncheckedUpdateWithoutApprovedSubscriptionsInput = {
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserCreateWithoutConfirmedInvoicesInput = {
@@ -1347,6 +1464,9 @@ export type UserCreateWithoutConfirmedInvoicesInput = {
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserUncheckedCreateWithoutConfirmedInvoicesInput = {
@@ -1375,6 +1495,9 @@ export type UserUncheckedCreateWithoutConfirmedInvoicesInput = {
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserCreateOrConnectWithoutConfirmedInvoicesInput = {
@@ -1419,6 +1542,9 @@ export type UserUpdateWithoutConfirmedInvoicesInput = {
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConfirmedInvoicesInput = {
@@ -1447,6 +1573,9 @@ export type UserUncheckedUpdateWithoutConfirmedInvoicesInput = {
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserCreateWithoutAssignedInquiriesInput = {
@@ -1475,6 +1604,9 @@ export type UserCreateWithoutAssignedInquiriesInput = {
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserUncheckedCreateWithoutAssignedInquiriesInput = {
@@ -1503,6 +1635,9 @@ export type UserUncheckedCreateWithoutAssignedInquiriesInput = {
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserCreateOrConnectWithoutAssignedInquiriesInput = {
@@ -1547,6 +1682,9 @@ export type UserUpdateWithoutAssignedInquiriesInput = {
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedInquiriesInput = {
@@ -1575,6 +1713,9 @@ export type UserUncheckedUpdateWithoutAssignedInquiriesInput = {
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserCreateWithoutPreparedQuotationsInput = {
@@ -1603,6 +1744,9 @@ export type UserCreateWithoutPreparedQuotationsInput = {
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserUncheckedCreateWithoutPreparedQuotationsInput = {
@@ -1631,6 +1775,9 @@ export type UserUncheckedCreateWithoutPreparedQuotationsInput = {
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserCreateOrConnectWithoutPreparedQuotationsInput = {
@@ -1664,6 +1811,9 @@ export type UserCreateWithoutApprovedQuotationsInput = {
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserUncheckedCreateWithoutApprovedQuotationsInput = {
@@ -1692,6 +1842,9 @@ export type UserUncheckedCreateWithoutApprovedQuotationsInput = {
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserCreateOrConnectWithoutApprovedQuotationsInput = {
@@ -1736,6 +1889,9 @@ export type UserUpdateWithoutPreparedQuotationsInput = {
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPreparedQuotationsInput = {
@@ -1764,6 +1920,9 @@ export type UserUncheckedUpdateWithoutPreparedQuotationsInput = {
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserUpsertWithoutApprovedQuotationsInput = {
@@ -1803,6 +1962,9 @@ export type UserUpdateWithoutApprovedQuotationsInput = {
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedQuotationsInput = {
@@ -1831,6 +1993,9 @@ export type UserUncheckedUpdateWithoutApprovedQuotationsInput = {
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserCreateWithoutRequestedTicketsInput = {
@@ -1859,6 +2024,9 @@ export type UserCreateWithoutRequestedTicketsInput = {
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserUncheckedCreateWithoutRequestedTicketsInput = {
@@ -1887,6 +2055,9 @@ export type UserUncheckedCreateWithoutRequestedTicketsInput = {
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserCreateOrConnectWithoutRequestedTicketsInput = {
@@ -1920,6 +2091,9 @@ export type UserCreateWithoutAssignedTicketsInput = {
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserUncheckedCreateWithoutAssignedTicketsInput = {
@@ -1948,6 +2122,9 @@ export type UserUncheckedCreateWithoutAssignedTicketsInput = {
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserCreateOrConnectWithoutAssignedTicketsInput = {
@@ -1992,6 +2169,9 @@ export type UserUpdateWithoutRequestedTicketsInput = {
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequestedTicketsInput = {
@@ -2020,6 +2200,9 @@ export type UserUncheckedUpdateWithoutRequestedTicketsInput = {
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserUpsertWithoutAssignedTicketsInput = {
@@ -2059,6 +2242,9 @@ export type UserUpdateWithoutAssignedTicketsInput = {
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedTicketsInput = {
@@ -2087,6 +2273,9 @@ export type UserUncheckedUpdateWithoutAssignedTicketsInput = {
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserCreateWithoutTicketMessagesInput = {
@@ -2115,6 +2304,9 @@ export type UserCreateWithoutTicketMessagesInput = {
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserUncheckedCreateWithoutTicketMessagesInput = {
@@ -2143,6 +2335,9 @@ export type UserUncheckedCreateWithoutTicketMessagesInput = {
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserCreateOrConnectWithoutTicketMessagesInput = {
@@ -2187,6 +2382,9 @@ export type UserUpdateWithoutTicketMessagesInput = {
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTicketMessagesInput = {
@@ -2215,6 +2413,9 @@ export type UserUncheckedUpdateWithoutTicketMessagesInput = {
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -2243,6 +2444,9 @@ export type UserCreateWithoutNotificationsInput = {
   ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
   assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -2271,6 +2475,9 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
   reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -2315,6 +2522,9 @@ export type UserUpdateWithoutNotificationsInput = {
   ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -2343,6 +2553,9 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
   reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserCreateWithoutAssignedRoomAssignmentsInput = {
@@ -2371,6 +2584,9 @@ export type UserCreateWithoutAssignedRoomAssignmentsInput = {
   ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
   reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserUncheckedCreateWithoutAssignedRoomAssignmentsInput = {
@@ -2399,6 +2615,9 @@ export type UserUncheckedCreateWithoutAssignedRoomAssignmentsInput = {
   ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
   reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserCreateOrConnectWithoutAssignedRoomAssignmentsInput = {
@@ -2443,6 +2662,9 @@ export type UserUpdateWithoutAssignedRoomAssignmentsInput = {
   ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
   reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput = {
@@ -2471,6 +2693,9 @@ export type UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput = {
   ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
   reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserCreateWithoutReviewedBookingsInput = {
@@ -2499,6 +2724,9 @@ export type UserCreateWithoutReviewedBookingsInput = {
   ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewedBookingsInput = {
@@ -2527,6 +2755,9 @@ export type UserUncheckedCreateWithoutReviewedBookingsInput = {
   ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
   notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewedBookingsInput = {
@@ -2571,6 +2802,9 @@ export type UserUpdateWithoutReviewedBookingsInput = {
   ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedBookingsInput = {
@@ -2599,6 +2833,429 @@ export type UserUncheckedUpdateWithoutReviewedBookingsInput = {
   ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
   notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
   assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+}
+
+export type UserCreateWithoutReviewedMealOffRequestsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+}
+
+export type UserUncheckedCreateWithoutReviewedMealOffRequestsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+}
+
+export type UserCreateOrConnectWithoutReviewedMealOffRequestsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedMealOffRequestsInput, Prisma.UserUncheckedCreateWithoutReviewedMealOffRequestsInput>
+}
+
+export type UserUpsertWithoutReviewedMealOffRequestsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReviewedMealOffRequestsInput, Prisma.UserUncheckedUpdateWithoutReviewedMealOffRequestsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedMealOffRequestsInput, Prisma.UserUncheckedCreateWithoutReviewedMealOffRequestsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReviewedMealOffRequestsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReviewedMealOffRequestsInput, Prisma.UserUncheckedUpdateWithoutReviewedMealOffRequestsInput>
+}
+
+export type UserUpdateWithoutReviewedMealOffRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReviewedMealOffRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+}
+
+export type UserCreateWithoutRecordedGuestMealsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+}
+
+export type UserUncheckedCreateWithoutRecordedGuestMealsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+}
+
+export type UserCreateOrConnectWithoutRecordedGuestMealsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRecordedGuestMealsInput, Prisma.UserUncheckedCreateWithoutRecordedGuestMealsInput>
+}
+
+export type UserUpsertWithoutRecordedGuestMealsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRecordedGuestMealsInput, Prisma.UserUncheckedUpdateWithoutRecordedGuestMealsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRecordedGuestMealsInput, Prisma.UserUncheckedCreateWithoutRecordedGuestMealsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRecordedGuestMealsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRecordedGuestMealsInput, Prisma.UserUncheckedUpdateWithoutRecordedGuestMealsInput>
+}
+
+export type UserUpdateWithoutRecordedGuestMealsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRecordedGuestMealsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+}
+
+export type UserCreateWithoutLockedMealPeriodsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+}
+
+export type UserUncheckedCreateWithoutLockedMealPeriodsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+}
+
+export type UserCreateOrConnectWithoutLockedMealPeriodsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutLockedMealPeriodsInput, Prisma.UserUncheckedCreateWithoutLockedMealPeriodsInput>
+}
+
+export type UserUpsertWithoutLockedMealPeriodsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutLockedMealPeriodsInput, Prisma.UserUncheckedUpdateWithoutLockedMealPeriodsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutLockedMealPeriodsInput, Prisma.UserUncheckedCreateWithoutLockedMealPeriodsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutLockedMealPeriodsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutLockedMealPeriodsInput, Prisma.UserUncheckedUpdateWithoutLockedMealPeriodsInput>
+}
+
+export type UserUpdateWithoutLockedMealPeriodsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutLockedMealPeriodsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
 }
 
 
@@ -2621,6 +3278,9 @@ export type UserCountOutputType = {
   notifications: number
   assignedRoomAssignments: number
   reviewedBookings: number
+  reviewedMealOffRequests: number
+  recordedGuestMeals: number
+  lockedMealPeriods: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2638,6 +3298,9 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
   assignedRoomAssignments?: boolean | UserCountOutputTypeCountAssignedRoomAssignmentsArgs
   reviewedBookings?: boolean | UserCountOutputTypeCountReviewedBookingsArgs
+  reviewedMealOffRequests?: boolean | UserCountOutputTypeCountReviewedMealOffRequestsArgs
+  recordedGuestMeals?: boolean | UserCountOutputTypeCountRecordedGuestMealsArgs
+  lockedMealPeriods?: boolean | UserCountOutputTypeCountLockedMealPeriodsArgs
 }
 
 /**
@@ -2748,6 +3411,27 @@ export type UserCountOutputTypeCountReviewedBookingsArgs<ExtArgs extends runtime
   where?: Prisma.BookingRequestWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewedMealOffRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MealOffRequestWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRecordedGuestMealsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GuestMealWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountLockedMealPeriodsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MealPeriodLockWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2776,6 +3460,9 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   assignedRoomAssignments?: boolean | Prisma.User$assignedRoomAssignmentsArgs<ExtArgs>
   reviewedBookings?: boolean | Prisma.User$reviewedBookingsArgs<ExtArgs>
+  reviewedMealOffRequests?: boolean | Prisma.User$reviewedMealOffRequestsArgs<ExtArgs>
+  recordedGuestMeals?: boolean | Prisma.User$recordedGuestMealsArgs<ExtArgs>
+  lockedMealPeriods?: boolean | Prisma.User$lockedMealPeriodsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2840,6 +3527,9 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   assignedRoomAssignments?: boolean | Prisma.User$assignedRoomAssignmentsArgs<ExtArgs>
   reviewedBookings?: boolean | Prisma.User$reviewedBookingsArgs<ExtArgs>
+  reviewedMealOffRequests?: boolean | Prisma.User$reviewedMealOffRequestsArgs<ExtArgs>
+  recordedGuestMeals?: boolean | Prisma.User$recordedGuestMealsArgs<ExtArgs>
+  lockedMealPeriods?: boolean | Prisma.User$lockedMealPeriodsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2862,6 +3552,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     notifications: Prisma.$PlatformNotificationPayload<ExtArgs>[]
     assignedRoomAssignments: Prisma.$RoomAssignmentPayload<ExtArgs>[]
     reviewedBookings: Prisma.$BookingRequestPayload<ExtArgs>[]
+    reviewedMealOffRequests: Prisma.$MealOffRequestPayload<ExtArgs>[]
+    recordedGuestMeals: Prisma.$GuestMealPayload<ExtArgs>[]
+    lockedMealPeriods: Prisma.$MealPeriodLockPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3284,6 +3977,9 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlatformNotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   assignedRoomAssignments<T extends Prisma.User$assignedRoomAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedRoomAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reviewedBookings<T extends Prisma.User$reviewedBookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedBookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookingRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewedMealOffRequests<T extends Prisma.User$reviewedMealOffRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedMealOffRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MealOffRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  recordedGuestMeals<T extends Prisma.User$recordedGuestMealsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$recordedGuestMealsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GuestMealPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  lockedMealPeriods<T extends Prisma.User$lockedMealPeriodsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$lockedMealPeriodsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MealPeriodLockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4051,6 +4747,78 @@ export type User$reviewedBookingsArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.BookingRequestScalarFieldEnum | Prisma.BookingRequestScalarFieldEnum[]
+}
+
+/**
+ * User.reviewedMealOffRequests
+ */
+export type User$reviewedMealOffRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MealOffRequest
+   */
+  select?: Prisma.MealOffRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MealOffRequest
+   */
+  omit?: Prisma.MealOffRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MealOffRequestInclude<ExtArgs> | null
+  where?: Prisma.MealOffRequestWhereInput
+  orderBy?: Prisma.MealOffRequestOrderByWithRelationInput | Prisma.MealOffRequestOrderByWithRelationInput[]
+  cursor?: Prisma.MealOffRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MealOffRequestScalarFieldEnum | Prisma.MealOffRequestScalarFieldEnum[]
+}
+
+/**
+ * User.recordedGuestMeals
+ */
+export type User$recordedGuestMealsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GuestMeal
+   */
+  select?: Prisma.GuestMealSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GuestMeal
+   */
+  omit?: Prisma.GuestMealOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuestMealInclude<ExtArgs> | null
+  where?: Prisma.GuestMealWhereInput
+  orderBy?: Prisma.GuestMealOrderByWithRelationInput | Prisma.GuestMealOrderByWithRelationInput[]
+  cursor?: Prisma.GuestMealWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GuestMealScalarFieldEnum | Prisma.GuestMealScalarFieldEnum[]
+}
+
+/**
+ * User.lockedMealPeriods
+ */
+export type User$lockedMealPeriodsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MealPeriodLock
+   */
+  select?: Prisma.MealPeriodLockSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MealPeriodLock
+   */
+  omit?: Prisma.MealPeriodLockOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MealPeriodLockInclude<ExtArgs> | null
+  where?: Prisma.MealPeriodLockWhereInput
+  orderBy?: Prisma.MealPeriodLockOrderByWithRelationInput | Prisma.MealPeriodLockOrderByWithRelationInput[]
+  cursor?: Prisma.MealPeriodLockWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MealPeriodLockScalarFieldEnum | Prisma.MealPeriodLockScalarFieldEnum[]
 }
 
 /**

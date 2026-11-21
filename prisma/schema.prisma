@@ -258,6 +258,31 @@ enum BookingPaymentStatus {
   REFUNDED
 }
 
+enum MealSystemType {
+  FIXED
+  FLEXIBLE
+  BOTH
+}
+
+enum MealType {
+  BREAKFAST
+  LUNCH
+  DINNER
+  CUSTOM
+}
+
+enum MealOffStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+enum GuestMealChargeType {
+  FIXED_RATE
+  AT_ACTUAL_MEAL_RATE
+}
+
 // -----------------------------------------------------------------------------
 // USER (Platform-wide Identity)
 // -----------------------------------------------------------------------------
@@ -290,6 +315,9 @@ model User {
   notifications         PlatformNotification[]
   assignedRoomAssignments RoomAssignment[]      @relation("AssignedRoomAssignments")
   reviewedBookings        BookingRequest[]      @relation("ReviewedBookings")
+  reviewedMealOffRequests MealOffRequest[]      @relation("ReviewedMealOffRequests")
+  recordedGuestMeals      GuestMeal[]           @relation("RecordedGuestMeals")
+  lockedMealPeriods       MealPeriodLock[]      @relation("LockedMealPeriods")
 
   @@index([status])
   @@index([platformRole])
@@ -334,6 +362,12 @@ model Tenant {
   roomAssignments RoomAssignment[]
   rentalListings RentalListing[]
   bookingRequests BookingRequest[]
+  mealSetting    MealSetting?
+  mealDailyLogs  MealDailyLog[]
+  memberMealEntries MemberMealEntry[]
+  mealOffRequests MealOffRequest[]
+  guestMeals     GuestMeal[]
+  mealPeriodLocks MealPeriodLock[]
 
   @@index([status])
   @@index([verificationStatus])
@@ -495,6 +529,9 @@ model Membership {
   tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   role   Role   @relation(fields: [roleId, tenantId], references: [id, tenantId], onDelete: Restrict)
   roomAssignments RoomAssignment[]
+  mealEntries     MemberMealEntry[]
+  mealOffRequests MealOffRequest[]
+  hostedGuestMeals GuestMeal[]
 
   @@unique([userId, tenantId])
   @@index([tenantId])
@@ -961,5 +998,163 @@ model BookingRequest {
   @@index([paymentStatus])
   @@index([checkInDate, checkOutDate])
   @@map("booking_requests")
+}
+
+// -----------------------------------------------------------------------------
+// MEAL SETTINGS & POLICIES (Task 33)
+// -----------------------------------------------------------------------------
+
+model MealSetting {
+  id                         String              @id @default(cuid())
+  tenantId                   String              @unique @map("tenant_id")
+  mealSystem                 MealSystemType      @default(FLEXIBLE) @map("meal_system")
+  breakfastEnabled           Boolean             @default(true) @map("breakfast_enabled")
+  lunchEnabled               Boolean             @default(true) @map("lunch_enabled")
+  dinnerEnabled              Boolean             @default(true) @map("dinner_enabled")
+  breakfastWeight            Decimal             @default(0.5) @db.Decimal(5, 2) @map("breakfast_weight")
+  lunchWeight                Decimal             @default(1.0) @db.Decimal(5, 2) @map("lunch_weight")
+  dinnerWeight               Decimal             @default(1.0) @db.Decimal(5, 2) @map("dinner_weight")
+  breakfastCutoff            String              @default("06:00") @map("breakfast_cutoff")
+  lunchCutoff                String              @default("09:00") @map("lunch_cutoff")
+  dinnerCutoff               String              @default("16:00") @map("dinner_cutoff")
+  defaultCutoffTime          String              @default("20:00") @map("default_cutoff_time")
+  autoApproveMealOff         Boolean             @default(true) @map("auto_approve_meal_off")
+  guestMealChargeType        GuestMealChargeType @default(FIXED_RATE) @map("guest_meal_charge_type")
+  guestMealFixedRatePoisha   BigInt              @default(8000) @map("guest_meal_fixed_rate_poisha")
+  guestMealMultiplier        Decimal             @default(1.0) @db.Decimal(5, 2) @map("guest_meal_multiplier")
+  eligibleExpenseCategories  Json                @map("eligible_expense_categories") // string[]
+  allowLateMealOffWithReason Boolean             @default(false) @map("allow_late_meal_off_with_reason")
+  createdAt                  DateTime            @default(now()) @map("created_at")
+  updatedAt                  DateTime            @updatedAt @map("updated_at")
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@map("meal_settings")
+}
+
+model MealDailyLog {
+  id            String   @id @default(cuid())
+  tenantId      String   @map("tenant_id")
+  dateString    String   @map("date_string") // "YYYY-MM-DD"
+  breakfastMenu String?  @map("breakfast_menu")
+  lunchMenu     String?  @map("lunch_menu")
+  dinnerMenu    String?  @map("dinner_menu")
+  specialNotes  String?  @map("special_notes")
+  isLocked      Boolean  @default(false) @map("is_locked")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, dateString])
+  @@index([tenantId])
+  @@index([dateString])
+  @@map("meal_daily_logs")
+}
+
+model MemberMealEntry {
+  id                   String     @id @default(cuid())
+  tenantId             String     @map("tenant_id")
+  membershipId         String     @map("membership_id")
+  dateString           String     @map("date_string") // "YYYY-MM-DD"
+  breakfastCount       Decimal    @default(0) @db.Decimal(5, 2) @map("breakfast_count")
+  lunchCount           Decimal    @default(0) @db.Decimal(5, 2) @map("lunch_count")
+  dinnerCount          Decimal    @default(0) @db.Decimal(5, 2) @map("dinner_count")
+  customCount          Decimal    @default(0) @db.Decimal(5, 2) @map("custom_count")
+  totalChargeableUnits Decimal    @default(0) @db.Decimal(6, 2) @map("total_chargeable_units")
+  isFixedParticipating Boolean    @default(true) @map("is_fixed_participating")
+  notes                String?
+  isLocked             Boolean    @default(false) @map("is_locked")
+  createdAt            DateTime   @default(now()) @map("created_at")
+  updatedAt            DateTime   @updatedAt @map("updated_at")
+
+  tenant     Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  membership Membership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, membershipId, dateString])
+  @@index([tenantId])
+  @@index([membershipId])
+  @@index([dateString])
+  @@map("member_meal_entries")
+}
+
+model MealOffRequest {
+  id           String        @id @default(cuid())
+  tenantId     String        @map("tenant_id")
+  membershipId String        @map("membership_id")
+  startDate    String        @map("start_date") // "YYYY-MM-DD"
+  endDate      String        @map("end_date") // "YYYY-MM-DD"
+  mealTypes    Json          @map("meal_types") // string[]
+  reason       String
+  status       MealOffStatus @default(PENDING)
+  reviewedById String?       @map("reviewed_by_id")
+  reviewNote   String?       @map("review_note")
+  reviewedAt   DateTime?     @map("reviewed_at")
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+
+  tenant     Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  membership Membership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  reviewedBy User?      @relation("ReviewedMealOffRequests", fields: [reviewedById], references: [id], onDelete: SetNull)
+
+  @@index([tenantId])
+  @@index([membershipId])
+  @@index([status])
+  @@index([startDate, endDate])
+  @@map("meal_off_requests")
+}
+
+model GuestMeal {
+  id                String              @id @default(cuid())
+  tenantId          String              @map("tenant_id")
+  hostMembershipId  String              @map("host_membership_id")
+  guestName         String              @map("guest_name")
+  dateString        String              @map("date_string") // "YYYY-MM-DD"
+  mealType          MealType            @default(LUNCH) @map("meal_type")
+  count             Int                 @default(1)
+  unitRatePoisha    BigInt              @map("unit_rate_poisha")
+  totalAmountPoisha BigInt              @map("total_amount_poisha")
+  isPaid            Boolean             @default(false) @map("is_paid")
+  paymentNote       String?             @map("payment_note")
+  recordedByUserId  String?             @map("recorded_by_user_id")
+  notes             String?
+  createdAt         DateTime            @default(now()) @map("created_at")
+  updatedAt         DateTime            @updatedAt @map("updated_at")
+
+  tenant         Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  hostMembership Membership @relation(fields: [hostMembershipId], references: [id], onDelete: Cascade)
+  recordedByUser User?      @relation("RecordedGuestMeals", fields: [recordedByUserId], references: [id], onDelete: SetNull)
+
+  @@index([tenantId])
+  @@index([hostMembershipId])
+  @@index([dateString])
+  @@index([isPaid])
+  @@map("guest_meals")
+}
+
+model MealPeriodLock {
+  id                          String    @id @default(cuid())
+  tenantId                    String    @map("tenant_id")
+  monthString                 String    @map("month_string") // "YYYY-MM"
+  isLocked                    Boolean   @default(false) @map("is_locked")
+  lockedAt                    DateTime? @map("locked_at")
+  lockedByUserId              String?   @map("locked_by_user_id")
+  finalMealRatePoisha         BigInt?   @map("final_meal_rate_poisha")
+  totalEligibleExpensesPoisha BigInt?   @map("total_eligible_expenses_poisha")
+  totalChargeableUnits        Decimal?  @db.Decimal(10, 2) @map("total_chargeable_units")
+  totalMemberMeals            Decimal?  @db.Decimal(10, 2) @map("total_member_meals")
+  totalGuestMeals             Int?      @map("total_guest_meals")
+  notes                       String?
+  createdAt                   DateTime  @default(now()) @map("created_at")
+  updatedAt                   DateTime  @updatedAt @map("updated_at")
+
+  tenant       Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  lockedByUser User?  @relation("LockedMealPeriods", fields: [lockedByUserId], references: [id], onDelete: SetNull)
+
+  @@unique([tenantId, monthString])
+  @@index([tenantId])
+  @@index([monthString])
+  @@map("meal_period_locks")
 }
 

@@ -30,12 +30,22 @@ import type {
   RoomAssignment as PrismaRoomAssignment,
   RentalListing as PrismaRentalListing,
   BookingRequest as PrismaBookingRequest,
+  MealSetting as PrismaMealSetting,
+  MealDailyLog as PrismaMealDailyLog,
+  MemberMealEntry as PrismaMemberMealEntry,
+  MealOffRequest as PrismaMealOffRequest,
+  GuestMeal as PrismaGuestMeal,
+  MealPeriodLock as PrismaMealPeriodLock,
   RoomStatus,
   BedStatus,
   AssignmentStatus,
   RentalListingStatus,
   BookingStatus,
   BookingPaymentStatus,
+  MealSystemType,
+  MealType,
+  MealOffStatus,
+  GuestMealChargeType,
   UserStatus,
   TenantType,
   TenantStatus,
@@ -99,6 +109,10 @@ export type {
   RentalListingStatus,
   BookingStatus,
   BookingPaymentStatus,
+  MealSystemType,
+  MealType,
+  MealOffStatus,
+  GuestMealChargeType,
 };
 
 // Re-export Base Models
@@ -120,6 +134,12 @@ export type Bed = PrismaBed;
 export type RoomAssignment = PrismaRoomAssignment;
 export type RentalListing = PrismaRentalListing;
 export type BookingRequest = PrismaBookingRequest;
+export type MealSetting = PrismaMealSetting;
+export type MealDailyLog = PrismaMealDailyLog;
+export type MemberMealEntry = PrismaMemberMealEntry;
+export type MealOffRequest = PrismaMealOffRequest;
+export type GuestMeal = PrismaGuestMeal;
+export type MealPeriodLock = PrismaMealPeriodLock;
 export type CustomPlanInquiry = PrismaCustomPlanInquiry;
 export type CustomQuotation = PrismaCustomQuotation;
 export type Domain = PrismaDomain;

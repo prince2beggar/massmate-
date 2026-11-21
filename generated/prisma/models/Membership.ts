@@ -258,6 +258,9 @@ export type MembershipWhereInput = {
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   role?: Prisma.XOR<Prisma.RoleScalarRelationFilter, Prisma.RoleWhereInput>
   roomAssignments?: Prisma.RoomAssignmentListRelationFilter
+  mealEntries?: Prisma.MemberMealEntryListRelationFilter
+  mealOffRequests?: Prisma.MealOffRequestListRelationFilter
+  hostedGuestMeals?: Prisma.GuestMealListRelationFilter
 }
 
 export type MembershipOrderByWithRelationInput = {
@@ -279,6 +282,9 @@ export type MembershipOrderByWithRelationInput = {
   tenant?: Prisma.TenantOrderByWithRelationInput
   role?: Prisma.RoleOrderByWithRelationInput
   roomAssignments?: Prisma.RoomAssignmentOrderByRelationAggregateInput
+  mealEntries?: Prisma.MemberMealEntryOrderByRelationAggregateInput
+  mealOffRequests?: Prisma.MealOffRequestOrderByRelationAggregateInput
+  hostedGuestMeals?: Prisma.GuestMealOrderByRelationAggregateInput
 }
 
 export type MembershipWhereUniqueInput = Prisma.AtLeast<{
@@ -304,6 +310,9 @@ export type MembershipWhereUniqueInput = Prisma.AtLeast<{
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   role?: Prisma.XOR<Prisma.RoleScalarRelationFilter, Prisma.RoleWhereInput>
   roomAssignments?: Prisma.RoomAssignmentListRelationFilter
+  mealEntries?: Prisma.MemberMealEntryListRelationFilter
+  mealOffRequests?: Prisma.MealOffRequestListRelationFilter
+  hostedGuestMeals?: Prisma.GuestMealListRelationFilter
 }, "id" | "userId_tenantId">
 
 export type MembershipOrderByWithAggregationInput = {
@@ -362,6 +371,9 @@ export type MembershipCreateInput = {
   tenant: Prisma.TenantCreateNestedOneWithoutMembershipsInput
   role: Prisma.RoleCreateNestedOneWithoutMembershipsInput
   roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutMembershipInput
+  mealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutMembershipInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutMembershipInput
+  hostedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutHostMembershipInput
 }
 
 export type MembershipUncheckedCreateInput = {
@@ -380,6 +392,9 @@ export type MembershipUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutMembershipInput
+  mealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutMembershipInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutMembershipInput
+  hostedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutHostMembershipInput
 }
 
 export type MembershipUpdateInput = {
@@ -398,6 +413,9 @@ export type MembershipUpdateInput = {
   tenant?: Prisma.TenantUpdateOneRequiredWithoutMembershipsNestedInput
   role?: Prisma.RoleUpdateOneRequiredWithoutMembershipsNestedInput
   roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutMembershipNestedInput
+  mealEntries?: Prisma.MemberMealEntryUpdateManyWithoutMembershipNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutMembershipNestedInput
+  hostedGuestMeals?: Prisma.GuestMealUpdateManyWithoutHostMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateInput = {
@@ -416,6 +434,9 @@ export type MembershipUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutMembershipNestedInput
+  mealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutMembershipNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutMembershipNestedInput
+  hostedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutHostMembershipNestedInput
 }
 
 export type MembershipCreateManyInput = {
@@ -681,6 +702,48 @@ export type MembershipUpdateOneRequiredWithoutRoomAssignmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MembershipUpdateToOneWithWhereWithoutRoomAssignmentsInput, Prisma.MembershipUpdateWithoutRoomAssignmentsInput>, Prisma.MembershipUncheckedUpdateWithoutRoomAssignmentsInput>
 }
 
+export type MembershipCreateNestedOneWithoutMealEntriesInput = {
+  create?: Prisma.XOR<Prisma.MembershipCreateWithoutMealEntriesInput, Prisma.MembershipUncheckedCreateWithoutMealEntriesInput>
+  connectOrCreate?: Prisma.MembershipCreateOrConnectWithoutMealEntriesInput
+  connect?: Prisma.MembershipWhereUniqueInput
+}
+
+export type MembershipUpdateOneRequiredWithoutMealEntriesNestedInput = {
+  create?: Prisma.XOR<Prisma.MembershipCreateWithoutMealEntriesInput, Prisma.MembershipUncheckedCreateWithoutMealEntriesInput>
+  connectOrCreate?: Prisma.MembershipCreateOrConnectWithoutMealEntriesInput
+  upsert?: Prisma.MembershipUpsertWithoutMealEntriesInput
+  connect?: Prisma.MembershipWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MembershipUpdateToOneWithWhereWithoutMealEntriesInput, Prisma.MembershipUpdateWithoutMealEntriesInput>, Prisma.MembershipUncheckedUpdateWithoutMealEntriesInput>
+}
+
+export type MembershipCreateNestedOneWithoutMealOffRequestsInput = {
+  create?: Prisma.XOR<Prisma.MembershipCreateWithoutMealOffRequestsInput, Prisma.MembershipUncheckedCreateWithoutMealOffRequestsInput>
+  connectOrCreate?: Prisma.MembershipCreateOrConnectWithoutMealOffRequestsInput
+  connect?: Prisma.MembershipWhereUniqueInput
+}
+
+export type MembershipUpdateOneRequiredWithoutMealOffRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.MembershipCreateWithoutMealOffRequestsInput, Prisma.MembershipUncheckedCreateWithoutMealOffRequestsInput>
+  connectOrCreate?: Prisma.MembershipCreateOrConnectWithoutMealOffRequestsInput
+  upsert?: Prisma.MembershipUpsertWithoutMealOffRequestsInput
+  connect?: Prisma.MembershipWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MembershipUpdateToOneWithWhereWithoutMealOffRequestsInput, Prisma.MembershipUpdateWithoutMealOffRequestsInput>, Prisma.MembershipUncheckedUpdateWithoutMealOffRequestsInput>
+}
+
+export type MembershipCreateNestedOneWithoutHostedGuestMealsInput = {
+  create?: Prisma.XOR<Prisma.MembershipCreateWithoutHostedGuestMealsInput, Prisma.MembershipUncheckedCreateWithoutHostedGuestMealsInput>
+  connectOrCreate?: Prisma.MembershipCreateOrConnectWithoutHostedGuestMealsInput
+  connect?: Prisma.MembershipWhereUniqueInput
+}
+
+export type MembershipUpdateOneRequiredWithoutHostedGuestMealsNestedInput = {
+  create?: Prisma.XOR<Prisma.MembershipCreateWithoutHostedGuestMealsInput, Prisma.MembershipUncheckedCreateWithoutHostedGuestMealsInput>
+  connectOrCreate?: Prisma.MembershipCreateOrConnectWithoutHostedGuestMealsInput
+  upsert?: Prisma.MembershipUpsertWithoutHostedGuestMealsInput
+  connect?: Prisma.MembershipWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MembershipUpdateToOneWithWhereWithoutHostedGuestMealsInput, Prisma.MembershipUpdateWithoutHostedGuestMealsInput>, Prisma.MembershipUncheckedUpdateWithoutHostedGuestMealsInput>
+}
+
 export type MembershipCreateWithoutUserInput = {
   id?: string
   status?: $Enums.MembershipStatus
@@ -696,6 +759,9 @@ export type MembershipCreateWithoutUserInput = {
   tenant: Prisma.TenantCreateNestedOneWithoutMembershipsInput
   role: Prisma.RoleCreateNestedOneWithoutMembershipsInput
   roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutMembershipInput
+  mealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutMembershipInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutMembershipInput
+  hostedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutHostMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutUserInput = {
@@ -713,6 +779,9 @@ export type MembershipUncheckedCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutMembershipInput
+  mealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutMembershipInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutMembershipInput
+  hostedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutHostMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutUserInput = {
@@ -776,6 +845,9 @@ export type MembershipCreateWithoutTenantInput = {
   user: Prisma.UserCreateNestedOneWithoutMembershipsInput
   role: Prisma.RoleCreateNestedOneWithoutMembershipsInput
   roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutMembershipInput
+  mealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutMembershipInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutMembershipInput
+  hostedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutHostMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutTenantInput = {
@@ -793,6 +865,9 @@ export type MembershipUncheckedCreateWithoutTenantInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutMembershipInput
+  mealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutMembershipInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutMembershipInput
+  hostedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutHostMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutTenantInput = {
@@ -836,6 +911,9 @@ export type MembershipCreateWithoutRoleInput = {
   user: Prisma.UserCreateNestedOneWithoutMembershipsInput
   tenant: Prisma.TenantCreateNestedOneWithoutMembershipsInput
   roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutMembershipInput
+  mealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutMembershipInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutMembershipInput
+  hostedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutHostMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutRoleInput = {
@@ -852,6 +930,9 @@ export type MembershipUncheckedCreateWithoutRoleInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutMembershipInput
+  mealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutMembershipInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutMembershipInput
+  hostedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutHostMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutRoleInput = {
@@ -895,6 +976,9 @@ export type MembershipCreateWithoutRoomAssignmentsInput = {
   user: Prisma.UserCreateNestedOneWithoutMembershipsInput
   tenant: Prisma.TenantCreateNestedOneWithoutMembershipsInput
   role: Prisma.RoleCreateNestedOneWithoutMembershipsInput
+  mealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutMembershipInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutMembershipInput
+  hostedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutHostMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutRoomAssignmentsInput = {
@@ -912,6 +996,9 @@ export type MembershipUncheckedCreateWithoutRoomAssignmentsInput = {
   leftAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  mealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutMembershipInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutMembershipInput
+  hostedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutHostMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutRoomAssignmentsInput = {
@@ -945,6 +1032,9 @@ export type MembershipUpdateWithoutRoomAssignmentsInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutMembershipsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutMembershipsNestedInput
   role?: Prisma.RoleUpdateOneRequiredWithoutMembershipsNestedInput
+  mealEntries?: Prisma.MemberMealEntryUpdateManyWithoutMembershipNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutMembershipNestedInput
+  hostedGuestMeals?: Prisma.GuestMealUpdateManyWithoutHostMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutRoomAssignmentsInput = {
@@ -962,6 +1052,297 @@ export type MembershipUncheckedUpdateWithoutRoomAssignmentsInput = {
   leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutMembershipNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutMembershipNestedInput
+  hostedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutHostMembershipNestedInput
+}
+
+export type MembershipCreateWithoutMealEntriesInput = {
+  id?: string
+  status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
+  joinedAt?: Date | string | null
+  invitedAt?: Date | string | null
+  leftAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutMembershipsInput
+  tenant: Prisma.TenantCreateNestedOneWithoutMembershipsInput
+  role: Prisma.RoleCreateNestedOneWithoutMembershipsInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutMembershipInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutMembershipInput
+  hostedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutHostMembershipInput
+}
+
+export type MembershipUncheckedCreateWithoutMealEntriesInput = {
+  id?: string
+  userId: string
+  tenantId: string
+  roleId: string
+  status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
+  joinedAt?: Date | string | null
+  invitedAt?: Date | string | null
+  leftAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutMembershipInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutMembershipInput
+  hostedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutHostMembershipInput
+}
+
+export type MembershipCreateOrConnectWithoutMealEntriesInput = {
+  where: Prisma.MembershipWhereUniqueInput
+  create: Prisma.XOR<Prisma.MembershipCreateWithoutMealEntriesInput, Prisma.MembershipUncheckedCreateWithoutMealEntriesInput>
+}
+
+export type MembershipUpsertWithoutMealEntriesInput = {
+  update: Prisma.XOR<Prisma.MembershipUpdateWithoutMealEntriesInput, Prisma.MembershipUncheckedUpdateWithoutMealEntriesInput>
+  create: Prisma.XOR<Prisma.MembershipCreateWithoutMealEntriesInput, Prisma.MembershipUncheckedCreateWithoutMealEntriesInput>
+  where?: Prisma.MembershipWhereInput
+}
+
+export type MembershipUpdateToOneWithWhereWithoutMealEntriesInput = {
+  where?: Prisma.MembershipWhereInput
+  data: Prisma.XOR<Prisma.MembershipUpdateWithoutMealEntriesInput, Prisma.MembershipUncheckedUpdateWithoutMealEntriesInput>
+}
+
+export type MembershipUpdateWithoutMealEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutMembershipsNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutMembershipsNestedInput
+  role?: Prisma.RoleUpdateOneRequiredWithoutMembershipsNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutMembershipNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutMembershipNestedInput
+  hostedGuestMeals?: Prisma.GuestMealUpdateManyWithoutHostMembershipNestedInput
+}
+
+export type MembershipUncheckedUpdateWithoutMealEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  roleId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutMembershipNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutMembershipNestedInput
+  hostedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutHostMembershipNestedInput
+}
+
+export type MembershipCreateWithoutMealOffRequestsInput = {
+  id?: string
+  status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
+  joinedAt?: Date | string | null
+  invitedAt?: Date | string | null
+  leftAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutMembershipsInput
+  tenant: Prisma.TenantCreateNestedOneWithoutMembershipsInput
+  role: Prisma.RoleCreateNestedOneWithoutMembershipsInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutMembershipInput
+  mealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutMembershipInput
+  hostedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutHostMembershipInput
+}
+
+export type MembershipUncheckedCreateWithoutMealOffRequestsInput = {
+  id?: string
+  userId: string
+  tenantId: string
+  roleId: string
+  status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
+  joinedAt?: Date | string | null
+  invitedAt?: Date | string | null
+  leftAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutMembershipInput
+  mealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutMembershipInput
+  hostedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutHostMembershipInput
+}
+
+export type MembershipCreateOrConnectWithoutMealOffRequestsInput = {
+  where: Prisma.MembershipWhereUniqueInput
+  create: Prisma.XOR<Prisma.MembershipCreateWithoutMealOffRequestsInput, Prisma.MembershipUncheckedCreateWithoutMealOffRequestsInput>
+}
+
+export type MembershipUpsertWithoutMealOffRequestsInput = {
+  update: Prisma.XOR<Prisma.MembershipUpdateWithoutMealOffRequestsInput, Prisma.MembershipUncheckedUpdateWithoutMealOffRequestsInput>
+  create: Prisma.XOR<Prisma.MembershipCreateWithoutMealOffRequestsInput, Prisma.MembershipUncheckedCreateWithoutMealOffRequestsInput>
+  where?: Prisma.MembershipWhereInput
+}
+
+export type MembershipUpdateToOneWithWhereWithoutMealOffRequestsInput = {
+  where?: Prisma.MembershipWhereInput
+  data: Prisma.XOR<Prisma.MembershipUpdateWithoutMealOffRequestsInput, Prisma.MembershipUncheckedUpdateWithoutMealOffRequestsInput>
+}
+
+export type MembershipUpdateWithoutMealOffRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutMembershipsNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutMembershipsNestedInput
+  role?: Prisma.RoleUpdateOneRequiredWithoutMembershipsNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutMembershipNestedInput
+  mealEntries?: Prisma.MemberMealEntryUpdateManyWithoutMembershipNestedInput
+  hostedGuestMeals?: Prisma.GuestMealUpdateManyWithoutHostMembershipNestedInput
+}
+
+export type MembershipUncheckedUpdateWithoutMealOffRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  roleId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutMembershipNestedInput
+  mealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutMembershipNestedInput
+  hostedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutHostMembershipNestedInput
+}
+
+export type MembershipCreateWithoutHostedGuestMealsInput = {
+  id?: string
+  status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
+  joinedAt?: Date | string | null
+  invitedAt?: Date | string | null
+  leftAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutMembershipsInput
+  tenant: Prisma.TenantCreateNestedOneWithoutMembershipsInput
+  role: Prisma.RoleCreateNestedOneWithoutMembershipsInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutMembershipInput
+  mealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutMembershipInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutMembershipInput
+}
+
+export type MembershipUncheckedCreateWithoutHostedGuestMealsInput = {
+  id?: string
+  userId: string
+  tenantId: string
+  roleId: string
+  status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
+  joinedAt?: Date | string | null
+  invitedAt?: Date | string | null
+  leftAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutMembershipInput
+  mealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutMembershipInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutMembershipInput
+}
+
+export type MembershipCreateOrConnectWithoutHostedGuestMealsInput = {
+  where: Prisma.MembershipWhereUniqueInput
+  create: Prisma.XOR<Prisma.MembershipCreateWithoutHostedGuestMealsInput, Prisma.MembershipUncheckedCreateWithoutHostedGuestMealsInput>
+}
+
+export type MembershipUpsertWithoutHostedGuestMealsInput = {
+  update: Prisma.XOR<Prisma.MembershipUpdateWithoutHostedGuestMealsInput, Prisma.MembershipUncheckedUpdateWithoutHostedGuestMealsInput>
+  create: Prisma.XOR<Prisma.MembershipCreateWithoutHostedGuestMealsInput, Prisma.MembershipUncheckedCreateWithoutHostedGuestMealsInput>
+  where?: Prisma.MembershipWhereInput
+}
+
+export type MembershipUpdateToOneWithWhereWithoutHostedGuestMealsInput = {
+  where?: Prisma.MembershipWhereInput
+  data: Prisma.XOR<Prisma.MembershipUpdateWithoutHostedGuestMealsInput, Prisma.MembershipUncheckedUpdateWithoutHostedGuestMealsInput>
+}
+
+export type MembershipUpdateWithoutHostedGuestMealsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutMembershipsNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutMembershipsNestedInput
+  role?: Prisma.RoleUpdateOneRequiredWithoutMembershipsNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutMembershipNestedInput
+  mealEntries?: Prisma.MemberMealEntryUpdateManyWithoutMembershipNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutMembershipNestedInput
+}
+
+export type MembershipUncheckedUpdateWithoutHostedGuestMealsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  roleId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutMembershipNestedInput
+  mealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutMembershipNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipCreateManyUserInput = {
@@ -995,6 +1376,9 @@ export type MembershipUpdateWithoutUserInput = {
   tenant?: Prisma.TenantUpdateOneRequiredWithoutMembershipsNestedInput
   role?: Prisma.RoleUpdateOneRequiredWithoutMembershipsNestedInput
   roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutMembershipNestedInput
+  mealEntries?: Prisma.MemberMealEntryUpdateManyWithoutMembershipNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutMembershipNestedInput
+  hostedGuestMeals?: Prisma.GuestMealUpdateManyWithoutHostMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutUserInput = {
@@ -1012,6 +1396,9 @@ export type MembershipUncheckedUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutMembershipNestedInput
+  mealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutMembershipNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutMembershipNestedInput
+  hostedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutHostMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateManyWithoutUserInput = {
@@ -1061,6 +1448,9 @@ export type MembershipUpdateWithoutTenantInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutMembershipsNestedInput
   role?: Prisma.RoleUpdateOneRequiredWithoutMembershipsNestedInput
   roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutMembershipNestedInput
+  mealEntries?: Prisma.MemberMealEntryUpdateManyWithoutMembershipNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutMembershipNestedInput
+  hostedGuestMeals?: Prisma.GuestMealUpdateManyWithoutHostMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutTenantInput = {
@@ -1078,6 +1468,9 @@ export type MembershipUncheckedUpdateWithoutTenantInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutMembershipNestedInput
+  mealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutMembershipNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutMembershipNestedInput
+  hostedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutHostMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateManyWithoutTenantInput = {
@@ -1126,6 +1519,9 @@ export type MembershipUpdateWithoutRoleInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutMembershipsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutMembershipsNestedInput
   roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutMembershipNestedInput
+  mealEntries?: Prisma.MemberMealEntryUpdateManyWithoutMembershipNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutMembershipNestedInput
+  hostedGuestMeals?: Prisma.GuestMealUpdateManyWithoutHostMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutRoleInput = {
@@ -1142,6 +1538,9 @@ export type MembershipUncheckedUpdateWithoutRoleInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutMembershipNestedInput
+  mealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutMembershipNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutMembershipNestedInput
+  hostedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutHostMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateManyWithoutRoleInput = {
@@ -1166,10 +1565,16 @@ export type MembershipUncheckedUpdateManyWithoutRoleInput = {
 
 export type MembershipCountOutputType = {
   roomAssignments: number
+  mealEntries: number
+  mealOffRequests: number
+  hostedGuestMeals: number
 }
 
 export type MembershipCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   roomAssignments?: boolean | MembershipCountOutputTypeCountRoomAssignmentsArgs
+  mealEntries?: boolean | MembershipCountOutputTypeCountMealEntriesArgs
+  mealOffRequests?: boolean | MembershipCountOutputTypeCountMealOffRequestsArgs
+  hostedGuestMeals?: boolean | MembershipCountOutputTypeCountHostedGuestMealsArgs
 }
 
 /**
@@ -1187,6 +1592,27 @@ export type MembershipCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.E
  */
 export type MembershipCountOutputTypeCountRoomAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.RoomAssignmentWhereInput
+}
+
+/**
+ * MembershipCountOutputType without action
+ */
+export type MembershipCountOutputTypeCountMealEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MemberMealEntryWhereInput
+}
+
+/**
+ * MembershipCountOutputType without action
+ */
+export type MembershipCountOutputTypeCountMealOffRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MealOffRequestWhereInput
+}
+
+/**
+ * MembershipCountOutputType without action
+ */
+export type MembershipCountOutputTypeCountHostedGuestMealsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GuestMealWhereInput
 }
 
 
@@ -1209,6 +1635,9 @@ export type MembershipSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   role?: boolean | Prisma.RoleDefaultArgs<ExtArgs>
   roomAssignments?: boolean | Prisma.Membership$roomAssignmentsArgs<ExtArgs>
+  mealEntries?: boolean | Prisma.Membership$mealEntriesArgs<ExtArgs>
+  mealOffRequests?: boolean | Prisma.Membership$mealOffRequestsArgs<ExtArgs>
+  hostedGuestMeals?: boolean | Prisma.Membership$hostedGuestMealsArgs<ExtArgs>
   _count?: boolean | Prisma.MembershipCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["membership"]>
 
@@ -1275,6 +1704,9 @@ export type MembershipInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   role?: boolean | Prisma.RoleDefaultArgs<ExtArgs>
   roomAssignments?: boolean | Prisma.Membership$roomAssignmentsArgs<ExtArgs>
+  mealEntries?: boolean | Prisma.Membership$mealEntriesArgs<ExtArgs>
+  mealOffRequests?: boolean | Prisma.Membership$mealOffRequestsArgs<ExtArgs>
+  hostedGuestMeals?: boolean | Prisma.Membership$hostedGuestMealsArgs<ExtArgs>
   _count?: boolean | Prisma.MembershipCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MembershipIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1295,6 +1727,9 @@ export type $MembershipPayload<ExtArgs extends runtime.Types.Extensions.Internal
     tenant: Prisma.$TenantPayload<ExtArgs>
     role: Prisma.$RolePayload<ExtArgs>
     roomAssignments: Prisma.$RoomAssignmentPayload<ExtArgs>[]
+    mealEntries: Prisma.$MemberMealEntryPayload<ExtArgs>[]
+    mealOffRequests: Prisma.$MealOffRequestPayload<ExtArgs>[]
+    hostedGuestMeals: Prisma.$GuestMealPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1709,6 +2144,9 @@ export interface Prisma__MembershipClient<T, Null = never, ExtArgs extends runti
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   role<T extends Prisma.RoleDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RoleDefaultArgs<ExtArgs>>): Prisma.Prisma__RoleClient<runtime.Types.Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   roomAssignments<T extends Prisma.Membership$roomAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Membership$roomAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  mealEntries<T extends Prisma.Membership$mealEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Membership$mealEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberMealEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  mealOffRequests<T extends Prisma.Membership$mealOffRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Membership$mealOffRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MealOffRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  hostedGuestMeals<T extends Prisma.Membership$hostedGuestMealsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Membership$hostedGuestMealsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GuestMealPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2174,6 +2612,78 @@ export type Membership$roomAssignmentsArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.RoomAssignmentScalarFieldEnum | Prisma.RoomAssignmentScalarFieldEnum[]
+}
+
+/**
+ * Membership.mealEntries
+ */
+export type Membership$mealEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MemberMealEntry
+   */
+  select?: Prisma.MemberMealEntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MemberMealEntry
+   */
+  omit?: Prisma.MemberMealEntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberMealEntryInclude<ExtArgs> | null
+  where?: Prisma.MemberMealEntryWhereInput
+  orderBy?: Prisma.MemberMealEntryOrderByWithRelationInput | Prisma.MemberMealEntryOrderByWithRelationInput[]
+  cursor?: Prisma.MemberMealEntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MemberMealEntryScalarFieldEnum | Prisma.MemberMealEntryScalarFieldEnum[]
+}
+
+/**
+ * Membership.mealOffRequests
+ */
+export type Membership$mealOffRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MealOffRequest
+   */
+  select?: Prisma.MealOffRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MealOffRequest
+   */
+  omit?: Prisma.MealOffRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MealOffRequestInclude<ExtArgs> | null
+  where?: Prisma.MealOffRequestWhereInput
+  orderBy?: Prisma.MealOffRequestOrderByWithRelationInput | Prisma.MealOffRequestOrderByWithRelationInput[]
+  cursor?: Prisma.MealOffRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MealOffRequestScalarFieldEnum | Prisma.MealOffRequestScalarFieldEnum[]
+}
+
+/**
+ * Membership.hostedGuestMeals
+ */
+export type Membership$hostedGuestMealsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GuestMeal
+   */
+  select?: Prisma.GuestMealSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GuestMeal
+   */
+  omit?: Prisma.GuestMealOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuestMealInclude<ExtArgs> | null
+  where?: Prisma.GuestMealWhereInput
+  orderBy?: Prisma.GuestMealOrderByWithRelationInput | Prisma.GuestMealOrderByWithRelationInput[]
+  cursor?: Prisma.GuestMealWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GuestMealScalarFieldEnum | Prisma.GuestMealScalarFieldEnum[]
 }
 
 /**

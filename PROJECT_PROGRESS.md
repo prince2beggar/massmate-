@@ -14,8 +14,8 @@
 | **Task 29–30** | Mess Admin Dashboard Foundation + Overview & Analytics | **Completed and Verified** | 2026-11-22 | Master layout, 17-item nav, 6 real KPI cards, poisha financial overview, income/expense chart, audit feed, role-gated quick actions, 16 placeholder views. | 13/13 Unit/Integration Tests Passed; Production build passed. | Proceed to Task 31 |
 | **Task 31** | Member Management System | **Completed and Verified** | 2026-11-22 | Member directory, onboarding/invite flow, profile views, lifecycle/status changes, audit trails, tenant isolation. | 12/12 Automated Tests Passed; Production build passed. | Proceed to Task 32 |
 | **Task 32** | Room Management & Rental Management | **Completed and Verified** | 2026-11-22 | Room inventory, bed assignments, capacity validation, transfer/move-out workflows, rental listings, booking requests, availability calendar. | 16/16 Automated Tests Passed (41/41 suite); Production build passed. | Proceed to Task 33 |
-| **Task 33** | Meal Management System | **In Progress** | — | Fixed/flexible meal schedules, daily logs, meal-off cutoffs in Asia/Dhaka, guest meals, meal rate math. | Pending | Execute Task 33 |
-| **Task 34** | Bazar and Expense Management | **Pending** | — | Expense categories, itemized bazar purchases, receipt attachments, review/approval workflow. | Pending | Awaiting Task 33 |
+| **Task 33** | Meal Management System | **Completed and Verified** | 2026-11-22 | Fixed/flexible meal schedules, daily logs, meal-off cutoffs in Asia/Dhaka, guest meals, zero-drift meal rate calculation, period locking. | 15/15 Automated Tests Passed (56/56 suite); Production build passed. | Proceed to Task 34 |
+| **Task 34** | Bazar and Expense Management | **In Progress** | — | Expense categories, itemized bazar purchases, receipt attachments, review/approval workflow. | Pending | Execute Task 34 |
 | **Task 35** | Finance, Billing and Payment Management | **Pending** | — | Monthly charges, member statements, payment recording & verification, period locking. | Pending | Awaiting Task 34 |
 | **Task 36** | Mess Settings, Roles & Permissions, Audit Logs | **Pending** | — | Settings management, custom RBAC permissions matrix, immutable audit log explorer. | Pending | Awaiting Task 35 |
 
@@ -87,3 +87,42 @@
     - Navigation integration: `rooms` and `rental` marked active (`isImplemented: true`) in sidebar and quick actions.
   - Automated test suite (`server/rooms/room-management.test.ts`): 16 comprehensive unit and integration tests covering all requirements, edge cases, invariants, and multi-tenant isolation.
 - **Verification:** TypeScript: 0 errors; ESLint: 0 errors, 0 warnings; 41/41 unit/integration tests passing (100%); Next.js production build: 47/47 routes compiled cleanly.
+
+### Task 33: Meal Management System
+- **Status:** Completed and Verified
+- **Date:** 2026-11-22
+- **Key Deliverables:**
+  - Prisma Schema expansion: `MealSetting`, `MealDailyLog`, `MemberMealEntry`, `MealOffRequest`, `GuestMeal`, and `MealPeriodLock` models with enums (`MealSystemType`, `MealType`, `MealOffStatus`, `GuestMealChargeType`).
+  - Timezone & Calculation Utility (`server/meals/meal-utils.ts`):
+    - `Asia/Dhaka` timezone date/time resolvers.
+    - Cutoff validation logic enforcing evening deadlines and meal-specific cutoffs.
+    - Zero-drift integer poisha meal rate calculator: $\text{Meal Rate} = \frac{\text{Eligible Expenses}}{\text{Total Chargeable Units}}$.
+    - Safe division guard against zero units.
+  - Backend `MealService` (`server/meals/meal-service.ts`):
+    - Full multi-tenant scoping and audit logging integration.
+    - Configuration management for Flexible vs. Fixed models, customizable weights (e.g. 0.5 for breakfast, 1.0 for lunch/dinner), and cutoff schedules.
+    - Daily meal sheet management: saves daily menus, records member counts, calculates exact weighted units.
+    - Meal-off workflow: cutoff validation, auto-approval rules, zeroing of meal counts for approved date ranges, mandatory reason for rejections.
+    - Guest meal tracking: separate from resident meal counts, exact poisha billing, immediate cash payment vs. host resident billing.
+    - Transparent meal rate calculation: filters eligible expense categories (e.g. Bazar, Grocery, Cook Salary) and excludes ineligible categories (e.g. rent, wifi).
+    - Period locking: freezes monthly calculations, blocks edits to historical meal entries, and supports auditable unlocks with mandatory reasons.
+    - Member-by-member monthly meal summary matrix.
+  - REST API routes (7 endpoints):
+    - `/api/v1/mess/[tenantSlug]/meals/settings` (GET, PATCH)
+    - `/api/v1/mess/[tenantSlug]/meals/daily` (GET sheet, POST save entries)
+    - `/api/v1/mess/[tenantSlug]/meals/off-requests` (GET list, POST create)
+    - `/api/v1/mess/[tenantSlug]/meals/off-requests/[id]/review` (PATCH review)
+    - `/api/v1/mess/[tenantSlug]/meals/guest` (GET list, POST record)
+    - `/api/v1/mess/[tenantSlug]/meals/rate` (GET calculation, POST lock/unlock)
+    - `/api/v1/mess/[tenantSlug]/meals/summary` (GET monthly matrix)
+  - UI components and pages:
+    - `/mess/[tenantSlug]/meals`: Meals Workspace with 5 dedicated operational tabs:
+      - Daily Sheet & Menus (`DailyMealSheetView` with Prev/Next day nav, menu notes, summary counters, responsive member table).
+      - Meal-Off Requests (`MealOffRequestsView` with status filters, review badges, and review modal).
+      - Guest Meals (`GuestMealsView` with KPI counters, guest ledger, and record modal).
+      - Monthly Summary & Meal Rate (`MonthlyMealSummaryView` with prominent formula card, breakdown metrics, period lock action, and printable matrix).
+      - Settings & Rules (`MealSettingsView` with system toggles, weights, Dhaka cutoffs, and expense category selectors).
+    - Modals: `RecordGuestMealModal`, `CreateMealOffModal`, `ReviewMealOffModal`, `PeriodLockModal`.
+    - Navigation integration: `meals` marked active (`isImplemented: true`) in sidebar and quick actions.
+  - Automated test suite (`server/meals/meal-management.test.ts`): 15 comprehensive unit and integration tests covering all requirements, edge cases, invariants, and multi-tenant isolation.
+- **Verification:** TypeScript: 0 errors; ESLint: 0 errors, 0 warnings; 56/56 total regression tests passing (100%); Next.js production build: 47/47 routes compiled cleanly.

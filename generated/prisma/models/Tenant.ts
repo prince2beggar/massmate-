@@ -299,6 +299,12 @@ export type TenantWhereInput = {
   roomAssignments?: Prisma.RoomAssignmentListRelationFilter
   rentalListings?: Prisma.RentalListingListRelationFilter
   bookingRequests?: Prisma.BookingRequestListRelationFilter
+  mealSetting?: Prisma.XOR<Prisma.MealSettingNullableScalarRelationFilter, Prisma.MealSettingWhereInput> | null
+  mealDailyLogs?: Prisma.MealDailyLogListRelationFilter
+  memberMealEntries?: Prisma.MemberMealEntryListRelationFilter
+  mealOffRequests?: Prisma.MealOffRequestListRelationFilter
+  guestMeals?: Prisma.GuestMealListRelationFilter
+  mealPeriodLocks?: Prisma.MealPeriodLockListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
@@ -333,6 +339,12 @@ export type TenantOrderByWithRelationInput = {
   roomAssignments?: Prisma.RoomAssignmentOrderByRelationAggregateInput
   rentalListings?: Prisma.RentalListingOrderByRelationAggregateInput
   bookingRequests?: Prisma.BookingRequestOrderByRelationAggregateInput
+  mealSetting?: Prisma.MealSettingOrderByWithRelationInput
+  mealDailyLogs?: Prisma.MealDailyLogOrderByRelationAggregateInput
+  memberMealEntries?: Prisma.MemberMealEntryOrderByRelationAggregateInput
+  mealOffRequests?: Prisma.MealOffRequestOrderByRelationAggregateInput
+  guestMeals?: Prisma.GuestMealOrderByRelationAggregateInput
+  mealPeriodLocks?: Prisma.MealPeriodLockOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -370,6 +382,12 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   roomAssignments?: Prisma.RoomAssignmentListRelationFilter
   rentalListings?: Prisma.RentalListingListRelationFilter
   bookingRequests?: Prisma.BookingRequestListRelationFilter
+  mealSetting?: Prisma.XOR<Prisma.MealSettingNullableScalarRelationFilter, Prisma.MealSettingWhereInput> | null
+  mealDailyLogs?: Prisma.MealDailyLogListRelationFilter
+  memberMealEntries?: Prisma.MemberMealEntryListRelationFilter
+  mealOffRequests?: Prisma.MealOffRequestListRelationFilter
+  guestMeals?: Prisma.GuestMealListRelationFilter
+  mealPeriodLocks?: Prisma.MealPeriodLockListRelationFilter
 }, "id" | "slug">
 
 export type TenantOrderByWithAggregationInput = {
@@ -452,6 +470,12 @@ export type TenantCreateInput = {
   roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
@@ -486,6 +510,12 @@ export type TenantUncheckedCreateInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
@@ -520,6 +550,12 @@ export type TenantUpdateInput = {
   roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
@@ -554,6 +590,12 @@ export type TenantUncheckedUpdateInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
@@ -890,6 +932,90 @@ export type TenantUpdateOneRequiredWithoutBookingRequestsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutBookingRequestsInput, Prisma.TenantUpdateWithoutBookingRequestsInput>, Prisma.TenantUncheckedUpdateWithoutBookingRequestsInput>
 }
 
+export type TenantCreateNestedOneWithoutMealSettingInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutMealSettingInput, Prisma.TenantUncheckedCreateWithoutMealSettingInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutMealSettingInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutMealSettingNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutMealSettingInput, Prisma.TenantUncheckedCreateWithoutMealSettingInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutMealSettingInput
+  upsert?: Prisma.TenantUpsertWithoutMealSettingInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutMealSettingInput, Prisma.TenantUpdateWithoutMealSettingInput>, Prisma.TenantUncheckedUpdateWithoutMealSettingInput>
+}
+
+export type TenantCreateNestedOneWithoutMealDailyLogsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutMealDailyLogsInput, Prisma.TenantUncheckedCreateWithoutMealDailyLogsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutMealDailyLogsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutMealDailyLogsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutMealDailyLogsInput, Prisma.TenantUncheckedCreateWithoutMealDailyLogsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutMealDailyLogsInput
+  upsert?: Prisma.TenantUpsertWithoutMealDailyLogsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutMealDailyLogsInput, Prisma.TenantUpdateWithoutMealDailyLogsInput>, Prisma.TenantUncheckedUpdateWithoutMealDailyLogsInput>
+}
+
+export type TenantCreateNestedOneWithoutMemberMealEntriesInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutMemberMealEntriesInput, Prisma.TenantUncheckedCreateWithoutMemberMealEntriesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutMemberMealEntriesInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutMemberMealEntriesNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutMemberMealEntriesInput, Prisma.TenantUncheckedCreateWithoutMemberMealEntriesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutMemberMealEntriesInput
+  upsert?: Prisma.TenantUpsertWithoutMemberMealEntriesInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutMemberMealEntriesInput, Prisma.TenantUpdateWithoutMemberMealEntriesInput>, Prisma.TenantUncheckedUpdateWithoutMemberMealEntriesInput>
+}
+
+export type TenantCreateNestedOneWithoutMealOffRequestsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutMealOffRequestsInput, Prisma.TenantUncheckedCreateWithoutMealOffRequestsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutMealOffRequestsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutMealOffRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutMealOffRequestsInput, Prisma.TenantUncheckedCreateWithoutMealOffRequestsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutMealOffRequestsInput
+  upsert?: Prisma.TenantUpsertWithoutMealOffRequestsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutMealOffRequestsInput, Prisma.TenantUpdateWithoutMealOffRequestsInput>, Prisma.TenantUncheckedUpdateWithoutMealOffRequestsInput>
+}
+
+export type TenantCreateNestedOneWithoutGuestMealsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutGuestMealsInput, Prisma.TenantUncheckedCreateWithoutGuestMealsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutGuestMealsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutGuestMealsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutGuestMealsInput, Prisma.TenantUncheckedCreateWithoutGuestMealsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutGuestMealsInput
+  upsert?: Prisma.TenantUpsertWithoutGuestMealsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutGuestMealsInput, Prisma.TenantUpdateWithoutGuestMealsInput>, Prisma.TenantUncheckedUpdateWithoutGuestMealsInput>
+}
+
+export type TenantCreateNestedOneWithoutMealPeriodLocksInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutMealPeriodLocksInput, Prisma.TenantUncheckedCreateWithoutMealPeriodLocksInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutMealPeriodLocksInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutMealPeriodLocksNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutMealPeriodLocksInput, Prisma.TenantUncheckedCreateWithoutMealPeriodLocksInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutMealPeriodLocksInput
+  upsert?: Prisma.TenantUpsertWithoutMealPeriodLocksInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutMealPeriodLocksInput, Prisma.TenantUpdateWithoutMealPeriodLocksInput>, Prisma.TenantUncheckedUpdateWithoutMealPeriodLocksInput>
+}
+
 export type TenantCreateWithoutVerificationInput = {
   id?: string
   name: string
@@ -921,6 +1047,12 @@ export type TenantCreateWithoutVerificationInput = {
   roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutVerificationInput = {
@@ -954,6 +1086,12 @@ export type TenantUncheckedCreateWithoutVerificationInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutVerificationInput = {
@@ -1003,6 +1141,12 @@ export type TenantUpdateWithoutVerificationInput = {
   roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutVerificationInput = {
@@ -1036,6 +1180,12 @@ export type TenantUncheckedUpdateWithoutVerificationInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRolesInput = {
@@ -1069,6 +1219,12 @@ export type TenantCreateWithoutRolesInput = {
   roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRolesInput = {
@@ -1102,6 +1258,12 @@ export type TenantUncheckedCreateWithoutRolesInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRolesInput = {
@@ -1151,6 +1313,12 @@ export type TenantUpdateWithoutRolesInput = {
   roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRolesInput = {
@@ -1184,6 +1352,12 @@ export type TenantUncheckedUpdateWithoutRolesInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMembershipsInput = {
@@ -1217,6 +1391,12 @@ export type TenantCreateWithoutMembershipsInput = {
   roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMembershipsInput = {
@@ -1250,6 +1430,12 @@ export type TenantUncheckedCreateWithoutMembershipsInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMembershipsInput = {
@@ -1299,6 +1485,12 @@ export type TenantUpdateWithoutMembershipsInput = {
   roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMembershipsInput = {
@@ -1332,6 +1524,12 @@ export type TenantUncheckedUpdateWithoutMembershipsInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAuditLogsInput = {
@@ -1365,6 +1563,12 @@ export type TenantCreateWithoutAuditLogsInput = {
   roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAuditLogsInput = {
@@ -1398,6 +1602,12 @@ export type TenantUncheckedCreateWithoutAuditLogsInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAuditLogsInput = {
@@ -1447,6 +1657,12 @@ export type TenantUpdateWithoutAuditLogsInput = {
   roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAuditLogsInput = {
@@ -1480,6 +1696,12 @@ export type TenantUncheckedUpdateWithoutAuditLogsInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSubscriptionInput = {
@@ -1513,6 +1735,12 @@ export type TenantCreateWithoutSubscriptionInput = {
   roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSubscriptionInput = {
@@ -1546,6 +1774,12 @@ export type TenantUncheckedCreateWithoutSubscriptionInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSubscriptionInput = {
@@ -1595,6 +1829,12 @@ export type TenantUpdateWithoutSubscriptionInput = {
   roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSubscriptionInput = {
@@ -1628,6 +1868,12 @@ export type TenantUncheckedUpdateWithoutSubscriptionInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInvoicesInput = {
@@ -1661,6 +1907,12 @@ export type TenantCreateWithoutInvoicesInput = {
   roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInvoicesInput = {
@@ -1694,6 +1946,12 @@ export type TenantUncheckedCreateWithoutInvoicesInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInvoicesInput = {
@@ -1743,6 +2001,12 @@ export type TenantUpdateWithoutInvoicesInput = {
   roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInvoicesInput = {
@@ -1776,6 +2040,12 @@ export type TenantUncheckedUpdateWithoutInvoicesInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDomainsInput = {
@@ -1809,6 +2079,12 @@ export type TenantCreateWithoutDomainsInput = {
   roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDomainsInput = {
@@ -1842,6 +2118,12 @@ export type TenantUncheckedCreateWithoutDomainsInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDomainsInput = {
@@ -1891,6 +2173,12 @@ export type TenantUpdateWithoutDomainsInput = {
   roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDomainsInput = {
@@ -1924,6 +2212,12 @@ export type TenantUncheckedUpdateWithoutDomainsInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSupportTicketsInput = {
@@ -1957,6 +2251,12 @@ export type TenantCreateWithoutSupportTicketsInput = {
   roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSupportTicketsInput = {
@@ -1990,6 +2290,12 @@ export type TenantUncheckedCreateWithoutSupportTicketsInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSupportTicketsInput = {
@@ -2039,6 +2345,12 @@ export type TenantUpdateWithoutSupportTicketsInput = {
   roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSupportTicketsInput = {
@@ -2072,6 +2384,12 @@ export type TenantUncheckedUpdateWithoutSupportTicketsInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRoomsInput = {
@@ -2105,6 +2423,12 @@ export type TenantCreateWithoutRoomsInput = {
   roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRoomsInput = {
@@ -2138,6 +2462,12 @@ export type TenantUncheckedCreateWithoutRoomsInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRoomsInput = {
@@ -2187,6 +2517,12 @@ export type TenantUpdateWithoutRoomsInput = {
   roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRoomsInput = {
@@ -2220,6 +2556,12 @@ export type TenantUncheckedUpdateWithoutRoomsInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBedsInput = {
@@ -2253,6 +2595,12 @@ export type TenantCreateWithoutBedsInput = {
   roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBedsInput = {
@@ -2286,6 +2634,12 @@ export type TenantUncheckedCreateWithoutBedsInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBedsInput = {
@@ -2335,6 +2689,12 @@ export type TenantUpdateWithoutBedsInput = {
   roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBedsInput = {
@@ -2368,6 +2728,12 @@ export type TenantUncheckedUpdateWithoutBedsInput = {
   roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRoomAssignmentsInput = {
@@ -2401,6 +2767,12 @@ export type TenantCreateWithoutRoomAssignmentsInput = {
   beds?: Prisma.BedCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRoomAssignmentsInput = {
@@ -2434,6 +2806,12 @@ export type TenantUncheckedCreateWithoutRoomAssignmentsInput = {
   beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRoomAssignmentsInput = {
@@ -2483,6 +2861,12 @@ export type TenantUpdateWithoutRoomAssignmentsInput = {
   beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRoomAssignmentsInput = {
@@ -2516,6 +2900,12 @@ export type TenantUncheckedUpdateWithoutRoomAssignmentsInput = {
   beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRentalListingsInput = {
@@ -2549,6 +2939,12 @@ export type TenantCreateWithoutRentalListingsInput = {
   beds?: Prisma.BedCreateNestedManyWithoutTenantInput
   roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRentalListingsInput = {
@@ -2582,6 +2978,12 @@ export type TenantUncheckedCreateWithoutRentalListingsInput = {
   beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
   roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
   bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRentalListingsInput = {
@@ -2631,6 +3033,12 @@ export type TenantUpdateWithoutRentalListingsInput = {
   beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
   roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRentalListingsInput = {
@@ -2664,6 +3072,12 @@ export type TenantUncheckedUpdateWithoutRentalListingsInput = {
   beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
   roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
   bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBookingRequestsInput = {
@@ -2697,6 +3111,12 @@ export type TenantCreateWithoutBookingRequestsInput = {
   beds?: Prisma.BedCreateNestedManyWithoutTenantInput
   roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBookingRequestsInput = {
@@ -2730,6 +3150,12 @@ export type TenantUncheckedCreateWithoutBookingRequestsInput = {
   beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
   roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
   rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBookingRequestsInput = {
@@ -2779,6 +3205,12 @@ export type TenantUpdateWithoutBookingRequestsInput = {
   beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
   roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBookingRequestsInput = {
@@ -2812,6 +3244,1044 @@ export type TenantUncheckedUpdateWithoutBookingRequestsInput = {
   beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
   roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
   rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutMealSettingInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutMealSettingInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutMealSettingInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutMealSettingInput, Prisma.TenantUncheckedCreateWithoutMealSettingInput>
+}
+
+export type TenantUpsertWithoutMealSettingInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutMealSettingInput, Prisma.TenantUncheckedUpdateWithoutMealSettingInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutMealSettingInput, Prisma.TenantUncheckedCreateWithoutMealSettingInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutMealSettingInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutMealSettingInput, Prisma.TenantUncheckedUpdateWithoutMealSettingInput>
+}
+
+export type TenantUpdateWithoutMealSettingInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutMealSettingInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutMealDailyLogsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutMealDailyLogsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutMealDailyLogsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutMealDailyLogsInput, Prisma.TenantUncheckedCreateWithoutMealDailyLogsInput>
+}
+
+export type TenantUpsertWithoutMealDailyLogsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutMealDailyLogsInput, Prisma.TenantUncheckedUpdateWithoutMealDailyLogsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutMealDailyLogsInput, Prisma.TenantUncheckedCreateWithoutMealDailyLogsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutMealDailyLogsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutMealDailyLogsInput, Prisma.TenantUncheckedUpdateWithoutMealDailyLogsInput>
+}
+
+export type TenantUpdateWithoutMealDailyLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutMealDailyLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutMemberMealEntriesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutMemberMealEntriesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutMemberMealEntriesInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutMemberMealEntriesInput, Prisma.TenantUncheckedCreateWithoutMemberMealEntriesInput>
+}
+
+export type TenantUpsertWithoutMemberMealEntriesInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutMemberMealEntriesInput, Prisma.TenantUncheckedUpdateWithoutMemberMealEntriesInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutMemberMealEntriesInput, Prisma.TenantUncheckedCreateWithoutMemberMealEntriesInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutMemberMealEntriesInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutMemberMealEntriesInput, Prisma.TenantUncheckedUpdateWithoutMemberMealEntriesInput>
+}
+
+export type TenantUpdateWithoutMemberMealEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutMemberMealEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutMealOffRequestsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutMealOffRequestsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutMealOffRequestsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutMealOffRequestsInput, Prisma.TenantUncheckedCreateWithoutMealOffRequestsInput>
+}
+
+export type TenantUpsertWithoutMealOffRequestsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutMealOffRequestsInput, Prisma.TenantUncheckedUpdateWithoutMealOffRequestsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutMealOffRequestsInput, Prisma.TenantUncheckedCreateWithoutMealOffRequestsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutMealOffRequestsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutMealOffRequestsInput, Prisma.TenantUncheckedUpdateWithoutMealOffRequestsInput>
+}
+
+export type TenantUpdateWithoutMealOffRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutMealOffRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutGuestMealsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutGuestMealsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutGuestMealsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutGuestMealsInput, Prisma.TenantUncheckedCreateWithoutGuestMealsInput>
+}
+
+export type TenantUpsertWithoutGuestMealsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutGuestMealsInput, Prisma.TenantUncheckedUpdateWithoutGuestMealsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutGuestMealsInput, Prisma.TenantUncheckedCreateWithoutGuestMealsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutGuestMealsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutGuestMealsInput, Prisma.TenantUncheckedUpdateWithoutGuestMealsInput>
+}
+
+export type TenantUpdateWithoutGuestMealsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutGuestMealsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutMealPeriodLocksInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutMealPeriodLocksInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutMealPeriodLocksInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutMealPeriodLocksInput, Prisma.TenantUncheckedCreateWithoutMealPeriodLocksInput>
+}
+
+export type TenantUpsertWithoutMealPeriodLocksInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutMealPeriodLocksInput, Prisma.TenantUncheckedUpdateWithoutMealPeriodLocksInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutMealPeriodLocksInput, Prisma.TenantUncheckedCreateWithoutMealPeriodLocksInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutMealPeriodLocksInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutMealPeriodLocksInput, Prisma.TenantUncheckedUpdateWithoutMealPeriodLocksInput>
+}
+
+export type TenantUpdateWithoutMealPeriodLocksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutMealPeriodLocksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 
@@ -2831,6 +4301,11 @@ export type TenantCountOutputType = {
   roomAssignments: number
   rentalListings: number
   bookingRequests: number
+  mealDailyLogs: number
+  memberMealEntries: number
+  mealOffRequests: number
+  guestMeals: number
+  mealPeriodLocks: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2845,6 +4320,11 @@ export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   roomAssignments?: boolean | TenantCountOutputTypeCountRoomAssignmentsArgs
   rentalListings?: boolean | TenantCountOutputTypeCountRentalListingsArgs
   bookingRequests?: boolean | TenantCountOutputTypeCountBookingRequestsArgs
+  mealDailyLogs?: boolean | TenantCountOutputTypeCountMealDailyLogsArgs
+  memberMealEntries?: boolean | TenantCountOutputTypeCountMemberMealEntriesArgs
+  mealOffRequests?: boolean | TenantCountOutputTypeCountMealOffRequestsArgs
+  guestMeals?: boolean | TenantCountOutputTypeCountGuestMealsArgs
+  mealPeriodLocks?: boolean | TenantCountOutputTypeCountMealPeriodLocksArgs
 }
 
 /**
@@ -2934,6 +4414,41 @@ export type TenantCountOutputTypeCountBookingRequestsArgs<ExtArgs extends runtim
   where?: Prisma.BookingRequestWhereInput
 }
 
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountMealDailyLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MealDailyLogWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountMemberMealEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MemberMealEntryWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountMealOffRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MealOffRequestWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountGuestMealsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GuestMealWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountMealPeriodLocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MealPeriodLockWhereInput
+}
+
 
 export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2967,6 +4482,12 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   roomAssignments?: boolean | Prisma.Tenant$roomAssignmentsArgs<ExtArgs>
   rentalListings?: boolean | Prisma.Tenant$rentalListingsArgs<ExtArgs>
   bookingRequests?: boolean | Prisma.Tenant$bookingRequestsArgs<ExtArgs>
+  mealSetting?: boolean | Prisma.Tenant$mealSettingArgs<ExtArgs>
+  mealDailyLogs?: boolean | Prisma.Tenant$mealDailyLogsArgs<ExtArgs>
+  memberMealEntries?: boolean | Prisma.Tenant$memberMealEntriesArgs<ExtArgs>
+  mealOffRequests?: boolean | Prisma.Tenant$mealOffRequestsArgs<ExtArgs>
+  guestMeals?: boolean | Prisma.Tenant$guestMealsArgs<ExtArgs>
+  mealPeriodLocks?: boolean | Prisma.Tenant$mealPeriodLocksArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -3048,6 +4569,12 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   roomAssignments?: boolean | Prisma.Tenant$roomAssignmentsArgs<ExtArgs>
   rentalListings?: boolean | Prisma.Tenant$rentalListingsArgs<ExtArgs>
   bookingRequests?: boolean | Prisma.Tenant$bookingRequestsArgs<ExtArgs>
+  mealSetting?: boolean | Prisma.Tenant$mealSettingArgs<ExtArgs>
+  mealDailyLogs?: boolean | Prisma.Tenant$mealDailyLogsArgs<ExtArgs>
+  memberMealEntries?: boolean | Prisma.Tenant$memberMealEntriesArgs<ExtArgs>
+  mealOffRequests?: boolean | Prisma.Tenant$mealOffRequestsArgs<ExtArgs>
+  guestMeals?: boolean | Prisma.Tenant$guestMealsArgs<ExtArgs>
+  mealPeriodLocks?: boolean | Prisma.Tenant$mealPeriodLocksArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -3069,6 +4596,12 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     roomAssignments: Prisma.$RoomAssignmentPayload<ExtArgs>[]
     rentalListings: Prisma.$RentalListingPayload<ExtArgs>[]
     bookingRequests: Prisma.$BookingRequestPayload<ExtArgs>[]
+    mealSetting: Prisma.$MealSettingPayload<ExtArgs> | null
+    mealDailyLogs: Prisma.$MealDailyLogPayload<ExtArgs>[]
+    memberMealEntries: Prisma.$MemberMealEntryPayload<ExtArgs>[]
+    mealOffRequests: Prisma.$MealOffRequestPayload<ExtArgs>[]
+    guestMeals: Prisma.$GuestMealPayload<ExtArgs>[]
+    mealPeriodLocks: Prisma.$MealPeriodLockPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3496,6 +5029,12 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   roomAssignments<T extends Prisma.Tenant$roomAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$roomAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   rentalListings<T extends Prisma.Tenant$rentalListingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$rentalListingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RentalListingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   bookingRequests<T extends Prisma.Tenant$bookingRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$bookingRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookingRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  mealSetting<T extends Prisma.Tenant$mealSettingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$mealSettingArgs<ExtArgs>>): Prisma.Prisma__MealSettingClient<runtime.Types.Result.GetResult<Prisma.$MealSettingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  mealDailyLogs<T extends Prisma.Tenant$mealDailyLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$mealDailyLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MealDailyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  memberMealEntries<T extends Prisma.Tenant$memberMealEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$memberMealEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberMealEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  mealOffRequests<T extends Prisma.Tenant$mealOffRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$mealOffRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MealOffRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  guestMeals<T extends Prisma.Tenant$guestMealsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$guestMealsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GuestMealPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  mealPeriodLocks<T extends Prisma.Tenant$mealPeriodLocksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$mealPeriodLocksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MealPeriodLockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4235,6 +5774,145 @@ export type Tenant$bookingRequestsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.BookingRequestScalarFieldEnum | Prisma.BookingRequestScalarFieldEnum[]
+}
+
+/**
+ * Tenant.mealSetting
+ */
+export type Tenant$mealSettingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MealSetting
+   */
+  select?: Prisma.MealSettingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MealSetting
+   */
+  omit?: Prisma.MealSettingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MealSettingInclude<ExtArgs> | null
+  where?: Prisma.MealSettingWhereInput
+}
+
+/**
+ * Tenant.mealDailyLogs
+ */
+export type Tenant$mealDailyLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MealDailyLog
+   */
+  select?: Prisma.MealDailyLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MealDailyLog
+   */
+  omit?: Prisma.MealDailyLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MealDailyLogInclude<ExtArgs> | null
+  where?: Prisma.MealDailyLogWhereInput
+  orderBy?: Prisma.MealDailyLogOrderByWithRelationInput | Prisma.MealDailyLogOrderByWithRelationInput[]
+  cursor?: Prisma.MealDailyLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MealDailyLogScalarFieldEnum | Prisma.MealDailyLogScalarFieldEnum[]
+}
+
+/**
+ * Tenant.memberMealEntries
+ */
+export type Tenant$memberMealEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MemberMealEntry
+   */
+  select?: Prisma.MemberMealEntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MemberMealEntry
+   */
+  omit?: Prisma.MemberMealEntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberMealEntryInclude<ExtArgs> | null
+  where?: Prisma.MemberMealEntryWhereInput
+  orderBy?: Prisma.MemberMealEntryOrderByWithRelationInput | Prisma.MemberMealEntryOrderByWithRelationInput[]
+  cursor?: Prisma.MemberMealEntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MemberMealEntryScalarFieldEnum | Prisma.MemberMealEntryScalarFieldEnum[]
+}
+
+/**
+ * Tenant.mealOffRequests
+ */
+export type Tenant$mealOffRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MealOffRequest
+   */
+  select?: Prisma.MealOffRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MealOffRequest
+   */
+  omit?: Prisma.MealOffRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MealOffRequestInclude<ExtArgs> | null
+  where?: Prisma.MealOffRequestWhereInput
+  orderBy?: Prisma.MealOffRequestOrderByWithRelationInput | Prisma.MealOffRequestOrderByWithRelationInput[]
+  cursor?: Prisma.MealOffRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MealOffRequestScalarFieldEnum | Prisma.MealOffRequestScalarFieldEnum[]
+}
+
+/**
+ * Tenant.guestMeals
+ */
+export type Tenant$guestMealsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GuestMeal
+   */
+  select?: Prisma.GuestMealSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GuestMeal
+   */
+  omit?: Prisma.GuestMealOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GuestMealInclude<ExtArgs> | null
+  where?: Prisma.GuestMealWhereInput
+  orderBy?: Prisma.GuestMealOrderByWithRelationInput | Prisma.GuestMealOrderByWithRelationInput[]
+  cursor?: Prisma.GuestMealWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GuestMealScalarFieldEnum | Prisma.GuestMealScalarFieldEnum[]
+}
+
+/**
+ * Tenant.mealPeriodLocks
+ */
+export type Tenant$mealPeriodLocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MealPeriodLock
+   */
+  select?: Prisma.MealPeriodLockSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MealPeriodLock
+   */
+  omit?: Prisma.MealPeriodLockOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MealPeriodLockInclude<ExtArgs> | null
+  where?: Prisma.MealPeriodLockWhereInput
+  orderBy?: Prisma.MealPeriodLockOrderByWithRelationInput | Prisma.MealPeriodLockOrderByWithRelationInput[]
+  cursor?: Prisma.MealPeriodLockWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MealPeriodLockScalarFieldEnum | Prisma.MealPeriodLockScalarFieldEnum[]
 }
 
 /**

@@ -875,6 +875,155 @@ export type EnumBookingPaymentStatusWithAggregatesFilter<$PrismaModel = never> =
   _max?: Prisma.NestedEnumBookingPaymentStatusFilter<$PrismaModel>
 }
 
+export type EnumMealSystemTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.MealSystemType | Prisma.EnumMealSystemTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.MealSystemType[] | Prisma.ListEnumMealSystemTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MealSystemType[] | Prisma.ListEnumMealSystemTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMealSystemTypeFilter<$PrismaModel> | $Enums.MealSystemType
+}
+
+export type EnumGuestMealChargeTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.GuestMealChargeType | Prisma.EnumGuestMealChargeTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.GuestMealChargeType[] | Prisma.ListEnumGuestMealChargeTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GuestMealChargeType[] | Prisma.ListEnumGuestMealChargeTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGuestMealChargeTypeFilter<$PrismaModel> | $Enums.GuestMealChargeType
+}
+
+export type BigIntFilter<$PrismaModel = never> = {
+  equals?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  in?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
+  notIn?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
+  lt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  lte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBigIntFilter<$PrismaModel> | bigint | number
+}
+
+export type EnumMealSystemTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MealSystemType | Prisma.EnumMealSystemTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.MealSystemType[] | Prisma.ListEnumMealSystemTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MealSystemType[] | Prisma.ListEnumMealSystemTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMealSystemTypeWithAggregatesFilter<$PrismaModel> | $Enums.MealSystemType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMealSystemTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMealSystemTypeFilter<$PrismaModel>
+}
+
+export type EnumGuestMealChargeTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GuestMealChargeType | Prisma.EnumGuestMealChargeTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.GuestMealChargeType[] | Prisma.ListEnumGuestMealChargeTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GuestMealChargeType[] | Prisma.ListEnumGuestMealChargeTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGuestMealChargeTypeWithAggregatesFilter<$PrismaModel> | $Enums.GuestMealChargeType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGuestMealChargeTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGuestMealChargeTypeFilter<$PrismaModel>
+}
+
+export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  in?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
+  notIn?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
+  lt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  lte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _avg?: Prisma.NestedFloatFilter<$PrismaModel>
+  _sum?: Prisma.NestedBigIntFilter<$PrismaModel>
+  _min?: Prisma.NestedBigIntFilter<$PrismaModel>
+  _max?: Prisma.NestedBigIntFilter<$PrismaModel>
+}
+
+export type EnumMealOffStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.MealOffStatus | Prisma.EnumMealOffStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.MealOffStatus[] | Prisma.ListEnumMealOffStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MealOffStatus[] | Prisma.ListEnumMealOffStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMealOffStatusFilter<$PrismaModel> | $Enums.MealOffStatus
+}
+
+export type EnumMealOffStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MealOffStatus | Prisma.EnumMealOffStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.MealOffStatus[] | Prisma.ListEnumMealOffStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MealOffStatus[] | Prisma.ListEnumMealOffStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMealOffStatusWithAggregatesFilter<$PrismaModel> | $Enums.MealOffStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMealOffStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMealOffStatusFilter<$PrismaModel>
+}
+
+export type EnumMealTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.MealType | Prisma.EnumMealTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.MealType[] | Prisma.ListEnumMealTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MealType[] | Prisma.ListEnumMealTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMealTypeFilter<$PrismaModel> | $Enums.MealType
+}
+
+export type EnumMealTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MealType | Prisma.EnumMealTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.MealType[] | Prisma.ListEnumMealTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MealType[] | Prisma.ListEnumMealTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMealTypeWithAggregatesFilter<$PrismaModel> | $Enums.MealType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMealTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMealTypeFilter<$PrismaModel>
+}
+
+export type BigIntNullableFilter<$PrismaModel = never> = {
+  equals?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel> | null
+  in?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel> | null
+  notIn?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel> | null
+  lt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  lte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
+}
+
+export type IntNullableFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.IntFieldRefInput<$PrismaModel> | null
+  in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  notIn?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  lt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  lte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedIntNullableFilter<$PrismaModel> | number | null
+}
+
+export type BigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel> | null
+  in?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel> | null
+  notIn?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel> | null
+  lt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  lte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBigIntNullableWithAggregatesFilter<$PrismaModel> | bigint | number | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _avg?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+  _sum?: Prisma.NestedBigIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedBigIntNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedBigIntNullableFilter<$PrismaModel>
+}
+
+export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.IntFieldRefInput<$PrismaModel> | null
+  in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  notIn?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  lt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  lte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _avg?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+  _sum?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedIntNullableFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -1693,6 +1842,155 @@ export type NestedEnumBookingPaymentStatusWithAggregatesFilter<$PrismaModel = ne
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumBookingPaymentStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumBookingPaymentStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumMealSystemTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.MealSystemType | Prisma.EnumMealSystemTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.MealSystemType[] | Prisma.ListEnumMealSystemTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MealSystemType[] | Prisma.ListEnumMealSystemTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMealSystemTypeFilter<$PrismaModel> | $Enums.MealSystemType
+}
+
+export type NestedEnumGuestMealChargeTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.GuestMealChargeType | Prisma.EnumGuestMealChargeTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.GuestMealChargeType[] | Prisma.ListEnumGuestMealChargeTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GuestMealChargeType[] | Prisma.ListEnumGuestMealChargeTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGuestMealChargeTypeFilter<$PrismaModel> | $Enums.GuestMealChargeType
+}
+
+export type NestedBigIntFilter<$PrismaModel = never> = {
+  equals?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  in?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
+  notIn?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
+  lt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  lte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBigIntFilter<$PrismaModel> | bigint | number
+}
+
+export type NestedEnumMealSystemTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MealSystemType | Prisma.EnumMealSystemTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.MealSystemType[] | Prisma.ListEnumMealSystemTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MealSystemType[] | Prisma.ListEnumMealSystemTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMealSystemTypeWithAggregatesFilter<$PrismaModel> | $Enums.MealSystemType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMealSystemTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMealSystemTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumGuestMealChargeTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GuestMealChargeType | Prisma.EnumGuestMealChargeTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.GuestMealChargeType[] | Prisma.ListEnumGuestMealChargeTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GuestMealChargeType[] | Prisma.ListEnumGuestMealChargeTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGuestMealChargeTypeWithAggregatesFilter<$PrismaModel> | $Enums.GuestMealChargeType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGuestMealChargeTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGuestMealChargeTypeFilter<$PrismaModel>
+}
+
+export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  in?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
+  notIn?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel>
+  lt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  lte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _avg?: Prisma.NestedFloatFilter<$PrismaModel>
+  _sum?: Prisma.NestedBigIntFilter<$PrismaModel>
+  _min?: Prisma.NestedBigIntFilter<$PrismaModel>
+  _max?: Prisma.NestedBigIntFilter<$PrismaModel>
+}
+
+export type NestedEnumMealOffStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.MealOffStatus | Prisma.EnumMealOffStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.MealOffStatus[] | Prisma.ListEnumMealOffStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MealOffStatus[] | Prisma.ListEnumMealOffStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMealOffStatusFilter<$PrismaModel> | $Enums.MealOffStatus
+}
+
+export type NestedEnumMealOffStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MealOffStatus | Prisma.EnumMealOffStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.MealOffStatus[] | Prisma.ListEnumMealOffStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MealOffStatus[] | Prisma.ListEnumMealOffStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMealOffStatusWithAggregatesFilter<$PrismaModel> | $Enums.MealOffStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMealOffStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMealOffStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumMealTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.MealType | Prisma.EnumMealTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.MealType[] | Prisma.ListEnumMealTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MealType[] | Prisma.ListEnumMealTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMealTypeFilter<$PrismaModel> | $Enums.MealType
+}
+
+export type NestedEnumMealTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MealType | Prisma.EnumMealTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.MealType[] | Prisma.ListEnumMealTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MealType[] | Prisma.ListEnumMealTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMealTypeWithAggregatesFilter<$PrismaModel> | $Enums.MealType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMealTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMealTypeFilter<$PrismaModel>
+}
+
+export type NestedBigIntNullableFilter<$PrismaModel = never> = {
+  equals?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel> | null
+  in?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel> | null
+  notIn?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel> | null
+  lt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  lte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
+}
+
+export type NestedBigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel> | null
+  in?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel> | null
+  notIn?: bigint[] | number[] | Prisma.ListBigIntFieldRefInput<$PrismaModel> | null
+  lt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  lte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gt?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  gte?: bigint | number | Prisma.BigIntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedBigIntNullableWithAggregatesFilter<$PrismaModel> | bigint | number | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _avg?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+  _sum?: Prisma.NestedBigIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedBigIntNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedBigIntNullableFilter<$PrismaModel>
+}
+
+export type NestedFloatNullableFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.FloatFieldRefInput<$PrismaModel> | null
+  in?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel> | null
+  notIn?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel> | null
+  lt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  lte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedFloatNullableFilter<$PrismaModel> | number | null
+}
+
+export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.IntFieldRefInput<$PrismaModel> | null
+  in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  notIn?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  lt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  lte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _avg?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+  _sum?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedIntNullableFilter<$PrismaModel>
 }
 
 

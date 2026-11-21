@@ -347,3 +347,40 @@ export const BookingPaymentStatus = {
 } as const
 
 export type BookingPaymentStatus = (typeof BookingPaymentStatus)[keyof typeof BookingPaymentStatus]
+
+
+export const MealSystemType = {
+  FIXED: 'FIXED',
+  FLEXIBLE: 'FLEXIBLE',
+  BOTH: 'BOTH'
+} as const
+
+export type MealSystemType = (typeof MealSystemType)[keyof typeof MealSystemType]
+
+
+export const MealType = {
+  BREAKFAST: 'BREAKFAST',
+  LUNCH: 'LUNCH',
+  DINNER: 'DINNER',
+  CUSTOM: 'CUSTOM'
+} as const
+
+export type MealType = (typeof MealType)[keyof typeof MealType]
+
+
+export const MealOffStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type MealOffStatus = (typeof MealOffStatus)[keyof typeof MealOffStatus]
+
+
+export const GuestMealChargeType = {
+  FIXED_RATE: 'FIXED_RATE',
+  AT_ACTUAL_MEAL_RATE: 'AT_ACTUAL_MEAL_RATE'
+} as const
+
+export type GuestMealChargeType = (typeof GuestMealChargeType)[keyof typeof GuestMealChargeType]
