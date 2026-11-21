@@ -17,4 +17,43 @@ import * as Prisma from './internal/prismaNamespaceBrowser.ts'
 export { Prisma }
 export * as $Enums from './enums.ts'
 export * from './enums.ts';
-
+/**
+ * Model User
+ * 
+ */
+export type User = Prisma.UserModel
+/**
+ * Model Tenant
+ * 
+ */
+export type Tenant = Prisma.TenantModel
+/**
+ * Model Role
+ * 
+ */
+export type Role = Prisma.RoleModel
+/**
+ * Model RoleTemplate
+ * 
+ */
+export type RoleTemplate = Prisma.RoleTemplateModel
+/**
+ * Model Permission
+ * 
+ */
+export type Permission = Prisma.PermissionModel
+/**
+ * Model RolePermission
+ * 
+ */
+export type RolePermission = Prisma.RolePermissionModel
+/**
+ * Model RoleTemplatePermission
+ * 
+ */
+export type RoleTemplatePermission = Prisma.RoleTemplatePermissionModel
+/**
+ * Model Membership
+ * 
+ */
+export type Membership = Prisma.MembershipModel

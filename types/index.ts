@@ -14,3 +14,6 @@ export type {
   ContainerToken,
   BreakpointToken,
 } from '@/lib/design-tokens';
+
+// Multi-Tenant Database Models & Types
+export * from './database';

@@ -1,12 +1,5 @@
-// MessMate — Prisma 7 Connection Bootstrap Schema (Task 17)
-//
-// IMPORTANT:
-// - Intentionally contains NO business tables or domain models yet.
-// - Datasource connection URLs are configured externally via `prisma.config.ts`
-//   (DIRECT_URL for CLI/migrations) and `server/db/prisma.ts` (DATABASE_URL
-//   pooled connection via `@prisma/adapter-pg`).
-// - Business tables, multi-tenant models, and RLS migrations will be authored
-//   in upcoming schema-design tasks.
+// MessMate — Multi-Tenant SaaS Database Schema
+// Task 19 & Task 20: Core Schema & User-Tenant-Membership Relationships
 
 generator client {
   provider = "prisma-client"
@@ -15,4 +8,228 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+// -----------------------------------------------------------------------------
+// ENUMS
+// -----------------------------------------------------------------------------
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  PENDING
+  INACTIVE
+}
+
+enum TenantType {
+  STUDENT_MESS
+  BACHELOR_MESS
+  HOSTEL
+  SHARED_APARTMENT
+  OTHER
+}
+
+enum TenantStatus {
+  ACTIVE
+  SUSPENDED
+  PENDING
+  INACTIVE
+}
+
+enum MembershipStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+  LEFT
+}
+
+enum RoleStatus {
+  ACTIVE
+  ARCHIVED
+}
+
+// -----------------------------------------------------------------------------
+// USER (Platform-wide Identity)
+// -----------------------------------------------------------------------------
+
+model User {
+  id              String      @id @default(cuid())
+  name            String
+  email           String?     @unique
+  phone           String?     @unique
+  passwordHash    String?
+  profileImage    String?
+  status          UserStatus  @default(ACTIVE)
+  emailVerifiedAt DateTime?
+  phoneVerifiedAt DateTime?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  memberships     Membership[]
+
+  @@index([status])
+  @@index([createdAt])
+  @@map("users")
+}
+
+// -----------------------------------------------------------------------------
+// TENANT / MESS (Independent Organization)
+// -----------------------------------------------------------------------------
+
+model Tenant {
+  id          String        @id @default(cuid())
+  name        String
+  slug        String        @unique
+  description String?
+  logo        String?
+  coverImage  String?
+  email       String?
+  phone       String?
+  address     String?
+  city        String?
+  country     String        @default("Bangladesh")
+  timezone    String        @default("Asia/Dhaka")
+  tenantType  TenantType    @default(BACHELOR_MESS)
+  status      TenantStatus  @default(ACTIVE)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  memberships Membership[]
+  roles       Role[]
+
+  @@index([status])
+  @@index([tenantType])
+  @@index([city])
+  @@map("tenants")
+}
+
+// -----------------------------------------------------------------------------
+// ROLE (Tenant-Scoped Roles)
+// -----------------------------------------------------------------------------
+
+model Role {
+  id          String      @id @default(cuid())
+  tenantId    String
+  name        String
+  slug        String
+  description String?
+  isSystem    Boolean     @default(false)
+  status      RoleStatus  @default(ACTIVE)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  tenant          Tenant           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  memberships     Membership[]
+  rolePermissions RolePermission[]
+
+  @@unique([tenantId, name])
+  @@unique([tenantId, slug])
+  @@unique([id, tenantId])
+  @@index([tenantId])
+  @@map("roles")
+}
+
+// -----------------------------------------------------------------------------
+// ROLE TEMPLATE (Platform-Level System Role Blueprints)
+// -----------------------------------------------------------------------------
+
+model RoleTemplate {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  isDefault   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  permissions RoleTemplatePermission[]
+
+  @@map("role_templates")
+}
+
+// -----------------------------------------------------------------------------
+// PERMISSION (Granular Capability Definition)
+// -----------------------------------------------------------------------------
+
+model Permission {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  name        String
+  module      String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  rolePermissions     RolePermission[]
+  templatePermissions RoleTemplatePermission[]
+
+  @@index([module])
+  @@map("permissions")
+}
+
+// -----------------------------------------------------------------------------
+// ROLE PERMISSION (Junction: Tenant Role <-> Permission)
+// -----------------------------------------------------------------------------
+
+model RolePermission {
+  id           String   @id @default(cuid())
+  roleId       String
+  permissionId String
+  createdAt    DateTime @default(now())
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@unique([roleId, permissionId])
+  @@index([roleId])
+  @@index([permissionId])
+  @@map("role_permissions")
+}
+
+// -----------------------------------------------------------------------------
+// ROLE TEMPLATE PERMISSION (Junction: Role Template <-> Permission)
+// -----------------------------------------------------------------------------
+
+model RoleTemplatePermission {
+  id           String   @id @default(cuid())
+  templateId   String
+  permissionId String
+  createdAt    DateTime @default(now())
+
+  template   RoleTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  permission Permission   @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@unique([templateId, permissionId])
+  @@index([templateId])
+  @@index([permissionId])
+  @@map("role_template_permissions")
+}
+
+// -----------------------------------------------------------------------------
+// MEMBERSHIP (User <-> Tenant Association)
+// -----------------------------------------------------------------------------
+
+model Membership {
+  id        String           @id @default(cuid())
+  userId    String
+  tenantId  String
+  roleId    String
+  status    MembershipStatus @default(ACTIVE)
+  joinedAt  DateTime?
+  invitedAt DateTime?
+  leftAt    DateTime?
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Restrict)
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  role   Role   @relation(fields: [roleId, tenantId], references: [id, tenantId], onDelete: Restrict)
+
+  @@unique([userId, tenantId])
+  @@index([tenantId])
+  @@index([userId])
+  @@index([roleId])
+  @@index([status])
+  @@index([tenantId, status])
+  @@map("memberships")
 }
