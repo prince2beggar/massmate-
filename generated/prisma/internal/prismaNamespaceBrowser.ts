@@ -93,7 +93,10 @@ export const ModelName = {
   BalanceAdjustment: 'BalanceAdjustment',
   MessSetting: 'MessSetting',
   Notice: 'Notice',
-  MemberRequest: 'MemberRequest'
+  MemberRequest: 'MemberRequest',
+  MessEvent: 'MessEvent',
+  EventRsvp: 'EventRsvp',
+  Complaint: 'Complaint'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -953,6 +956,57 @@ export const MemberRequestScalarFieldEnum = {
 } as const
 
 export type MemberRequestScalarFieldEnum = (typeof MemberRequestScalarFieldEnum)[keyof typeof MemberRequestScalarFieldEnum]
+
+
+export const MessEventScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  title: 'title',
+  description: 'description',
+  eventDate: 'eventDate',
+  location: 'location',
+  imageUrl: 'imageUrl',
+  rsvpDeadline: 'rsvpDeadline',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MessEventScalarFieldEnum = (typeof MessEventScalarFieldEnum)[keyof typeof MessEventScalarFieldEnum]
+
+
+export const EventRsvpScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  eventId: 'eventId',
+  membershipId: 'membershipId',
+  status: 'status',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EventRsvpScalarFieldEnum = (typeof EventRsvpScalarFieldEnum)[keyof typeof EventRsvpScalarFieldEnum]
+
+
+export const ComplaintScalarFieldEnum = {
+  id: 'id',
+  referenceNumber: 'referenceNumber',
+  tenantId: 'tenantId',
+  membershipId: 'membershipId',
+  category: 'category',
+  title: 'title',
+  description: 'description',
+  attachmentUrl: 'attachmentUrl',
+  status: 'status',
+  adminResponse: 'adminResponse',
+  reviewedByUserId: 'reviewedByUserId',
+  reviewedAt: 'reviewedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ComplaintScalarFieldEnum = (typeof ComplaintScalarFieldEnum)[keyof typeof ComplaintScalarFieldEnum]
 
 
 export const SortOrder = {

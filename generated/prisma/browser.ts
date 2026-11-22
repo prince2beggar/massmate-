@@ -232,3 +232,18 @@ export type Notice = Prisma.NoticeModel
  * 
  */
 export type MemberRequest = Prisma.MemberRequestModel
+/**
+ * Model MessEvent
+ * 
+ */
+export type MessEvent = Prisma.MessEventModel
+/**
+ * Model EventRsvp
+ * 
+ */
+export type EventRsvp = Prisma.EventRsvpModel
+/**
+ * Model Complaint
+ * 
+ */
+export type Complaint = Prisma.ComplaintModel

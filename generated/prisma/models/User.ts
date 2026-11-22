@@ -262,6 +262,7 @@ export type UserWhereInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentListRelationFilter
   authoredNotices?: Prisma.NoticeListRelationFilter
   reviewedMemberRequests?: Prisma.MemberRequestListRelationFilter
+  reviewedComplaints?: Prisma.ComplaintListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -301,6 +302,7 @@ export type UserOrderByWithRelationInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentOrderByRelationAggregateInput
   authoredNotices?: Prisma.NoticeOrderByRelationAggregateInput
   reviewedMemberRequests?: Prisma.MemberRequestOrderByRelationAggregateInput
+  reviewedComplaints?: Prisma.ComplaintOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -343,6 +345,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   authorizedAdjustments?: Prisma.BalanceAdjustmentListRelationFilter
   authoredNotices?: Prisma.NoticeListRelationFilter
   reviewedMemberRequests?: Prisma.MemberRequestListRelationFilter
+  reviewedComplaints?: Prisma.ComplaintListRelationFilter
 }, "id" | "email" | "phone">
 
 export type UserOrderByWithAggregationInput = {
@@ -418,6 +421,7 @@ export type UserCreateInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -457,6 +461,7 @@ export type UserUncheckedCreateInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUpdateInput = {
@@ -496,6 +501,7 @@ export type UserUpdateInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -535,6 +541,7 @@ export type UserUncheckedUpdateInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -1039,6 +1046,22 @@ export type UserUpdateOneWithoutReviewedMemberRequestsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewedMemberRequestsInput, Prisma.UserUpdateWithoutReviewedMemberRequestsInput>, Prisma.UserUncheckedUpdateWithoutReviewedMemberRequestsInput>
 }
 
+export type UserCreateNestedOneWithoutReviewedComplaintsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedComplaintsInput, Prisma.UserUncheckedCreateWithoutReviewedComplaintsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedComplaintsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutReviewedComplaintsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedComplaintsInput, Prisma.UserUncheckedCreateWithoutReviewedComplaintsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedComplaintsInput
+  upsert?: Prisma.UserUpsertWithoutReviewedComplaintsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewedComplaintsInput, Prisma.UserUpdateWithoutReviewedComplaintsInput>, Prisma.UserUncheckedUpdateWithoutReviewedComplaintsInput>
+}
+
 export type UserCreateWithoutReviewedVerificationsInput = {
   id?: string
   name: string
@@ -1075,6 +1098,7 @@ export type UserCreateWithoutReviewedVerificationsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutReviewedVerificationsInput = {
@@ -1113,6 +1137,7 @@ export type UserUncheckedCreateWithoutReviewedVerificationsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutReviewedVerificationsInput = {
@@ -1167,6 +1192,7 @@ export type UserUpdateWithoutReviewedVerificationsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedVerificationsInput = {
@@ -1205,6 +1231,7 @@ export type UserUncheckedUpdateWithoutReviewedVerificationsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutMembershipsInput = {
@@ -1243,6 +1270,7 @@ export type UserCreateWithoutMembershipsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutMembershipsInput = {
@@ -1281,6 +1309,7 @@ export type UserUncheckedCreateWithoutMembershipsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -1335,6 +1364,7 @@ export type UserUpdateWithoutMembershipsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMembershipsInput = {
@@ -1373,6 +1403,7 @@ export type UserUncheckedUpdateWithoutMembershipsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -1411,6 +1442,7 @@ export type UserCreateWithoutAuditLogsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -1449,6 +1481,7 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -1503,6 +1536,7 @@ export type UserUpdateWithoutAuditLogsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -1541,6 +1575,7 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutApprovedSubscriptionsInput = {
@@ -1579,6 +1614,7 @@ export type UserCreateWithoutApprovedSubscriptionsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutApprovedSubscriptionsInput = {
@@ -1617,6 +1653,7 @@ export type UserUncheckedCreateWithoutApprovedSubscriptionsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutApprovedSubscriptionsInput = {
@@ -1671,6 +1708,7 @@ export type UserUpdateWithoutApprovedSubscriptionsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedSubscriptionsInput = {
@@ -1709,6 +1747,7 @@ export type UserUncheckedUpdateWithoutApprovedSubscriptionsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutConfirmedInvoicesInput = {
@@ -1747,6 +1786,7 @@ export type UserCreateWithoutConfirmedInvoicesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutConfirmedInvoicesInput = {
@@ -1785,6 +1825,7 @@ export type UserUncheckedCreateWithoutConfirmedInvoicesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutConfirmedInvoicesInput = {
@@ -1839,6 +1880,7 @@ export type UserUpdateWithoutConfirmedInvoicesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConfirmedInvoicesInput = {
@@ -1877,6 +1919,7 @@ export type UserUncheckedUpdateWithoutConfirmedInvoicesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutAssignedInquiriesInput = {
@@ -1915,6 +1958,7 @@ export type UserCreateWithoutAssignedInquiriesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutAssignedInquiriesInput = {
@@ -1953,6 +1997,7 @@ export type UserUncheckedCreateWithoutAssignedInquiriesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutAssignedInquiriesInput = {
@@ -2007,6 +2052,7 @@ export type UserUpdateWithoutAssignedInquiriesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedInquiriesInput = {
@@ -2045,6 +2091,7 @@ export type UserUncheckedUpdateWithoutAssignedInquiriesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutPreparedQuotationsInput = {
@@ -2083,6 +2130,7 @@ export type UserCreateWithoutPreparedQuotationsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutPreparedQuotationsInput = {
@@ -2121,6 +2169,7 @@ export type UserUncheckedCreateWithoutPreparedQuotationsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutPreparedQuotationsInput = {
@@ -2164,6 +2213,7 @@ export type UserCreateWithoutApprovedQuotationsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutApprovedQuotationsInput = {
@@ -2202,6 +2252,7 @@ export type UserUncheckedCreateWithoutApprovedQuotationsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutApprovedQuotationsInput = {
@@ -2256,6 +2307,7 @@ export type UserUpdateWithoutPreparedQuotationsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPreparedQuotationsInput = {
@@ -2294,6 +2346,7 @@ export type UserUncheckedUpdateWithoutPreparedQuotationsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUpsertWithoutApprovedQuotationsInput = {
@@ -2343,6 +2396,7 @@ export type UserUpdateWithoutApprovedQuotationsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedQuotationsInput = {
@@ -2381,6 +2435,7 @@ export type UserUncheckedUpdateWithoutApprovedQuotationsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutRequestedTicketsInput = {
@@ -2419,6 +2474,7 @@ export type UserCreateWithoutRequestedTicketsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutRequestedTicketsInput = {
@@ -2457,6 +2513,7 @@ export type UserUncheckedCreateWithoutRequestedTicketsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutRequestedTicketsInput = {
@@ -2500,6 +2557,7 @@ export type UserCreateWithoutAssignedTicketsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutAssignedTicketsInput = {
@@ -2538,6 +2596,7 @@ export type UserUncheckedCreateWithoutAssignedTicketsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutAssignedTicketsInput = {
@@ -2592,6 +2651,7 @@ export type UserUpdateWithoutRequestedTicketsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequestedTicketsInput = {
@@ -2630,6 +2690,7 @@ export type UserUncheckedUpdateWithoutRequestedTicketsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUpsertWithoutAssignedTicketsInput = {
@@ -2679,6 +2740,7 @@ export type UserUpdateWithoutAssignedTicketsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedTicketsInput = {
@@ -2717,6 +2779,7 @@ export type UserUncheckedUpdateWithoutAssignedTicketsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutTicketMessagesInput = {
@@ -2755,6 +2818,7 @@ export type UserCreateWithoutTicketMessagesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutTicketMessagesInput = {
@@ -2793,6 +2857,7 @@ export type UserUncheckedCreateWithoutTicketMessagesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutTicketMessagesInput = {
@@ -2847,6 +2912,7 @@ export type UserUpdateWithoutTicketMessagesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTicketMessagesInput = {
@@ -2885,6 +2951,7 @@ export type UserUncheckedUpdateWithoutTicketMessagesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -2923,6 +2990,7 @@ export type UserCreateWithoutNotificationsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -2961,6 +3029,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -3015,6 +3084,7 @@ export type UserUpdateWithoutNotificationsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -3053,6 +3123,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutAssignedRoomAssignmentsInput = {
@@ -3091,6 +3162,7 @@ export type UserCreateWithoutAssignedRoomAssignmentsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutAssignedRoomAssignmentsInput = {
@@ -3129,6 +3201,7 @@ export type UserUncheckedCreateWithoutAssignedRoomAssignmentsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutAssignedRoomAssignmentsInput = {
@@ -3183,6 +3256,7 @@ export type UserUpdateWithoutAssignedRoomAssignmentsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput = {
@@ -3221,6 +3295,7 @@ export type UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutReviewedBookingsInput = {
@@ -3259,6 +3334,7 @@ export type UserCreateWithoutReviewedBookingsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutReviewedBookingsInput = {
@@ -3297,6 +3373,7 @@ export type UserUncheckedCreateWithoutReviewedBookingsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutReviewedBookingsInput = {
@@ -3351,6 +3428,7 @@ export type UserUpdateWithoutReviewedBookingsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedBookingsInput = {
@@ -3389,6 +3467,7 @@ export type UserUncheckedUpdateWithoutReviewedBookingsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutReviewedMealOffRequestsInput = {
@@ -3427,6 +3506,7 @@ export type UserCreateWithoutReviewedMealOffRequestsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutReviewedMealOffRequestsInput = {
@@ -3465,6 +3545,7 @@ export type UserUncheckedCreateWithoutReviewedMealOffRequestsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutReviewedMealOffRequestsInput = {
@@ -3519,6 +3600,7 @@ export type UserUpdateWithoutReviewedMealOffRequestsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedMealOffRequestsInput = {
@@ -3557,6 +3639,7 @@ export type UserUncheckedUpdateWithoutReviewedMealOffRequestsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutRecordedGuestMealsInput = {
@@ -3595,6 +3678,7 @@ export type UserCreateWithoutRecordedGuestMealsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutRecordedGuestMealsInput = {
@@ -3633,6 +3717,7 @@ export type UserUncheckedCreateWithoutRecordedGuestMealsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutRecordedGuestMealsInput = {
@@ -3687,6 +3772,7 @@ export type UserUpdateWithoutRecordedGuestMealsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRecordedGuestMealsInput = {
@@ -3725,6 +3811,7 @@ export type UserUncheckedUpdateWithoutRecordedGuestMealsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutLockedMealPeriodsInput = {
@@ -3763,6 +3850,7 @@ export type UserCreateWithoutLockedMealPeriodsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutLockedMealPeriodsInput = {
@@ -3801,6 +3889,7 @@ export type UserUncheckedCreateWithoutLockedMealPeriodsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutLockedMealPeriodsInput = {
@@ -3855,6 +3944,7 @@ export type UserUpdateWithoutLockedMealPeriodsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLockedMealPeriodsInput = {
@@ -3893,6 +3983,7 @@ export type UserUncheckedUpdateWithoutLockedMealPeriodsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutReviewedExpensesInput = {
@@ -3931,6 +4022,7 @@ export type UserCreateWithoutReviewedExpensesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutReviewedExpensesInput = {
@@ -3969,6 +4061,7 @@ export type UserUncheckedCreateWithoutReviewedExpensesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutReviewedExpensesInput = {
@@ -4023,6 +4116,7 @@ export type UserUpdateWithoutReviewedExpensesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedExpensesInput = {
@@ -4061,6 +4155,7 @@ export type UserUncheckedUpdateWithoutReviewedExpensesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutClosedBillingPeriodsInput = {
@@ -4099,6 +4194,7 @@ export type UserCreateWithoutClosedBillingPeriodsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutClosedBillingPeriodsInput = {
@@ -4137,6 +4233,7 @@ export type UserUncheckedCreateWithoutClosedBillingPeriodsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutClosedBillingPeriodsInput = {
@@ -4191,6 +4288,7 @@ export type UserUpdateWithoutClosedBillingPeriodsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutClosedBillingPeriodsInput = {
@@ -4229,6 +4327,7 @@ export type UserUncheckedUpdateWithoutClosedBillingPeriodsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutReceivedMemberPaymentsInput = {
@@ -4267,6 +4366,7 @@ export type UserCreateWithoutReceivedMemberPaymentsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutReceivedMemberPaymentsInput = {
@@ -4305,6 +4405,7 @@ export type UserUncheckedCreateWithoutReceivedMemberPaymentsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutReceivedMemberPaymentsInput = {
@@ -4348,6 +4449,7 @@ export type UserCreateWithoutVerifiedMemberPaymentsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutVerifiedMemberPaymentsInput = {
@@ -4386,6 +4488,7 @@ export type UserUncheckedCreateWithoutVerifiedMemberPaymentsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutVerifiedMemberPaymentsInput = {
@@ -4440,6 +4543,7 @@ export type UserUpdateWithoutReceivedMemberPaymentsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReceivedMemberPaymentsInput = {
@@ -4478,6 +4582,7 @@ export type UserUncheckedUpdateWithoutReceivedMemberPaymentsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUpsertWithoutVerifiedMemberPaymentsInput = {
@@ -4527,6 +4632,7 @@ export type UserUpdateWithoutVerifiedMemberPaymentsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVerifiedMemberPaymentsInput = {
@@ -4565,6 +4671,7 @@ export type UserUncheckedUpdateWithoutVerifiedMemberPaymentsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutAuthorizedAdjustmentsInput = {
@@ -4603,6 +4710,7 @@ export type UserCreateWithoutAuthorizedAdjustmentsInput = {
   verifiedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutVerifiedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutAuthorizedAdjustmentsInput = {
@@ -4641,6 +4749,7 @@ export type UserUncheckedCreateWithoutAuthorizedAdjustmentsInput = {
   verifiedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutVerifiedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutAuthorizedAdjustmentsInput = {
@@ -4695,6 +4804,7 @@ export type UserUpdateWithoutAuthorizedAdjustmentsInput = {
   verifiedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutVerifiedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuthorizedAdjustmentsInput = {
@@ -4733,6 +4843,7 @@ export type UserUncheckedUpdateWithoutAuthorizedAdjustmentsInput = {
   verifiedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutVerifiedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutAuthoredNoticesInput = {
@@ -4771,6 +4882,7 @@ export type UserCreateWithoutAuthoredNoticesInput = {
   verifiedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutVerifiedByUserInput
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutAuthoredNoticesInput = {
@@ -4809,6 +4921,7 @@ export type UserUncheckedCreateWithoutAuthoredNoticesInput = {
   verifiedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutVerifiedByUserInput
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutAuthoredNoticesInput = {
@@ -4863,6 +4976,7 @@ export type UserUpdateWithoutAuthoredNoticesInput = {
   verifiedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutVerifiedByUserNestedInput
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuthoredNoticesInput = {
@@ -4901,6 +5015,7 @@ export type UserUncheckedUpdateWithoutAuthoredNoticesInput = {
   verifiedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutVerifiedByUserNestedInput
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserCreateWithoutReviewedMemberRequestsInput = {
@@ -4939,6 +5054,7 @@ export type UserCreateWithoutReviewedMemberRequestsInput = {
   verifiedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutVerifiedByUserInput
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
 }
 
 export type UserUncheckedCreateWithoutReviewedMemberRequestsInput = {
@@ -4977,6 +5093,7 @@ export type UserUncheckedCreateWithoutReviewedMemberRequestsInput = {
   verifiedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutVerifiedByUserInput
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
 }
 
 export type UserCreateOrConnectWithoutReviewedMemberRequestsInput = {
@@ -5031,6 +5148,7 @@ export type UserUpdateWithoutReviewedMemberRequestsInput = {
   verifiedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutVerifiedByUserNestedInput
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedMemberRequestsInput = {
@@ -5069,6 +5187,179 @@ export type UserUncheckedUpdateWithoutReviewedMemberRequestsInput = {
   verifiedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutVerifiedByUserNestedInput
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+}
+
+export type UserCreateWithoutReviewedComplaintsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+}
+
+export type UserUncheckedCreateWithoutReviewedComplaintsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+}
+
+export type UserCreateOrConnectWithoutReviewedComplaintsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedComplaintsInput, Prisma.UserUncheckedCreateWithoutReviewedComplaintsInput>
+}
+
+export type UserUpsertWithoutReviewedComplaintsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReviewedComplaintsInput, Prisma.UserUncheckedUpdateWithoutReviewedComplaintsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedComplaintsInput, Prisma.UserUncheckedCreateWithoutReviewedComplaintsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReviewedComplaintsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReviewedComplaintsInput, Prisma.UserUncheckedUpdateWithoutReviewedComplaintsInput>
+}
+
+export type UserUpdateWithoutReviewedComplaintsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReviewedComplaintsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
 }
 
 
@@ -5101,6 +5392,7 @@ export type UserCountOutputType = {
   authorizedAdjustments: number
   authoredNotices: number
   reviewedMemberRequests: number
+  reviewedComplaints: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5128,6 +5420,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   authorizedAdjustments?: boolean | UserCountOutputTypeCountAuthorizedAdjustmentsArgs
   authoredNotices?: boolean | UserCountOutputTypeCountAuthoredNoticesArgs
   reviewedMemberRequests?: boolean | UserCountOutputTypeCountReviewedMemberRequestsArgs
+  reviewedComplaints?: boolean | UserCountOutputTypeCountReviewedComplaintsArgs
 }
 
 /**
@@ -5308,6 +5601,13 @@ export type UserCountOutputTypeCountReviewedMemberRequestsArgs<ExtArgs extends r
   where?: Prisma.MemberRequestWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewedComplaintsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ComplaintWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -5346,6 +5646,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   authorizedAdjustments?: boolean | Prisma.User$authorizedAdjustmentsArgs<ExtArgs>
   authoredNotices?: boolean | Prisma.User$authoredNoticesArgs<ExtArgs>
   reviewedMemberRequests?: boolean | Prisma.User$reviewedMemberRequestsArgs<ExtArgs>
+  reviewedComplaints?: boolean | Prisma.User$reviewedComplaintsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -5420,6 +5721,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   authorizedAdjustments?: boolean | Prisma.User$authorizedAdjustmentsArgs<ExtArgs>
   authoredNotices?: boolean | Prisma.User$authoredNoticesArgs<ExtArgs>
   reviewedMemberRequests?: boolean | Prisma.User$reviewedMemberRequestsArgs<ExtArgs>
+  reviewedComplaints?: boolean | Prisma.User$reviewedComplaintsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -5452,6 +5754,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     authorizedAdjustments: Prisma.$BalanceAdjustmentPayload<ExtArgs>[]
     authoredNotices: Prisma.$NoticePayload<ExtArgs>[]
     reviewedMemberRequests: Prisma.$MemberRequestPayload<ExtArgs>[]
+    reviewedComplaints: Prisma.$ComplaintPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -5884,6 +6187,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   authorizedAdjustments<T extends Prisma.User$authorizedAdjustmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$authorizedAdjustmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BalanceAdjustmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   authoredNotices<T extends Prisma.User$authoredNoticesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$authoredNoticesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NoticePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reviewedMemberRequests<T extends Prisma.User$reviewedMemberRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedMemberRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewedComplaints<T extends Prisma.User$reviewedComplaintsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedComplaintsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComplaintPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6891,6 +7195,30 @@ export type User$reviewedMemberRequestsArgs<ExtArgs extends runtime.Types.Extens
   take?: number
   skip?: number
   distinct?: Prisma.MemberRequestScalarFieldEnum | Prisma.MemberRequestScalarFieldEnum[]
+}
+
+/**
+ * User.reviewedComplaints
+ */
+export type User$reviewedComplaintsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Complaint
+   */
+  select?: Prisma.ComplaintSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Complaint
+   */
+  omit?: Prisma.ComplaintOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ComplaintInclude<ExtArgs> | null
+  where?: Prisma.ComplaintWhereInput
+  orderBy?: Prisma.ComplaintOrderByWithRelationInput | Prisma.ComplaintOrderByWithRelationInput[]
+  cursor?: Prisma.ComplaintWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ComplaintScalarFieldEnum | Prisma.ComplaintScalarFieldEnum[]
 }
 
 /**

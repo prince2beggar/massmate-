@@ -60,8 +60,7 @@ export const MEMBER_NAV_ITEMS: MemberNavItem[] = [
     name: 'My Meals',
     path: 'meals',
     icon: UtensilsCrossed,
-    isImplemented: false,
-    upcomingTask: 'Task 39',
+    isImplemented: true,
     description: 'Daily dining schedule, meal counts, menus, and meal-off.',
   },
   {
@@ -69,8 +68,7 @@ export const MEMBER_NAV_ITEMS: MemberNavItem[] = [
     name: 'Notices',
     path: 'notices',
     icon: Megaphone,
-    isImplemented: false,
-    upcomingTask: 'Task 39',
+    isImplemented: true,
     description: 'Official announcements and notices from mess management.',
   },
   {
@@ -78,8 +76,7 @@ export const MEMBER_NAV_ITEMS: MemberNavItem[] = [
     name: 'Events & Feasts',
     path: 'events',
     icon: Calendar,
-    isImplemented: false,
-    upcomingTask: 'Task 39',
+    isImplemented: true,
     description: 'Special dining feasts, cleaning drives, and mess meetings.',
   },
   {
@@ -87,8 +84,7 @@ export const MEMBER_NAV_ITEMS: MemberNavItem[] = [
     name: 'Complaints & Requests',
     path: 'complaints',
     icon: AlertCircle,
-    isImplemented: false,
-    upcomingTask: 'Task 39',
+    isImplemented: true,
     description: 'Submit maintenance issues and grievances to management.',
   },
   {

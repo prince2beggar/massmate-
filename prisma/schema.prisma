@@ -377,6 +377,7 @@ model User {
   authorizedAdjustments   BalanceAdjustment[]    @relation("AuthorizedAdjustments")
   authoredNotices         Notice[]               @relation("AuthoredNotices")
   reviewedMemberRequests  MemberRequest[]        @relation("ReviewedMemberRequests")
+  reviewedComplaints      Complaint[]            @relation("ReviewedComplaints")
 
   @@index([status])
   @@index([platformRole])
@@ -438,6 +439,9 @@ model Tenant {
   messSetting           MessSetting?
   notices               Notice[]
   memberRequests        MemberRequest[]
+  messEvents            MessEvent[]
+  eventRsvps            EventRsvp[]
+  complaints            Complaint[]
 
   @@index([status])
   @@index([verificationStatus])
@@ -609,6 +613,8 @@ model Membership {
   memberPayments          MemberPayment[]
   balanceAdjustments      BalanceAdjustment[]
   memberRequests          MemberRequest[]
+  eventRsvps              EventRsvp[]
+  complaints              Complaint[]
 
   @@unique([userId, tenantId])
   @@index([tenantId])
@@ -1601,6 +1607,82 @@ model MemberRequest {
   @@index([status])
   @@map("member_requests")
 }
+
+// -----------------------------------------------------------------------------
+// COMMUNITY EVENTS & RSVPS (Task 39)
+// -----------------------------------------------------------------------------
+
+model MessEvent {
+  id           String      @id @default(cuid())
+  tenantId     String      @map("tenant_id")
+  title        String
+  description  String
+  eventDate    DateTime    @map("event_date")
+  location     String?
+  imageUrl     String?     @map("image_url")
+  rsvpDeadline DateTime?   @map("rsvp_deadline")
+  status       String      @default("PUBLISHED") // DRAFT, PUBLISHED, CANCELLED, COMPLETED
+  createdAt    DateTime    @default(now()) @map("created_at")
+  updatedAt    DateTime    @updatedAt @map("updated_at")
+
+  tenant Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  rsvps  EventRsvp[]
+
+  @@index([tenantId])
+  @@index([status])
+  @@map("mess_events")
+}
+
+model EventRsvp {
+  id           String   @id @default(cuid())
+  tenantId     String   @map("tenant_id")
+  eventId      String   @map("event_id")
+  membershipId String   @map("membership_id")
+  status       String   @default("ATTENDING") // ATTENDING, NOT_ATTENDING, MAYBE
+  notes        String?
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  tenant     Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  event      MessEvent  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  membership Membership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+
+  @@unique([eventId, membershipId])
+  @@index([tenantId])
+  @@index([membershipId])
+  @@map("event_rsvps")
+}
+
+// -----------------------------------------------------------------------------
+// COMPLAINTS & FEEDBACK (Task 39)
+// -----------------------------------------------------------------------------
+
+model Complaint {
+  id               String    @id @default(cuid())
+  referenceNumber  String    @unique @map("reference_number")
+  tenantId         String    @map("tenant_id")
+  membershipId     String    @map("membership_id")
+  category         String    @default("MAINTENANCE") // MAINTENANCE, CLEANING, FOOD_QUALITY, NOISE, SECURITY, OTHER
+  title            String
+  description      String
+  attachmentUrl    String?   @map("attachment_url")
+  status           String    @default("SUBMITTED") // SUBMITTED, IN_REVIEW, IN_PROGRESS, RESOLVED, REJECTED, CLOSED
+  adminResponse    String?   @map("admin_response")
+  reviewedByUserId String?   @map("reviewed_by_user_id")
+  reviewedAt       DateTime? @map("reviewed_at")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @updatedAt @map("updated_at")
+
+  tenant     Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  membership Membership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  reviewer   User?      @relation("ReviewedComplaints", fields: [reviewedByUserId], references: [id], onDelete: SetNull)
+
+  @@index([tenantId])
+  @@index([membershipId])
+  @@index([status])
+  @@map("complaints")
+}
+
 
 
 

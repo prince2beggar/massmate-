@@ -49,6 +49,9 @@ import type {
   MessSetting as PrismaMessSetting,
   Notice as PrismaNotice,
   MemberRequest as PrismaMemberRequest,
+  MessEvent as PrismaMessEvent,
+  EventRsvp as PrismaEventRsvp,
+  Complaint as PrismaComplaint,
   AllocationRule,
   BillingPeriodStatus,
   BillStatus,
@@ -180,6 +183,9 @@ export type BalanceAdjustment = PrismaBalanceAdjustment;
 export type MessSetting = PrismaMessSetting;
 export type Notice = PrismaNotice;
 export type MemberRequest = PrismaMemberRequest;
+export type MessEvent = PrismaMessEvent;
+export type EventRsvp = PrismaEventRsvp;
+export type Complaint = PrismaComplaint;
 export type CustomPlanInquiry = PrismaCustomPlanInquiry;
 export type CustomQuotation = PrismaCustomQuotation;
 export type Domain = PrismaDomain;

@@ -13,7 +13,7 @@
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Task 37** | Member Portal Foundation, Access Control & Dashboard | **Completed and Verified** | 2026-11-22 | Dedicated `/portal/[tenantSlug]` shell, `withMemberAuth` access control, anti-IDOR validation, 4 KPI cards (Room, Meals, Due Balance, Last Payment), zero-drift financial snapshot via `FinanceService`, today's dining & menus, published notices feed, recent activities stream, quick actions. | 14/14 Automated Tests Passed (106/106 full suite); 0 TS errors, 0 ESLint warnings; Production build passed. | Proceed to Task 38 |
 | **Task 38** | Resident Profile, Emergency Contacts & Room Management | **Completed and Verified** | 2026-11-22 | Self-service profile editing (`phone`, `emergencyContactName`, `emergencyContactPhone`, `avatar`), Bangladeshi mobile validation/normalization, anti-mass-assignment guards, approval-required name update workflow (`MemberRequest`), room & bed details with privacy-safe occupancy counts, historical room timeline, room transfer request center with atomic transfer execution. | 18/18 Automated Tests Passed (32/32 Member Portal suite, 124/124 full suite); 0 TS errors, 0 ESLint warnings; Production build passed. | Proceed to Task 39 |
-| **Task 39** | Member Meal Calendar, Preferences & Meal-Off Requests | *Upcoming* | — | Monthly meal calendar, daily meal bookings, cutoff-enforced meal-off submissions, dietary notes. | Pending Task 38 signoff | Upcoming |
+| **Task 39** | Member Meal Calendar, Preferences & Meal-Off Requests | **Completed and Verified** | 2026-11-22 | My Meals calendar & daily list view, Asia/Dhaka meal status & published menus, server-enforced cutoff times (e.g. 8:00 PM Asia/Dhaka), anti-tampering cutoff validation, duplicate meal-off request prevention, pending request cancellation, notices board with category filters, community events & RSVP system with deadline locking and privacy protection, complaints & grievance center with tracking codes and admin response threads. | 18/18 Automated Tests Passed (50/50 Member Portal suite, 142/142 full suite); 0 TS errors, 0 ESLint warnings; Production build passed. | Proceed to Task 40 |
 | **Task 40** | Member Billing, Payments & Statements | *Upcoming* | — | Detailed ledger statement, deposit payment submission (bKash/Nagad/Bank/Cash), printable receipt. | Pending Task 39 signoff | Upcoming |
 
 ---
@@ -297,6 +297,41 @@
     - Navigation updated in `components/member-portal/member-nav-data.ts`: `profile`, `room`, and `requests` enabled (`isImplemented: true`).
   - Automated test suite (`server/member-portal/member-profile-room.test.ts`): 18 comprehensive tests covering Bangladeshi phone normalization, profile security, permitted edits, anti-mass-assignment, name change approval workflow, room details, privacy-safe occupancy counts, unassigned state, history, room transfer request submission, cancellation rules, anti-IDOR cross-tenant isolation, and admin review atomic transfer.
 - **Verification:** TypeScript: 0 errors (`npx tsc --noEmit`); ESLint: 0 errors, 0 warnings (`npm run lint`); 32/32 Member Portal tests passing (100%); Next.js production build: 47/47 routes compiled cleanly.
+
+### Task 39: Member Meal Calendar, Preferences & Meal-Off Requests
+- **Status:** Completed and Verified
+- **Date:** 2026-11-22
+- **Key Deliverables:**
+  - Prisma Schema Expansion:
+    - `MessEvent`: community events and grand feasts with `title`, `description`, `eventDate`, `location`, `rsvpDeadline`, `status` (`UPCOMING`, `ONGOING`, `COMPLETED`, `CANCELLED`), and `metadata`.
+    - `EventRsvp`: member event RSVPs with `tenantId`, `eventId`, `membershipId`, `status` (`ATTENDING`, `NOT_ATTENDING`, `MAYBE`), and `notes`.
+    - `Complaint`: member grievances and maintenance tickets with `referenceNumber` (`CMP-...`), `tenantId`, `membershipId`, `category` (`MAINTENANCE`, `CLEANING`, `FOOD_QUALITY`, `NOISE`, `SECURITY`, `OTHER`), `title`, `description`, `status` (`SUBMITTED`, `IN_REVIEW`, `IN_PROGRESS`, `RESOLVED`, `REJECTED`, `CLOSED`), `adminResponse`, `reviewedByUserId`, `reviewedAt`, and `attachmentUrl`.
+  - Backend Service (`server/member-portal/member-portal-service.ts`):
+    - `getMemberMealOverview`: today's status (`ACTIVE`, `OFF`, `NO_SCHEDULE`), Asia/Dhaka today date string, breakfast/lunch/dinner meal counts, published menus, meal system mode (Fixed vs. Flexible), authoritative meal rate from backend `MealService` (zero frontend formulas), and monthly day-by-day calendar data.
+    - `submitMemberMealOffRequest`: enforces server-side cutoff time (e.g. 8:00 PM Asia/Dhaka) against server clock; prevents duplicate/overlapping requests; blocks past dates.
+    - `cancelMemberMealOffRequest`: allows members to cancel their own `PENDING` meal-off requests; blocks cancelling processed requests.
+    - `listMemberNotices`: category-filtered published notices feed; excludes draft and cross-tenant notices; displays Asia/Dhaka publication timestamps.
+    - `listMemberEvents`: lists upcoming mess events & feasts; computes attendee counts; strictly protects co-resident privacy by never returning roommate names on event DTOs.
+    - `rsvpMemberEvent`: allows members to submit or update RSVP status (`ATTENDING`, `NOT_ATTENDING`, `MAYBE`); strictly rejects RSVP after the deadline has passed.
+    - `listMemberComplaints`: lists complaints scoped strictly to authenticated resident with anti-IDOR isolation.
+    - `createMemberComplaint`: submits grievance with category, title (min 3 chars), description (min 5 chars), generates unique `CMP-...` reference code.
+  - REST API Endpoints:
+    - `app/api/v1/portal/[tenantSlug]/meals/route.ts` (GET with `withMemberAuth`)
+    - `app/api/v1/portal/[tenantSlug]/meals/off-requests/route.ts` (POST with `withMemberAuth`)
+    - `app/api/v1/portal/[tenantSlug]/meals/off-requests/[id]/cancel/route.ts` (PATCH with `withMemberAuth`)
+    - `app/api/v1/portal/[tenantSlug]/notices/route.ts` (GET with `withMemberAuth`)
+    - `app/api/v1/portal/[tenantSlug]/events/route.ts` (GET with `withMemberAuth`)
+    - `app/api/v1/portal/[tenantSlug]/events/[id]/rsvp/route.ts` (POST with `withMemberAuth`)
+    - `app/api/v1/portal/[tenantSlug]/complaints/route.ts` (GET, POST with `withMemberAuth`)
+  - UI Components & Server Pages:
+    - `/portal/[tenantSlug]/meals`: `MemberMealsView` with month switcher, calendar grid view, mobile day-by-day list view, today's dining banner, meal rate explanation card, guest meal chips, and "Request Meal-Off" modal.
+    - `/portal/[tenantSlug]/notices`: `MemberNoticesView` with category tabs, search input, pinned notice indicators, priority badges, and formatted publication dates in Asia/Dhaka.
+    - `/portal/[tenantSlug]/events`: `MemberEventsView` with feast/event cards, location/time chips, attendee count badge, deadline indicators, and interactive RSVP selector.
+    - `/portal/[tenantSlug]/complaints`: `MemberComplaintsView` with status filter tabs, ticket reference badges, admin response narrative, timeline indicators, and "Submit New Complaint" modal.
+    - Navigation updated in `components/member-portal/member-nav-data.ts`: `meals`, `notices`, `events`, and `complaints` marked as `isImplemented: true`.
+  - Automated test suite (`server/member-portal/member-meals-community.test.ts`): 18 comprehensive tests covering dining overview, privacy scoping, backend meal rate calculation, meal-off cutoffs in Asia/Dhaka, duplicate prevention, meal-off cancellation, notices isolation, event RSVPs with deadline protection, and complaints anti-IDOR isolation.
+- **Verification:** TypeScript: 0 errors (`npx tsc --noEmit`); ESLint: 0 errors, 0 warnings (`npm run lint`); 50/50 Member Portal tests passing (100%); Next.js production build: 47/47 routes compiled cleanly.
+
 
 
 

@@ -439,7 +439,10 @@ export const ModelName = {
   BalanceAdjustment: 'BalanceAdjustment',
   MessSetting: 'MessSetting',
   Notice: 'Notice',
-  MemberRequest: 'MemberRequest'
+  MemberRequest: 'MemberRequest',
+  MessEvent: 'MessEvent',
+  EventRsvp: 'EventRsvp',
+  Complaint: 'Complaint'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -455,7 +458,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "tenant" | "tenantVerification" | "role" | "roleTemplate" | "permission" | "rolePermission" | "roleTemplatePermission" | "membership" | "auditLog" | "plan" | "subscription" | "subscriptionInvoice" | "customPlanInquiry" | "customQuotation" | "domain" | "supportTicket" | "supportTicketMessage" | "platformNotification" | "room" | "bed" | "roomAssignment" | "rentalListing" | "bookingRequest" | "mealSetting" | "mealDailyLog" | "memberMealEntry" | "mealOffRequest" | "guestMeal" | "mealPeriodLock" | "expenseCategory" | "expense" | "expenseItem" | "bazarSchedule" | "financialCategory" | "monthlyBillingPeriod" | "memberBill" | "billItem" | "memberPayment" | "balanceAdjustment" | "messSetting" | "notice" | "memberRequest"
+    modelProps: "user" | "tenant" | "tenantVerification" | "role" | "roleTemplate" | "permission" | "rolePermission" | "roleTemplatePermission" | "membership" | "auditLog" | "plan" | "subscription" | "subscriptionInvoice" | "customPlanInquiry" | "customQuotation" | "domain" | "supportTicket" | "supportTicketMessage" | "platformNotification" | "room" | "bed" | "roomAssignment" | "rentalListing" | "bookingRequest" | "mealSetting" | "mealDailyLog" | "memberMealEntry" | "mealOffRequest" | "guestMeal" | "mealPeriodLock" | "expenseCategory" | "expense" | "expenseItem" | "bazarSchedule" | "financialCategory" | "monthlyBillingPeriod" | "memberBill" | "billItem" | "memberPayment" | "balanceAdjustment" | "messSetting" | "notice" | "memberRequest" | "messEvent" | "eventRsvp" | "complaint"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3641,6 +3644,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    MessEvent: {
+      payload: Prisma.$MessEventPayload<ExtArgs>
+      fields: Prisma.MessEventFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MessEventFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessEventPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MessEventFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessEventPayload>
+        }
+        findFirst: {
+          args: Prisma.MessEventFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessEventPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MessEventFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessEventPayload>
+        }
+        findMany: {
+          args: Prisma.MessEventFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessEventPayload>[]
+        }
+        create: {
+          args: Prisma.MessEventCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessEventPayload>
+        }
+        createMany: {
+          args: Prisma.MessEventCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MessEventCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessEventPayload>[]
+        }
+        delete: {
+          args: Prisma.MessEventDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessEventPayload>
+        }
+        update: {
+          args: Prisma.MessEventUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessEventPayload>
+        }
+        deleteMany: {
+          args: Prisma.MessEventDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MessEventUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MessEventUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessEventPayload>[]
+        }
+        upsert: {
+          args: Prisma.MessEventUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessEventPayload>
+        }
+        aggregate: {
+          args: Prisma.MessEventAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMessEvent>
+        }
+        groupBy: {
+          args: Prisma.MessEventGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MessEventGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MessEventCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MessEventCountAggregateOutputType> | number
+        }
+      }
+    }
+    EventRsvp: {
+      payload: Prisma.$EventRsvpPayload<ExtArgs>
+      fields: Prisma.EventRsvpFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EventRsvpFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventRsvpPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EventRsvpFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventRsvpPayload>
+        }
+        findFirst: {
+          args: Prisma.EventRsvpFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventRsvpPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EventRsvpFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventRsvpPayload>
+        }
+        findMany: {
+          args: Prisma.EventRsvpFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventRsvpPayload>[]
+        }
+        create: {
+          args: Prisma.EventRsvpCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventRsvpPayload>
+        }
+        createMany: {
+          args: Prisma.EventRsvpCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EventRsvpCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventRsvpPayload>[]
+        }
+        delete: {
+          args: Prisma.EventRsvpDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventRsvpPayload>
+        }
+        update: {
+          args: Prisma.EventRsvpUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventRsvpPayload>
+        }
+        deleteMany: {
+          args: Prisma.EventRsvpDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EventRsvpUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EventRsvpUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventRsvpPayload>[]
+        }
+        upsert: {
+          args: Prisma.EventRsvpUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventRsvpPayload>
+        }
+        aggregate: {
+          args: Prisma.EventRsvpAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEventRsvp>
+        }
+        groupBy: {
+          args: Prisma.EventRsvpGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventRsvpGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EventRsvpCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventRsvpCountAggregateOutputType> | number
+        }
+      }
+    }
+    Complaint: {
+      payload: Prisma.$ComplaintPayload<ExtArgs>
+      fields: Prisma.ComplaintFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ComplaintFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComplaintPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ComplaintFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComplaintPayload>
+        }
+        findFirst: {
+          args: Prisma.ComplaintFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComplaintPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ComplaintFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComplaintPayload>
+        }
+        findMany: {
+          args: Prisma.ComplaintFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComplaintPayload>[]
+        }
+        create: {
+          args: Prisma.ComplaintCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComplaintPayload>
+        }
+        createMany: {
+          args: Prisma.ComplaintCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ComplaintCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComplaintPayload>[]
+        }
+        delete: {
+          args: Prisma.ComplaintDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComplaintPayload>
+        }
+        update: {
+          args: Prisma.ComplaintUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComplaintPayload>
+        }
+        deleteMany: {
+          args: Prisma.ComplaintDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ComplaintUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ComplaintUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComplaintPayload>[]
+        }
+        upsert: {
+          args: Prisma.ComplaintUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ComplaintPayload>
+        }
+        aggregate: {
+          args: Prisma.ComplaintAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateComplaint>
+        }
+        groupBy: {
+          args: Prisma.ComplaintGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ComplaintGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ComplaintCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ComplaintCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -4521,6 +4746,57 @@ export const MemberRequestScalarFieldEnum = {
 } as const
 
 export type MemberRequestScalarFieldEnum = (typeof MemberRequestScalarFieldEnum)[keyof typeof MemberRequestScalarFieldEnum]
+
+
+export const MessEventScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  title: 'title',
+  description: 'description',
+  eventDate: 'eventDate',
+  location: 'location',
+  imageUrl: 'imageUrl',
+  rsvpDeadline: 'rsvpDeadline',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MessEventScalarFieldEnum = (typeof MessEventScalarFieldEnum)[keyof typeof MessEventScalarFieldEnum]
+
+
+export const EventRsvpScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  eventId: 'eventId',
+  membershipId: 'membershipId',
+  status: 'status',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EventRsvpScalarFieldEnum = (typeof EventRsvpScalarFieldEnum)[keyof typeof EventRsvpScalarFieldEnum]
+
+
+export const ComplaintScalarFieldEnum = {
+  id: 'id',
+  referenceNumber: 'referenceNumber',
+  tenantId: 'tenantId',
+  membershipId: 'membershipId',
+  category: 'category',
+  title: 'title',
+  description: 'description',
+  attachmentUrl: 'attachmentUrl',
+  status: 'status',
+  adminResponse: 'adminResponse',
+  reviewedByUserId: 'reviewedByUserId',
+  reviewedAt: 'reviewedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ComplaintScalarFieldEnum = (typeof ComplaintScalarFieldEnum)[keyof typeof ComplaintScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -5477,6 +5753,9 @@ export type GlobalOmitConfig = {
   messSetting?: Prisma.MessSettingOmit
   notice?: Prisma.NoticeOmit
   memberRequest?: Prisma.MemberRequestOmit
+  messEvent?: Prisma.MessEventOmit
+  eventRsvp?: Prisma.EventRsvpOmit
+  complaint?: Prisma.ComplaintOmit
 }
 
 /* Types for Logging */

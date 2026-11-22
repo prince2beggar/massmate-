@@ -9,6 +9,11 @@ import { financeService } from '@/server/finance/finance-service';
 import { formatBdtCurrency } from '@/server/mess-admin/mess-dashboard-service';
 import { formatDhakaDateTime } from '@/server/settings/mess-settings-service';
 import {
+  isMealCutoffPassed,
+  getDaysInMonth,
+  getNextDayString,
+} from '@/server/meals/meal-utils';
+import {
   UnauthenticatedError,
   NotFoundError,
   ForbiddenError,
@@ -165,6 +170,132 @@ export interface CreateMemberRequestInput {
   metadata?: Record<string, any> | null;
 }
 
+export interface MemberMealCalendarDay {
+  dateString: string;
+  dayNumber: number;
+  dayOfWeek: string;
+  isToday: boolean;
+  isPast: boolean;
+  breakfast: number;
+  lunch: number;
+  dinner: number;
+  totalDailyUnits: number;
+  isMealOff: boolean;
+  mealOffReason: string | null;
+  guestMealsCount: number;
+  menu: {
+    breakfast: string | null;
+    lunch: string | null;
+    dinner: string | null;
+    specialNotes: string | null;
+  } | null;
+}
+
+export interface MemberMealOverviewDto {
+  todayDate: string;
+  monthString: string;
+  mealSystem: 'FIXED' | 'FLEXIBLE';
+  mealSystemDescription: string;
+  todayStatus: 'ACTIVE' | 'OFF' | 'NO_SCHEDULE';
+  todayCounts: {
+    breakfast: number;
+    lunch: number;
+    dinner: number;
+  };
+  todayMenu: {
+    breakfast: string | null;
+    lunch: string | null;
+    dinner: string | null;
+    specialNotes: string | null;
+  } | null;
+  monthSummary: {
+    totalMemberMeals: number;
+    totalGuestMeals: number;
+    totalChargeableUnits: number;
+    estimatedMealRateFormatted: string | null;
+    estimatedMealRatePoisha: string | null;
+    totalMealChargesFormatted: string;
+  };
+  cutoffs: {
+    breakfast: string;
+    lunch: string;
+    dinner: string;
+    defaultCutoff: string;
+    cutoffExplanation: string;
+  };
+  calendar: MemberMealCalendarDay[];
+  recentMealOffRequests: Array<{
+    id: string;
+    startDate: string;
+    endDate: string;
+    mealTypes: string[];
+    reason: string;
+    status: 'PENDING' | 'APPROVED' | 'REJECTED';
+    canCancel: boolean;
+    createdAt: string;
+    reviewedAt: string | null;
+    reviewNote: string | null;
+  }>;
+}
+
+export interface SubmitMealOffInput {
+  startDate: string;
+  endDate: string;
+  mealTypes?: string[];
+  reason: string;
+}
+
+export interface MemberNoticeDto {
+  id: string;
+  title: string;
+  content: string;
+  category: string;
+  priority: string;
+  isPinned: boolean;
+  publishedAt: string;
+  expiresAt: string | null;
+}
+
+export interface MemberEventDto {
+  id: string;
+  title: string;
+  description: string;
+  eventDate: string;
+  location: string | null;
+  imageUrl: string | null;
+  rsvpDeadline: string | null;
+  isRsvpOpen: boolean;
+  myRsvpStatus: 'ATTENDING' | 'NOT_ATTENDING' | 'MAYBE' | 'NO_RESPONSE';
+  totalAttendingCount: number;
+}
+
+export interface RsvpEventInput {
+  status: 'ATTENDING' | 'NOT_ATTENDING' | 'MAYBE';
+  notes?: string;
+}
+
+export interface MemberComplaintDto {
+  id: string;
+  referenceNumber: string;
+  category: string;
+  title: string;
+  description: string;
+  status: 'SUBMITTED' | 'IN_REVIEW' | 'IN_PROGRESS' | 'RESOLVED' | 'REJECTED' | 'CLOSED';
+  attachmentUrl: string | null;
+  adminResponse: string | null;
+  reviewedBy: string | null;
+  reviewedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateComplaintInput {
+  category: string;
+  title: string;
+  description: string;
+  attachmentUrl?: string;
+}
+
 export interface MemberDashboardDto {
   member: {
     id: string;
@@ -285,6 +416,10 @@ export class MemberPortalService {
   public mockBills: any[] = [];
   public mockAuditLogs: any[] = [];
   public mockMemberRequests: any[] = [];
+  public mockMemberMealEntries: any[] = [];
+  public mockEvents: any[] = [];
+  public mockEventRsvps: any[] = [];
+  public mockComplaints: any[] = [];
 
   constructor(customPrisma?: PrismaClient) {
     this.db = customPrisma || (defaultPrisma as any);
@@ -536,6 +671,77 @@ export class MemberPortalService {
         reviewedAt: new Date('2026-11-15T10:00:00Z'),
         createdAt: new Date('2026-11-14T09:00:00Z'),
         updatedAt: new Date('2026-11-15T10:00:00Z'),
+      },
+    ];
+
+    this.mockMemberMealEntries = [
+      {
+        id: 'mme_seed_1',
+        tenantId: 'tenant_prince_mess',
+        membershipId: 'mem_res_1',
+        dateString: todayDate,
+        breakfastCount: 1,
+        lunchCount: 1,
+        dinnerCount: 1,
+        totalChargeableUnits: 2.5,
+      },
+    ];
+
+    this.mockEvents = [
+      {
+        id: 'evt_friday_feast',
+        tenantId: 'tenant_prince_mess',
+        title: 'Monthly Grand Feast — Kacchi Biryani & Borhani',
+        description: 'Special weekend dining feast for all mess residents. Special dessert included.',
+        eventDate: new Date('2026-11-27T19:00:00Z'),
+        location: 'Mess Common Dining Hall',
+        imageUrl: null,
+        rsvpDeadline: new Date('2026-11-26T18:00:00Z'),
+        status: 'PUBLISHED',
+        createdAt: new Date(),
+      },
+      {
+        id: 'evt_cleaning_drive',
+        tenantId: 'tenant_prince_mess',
+        title: 'Mess Common Space Cleaning Drive',
+        description: 'Voluntary community cleanup of common corridors, balcony, and terrace.',
+        eventDate: new Date('2026-12-05T10:00:00Z'),
+        location: 'Rooftop & 2nd Floor Corridor',
+        imageUrl: null,
+        rsvpDeadline: new Date('2026-12-04T22:00:00Z'),
+        status: 'PUBLISHED',
+        createdAt: new Date(),
+      },
+    ];
+
+    this.mockEventRsvps = [
+      {
+        id: 'rsvp_seed_1',
+        tenantId: 'tenant_prince_mess',
+        eventId: 'evt_friday_feast',
+        membershipId: 'mem_res_1',
+        status: 'ATTENDING',
+        notes: 'Looking forward to the feast!',
+        createdAt: new Date(),
+      },
+    ];
+
+    this.mockComplaints = [
+      {
+        id: 'cmp_seed_1',
+        referenceNumber: 'CMP-2611-001',
+        tenantId: 'tenant_prince_mess',
+        membershipId: 'mem_res_1',
+        category: 'MAINTENANCE',
+        title: 'Slow WiFi Connection on 2nd Floor Corridor',
+        description: 'The router on the 2nd floor drops connection frequently between 9 PM and 11 PM.',
+        attachmentUrl: null,
+        status: 'IN_PROGRESS',
+        adminResponse: 'ISP technician scheduled to inspect router signal booster on Saturday.',
+        reviewedBy: 'Mess Admin',
+        reviewedAt: new Date('2026-11-18T14:00:00Z'),
+        createdAt: new Date('2026-11-17T11:00:00Z'),
+        updatedAt: new Date('2026-11-18T14:00:00Z'),
       },
     ];
   }
@@ -2215,6 +2421,762 @@ export class MemberPortalService {
       createdAt: formatDhakaDateTime(updated.createdAt),
       updatedAt: formatDhakaDateTime(updated.updatedAt),
       metadata: updated.metadata as Record<string, any> | null,
+    };
+  }
+
+  // ===========================================================================
+  // TASK 39: MEAL CENTER, NOTICES, EVENTS & COMPLAINTS
+  // ===========================================================================
+
+  /**
+   * Retrieves the comprehensive meal overview for the member.
+   * Includes daily bookings, menus, fixed/flexible mode explanation, monthly totals,
+   * Dhaka cutoff rules, and full calendar view for the requested month.
+   */
+  async getMemberMealOverview(
+    userId: string,
+    tenantSlug: string,
+    month?: string
+  ): Promise<MemberMealOverviewDto> {
+    const ctx = await this.resolveMemberContext(userId, tenantSlug);
+    const targetMonth = month || getCurrentDhakaMonthString();
+    const todayDate = getTodayDhakaDateString();
+    const daysInMonth = getDaysInMonth(targetMonth);
+
+    // Default Fallback Settings
+    let mealSystem: 'FIXED' | 'FLEXIBLE' = 'FLEXIBLE';
+    let breakfastCutoff = '06:00';
+    let lunchCutoff = '09:00';
+    let dinnerCutoff = '16:00';
+    let defaultCutoff = '20:00';
+
+    let dailyLogs: any[] = [];
+    let memberEntries: any[] = [];
+    let mealOffRequests: any[] = [];
+    let guestMeals: any[] = [];
+    let mealRateCalculation: any = null;
+
+    if (!this.isDbAvailable()) {
+      dailyLogs = this.mockMealLogs.filter(
+        (l) => l.tenantId === ctx.tenantId && l.dateString.startsWith(targetMonth)
+      );
+      memberEntries = this.mockMemberMealEntries.filter(
+        (e) => e.tenantId === ctx.tenantId && e.membershipId === ctx.membershipId && e.dateString.startsWith(targetMonth)
+      );
+      mealOffRequests = this.mockMealOffRequests.filter(
+        (r) => r.tenantId === ctx.tenantId && r.membershipId === ctx.membershipId
+      );
+    } else {
+      const [settings, dbLogs, dbEntries, dbOffs, dbGuests, dbRate] = await Promise.all([
+        this.db.mealSetting.findUnique({ where: { tenantId: ctx.tenantId } }).catch(() => null),
+        this.db.mealDailyLog.findMany({
+          where: {
+            tenantId: ctx.tenantId,
+            dateString: { startsWith: targetMonth },
+          },
+        }).catch(() => []),
+        this.db.memberMealEntry.findMany({
+          where: {
+            tenantId: ctx.tenantId,
+            membershipId: ctx.membershipId,
+            dateString: { startsWith: targetMonth },
+          },
+        }).catch(() => []),
+        this.db.mealOffRequest.findMany({
+          where: {
+            tenantId: ctx.tenantId,
+            membershipId: ctx.membershipId,
+          },
+          orderBy: { createdAt: 'desc' },
+        }).catch(() => []),
+        this.db.guestMeal.findMany({
+          where: {
+            tenantId: ctx.tenantId,
+            hostMembershipId: ctx.membershipId,
+            dateString: { startsWith: targetMonth },
+          },
+        }).catch(() => []),
+        this.db.mealPeriodLock.findUnique({
+          where: {
+            tenantId_monthString: {
+              tenantId: ctx.tenantId,
+              monthString: targetMonth,
+            },
+          },
+        }).catch(() => null),
+      ]);
+
+      if (settings) {
+        mealSystem = (settings.mealSystem as any) || 'FLEXIBLE';
+        breakfastCutoff = settings.breakfastCutoff || '06:00';
+        lunchCutoff = settings.lunchCutoff || '09:00';
+        dinnerCutoff = settings.dinnerCutoff || '16:00';
+        defaultCutoff = settings.defaultCutoffTime || '20:00';
+      }
+
+      dailyLogs = dbLogs;
+      memberEntries = dbEntries;
+      mealOffRequests = dbOffs;
+      guestMeals = dbGuests;
+      mealRateCalculation = dbRate;
+    }
+
+    // Build day-by-day calendar
+    let totalMemberMeals = 0;
+    let totalChargeableUnits = 0;
+
+    const calendar: MemberMealCalendarDay[] = daysInMonth.map((d) => {
+      const dayNum = Number(d.split('-')[2]);
+      const dateObj = new Date(d + 'T12:00:00Z');
+      const dayOfWeek = dateObj.toLocaleDateString('en-US', {
+        weekday: 'short',
+        timeZone: ASIA_DHAKA_TIMEZONE,
+      });
+
+      const entry = memberEntries.find((e) => e.dateString === d);
+      const log = dailyLogs.find((l) => l.dateString === d);
+
+      // Check if meal-off is active for this day
+      const activeOff = mealOffRequests.find(
+        (o) => (o.status === 'APPROVED' || o.status === 'PENDING') && d >= o.startDate && d <= o.endDate
+      );
+
+      const isMealOff = Boolean(activeOff);
+      const mealOffReason = activeOff?.reason || null;
+
+      const breakfast = entry ? Number(entry.breakfastCount) : isMealOff ? 0 : mealSystem === 'FIXED' ? 1 : 0;
+      const lunch = entry ? Number(entry.lunchCount) : isMealOff ? 0 : mealSystem === 'FIXED' ? 1 : 0;
+      const dinner = entry ? Number(entry.dinnerCount) : isMealOff ? 0 : mealSystem === 'FIXED' ? 1 : 0;
+
+      const dailyUnits = entry ? Number(entry.totalChargeableUnits) : breakfast * 0.5 + lunch * 1.0 + dinner * 1.0;
+
+      totalMemberMeals += (breakfast > 0 ? 1 : 0) + (lunch > 0 ? 1 : 0) + (dinner > 0 ? 1 : 0);
+      totalChargeableUnits += dailyUnits;
+
+      const dayGuests = guestMeals.filter((g) => g.dateString === d).reduce((acc, curr) => acc + curr.count, 0);
+
+      return {
+        dateString: d,
+        dayNumber: dayNum,
+        dayOfWeek,
+        isToday: d === todayDate,
+        isPast: d < todayDate,
+        breakfast,
+        lunch,
+        dinner,
+        totalDailyUnits: Math.round(dailyUnits * 100) / 100,
+        isMealOff,
+        mealOffReason,
+        guestMealsCount: dayGuests,
+        menu: log
+          ? {
+              breakfast: log.breakfastMenu || null,
+              lunch: log.lunchMenu || null,
+              dinner: log.dinnerMenu || null,
+              specialNotes: log.specialNotes || null,
+            }
+          : null,
+      };
+    });
+
+    const todayDay = calendar.find((c) => c.dateString === todayDate);
+    const todayStatus = todayDay?.isMealOff
+      ? 'OFF'
+      : (todayDay?.breakfast || 0) + (todayDay?.lunch || 0) + (todayDay?.dinner || 0) > 0
+      ? 'ACTIVE'
+      : 'NO_SCHEDULE';
+
+    const totalGuestMeals = guestMeals.reduce((acc, curr) => acc + curr.count, 0);
+
+    const estimatedRatePoisha = mealRateCalculation?.finalMealRatePoisha
+      ? BigInt(mealRateCalculation.finalMealRatePoisha)
+      : BigInt(6500); // ৳65.00 fallback standard rate
+
+    const estimatedChargesPoisha = BigInt(Math.round(totalChargeableUnits * Number(estimatedRatePoisha)));
+
+    const mealSystemDescription =
+      mealSystem === 'FIXED'
+        ? 'Fixed Dining Mode: All residents are assigned regular daily meals. Off-requests must be submitted prior to the Dhaka evening cutoff.'
+        : 'Flexible Dining Mode: Meals are booked and tracked individually per day with weight-adjusted units.';
+
+    return {
+      todayDate,
+      monthString: targetMonth,
+      mealSystem,
+      mealSystemDescription,
+      todayStatus,
+      todayCounts: {
+        breakfast: todayDay?.breakfast || 0,
+        lunch: todayDay?.lunch || 0,
+        dinner: todayDay?.dinner || 0,
+      },
+      todayMenu: todayDay?.menu || null,
+      monthSummary: {
+        totalMemberMeals,
+        totalGuestMeals,
+        totalChargeableUnits: Math.round(totalChargeableUnits * 100) / 100,
+        estimatedMealRateFormatted: formatBdtCurrency(estimatedRatePoisha),
+        estimatedMealRatePoisha: String(estimatedRatePoisha),
+        totalMealChargesFormatted: formatBdtCurrency(estimatedChargesPoisha),
+      },
+      cutoffs: {
+        breakfast: breakfastCutoff,
+        lunch: lunchCutoff,
+        dinner: dinnerCutoff,
+        defaultCutoff,
+        cutoffExplanation: `Evening cutoff is ${defaultCutoff} (Asia/Dhaka) for next-day meal status changes.`,
+      },
+      calendar,
+      recentMealOffRequests: mealOffRequests.slice(0, 10).map((r) => ({
+        id: r.id,
+        startDate: r.startDate,
+        endDate: r.endDate,
+        mealTypes: Array.isArray(r.mealTypes) ? (r.mealTypes as string[]) : ['ALL'],
+        reason: r.reason,
+        status: r.status as any,
+        canCancel: r.status === 'PENDING',
+        createdAt: formatDhakaDateTime(r.createdAt),
+        reviewedAt: r.reviewedAt ? formatDhakaDateTime(r.reviewedAt) : null,
+        reviewNote: r.reviewNote || null,
+      })),
+    };
+  }
+
+  /**
+   * Submits a resident meal-off request with strict server-side cutoff time validation in Asia/Dhaka.
+   * Client-side clock manipulation is completely blocked.
+   */
+  async submitMemberMealOffRequest(
+    userId: string,
+    tenantSlug: string,
+    input: SubmitMealOffInput
+  ): Promise<any> {
+    const ctx = await this.resolveMemberContext(userId, tenantSlug);
+
+    if (!input.startDate || !input.endDate) {
+      throw new ValidationError('Start date and end date are both required.');
+    }
+    if (input.startDate > input.endDate) {
+      throw new ValidationError('Start date cannot be after end date.');
+    }
+    if (!input.reason || input.reason.trim().length < 3) {
+      throw new ValidationError('Please provide a reason for the meal-off request (minimum 3 characters).');
+    }
+
+    // 1. Get tenant cutoff configuration
+    let defaultCutoff = '20:00';
+    let autoApprove = false;
+
+    if (this.isDbAvailable()) {
+      const settings = await this.db.mealSetting.findUnique({
+        where: { tenantId: ctx.tenantId },
+      });
+      if (settings) {
+        defaultCutoff = settings.defaultCutoffTime || '20:00';
+        autoApprove = Boolean(settings.autoApproveMealOff);
+      }
+    }
+
+    // 2. Strict Asia/Dhaka Cutoff Enforcement
+    const isCutoff = isMealCutoffPassed({
+      targetDateString: input.startDate,
+      cutoffTime: defaultCutoff,
+    });
+
+    if (isCutoff) {
+      throw new ValidationError(
+        `Meal-off deadline (${defaultCutoff} Asia/Dhaka) has passed for ${input.startDate}. Requests cannot be submitted after the cutoff.`
+      );
+    }
+
+    // 3. Duplicate check: ensure member has no active or pending request for the same range
+    if (!this.isDbAvailable()) {
+      const duplicate = this.mockMealOffRequests.find(
+        (r) =>
+          r.membershipId === ctx.membershipId &&
+          (r.status === 'PENDING' || r.status === 'APPROVED') &&
+          input.startDate <= r.endDate &&
+          input.endDate >= r.startDate
+      );
+      if (duplicate) {
+        throw new ValidationError('You already have a pending or approved meal-off request covering this period.');
+      }
+
+      const newReq = {
+        id: `moff_${Date.now()}`,
+        tenantId: ctx.tenantId,
+        membershipId: ctx.membershipId,
+        startDate: input.startDate,
+        endDate: input.endDate,
+        mealTypes: input.mealTypes || ['BREAKFAST', 'LUNCH', 'DINNER'],
+        reason: input.reason.trim(),
+        status: autoApprove ? 'APPROVED' : 'PENDING',
+        reviewedById: autoApprove ? 'system_auto' : null,
+        reviewNote: autoApprove ? 'Auto-approved by mess meal policy.' : null,
+        reviewedAt: autoApprove ? new Date() : null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+
+      this.mockMealOffRequests.unshift(newReq);
+      return newReq;
+    }
+
+    const existingConflict = await this.db.mealOffRequest.findFirst({
+      where: {
+        membershipId: ctx.membershipId,
+        tenantId: ctx.tenantId,
+        status: { in: ['PENDING', 'APPROVED'] },
+        startDate: { lte: input.endDate },
+        endDate: { gte: input.startDate },
+      },
+    });
+
+    if (existingConflict) {
+      throw new ValidationError('You already have a pending or approved meal-off request covering this period.');
+    }
+
+    const created = await this.db.mealOffRequest.create({
+      data: {
+        tenantId: ctx.tenantId,
+        membershipId: ctx.membershipId,
+        startDate: input.startDate,
+        endDate: input.endDate,
+        mealTypes: input.mealTypes || ['BREAKFAST', 'LUNCH', 'DINNER'],
+        reason: input.reason.trim(),
+        status: autoApprove ? 'APPROVED' : 'PENDING',
+        reviewNote: autoApprove ? 'Auto-approved by mess meal policy.' : null,
+        reviewedAt: autoApprove ? new Date() : null,
+      },
+    });
+
+    return created;
+  }
+
+  /**
+   * Cancels a pending meal-off request initiated by the authenticated member.
+   */
+  async cancelMemberMealOffRequest(
+    userId: string,
+    tenantSlug: string,
+    requestId: string
+  ): Promise<void> {
+    const ctx = await this.resolveMemberContext(userId, tenantSlug);
+
+    if (!this.isDbAvailable()) {
+      const req = this.mockMealOffRequests.find((r) => r.id === requestId);
+      if (!req || req.membershipId !== ctx.membershipId || req.tenantId !== ctx.tenantId) {
+        throw new NotFoundError('Meal-off request not found or access denied.');
+      }
+      if (req.status !== 'PENDING') {
+        throw new ValidationError(`Cannot cancel a request that has already been ${req.status.toLowerCase()}.`);
+      }
+      req.status = 'CANCELLED';
+      return;
+    }
+
+    const existing = await this.db.mealOffRequest.findFirst({
+      where: {
+        id: requestId,
+        membershipId: ctx.membershipId,
+        tenantId: ctx.tenantId,
+      },
+    });
+
+    if (!existing) {
+      throw new NotFoundError('Meal-off request not found or access denied.');
+    }
+    if (existing.status !== 'PENDING') {
+      throw new ValidationError(
+        `Cannot cancel a request that has already been ${existing.status.toLowerCase()}.`
+      );
+    }
+
+    await this.db.mealOffRequest.update({
+      where: { id: existing.id },
+      data: { status: 'CANCELLED' as any },
+    });
+  }
+
+  /**
+   * Lists published notices visible to the resident.
+   * Strictly filters out drafts and unexpired notices, and guarantees multi-tenant isolation.
+   */
+  async listMemberNotices(
+    userId: string,
+    tenantSlug: string,
+    category?: string
+  ): Promise<MemberNoticeDto[]> {
+    const ctx = await this.resolveMemberContext(userId, tenantSlug);
+    const now = new Date();
+
+    if (!this.isDbAvailable()) {
+      let notices = this.mockNotices.filter(
+        (n) => n.tenantId === ctx.tenantId && n.status === 'PUBLISHED'
+      );
+      if (category && category !== 'ALL') {
+        notices = notices.filter((n) => n.category === category);
+      }
+      return notices.map((n) => ({
+        id: n.id,
+        title: n.title,
+        content: n.content,
+        category: n.category,
+        priority: n.priority,
+        isPinned: Boolean(n.isPinned),
+        publishedAt: formatDhakaDateTime(n.createdAt),
+        expiresAt: n.expiresAt ? formatDhakaDateTime(n.expiresAt) : null,
+      }));
+    }
+
+    const whereClause: Record<string, any> = {
+      tenantId: ctx.tenantId,
+      status: 'PUBLISHED',
+      OR: [
+        { expiresAt: null },
+        { expiresAt: { gt: now } },
+      ],
+    };
+
+    if (category && category !== 'ALL') {
+      whereClause.category = category;
+    }
+
+    const notices = await this.db.notice.findMany({
+      where: whereClause,
+      orderBy: [
+        { isPinned: 'desc' },
+        { createdAt: 'desc' },
+      ],
+    });
+
+    return notices.map((n) => ({
+      id: n.id,
+      title: n.title,
+      content: n.content,
+      category: n.category,
+      priority: n.priority,
+      isPinned: n.isPinned,
+      publishedAt: formatDhakaDateTime(n.createdAt),
+      expiresAt: n.expiresAt ? formatDhakaDateTime(n.expiresAt) : null,
+    }));
+  }
+
+  /**
+   * Lists community events and feasts for the mess.
+   * Includes the member's personal RSVP status and attending counts while protecting attendee identity privacy.
+   */
+  async listMemberEvents(userId: string, tenantSlug: string): Promise<MemberEventDto[]> {
+    const ctx = await this.resolveMemberContext(userId, tenantSlug);
+    const now = new Date();
+
+    if (!this.isDbAvailable()) {
+      const events = this.mockEvents.filter(
+        (e) => e.tenantId === ctx.tenantId && e.status === 'PUBLISHED'
+      );
+
+      return events.map((e) => {
+        const isRsvpOpen = !e.rsvpDeadline || new Date(e.rsvpDeadline) > now;
+        const myRsvp = this.mockEventRsvps.find(
+          (r) => r.eventId === e.id && r.membershipId === ctx.membershipId
+        );
+        const attendingCount = this.mockEventRsvps.filter(
+          (r) => r.eventId === e.id && r.status === 'ATTENDING'
+        ).length;
+
+        return {
+          id: e.id,
+          title: e.title,
+          description: e.description,
+          eventDate: formatDhakaDateTime(e.eventDate),
+          location: e.location || null,
+          imageUrl: e.imageUrl || null,
+          rsvpDeadline: e.rsvpDeadline ? formatDhakaDateTime(e.rsvpDeadline) : null,
+          isRsvpOpen,
+          myRsvpStatus: (myRsvp?.status as any) || 'NO_RESPONSE',
+          totalAttendingCount: attendingCount,
+        };
+      });
+    }
+
+    const events = await this.db.messEvent.findMany({
+      where: {
+        tenantId: ctx.tenantId,
+        status: 'PUBLISHED',
+      },
+      include: {
+        rsvps: true,
+      },
+      orderBy: {
+        eventDate: 'asc',
+      },
+    });
+
+    return events.map((e) => {
+      const isRsvpOpen = !e.rsvpDeadline || e.rsvpDeadline > now;
+      const myRsvp = e.rsvps.find((r) => r.membershipId === ctx.membershipId);
+      const attendingCount = e.rsvps.filter((r) => r.status === 'ATTENDING').length;
+
+      return {
+        id: e.id,
+        title: e.title,
+        description: e.description,
+        eventDate: formatDhakaDateTime(e.eventDate),
+        location: e.location,
+        imageUrl: e.imageUrl,
+        rsvpDeadline: e.rsvpDeadline ? formatDhakaDateTime(e.rsvpDeadline) : null,
+        isRsvpOpen,
+        myRsvpStatus: (myRsvp?.status as any) || 'NO_RESPONSE',
+        totalAttendingCount: attendingCount,
+      };
+    });
+  }
+
+  /**
+   * Submits or updates a member's RSVP for an event.
+   * Enforces deadline validation and prevents duplicate RSVP records.
+   */
+  async rsvpMemberEvent(
+    userId: string,
+    tenantSlug: string,
+    eventId: string,
+    input: RsvpEventInput
+  ): Promise<MemberEventDto> {
+    const ctx = await this.resolveMemberContext(userId, tenantSlug);
+    const validStatuses = ['ATTENDING', 'NOT_ATTENDING', 'MAYBE'];
+    if (!validStatuses.includes(input.status)) {
+      throw new ValidationError('Invalid RSVP status. Must be ATTENDING, NOT_ATTENDING, or MAYBE.');
+    }
+
+    const now = new Date();
+
+    if (!this.isDbAvailable()) {
+      const event = this.mockEvents.find(
+        (e) => e.id === eventId && e.tenantId === ctx.tenantId && e.status === 'PUBLISHED'
+      );
+      if (!event) {
+        throw new NotFoundError('Event not found or access denied.');
+      }
+      if (event.rsvpDeadline && new Date(event.rsvpDeadline) < now) {
+        throw new ValidationError('The RSVP deadline for this event has passed.');
+      }
+
+      let rsvp = this.mockEventRsvps.find(
+        (r) => r.eventId === eventId && r.membershipId === ctx.membershipId
+      );
+      if (rsvp) {
+        rsvp.status = input.status;
+        rsvp.notes = input.notes || null;
+      } else {
+        rsvp = {
+          id: `rsvp_${Date.now()}`,
+          tenantId: ctx.tenantId,
+          eventId,
+          membershipId: ctx.membershipId,
+          status: input.status,
+          notes: input.notes || null,
+          createdAt: now,
+        };
+        this.mockEventRsvps.push(rsvp);
+      }
+
+      const updatedEvents = await this.listMemberEvents(userId, tenantSlug);
+      return updatedEvents.find((e) => e.id === eventId)!;
+    }
+
+    const event = await this.db.messEvent.findFirst({
+      where: {
+        id: eventId,
+        tenantId: ctx.tenantId,
+        status: 'PUBLISHED',
+      },
+    });
+
+    if (!event) {
+      throw new NotFoundError('Event not found or access denied.');
+    }
+    if (event.rsvpDeadline && event.rsvpDeadline < now) {
+      throw new ValidationError('The RSVP deadline for this event has passed.');
+    }
+
+    await this.db.eventRsvp.upsert({
+      where: {
+        eventId_membershipId: {
+          eventId,
+          membershipId: ctx.membershipId,
+        },
+      },
+      create: {
+        tenantId: ctx.tenantId,
+        eventId,
+        membershipId: ctx.membershipId,
+        status: input.status,
+        notes: input.notes || null,
+      },
+      update: {
+        status: input.status,
+        notes: input.notes || null,
+      },
+    });
+
+    const updatedEvents = await this.listMemberEvents(userId, tenantSlug);
+    return updatedEvents.find((e) => e.id === eventId)!;
+  }
+
+  /**
+   * Lists complaints and maintenance feedback tickets submitted by the authenticated resident.
+   * Strictly enforces anti-IDOR isolation; members cannot view other residents' submissions.
+   */
+  async listMemberComplaints(
+    userId: string,
+    tenantSlug: string,
+    status?: string
+  ): Promise<MemberComplaintDto[]> {
+    const ctx = await this.resolveMemberContext(userId, tenantSlug);
+
+    if (!this.isDbAvailable()) {
+      let complaints = this.mockComplaints.filter(
+        (c) => c.tenantId === ctx.tenantId && c.membershipId === ctx.membershipId
+      );
+      if (status && status !== 'ALL') {
+        complaints = complaints.filter((c) => c.status === status);
+      }
+      return complaints.map((c) => ({
+        id: c.id,
+        referenceNumber: c.referenceNumber || `CMP-${c.id.slice(-6).toUpperCase()}`,
+        category: c.category,
+        title: c.title,
+        description: c.description,
+        status: c.status,
+        attachmentUrl: c.attachmentUrl || null,
+        adminResponse: c.adminResponse || null,
+        reviewedBy: c.reviewedBy || null,
+        reviewedAt: c.reviewedAt ? formatDhakaDateTime(c.reviewedAt) : null,
+        createdAt: formatDhakaDateTime(c.createdAt),
+        updatedAt: formatDhakaDateTime(c.updatedAt),
+      }));
+    }
+
+    const whereClause: Record<string, any> = {
+      tenantId: ctx.tenantId,
+      membershipId: ctx.membershipId,
+    };
+    if (status && status !== 'ALL') {
+      whereClause.status = status;
+    }
+
+    const complaints = await this.db.complaint.findMany({
+      where: whereClause,
+      include: {
+        reviewer: { select: { name: true } },
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    return complaints.map((c) => ({
+      id: c.id,
+      referenceNumber: c.referenceNumber,
+      category: c.category,
+      title: c.title,
+      description: c.description,
+      status: c.status as any,
+      attachmentUrl: c.attachmentUrl,
+      adminResponse: c.adminResponse,
+      reviewedBy: c.reviewer?.name || null,
+      reviewedAt: c.reviewedAt ? formatDhakaDateTime(c.reviewedAt) : null,
+      createdAt: formatDhakaDateTime(c.createdAt),
+      updatedAt: formatDhakaDateTime(c.updatedAt),
+    }));
+  }
+
+  /**
+   * Submits a resident grievance or maintenance request.
+   * Initiates in 'SUBMITTED' status with a trackable reference number.
+   */
+  async createMemberComplaint(
+    userId: string,
+    tenantSlug: string,
+    input: CreateComplaintInput
+  ): Promise<MemberComplaintDto> {
+    const ctx = await this.resolveMemberContext(userId, tenantSlug);
+
+    if (!input.title || input.title.trim().length < 3) {
+      throw new ValidationError('Subject/title must be at least 3 characters.');
+    }
+    if (!input.description || input.description.trim().length < 5) {
+      throw new ValidationError('Description must be at least 5 characters.');
+    }
+
+    const validCategories = ['MAINTENANCE', 'CLEANING', 'FOOD_QUALITY', 'NOISE', 'SECURITY', 'OTHER'];
+    const category = validCategories.includes(input.category) ? input.category : 'OTHER';
+
+    const now = new Date();
+    const referenceNumber = `CMP-${Date.now().toString().slice(-6)}`;
+
+    if (!this.isDbAvailable()) {
+      const newCmp = {
+        id: `cmp_${Date.now()}`,
+        referenceNumber,
+        tenantId: ctx.tenantId,
+        membershipId: ctx.membershipId,
+        category,
+        title: input.title.trim(),
+        description: input.description.trim(),
+        attachmentUrl: input.attachmentUrl || null,
+        status: 'SUBMITTED' as const,
+        adminResponse: null,
+        reviewedBy: null,
+        reviewedAt: null,
+        createdAt: now,
+        updatedAt: now,
+      };
+
+      this.mockComplaints.unshift(newCmp);
+
+      return {
+        id: newCmp.id,
+        referenceNumber: newCmp.referenceNumber,
+        category: newCmp.category,
+        title: newCmp.title,
+        description: newCmp.description,
+        status: newCmp.status,
+        attachmentUrl: newCmp.attachmentUrl,
+        adminResponse: null,
+        reviewedBy: null,
+        reviewedAt: null,
+        createdAt: formatDhakaDateTime(newCmp.createdAt),
+        updatedAt: formatDhakaDateTime(newCmp.updatedAt),
+      };
+    }
+
+    const created = await this.db.complaint.create({
+      data: {
+        referenceNumber,
+        tenantId: ctx.tenantId,
+        membershipId: ctx.membershipId,
+        category,
+        title: input.title.trim(),
+        description: input.description.trim(),
+        attachmentUrl: input.attachmentUrl || null,
+        status: 'SUBMITTED',
+      },
+    });
+
+    return {
+      id: created.id,
+      referenceNumber: created.referenceNumber,
+      category: created.category,
+      title: created.title,
+      description: created.description,
+      status: created.status as any,
+      attachmentUrl: created.attachmentUrl,
+      adminResponse: null,
+      reviewedBy: null,
+      reviewedAt: null,
+      createdAt: formatDhakaDateTime(created.createdAt),
+      updatedAt: formatDhakaDateTime(created.updatedAt),
     };
   }
 }
