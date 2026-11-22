@@ -405,6 +405,33 @@
   - Automated test suite (`server/notifications/tenant-notification.test.ts`): 17 comprehensive unit/integration test scenarios covering tenant isolation, cross-tenant protection, IDOR prevention, unread counts, mark-one-read, mark-all-read, idempotency duplicate prevention, failure resilience, channel authenticity, category preferences, quiet hours validation, staff scheduled reminders with `Asia/Dhaka`, pause/resume/delete lifecycle, broadcast delivery, and pagination.
 - **Verification:** TypeScript: 0 errors (`npx tsc --noEmit`); ESLint: 0 errors, 0 warnings (`npm run lint`); 17/17 Task 41 tests passing (179/179 full test suite); Next.js production build: 47/47 routes cleanly compiled.
 
+### Task 42 — Inventory, Asset & Stock Management (Completed)
+- **Status:** Completed and Verified
+- **Scope & Implementation Details:**
+  - Prisma Schema (`prisma/schema.prisma`):
+    - `InventoryItem`: Multi-tenant inventory catalog supporting consumables and reusable assets, unique constraint `@@unique([tenantId, itemCode])`, compound index `@@index([tenantId, category, status])`, stock thresholds (`minStockAlert`), room assignments (`assignedRoomId`), poisha pricing (`costPerUnitPoisha` BigInt), and asset condition tracking.
+    - `StockMovement`: Authoritative double-entry-style stock movement ledger supporting `OPENING_STOCK`, `PURCHASE_RECEIPT`, `CONSUMPTION`, `TRANSFER`, `RETURN`, `DAMAGE_LOSS`, `STOCK_ADJUSTMENT`, and `WRITE_OFF` with `previousQuantity`, `newQuantity`, `totalCostPoisha`, idempotency tracking (`referenceNumber`), and audit attribution (`createdById`).
+  - Backend Service (`server/inventory/inventory-service.ts`):
+    - `getInventoryDashboard`: Executive KPIs (total items, consumables vs reusable assets, low-stock/out-of-stock counts, total asset valuation in exact poisha and formatted BDT, category breakdown, recent movements, and low stock warnings).
+    - `listItems` & `getItemById`: Tenant-isolated catalog with search, category filtering, item type filtering, status filtering (`ACTIVE`, `ARCHIVED`, `ALL`), low-stock filtering, pagination, and complete movement ledger history.
+    - `createItem` & `updateItem`: Validates input, enforces tenant-scoped itemCode uniqueness with `ConflictError`, and automatically creates initial `OPENING_STOCK` ledger entries.
+    - `archiveItem`: Non-destructive item archiving (`ARCHIVED`) preserving historical movements.
+    - `recordStockMovement`: Authoritative stock movement handler with idempotency guard via `referenceNumber`, strict sufficiency validation (rejects negative balance with `ValidationError`), exact integer poisha arithmetic (`BigInt`), and automated low-stock alerts.
+    - `getInventoryReports`: Category valuation breakdown, consumption summaries, and damaged/loss asset reports with formatted BDT.
+  - REST API Endpoints:
+    - `/api/v1/mess/[tenantSlug]/inventory` (GET list, POST create)
+    - `/api/v1/mess/[tenantSlug]/inventory/dashboard` (GET executive KPIs)
+    - `/api/v1/mess/[tenantSlug]/inventory/items/[id]` (GET details with history, PATCH update, DELETE archive)
+    - `/api/v1/mess/[tenantSlug]/inventory/movements` (GET movement ledger, POST record movement)
+    - `/api/v1/mess/[tenantSlug]/inventory/reports` (GET valuation, consumption, and damaged asset reports)
+  - UI Components & Server Pages:
+    - `InventoryManagementView` (`components/inventory/InventoryManagementView.tsx`): Comprehensive 4-tab interface (Dashboard, Items Catalog, Stock Movement Ledger, Reports) with 4 action modals (Add Item, Receive Stock, Record Consumption, Stock Adjustment/Transfer) featuring real-time search, category filtering, low-stock badges, and responsive tables.
+    - `/mess/[tenantSlug]/inventory/page.tsx`: Server page with tenant metadata and dynamic slug integration.
+  - Automated Tests (`server/inventory/inventory-management.test.ts`):
+    - 16 test scenarios covering multi-tenant isolation, suspended mess protection, itemCode uniqueness, stock receipts, consumption sufficiency validation, location transfers, stock adjustments, idempotency duplicate submission protection, low-stock/out-of-stock notification triggers, non-destructive archiving, reusable asset tracking with room assignment, and exact integer poisha calculations.
+- **Verification:** TypeScript: 0 errors (`npx tsc --noEmit`); Automated tests: 16/16 Task 42 tests passing (321/321 full test suite); ESLint: 0 errors, 0 warnings; Next.js production build: clean compilation.
+
+
 
 
 

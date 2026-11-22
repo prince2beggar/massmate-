@@ -56,6 +56,8 @@ import type {
   NotificationPreference as PrismaNotificationPreference,
   ScheduledReminder as PrismaScheduledReminder,
   NotificationDeliveryLog as PrismaNotificationDeliveryLog,
+  InventoryItem as PrismaInventoryItem,
+  StockMovement as PrismaStockMovement,
   AllocationRule,
   BillingPeriodStatus,
   BillStatus,
@@ -200,6 +202,8 @@ export type TenantNotification = PrismaTenantNotification;
 export type NotificationPreference = PrismaNotificationPreference;
 export type ScheduledReminder = PrismaScheduledReminder;
 export type NotificationDeliveryLog = PrismaNotificationDeliveryLog;
+export type InventoryItem = PrismaInventoryItem;
+export type StockMovement = PrismaStockMovement;
 
 // -----------------------------------------------------------------------------
 // COMPOSITE & RELATIONAL TYPES

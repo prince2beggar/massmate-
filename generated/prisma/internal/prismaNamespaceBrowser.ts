@@ -100,7 +100,9 @@ export const ModelName = {
   TenantNotification: 'TenantNotification',
   NotificationPreference: 'NotificationPreference',
   ScheduledReminder: 'ScheduledReminder',
-  NotificationDeliveryLog: 'NotificationDeliveryLog'
+  NotificationDeliveryLog: 'NotificationDeliveryLog',
+  InventoryItem: 'InventoryItem',
+  StockMovement: 'StockMovement'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1089,6 +1091,53 @@ export const NotificationDeliveryLogScalarFieldEnum = {
 } as const
 
 export type NotificationDeliveryLogScalarFieldEnum = (typeof NotificationDeliveryLogScalarFieldEnum)[keyof typeof NotificationDeliveryLogScalarFieldEnum]
+
+
+export const InventoryItemScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  itemCode: 'itemCode',
+  category: 'category',
+  itemType: 'itemType',
+  description: 'description',
+  unit: 'unit',
+  quantity: 'quantity',
+  minStockAlert: 'minStockAlert',
+  location: 'location',
+  costPerUnitPoisha: 'costPerUnitPoisha',
+  supplierName: 'supplierName',
+  assetCondition: 'assetCondition',
+  assignedRoomId: 'assignedRoomId',
+  status: 'status',
+  lastStockAlertAt: 'lastStockAlertAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type InventoryItemScalarFieldEnum = (typeof InventoryItemScalarFieldEnum)[keyof typeof InventoryItemScalarFieldEnum]
+
+
+export const StockMovementScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  itemId: 'itemId',
+  movementType: 'movementType',
+  quantity: 'quantity',
+  unit: 'unit',
+  previousQuantity: 'previousQuantity',
+  newQuantity: 'newQuantity',
+  unitCostPoisha: 'unitCostPoisha',
+  totalCostPoisha: 'totalCostPoisha',
+  sourceLocation: 'sourceLocation',
+  destinationLocation: 'destinationLocation',
+  referenceNumber: 'referenceNumber',
+  notes: 'notes',
+  createdById: 'createdById',
+  createdAt: 'createdAt'
+} as const
+
+export type StockMovementScalarFieldEnum = (typeof StockMovementScalarFieldEnum)[keyof typeof StockMovementScalarFieldEnum]
 
 
 export const SortOrder = {

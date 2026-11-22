@@ -381,6 +381,7 @@ model User {
   tenantNotifications     TenantNotification[]   @relation("UserTenantNotifications")
   notificationPreferences NotificationPreference[] @relation("UserNotificationPreferences")
   createdScheduledReminders ScheduledReminder[] @relation("CreatedScheduledReminders")
+  createdStockMovements   StockMovement[]        @relation("CreatedStockMovements")
 
   @@index([status])
   @@index([platformRole])
@@ -449,6 +450,8 @@ model Tenant {
   notificationPreferences NotificationPreference[]
   scheduledReminders    ScheduledReminder[]
   notificationDeliveryLogs NotificationDeliveryLog[]
+  inventoryItems        InventoryItem[]
+  stockMovements        StockMovement[]
 
   @@index([status])
   @@index([verificationStatus])
@@ -966,6 +969,7 @@ model Room {
   assignments    RoomAssignment[]
   rentalListings RentalListing[]
   roomChangeRequests MemberRequest[] @relation("RequestedRoom")
+  inventoryItems InventoryItem[]
 
   @@unique([tenantId, roomNumber])
   @@index([tenantId])
@@ -1789,6 +1793,72 @@ model NotificationDeliveryLog {
   @@index([tenantId, channel, status])
   @@map("notification_delivery_logs")
 }
+
+// -----------------------------------------------------------------------------
+// INVENTORY, ASSET & STOCK MANAGEMENT (Task 42)
+// -----------------------------------------------------------------------------
+
+model InventoryItem {
+  id                String          @id @default(cuid())
+  tenantId          String          @map("tenant_id")
+  name              String
+  itemCode          String?         @map("item_code")
+  category          String          @default("KITCHEN") // KITCHEN, CLEANING, GROCERY, APPLIANCE, FURNITURE, MAINTENANCE, OTHER
+  itemType          String          @default("CONSUMABLE") // CONSUMABLE, REUSABLE_ASSET
+  description       String?
+  unit              String          @default("piece") // piece, kg, litre, packet, box, bag, bundle
+  quantity          Float           @default(0)
+  minStockAlert     Float           @default(5) @map("min_stock_alert")
+  location          String?
+  costPerUnitPoisha BigInt?         @default(0) @map("cost_per_unit_poisha")
+  supplierName      String?         @map("supplier_name")
+  assetCondition    String?         @default("GOOD") @map("asset_condition") // EXCELLENT, GOOD, FAIR, NEEDS_REPAIR, DAMAGED
+  assignedRoomId    String?         @map("assigned_room_id")
+  status            String          @default("ACTIVE") // ACTIVE, ARCHIVED
+  lastStockAlertAt  DateTime?       @map("last_stock_alert_at")
+  createdAt         DateTime        @default(now()) @map("created_at")
+  updatedAt         DateTime        @updatedAt @map("updated_at")
+
+  tenant            Tenant          @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  assignedRoom      Room?           @relation(fields: [assignedRoomId], references: [id], onDelete: SetNull)
+  movements         StockMovement[]
+
+  @@unique([tenantId, itemCode])
+  @@index([tenantId, category])
+  @@index([tenantId, status])
+  @@index([tenantId, itemType])
+  @@map("inventory_items")
+}
+
+model StockMovement {
+  id                  String        @id @default(cuid())
+  tenantId            String        @map("tenant_id")
+  itemId              String        @map("item_id")
+  movementType        String        // OPENING_STOCK, PURCHASE_RECEIPT, CONSUMPTION, TRANSFER, RETURN, DAMAGE_LOSS, STOCK_ADJUSTMENT, WRITE_OFF
+  quantity            Float
+  unit                String
+  previousQuantity    Float         @map("previous_quantity")
+  newQuantity         Float         @map("new_quantity")
+  unitCostPoisha      BigInt?       @map("unit_cost_poisha")
+  totalCostPoisha     BigInt?       @map("total_cost_poisha")
+  sourceLocation      String?       @map("source_location")
+  destinationLocation String?       @map("destination_location")
+  referenceNumber     String?       @map("reference_number")
+  notes               String?
+  createdById         String?       @map("created_by_id")
+  createdAt           DateTime      @default(now()) @map("created_at")
+
+  tenant              Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  item                InventoryItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  creator             User?         @relation("CreatedStockMovements", fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@index([tenantId, itemId])
+  @@index([tenantId, movementType])
+  @@index([tenantId, referenceNumber])
+  @@index([tenantId, createdAt])
+  @@map("stock_movements")
+}
+
 
 
 

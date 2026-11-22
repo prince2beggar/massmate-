@@ -291,3 +291,13 @@ export type ScheduledReminder = Prisma.ScheduledReminderModel
  * 
  */
 export type NotificationDeliveryLog = Prisma.NotificationDeliveryLogModel
+/**
+ * Model InventoryItem
+ * 
+ */
+export type InventoryItem = Prisma.InventoryItemModel
+/**
+ * Model StockMovement
+ * 
+ */
+export type StockMovement = Prisma.StockMovementModel

@@ -266,6 +266,7 @@ export type UserWhereInput = {
   tenantNotifications?: Prisma.TenantNotificationListRelationFilter
   notificationPreferences?: Prisma.NotificationPreferenceListRelationFilter
   createdScheduledReminders?: Prisma.ScheduledReminderListRelationFilter
+  createdStockMovements?: Prisma.StockMovementListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -309,6 +310,7 @@ export type UserOrderByWithRelationInput = {
   tenantNotifications?: Prisma.TenantNotificationOrderByRelationAggregateInput
   notificationPreferences?: Prisma.NotificationPreferenceOrderByRelationAggregateInput
   createdScheduledReminders?: Prisma.ScheduledReminderOrderByRelationAggregateInput
+  createdStockMovements?: Prisma.StockMovementOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -355,6 +357,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   tenantNotifications?: Prisma.TenantNotificationListRelationFilter
   notificationPreferences?: Prisma.NotificationPreferenceListRelationFilter
   createdScheduledReminders?: Prisma.ScheduledReminderListRelationFilter
+  createdStockMovements?: Prisma.StockMovementListRelationFilter
 }, "id" | "email" | "phone">
 
 export type UserOrderByWithAggregationInput = {
@@ -434,6 +437,7 @@ export type UserCreateInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -477,6 +481,7 @@ export type UserUncheckedCreateInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUpdateInput = {
@@ -520,6 +525,7 @@ export type UserUpdateInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -563,6 +569,7 @@ export type UserUncheckedUpdateInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -1127,6 +1134,22 @@ export type UserUpdateOneWithoutCreatedScheduledRemindersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedScheduledRemindersInput, Prisma.UserUpdateWithoutCreatedScheduledRemindersInput>, Prisma.UserUncheckedUpdateWithoutCreatedScheduledRemindersInput>
 }
 
+export type UserCreateNestedOneWithoutCreatedStockMovementsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedStockMovementsInput, Prisma.UserUncheckedCreateWithoutCreatedStockMovementsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedStockMovementsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutCreatedStockMovementsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedStockMovementsInput, Prisma.UserUncheckedCreateWithoutCreatedStockMovementsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedStockMovementsInput
+  upsert?: Prisma.UserUpsertWithoutCreatedStockMovementsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedStockMovementsInput, Prisma.UserUpdateWithoutCreatedStockMovementsInput>, Prisma.UserUncheckedUpdateWithoutCreatedStockMovementsInput>
+}
+
 export type UserCreateWithoutReviewedVerificationsInput = {
   id?: string
   name: string
@@ -1167,6 +1190,7 @@ export type UserCreateWithoutReviewedVerificationsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutReviewedVerificationsInput = {
@@ -1209,6 +1233,7 @@ export type UserUncheckedCreateWithoutReviewedVerificationsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutReviewedVerificationsInput = {
@@ -1267,6 +1292,7 @@ export type UserUpdateWithoutReviewedVerificationsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedVerificationsInput = {
@@ -1309,6 +1335,7 @@ export type UserUncheckedUpdateWithoutReviewedVerificationsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutMembershipsInput = {
@@ -1351,6 +1378,7 @@ export type UserCreateWithoutMembershipsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutMembershipsInput = {
@@ -1393,6 +1421,7 @@ export type UserUncheckedCreateWithoutMembershipsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -1451,6 +1480,7 @@ export type UserUpdateWithoutMembershipsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMembershipsInput = {
@@ -1493,6 +1523,7 @@ export type UserUncheckedUpdateWithoutMembershipsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -1535,6 +1566,7 @@ export type UserCreateWithoutAuditLogsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -1577,6 +1609,7 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -1635,6 +1668,7 @@ export type UserUpdateWithoutAuditLogsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -1677,6 +1711,7 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutApprovedSubscriptionsInput = {
@@ -1719,6 +1754,7 @@ export type UserCreateWithoutApprovedSubscriptionsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutApprovedSubscriptionsInput = {
@@ -1761,6 +1797,7 @@ export type UserUncheckedCreateWithoutApprovedSubscriptionsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutApprovedSubscriptionsInput = {
@@ -1819,6 +1856,7 @@ export type UserUpdateWithoutApprovedSubscriptionsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedSubscriptionsInput = {
@@ -1861,6 +1899,7 @@ export type UserUncheckedUpdateWithoutApprovedSubscriptionsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutConfirmedInvoicesInput = {
@@ -1903,6 +1942,7 @@ export type UserCreateWithoutConfirmedInvoicesInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutConfirmedInvoicesInput = {
@@ -1945,6 +1985,7 @@ export type UserUncheckedCreateWithoutConfirmedInvoicesInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutConfirmedInvoicesInput = {
@@ -2003,6 +2044,7 @@ export type UserUpdateWithoutConfirmedInvoicesInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConfirmedInvoicesInput = {
@@ -2045,6 +2087,7 @@ export type UserUncheckedUpdateWithoutConfirmedInvoicesInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutAssignedInquiriesInput = {
@@ -2087,6 +2130,7 @@ export type UserCreateWithoutAssignedInquiriesInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutAssignedInquiriesInput = {
@@ -2129,6 +2173,7 @@ export type UserUncheckedCreateWithoutAssignedInquiriesInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutAssignedInquiriesInput = {
@@ -2187,6 +2232,7 @@ export type UserUpdateWithoutAssignedInquiriesInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedInquiriesInput = {
@@ -2229,6 +2275,7 @@ export type UserUncheckedUpdateWithoutAssignedInquiriesInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutPreparedQuotationsInput = {
@@ -2271,6 +2318,7 @@ export type UserCreateWithoutPreparedQuotationsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutPreparedQuotationsInput = {
@@ -2313,6 +2361,7 @@ export type UserUncheckedCreateWithoutPreparedQuotationsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutPreparedQuotationsInput = {
@@ -2360,6 +2409,7 @@ export type UserCreateWithoutApprovedQuotationsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutApprovedQuotationsInput = {
@@ -2402,6 +2452,7 @@ export type UserUncheckedCreateWithoutApprovedQuotationsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutApprovedQuotationsInput = {
@@ -2460,6 +2511,7 @@ export type UserUpdateWithoutPreparedQuotationsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPreparedQuotationsInput = {
@@ -2502,6 +2554,7 @@ export type UserUncheckedUpdateWithoutPreparedQuotationsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUpsertWithoutApprovedQuotationsInput = {
@@ -2555,6 +2608,7 @@ export type UserUpdateWithoutApprovedQuotationsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedQuotationsInput = {
@@ -2597,6 +2651,7 @@ export type UserUncheckedUpdateWithoutApprovedQuotationsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutRequestedTicketsInput = {
@@ -2639,6 +2694,7 @@ export type UserCreateWithoutRequestedTicketsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutRequestedTicketsInput = {
@@ -2681,6 +2737,7 @@ export type UserUncheckedCreateWithoutRequestedTicketsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutRequestedTicketsInput = {
@@ -2728,6 +2785,7 @@ export type UserCreateWithoutAssignedTicketsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutAssignedTicketsInput = {
@@ -2770,6 +2828,7 @@ export type UserUncheckedCreateWithoutAssignedTicketsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutAssignedTicketsInput = {
@@ -2828,6 +2887,7 @@ export type UserUpdateWithoutRequestedTicketsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequestedTicketsInput = {
@@ -2870,6 +2930,7 @@ export type UserUncheckedUpdateWithoutRequestedTicketsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUpsertWithoutAssignedTicketsInput = {
@@ -2923,6 +2984,7 @@ export type UserUpdateWithoutAssignedTicketsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedTicketsInput = {
@@ -2965,6 +3027,7 @@ export type UserUncheckedUpdateWithoutAssignedTicketsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutTicketMessagesInput = {
@@ -3007,6 +3070,7 @@ export type UserCreateWithoutTicketMessagesInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutTicketMessagesInput = {
@@ -3049,6 +3113,7 @@ export type UserUncheckedCreateWithoutTicketMessagesInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutTicketMessagesInput = {
@@ -3107,6 +3172,7 @@ export type UserUpdateWithoutTicketMessagesInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTicketMessagesInput = {
@@ -3149,6 +3215,7 @@ export type UserUncheckedUpdateWithoutTicketMessagesInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -3191,6 +3258,7 @@ export type UserCreateWithoutNotificationsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -3233,6 +3301,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -3291,6 +3360,7 @@ export type UserUpdateWithoutNotificationsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -3333,6 +3403,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutAssignedRoomAssignmentsInput = {
@@ -3375,6 +3446,7 @@ export type UserCreateWithoutAssignedRoomAssignmentsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutAssignedRoomAssignmentsInput = {
@@ -3417,6 +3489,7 @@ export type UserUncheckedCreateWithoutAssignedRoomAssignmentsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutAssignedRoomAssignmentsInput = {
@@ -3475,6 +3548,7 @@ export type UserUpdateWithoutAssignedRoomAssignmentsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput = {
@@ -3517,6 +3591,7 @@ export type UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutReviewedBookingsInput = {
@@ -3559,6 +3634,7 @@ export type UserCreateWithoutReviewedBookingsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutReviewedBookingsInput = {
@@ -3601,6 +3677,7 @@ export type UserUncheckedCreateWithoutReviewedBookingsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutReviewedBookingsInput = {
@@ -3659,6 +3736,7 @@ export type UserUpdateWithoutReviewedBookingsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedBookingsInput = {
@@ -3701,6 +3779,7 @@ export type UserUncheckedUpdateWithoutReviewedBookingsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutReviewedMealOffRequestsInput = {
@@ -3743,6 +3822,7 @@ export type UserCreateWithoutReviewedMealOffRequestsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutReviewedMealOffRequestsInput = {
@@ -3785,6 +3865,7 @@ export type UserUncheckedCreateWithoutReviewedMealOffRequestsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutReviewedMealOffRequestsInput = {
@@ -3843,6 +3924,7 @@ export type UserUpdateWithoutReviewedMealOffRequestsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedMealOffRequestsInput = {
@@ -3885,6 +3967,7 @@ export type UserUncheckedUpdateWithoutReviewedMealOffRequestsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutRecordedGuestMealsInput = {
@@ -3927,6 +4010,7 @@ export type UserCreateWithoutRecordedGuestMealsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutRecordedGuestMealsInput = {
@@ -3969,6 +4053,7 @@ export type UserUncheckedCreateWithoutRecordedGuestMealsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutRecordedGuestMealsInput = {
@@ -4027,6 +4112,7 @@ export type UserUpdateWithoutRecordedGuestMealsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRecordedGuestMealsInput = {
@@ -4069,6 +4155,7 @@ export type UserUncheckedUpdateWithoutRecordedGuestMealsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutLockedMealPeriodsInput = {
@@ -4111,6 +4198,7 @@ export type UserCreateWithoutLockedMealPeriodsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutLockedMealPeriodsInput = {
@@ -4153,6 +4241,7 @@ export type UserUncheckedCreateWithoutLockedMealPeriodsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutLockedMealPeriodsInput = {
@@ -4211,6 +4300,7 @@ export type UserUpdateWithoutLockedMealPeriodsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLockedMealPeriodsInput = {
@@ -4253,6 +4343,7 @@ export type UserUncheckedUpdateWithoutLockedMealPeriodsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutReviewedExpensesInput = {
@@ -4295,6 +4386,7 @@ export type UserCreateWithoutReviewedExpensesInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutReviewedExpensesInput = {
@@ -4337,6 +4429,7 @@ export type UserUncheckedCreateWithoutReviewedExpensesInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutReviewedExpensesInput = {
@@ -4395,6 +4488,7 @@ export type UserUpdateWithoutReviewedExpensesInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedExpensesInput = {
@@ -4437,6 +4531,7 @@ export type UserUncheckedUpdateWithoutReviewedExpensesInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutClosedBillingPeriodsInput = {
@@ -4479,6 +4574,7 @@ export type UserCreateWithoutClosedBillingPeriodsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutClosedBillingPeriodsInput = {
@@ -4521,6 +4617,7 @@ export type UserUncheckedCreateWithoutClosedBillingPeriodsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutClosedBillingPeriodsInput = {
@@ -4579,6 +4676,7 @@ export type UserUpdateWithoutClosedBillingPeriodsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutClosedBillingPeriodsInput = {
@@ -4621,6 +4719,7 @@ export type UserUncheckedUpdateWithoutClosedBillingPeriodsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutReceivedMemberPaymentsInput = {
@@ -4663,6 +4762,7 @@ export type UserCreateWithoutReceivedMemberPaymentsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutReceivedMemberPaymentsInput = {
@@ -4705,6 +4805,7 @@ export type UserUncheckedCreateWithoutReceivedMemberPaymentsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutReceivedMemberPaymentsInput = {
@@ -4752,6 +4853,7 @@ export type UserCreateWithoutVerifiedMemberPaymentsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutVerifiedMemberPaymentsInput = {
@@ -4794,6 +4896,7 @@ export type UserUncheckedCreateWithoutVerifiedMemberPaymentsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutVerifiedMemberPaymentsInput = {
@@ -4852,6 +4955,7 @@ export type UserUpdateWithoutReceivedMemberPaymentsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReceivedMemberPaymentsInput = {
@@ -4894,6 +4998,7 @@ export type UserUncheckedUpdateWithoutReceivedMemberPaymentsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUpsertWithoutVerifiedMemberPaymentsInput = {
@@ -4947,6 +5052,7 @@ export type UserUpdateWithoutVerifiedMemberPaymentsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVerifiedMemberPaymentsInput = {
@@ -4989,6 +5095,7 @@ export type UserUncheckedUpdateWithoutVerifiedMemberPaymentsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutAuthorizedAdjustmentsInput = {
@@ -5031,6 +5138,7 @@ export type UserCreateWithoutAuthorizedAdjustmentsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutAuthorizedAdjustmentsInput = {
@@ -5073,6 +5181,7 @@ export type UserUncheckedCreateWithoutAuthorizedAdjustmentsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutAuthorizedAdjustmentsInput = {
@@ -5131,6 +5240,7 @@ export type UserUpdateWithoutAuthorizedAdjustmentsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuthorizedAdjustmentsInput = {
@@ -5173,6 +5283,7 @@ export type UserUncheckedUpdateWithoutAuthorizedAdjustmentsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutAuthoredNoticesInput = {
@@ -5215,6 +5326,7 @@ export type UserCreateWithoutAuthoredNoticesInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutAuthoredNoticesInput = {
@@ -5257,6 +5369,7 @@ export type UserUncheckedCreateWithoutAuthoredNoticesInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutAuthoredNoticesInput = {
@@ -5315,6 +5428,7 @@ export type UserUpdateWithoutAuthoredNoticesInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuthoredNoticesInput = {
@@ -5357,6 +5471,7 @@ export type UserUncheckedUpdateWithoutAuthoredNoticesInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutReviewedMemberRequestsInput = {
@@ -5399,6 +5514,7 @@ export type UserCreateWithoutReviewedMemberRequestsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutReviewedMemberRequestsInput = {
@@ -5441,6 +5557,7 @@ export type UserUncheckedCreateWithoutReviewedMemberRequestsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutReviewedMemberRequestsInput = {
@@ -5499,6 +5616,7 @@ export type UserUpdateWithoutReviewedMemberRequestsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedMemberRequestsInput = {
@@ -5541,6 +5659,7 @@ export type UserUncheckedUpdateWithoutReviewedMemberRequestsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutReviewedComplaintsInput = {
@@ -5583,6 +5702,7 @@ export type UserCreateWithoutReviewedComplaintsInput = {
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutReviewedComplaintsInput = {
@@ -5625,6 +5745,7 @@ export type UserUncheckedCreateWithoutReviewedComplaintsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutReviewedComplaintsInput = {
@@ -5683,6 +5804,7 @@ export type UserUpdateWithoutReviewedComplaintsInput = {
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedComplaintsInput = {
@@ -5725,6 +5847,7 @@ export type UserUncheckedUpdateWithoutReviewedComplaintsInput = {
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutTenantNotificationsInput = {
@@ -5767,6 +5890,7 @@ export type UserCreateWithoutTenantNotificationsInput = {
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutTenantNotificationsInput = {
@@ -5809,6 +5933,7 @@ export type UserUncheckedCreateWithoutTenantNotificationsInput = {
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutTenantNotificationsInput = {
@@ -5867,6 +5992,7 @@ export type UserUpdateWithoutTenantNotificationsInput = {
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTenantNotificationsInput = {
@@ -5909,6 +6035,7 @@ export type UserUncheckedUpdateWithoutTenantNotificationsInput = {
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutNotificationPreferencesInput = {
@@ -5951,6 +6078,7 @@ export type UserCreateWithoutNotificationPreferencesInput = {
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutNotificationPreferencesInput = {
@@ -5993,6 +6121,7 @@ export type UserUncheckedCreateWithoutNotificationPreferencesInput = {
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutNotificationPreferencesInput = {
@@ -6051,6 +6180,7 @@ export type UserUpdateWithoutNotificationPreferencesInput = {
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationPreferencesInput = {
@@ -6093,6 +6223,7 @@ export type UserUncheckedUpdateWithoutNotificationPreferencesInput = {
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutCreatedScheduledRemindersInput = {
@@ -6135,6 +6266,7 @@ export type UserCreateWithoutCreatedScheduledRemindersInput = {
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
   tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutCreatedScheduledRemindersInput = {
@@ -6177,6 +6309,7 @@ export type UserUncheckedCreateWithoutCreatedScheduledRemindersInput = {
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
   tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutCreatedScheduledRemindersInput = {
@@ -6235,6 +6368,7 @@ export type UserUpdateWithoutCreatedScheduledRemindersInput = {
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
   tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedScheduledRemindersInput = {
@@ -6277,6 +6411,195 @@ export type UserUncheckedUpdateWithoutCreatedScheduledRemindersInput = {
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
   tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
   notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
+}
+
+export type UserCreateWithoutCreatedStockMovementsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+}
+
+export type UserUncheckedCreateWithoutCreatedStockMovementsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+}
+
+export type UserCreateOrConnectWithoutCreatedStockMovementsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedStockMovementsInput, Prisma.UserUncheckedCreateWithoutCreatedStockMovementsInput>
+}
+
+export type UserUpsertWithoutCreatedStockMovementsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedStockMovementsInput, Prisma.UserUncheckedUpdateWithoutCreatedStockMovementsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedStockMovementsInput, Prisma.UserUncheckedCreateWithoutCreatedStockMovementsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedStockMovementsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedStockMovementsInput, Prisma.UserUncheckedUpdateWithoutCreatedStockMovementsInput>
+}
+
+export type UserUpdateWithoutCreatedStockMovementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedStockMovementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 
@@ -6313,6 +6636,7 @@ export type UserCountOutputType = {
   tenantNotifications: number
   notificationPreferences: number
   createdScheduledReminders: number
+  createdStockMovements: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -6344,6 +6668,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   tenantNotifications?: boolean | UserCountOutputTypeCountTenantNotificationsArgs
   notificationPreferences?: boolean | UserCountOutputTypeCountNotificationPreferencesArgs
   createdScheduledReminders?: boolean | UserCountOutputTypeCountCreatedScheduledRemindersArgs
+  createdStockMovements?: boolean | UserCountOutputTypeCountCreatedStockMovementsArgs
 }
 
 /**
@@ -6552,6 +6877,13 @@ export type UserCountOutputTypeCountCreatedScheduledRemindersArgs<ExtArgs extend
   where?: Prisma.ScheduledReminderWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedStockMovementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StockMovementWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -6594,6 +6926,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   tenantNotifications?: boolean | Prisma.User$tenantNotificationsArgs<ExtArgs>
   notificationPreferences?: boolean | Prisma.User$notificationPreferencesArgs<ExtArgs>
   createdScheduledReminders?: boolean | Prisma.User$createdScheduledRemindersArgs<ExtArgs>
+  createdStockMovements?: boolean | Prisma.User$createdStockMovementsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -6672,6 +7005,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   tenantNotifications?: boolean | Prisma.User$tenantNotificationsArgs<ExtArgs>
   notificationPreferences?: boolean | Prisma.User$notificationPreferencesArgs<ExtArgs>
   createdScheduledReminders?: boolean | Prisma.User$createdScheduledRemindersArgs<ExtArgs>
+  createdStockMovements?: boolean | Prisma.User$createdStockMovementsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -6708,6 +7042,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     tenantNotifications: Prisma.$TenantNotificationPayload<ExtArgs>[]
     notificationPreferences: Prisma.$NotificationPreferencePayload<ExtArgs>[]
     createdScheduledReminders: Prisma.$ScheduledReminderPayload<ExtArgs>[]
+    createdStockMovements: Prisma.$StockMovementPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -7144,6 +7479,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   tenantNotifications<T extends Prisma.User$tenantNotificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tenantNotificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TenantNotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notificationPreferences<T extends Prisma.User$notificationPreferencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationPreferencesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdScheduledReminders<T extends Prisma.User$createdScheduledRemindersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdScheduledRemindersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ScheduledReminderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdStockMovements<T extends Prisma.User$createdStockMovementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdStockMovementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StockMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8247,6 +8583,30 @@ export type User$createdScheduledRemindersArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.ScheduledReminderScalarFieldEnum | Prisma.ScheduledReminderScalarFieldEnum[]
+}
+
+/**
+ * User.createdStockMovements
+ */
+export type User$createdStockMovementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StockMovement
+   */
+  select?: Prisma.StockMovementSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StockMovement
+   */
+  omit?: Prisma.StockMovementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StockMovementInclude<ExtArgs> | null
+  where?: Prisma.StockMovementWhereInput
+  orderBy?: Prisma.StockMovementOrderByWithRelationInput | Prisma.StockMovementOrderByWithRelationInput[]
+  cursor?: Prisma.StockMovementWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StockMovementScalarFieldEnum | Prisma.StockMovementScalarFieldEnum[]
 }
 
 /**
