@@ -10,6 +10,7 @@ import {
   Wallet,
   CreditCard,
   Bell,
+  UserCheck,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -111,5 +112,13 @@ export const MEMBER_NAV_ITEMS: MemberNavItem[] = [
     icon: Bell,
     isImplemented: true,
     description: 'Personal notifications, meal reminders, and delivery settings.',
+  },
+  {
+    id: 'visitors',
+    name: 'Expected Visitors',
+    path: 'visitors',
+    icon: UserCheck,
+    isImplemented: true,
+    description: 'Pre-register expected guests and track visitor check-in status.',
   },
 ];

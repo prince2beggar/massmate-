@@ -105,7 +105,8 @@ export const ModelName = {
   StockMovement: 'StockMovement',
   WorkOrder: 'WorkOrder',
   WorkOrderStatusHistory: 'WorkOrderStatusHistory',
-  OperationalTask: 'OperationalTask'
+  OperationalTask: 'OperationalTask',
+  Visitor: 'Visitor'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1212,6 +1213,33 @@ export const OperationalTaskScalarFieldEnum = {
 } as const
 
 export type OperationalTaskScalarFieldEnum = (typeof OperationalTaskScalarFieldEnum)[keyof typeof OperationalTaskScalarFieldEnum]
+
+
+export const VisitorScalarFieldEnum = {
+  id: 'id',
+  referenceNumber: 'referenceNumber',
+  tenantId: 'tenantId',
+  visitorName: 'visitorName',
+  visitorPhone: 'visitorPhone',
+  visitPurpose: 'visitPurpose',
+  hostMembershipId: 'hostMembershipId',
+  hostUserId: 'hostUserId',
+  expectedArrival: 'expectedArrival',
+  expectedDeparture: 'expectedDeparture',
+  actualCheckIn: 'actualCheckIn',
+  actualCheckOut: 'actualCheckOut',
+  numberOfVisitors: 'numberOfVisitors',
+  status: 'status',
+  rejectionReason: 'rejectionReason',
+  notes: 'notes',
+  recordedById: 'recordedById',
+  checkedInById: 'checkedInById',
+  checkedOutById: 'checkedOutById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type VisitorScalarFieldEnum = (typeof VisitorScalarFieldEnum)[keyof typeof VisitorScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -388,6 +388,10 @@ model User {
   workOrderStatusChanges  WorkOrderStatusHistory[] @relation("StatusChangedBy")
   assignedOperationalTasks OperationalTask[]     @relation("AssignedTasks")
   createdOperationalTasks OperationalTask[]      @relation("CreatedTasks")
+  hostedVisitors          Visitor[]              @relation("HostVisitors")
+  recordedVisitors        Visitor[]              @relation("RecordedVisitors")
+  checkedInVisitors       Visitor[]              @relation("CheckedInVisitors")
+  checkedOutVisitors      Visitor[]              @relation("CheckedOutVisitors")
 
   @@index([status])
   @@index([platformRole])
@@ -460,6 +464,7 @@ model Tenant {
   stockMovements        StockMovement[]
   workOrders            WorkOrder[]
   operationalTasks      OperationalTask[]
+  visitors              Visitor[]
 
   @@index([status])
   @@index([verificationStatus])
@@ -634,6 +639,7 @@ model Membership {
   eventRsvps              EventRsvp[]
   complaints              Complaint[]
   notifications           TenantNotification[]
+  hostedVisitors          Visitor[]
 
   @@unique([userId, tenantId])
   @@index([tenantId])
@@ -1968,6 +1974,47 @@ model OperationalTask {
   @@index([tenantId, assignedUserId])
   @@index([tenantId, dueDate])
   @@map("operational_tasks")
+}
+
+// -----------------------------------------------------------------------------
+// VISITOR, GUEST & ENTRY MANAGEMENT (Task 44)
+// -----------------------------------------------------------------------------
+
+model Visitor {
+  id               String       @id @default(cuid())
+  referenceNumber  String       @unique @map("reference_number")
+  tenantId         String       @map("tenant_id")
+  visitorName      String       @map("visitor_name")
+  visitorPhone     String?      @map("visitor_phone")
+  visitPurpose     String       @default("FRIEND") @map("visit_purpose") // FAMILY_VISIT, STUDY_ACADEMIC, DELIVERY_SERVICE, FRIEND, OFFICIAL_WORK, OTHER
+  hostMembershipId String?      @map("host_membership_id")
+  hostUserId       String?      @map("host_user_id")
+  expectedArrival  DateTime?    @map("expected_arrival")
+  expectedDeparture DateTime?   @map("expected_departure")
+  actualCheckIn    DateTime?    @map("actual_check_in")
+  actualCheckOut   DateTime?    @map("actual_check_out")
+  numberOfVisitors Int          @default(1) @map("number_of_visitors")
+  status           String       @default("EXPECTED") // EXPECTED, PENDING_APPROVAL, APPROVED, CHECKED_IN, CHECKED_OUT, REJECTED, CANCELLED, NO_SHOW
+  rejectionReason  String?      @map("rejection_reason")
+  notes            String?
+  recordedById     String?      @map("recorded_by_id")
+  checkedInById    String?      @map("checked_in_by_id")
+  checkedOutById   String?      @map("checked_out_by_id")
+  createdAt        DateTime     @default(now()) @map("created_at")
+  updatedAt        DateTime     @updatedAt @map("updated_at")
+
+  tenant           Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  hostMembership   Membership?  @relation(fields: [hostMembershipId], references: [id], onDelete: SetNull)
+  hostUser         User?        @relation("HostVisitors", fields: [hostUserId], references: [id], onDelete: SetNull)
+  recorder         User?        @relation("RecordedVisitors", fields: [recordedById], references: [id], onDelete: SetNull)
+  checkInStaff     User?        @relation("CheckedInVisitors", fields: [checkedInById], references: [id], onDelete: SetNull)
+  checkOutStaff    User?        @relation("CheckedOutVisitors", fields: [checkedOutById], references: [id], onDelete: SetNull)
+
+  @@index([tenantId, status])
+  @@index([tenantId, hostUserId])
+  @@index([tenantId, expectedArrival])
+  @@index([tenantId, actualCheckIn])
+  @@map("visitors")
 }
 
 

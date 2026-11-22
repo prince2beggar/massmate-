@@ -61,6 +61,7 @@ import type {
   WorkOrder as PrismaWorkOrder,
   WorkOrderStatusHistory as PrismaWorkOrderStatusHistory,
   OperationalTask as PrismaOperationalTask,
+  Visitor as PrismaVisitor,
   AllocationRule,
   BillingPeriodStatus,
   BillStatus,
@@ -210,6 +211,7 @@ export type StockMovement = PrismaStockMovement;
 export type WorkOrder = PrismaWorkOrder;
 export type WorkOrderStatusHistory = PrismaWorkOrderStatusHistory;
 export type OperationalTask = PrismaOperationalTask;
+export type Visitor = PrismaVisitor;
 
 // -----------------------------------------------------------------------------
 // COMPOSITE & RELATIONAL TYPES

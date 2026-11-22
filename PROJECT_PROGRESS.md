@@ -12,10 +12,10 @@
 | Task | Task Name | Status | Completion Date | Main Deliverables | Test Results | Next Step |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Task 41** | Notification Center, Delivery Preferences & Reminders | **Completed and Verified** | 2026-11-22 | Central in-app notification center for Mess Admin (`/mess/[tenantSlug]/notifications`) and Member Portal (`/portal/[tenantSlug]/notifications`), live header `NotificationBell` with unread badge and dropdown panel, anti-IDOR multi-tenant data isolation, single and bulk mark-all-as-read, idempotency duplicate event prevention (`eventReference`), resilient failure isolation, category-level subscriptions, quiet hours in `Asia/Dhaka`, channel authenticity reporting (In-App active, Email/SMS unconfigured), staff scheduled reminders (`ScheduledReminder`) with `Asia/Dhaka` timing and pause/resume/delete management. | 17/17 Automated Tests Passed (179/179 full test suite); 0 TypeScript errors, 0 ESLint warnings; Next.js production build cleanly compiled. | Proceed to Task 42 |
-| **Task 42** | Inventory, Assets & Stock Management | **Not Started** | — | — | — | Next in sequence |
-| **Task 43** | Community Polling, Voting & Decision Making | **Not Started** | — | — | — | Pending Task 42 |
-| **Task 44** | Visitor & Guest Tracking Management | **Not Started** | — | — | — | Pending Task 43 |
-| **Task 45** | Advanced Operational Reporting & Business Analytics | **Not Started** | — | — | — | Pending Task 44 |
+| **Task 42** | Inventory, Assets & Stock Management | **Completed and Verified** | 2026-11-22 | Full multi-tenant inventory & asset management with double-entry stock movements (`StockMovement`), minimum stock threshold alerts, reusable asset room tracking, consumption tracking, damaged/loss write-offs, poisha unit valuation (`BigInt`), and 4-tab executive workspace (`/mess/[tenantSlug]/inventory`). | 16/16 Automated Tests Passed (321/321 full suite); 0 TS errors, 0 ESLint warnings; Production build passed. | Proceed to Task 43 |
+| **Task 43** | Maintenance, Work Orders & Task Management | **Completed and Verified** | 2026-11-22 | Work order ticketing with lifecycle transitions (`DRAFT`, `OPEN`, `ASSIGNED`, `IN_PROGRESS`, `WAITING_FOR_PARTS`, `COMPLETED`, `VERIFIED`, `CANCELLED`), room/asset cross-tenant validation, complaint-to-work-order conversion, staff assignment with automated alerts, operational task checklists, recurring task management, inventory linkage with zero negative stock, and member privacy bounds (`/mess/[tenantSlug]/maintenance`). | 17/17 Automated Tests Passed (338/338 full suite); 0 TS errors, 0 ESLint warnings; Production build passed. | Proceed to Task 44 |
+| **Task 44** | Visitor, Guest & Entry Management | **Completed and Verified** | 2026-11-22 | Tenant-isolated visitor tracking with executive gate dashboard, member pre-registration, self-approval prevention, staff review (Approve/Reject with reasons), check-in/check-out lifecycle with server timestamps in `Asia/Dhaka`, duplicate check-in prevention, checkout before check-in rejection, walk-in registration with host arrival alerts, member privacy & contact number redaction, cancellation workflow, and dual interfaces for Admin (`/mess/[tenantSlug]/visitors`) and Member Portal (`/portal/[tenantSlug]/visitors`). | 22/22 Automated Tests Passed (360/360 full test suite); 0 TS errors, 0 ESLint warnings; Next.js production build cleanly compiled (47/47 routes). | Proceed to Task 45 |
+| **Task 45** | Community Polling, Voting & Decision Making | **Not Started** | — | — | — | Next in sequence |
 
 ---
 
@@ -462,6 +462,41 @@
   - Automated Tests (`server/maintenance/maintenance-management.test.ts`):
     - 17 test scenarios covering tenant isolation, suspended mess protection, cross-tenant room and asset reference rejection, lifecycle progressive transitions and invalid transition blocking, staff/vendor assignment, assignee-only edit restrictions, member privacy/internal notes redaction, complaint conversion and linkage, operational tasks and duplicate recurring task prevention, inventory consumption and exact cost accounting, reports with `Asia/Dhaka` timezone verification, and immutable status history.
 - **Verification:** TypeScript: 0 errors (`npx tsc --noEmit`); Automated tests: 17/17 Task 43 tests passing (338/338 full test suite); ESLint: 0 errors, 0 warnings; Next.js production build: clean compilation.
+
+### Task 44 — Visitor, Guest & Entry Management (Completed)
+- **Status:** Completed and Verified
+- **Scope & Implementation Details:**
+  - Prisma Schema (`prisma/schema.prisma`):
+    - `Visitor`: Tenant-scoped visitor model tracking reference numbers (`VIS-<YYMM>-<XXX>`), visitor name, contact phone (protected), visit purpose (`FAMILY_VISIT`, `STUDY_ACADEMIC`, `DELIVERY_SERVICE`, `FRIEND`, `OFFICIAL_WORK`, `OTHER`), status (`EXPECTED`, `PENDING_APPROVAL`, `APPROVED`, `CHECKED_IN`, `CHECKED_OUT`, `REJECTED`, `CANCELLED`, `NO_SHOW`), timestamps (`expectedArrival`, `expectedDeparture`, `actualCheckIn`, `actualCheckOut`), host user & membership relations, and audit fields (`recordedById`, `checkedInById`, `checkedOutById`).
+    - Compound indexes: `@@index([tenantId, status, expectedArrival])`, `@@index([tenantId, hostUserId])`.
+  - Backend Service (`server/visitors/visitor-service.ts`):
+    - `getVisitorDashboard`: Gate overview metrics (expected today, currently checked-in, checked-out today, pending approval, total visitors all-time, recent activity feed, and user-specific expected visitors).
+    - `listVisitors` & `getVisitorById`: Tenant-isolated filtering by status, purpose, search, and date. Enforces strict privacy boundaries (non-staff members can view only their own requests; phone numbers are redacted to `null` for non-staff viewers who are not the host).
+    - `preRegisterVisitor`: Allows members to pre-register expected visitors. Enforces active tenant membership, generates reference numbers, and triggers alerts to staff.
+    - `reviewVisitorRequest`: Authoritative approval workflow (Approve vs Reject with mandatory explanation). Prevents host members from approving their own visitor requests (`ForbiddenError`).
+    - `checkInVisitor` & `checkOutVisitor`: Server-generated timestamps in `Asia/Dhaka`, duplicate check-in prevention, check-in blocking on rejected/cancelled requests, checkout before check-in prevention, and automated arrival alerts to host residents.
+    - `registerWalkInVisitor`: Front-desk walk-in registration immediately creating checked-in visitors and alerting host residents.
+    - `cancelVisitorRequest`: Allows host residents to cancel unfulfilled visitor requests; strictly blocks cancellation of visitors already checked in or checked out.
+    - Task 41 Notification Integration: Employs `eventReference` to ensure idempotent, non-duplicating notifications (`VIS_REQ_*`, `VIS_REVIEW_*`, `VIS_CHECKIN_*`).
+  - REST API Routes (8 endpoints):
+    - `/api/v1/mess/[tenantSlug]/visitors` (GET list, POST walk-in registration)
+    - `/api/v1/mess/[tenantSlug]/visitors/dashboard` (GET executive KPIs)
+    - `/api/v1/mess/[tenantSlug]/visitors/[id]` (GET visitor details)
+    - `/api/v1/mess/[tenantSlug]/visitors/[id]/check-in` (POST check-in)
+    - `/api/v1/mess/[tenantSlug]/visitors/[id]/check-out` (POST check-out)
+    - `/api/v1/mess/[tenantSlug]/visitors/[id]/approve` (POST approve or reject with reason)
+    - `/api/v1/portal/[tenantSlug]/visitors` (GET member's visitors, POST pre-register)
+    - `/api/v1/portal/[tenantSlug]/visitors/[id]/cancel` (PATCH cancel request)
+  - UI Components & Server Pages:
+    - `MessVisitorManagementView` (`components/visitors/MessVisitorManagementView.tsx`): 3-tab gate management interface (Gate Overview, Full Visitor Log, Pending Approvals) with 2 modals (Walk-In Check-In Modal, Review & Approval Modal) featuring real-time KPI counters, quick check-in/check-out actions, and purpose badges.
+    - `/mess/[tenantSlug]/visitors/page.tsx`: Server page with tenant metadata and dynamic slug integration.
+    - `PortalVisitorCenterView` (`components/member-portal/PortalVisitorCenterView.tsx`): Member-facing visitor portal with expected visitor tables, check-in status indicators, pre-registration modal, and instant cancellation.
+    - `/portal/[tenantSlug]/visitors/page.tsx`: Server page wrapping PortalVisitorCenterView with member session validation.
+    - Navigation updated in `components/member-portal/member-nav-data.ts`.
+  - Automated Tests (`server/visitors/visitor-management.test.ts`):
+    - 22 test scenarios across 8 suites covering tenant isolation, suspended mess protection, member pre-registration, active membership validation, self-approval prevention, staff review (approval and rejection with reason), duplicate check-in prevention, check-in blocking on rejected/cancelled requests, checkout before check-in rejection, server-generated timestamps in `Asia/Dhaka`, member privacy bounds & IDOR protection, phone number redaction, walk-in registration with host alert, cancellation lifecycle rules, dashboard metrics, and search/date/purpose filters.
+- **Verification:** TypeScript: 0 errors (`npx tsc --noEmit`); Automated tests: 22/22 Task 44 tests passing (360/360 full test suite); ESLint: 0 errors, 0 warnings; Next.js production build: clean compilation (47/47 routes).
+
 
 
 

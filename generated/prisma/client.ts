@@ -316,3 +316,8 @@ export type WorkOrderStatusHistory = Prisma.WorkOrderStatusHistoryModel
  * 
  */
 export type OperationalTask = Prisma.OperationalTaskModel
+/**
+ * Model Visitor
+ * 
+ */
+export type Visitor = Prisma.VisitorModel

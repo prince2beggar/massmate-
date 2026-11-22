@@ -451,7 +451,8 @@ export const ModelName = {
   StockMovement: 'StockMovement',
   WorkOrder: 'WorkOrder',
   WorkOrderStatusHistory: 'WorkOrderStatusHistory',
-  OperationalTask: 'OperationalTask'
+  OperationalTask: 'OperationalTask',
+  Visitor: 'Visitor'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -467,7 +468,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "tenant" | "tenantVerification" | "role" | "roleTemplate" | "permission" | "rolePermission" | "roleTemplatePermission" | "membership" | "auditLog" | "plan" | "subscription" | "subscriptionInvoice" | "customPlanInquiry" | "customQuotation" | "domain" | "supportTicket" | "supportTicketMessage" | "platformNotification" | "room" | "bed" | "roomAssignment" | "rentalListing" | "bookingRequest" | "mealSetting" | "mealDailyLog" | "memberMealEntry" | "mealOffRequest" | "guestMeal" | "mealPeriodLock" | "expenseCategory" | "expense" | "expenseItem" | "bazarSchedule" | "financialCategory" | "monthlyBillingPeriod" | "memberBill" | "billItem" | "memberPayment" | "balanceAdjustment" | "messSetting" | "notice" | "memberRequest" | "messEvent" | "eventRsvp" | "complaint" | "tenantNotification" | "notificationPreference" | "scheduledReminder" | "notificationDeliveryLog" | "inventoryItem" | "stockMovement" | "workOrder" | "workOrderStatusHistory" | "operationalTask"
+    modelProps: "user" | "tenant" | "tenantVerification" | "role" | "roleTemplate" | "permission" | "rolePermission" | "roleTemplatePermission" | "membership" | "auditLog" | "plan" | "subscription" | "subscriptionInvoice" | "customPlanInquiry" | "customQuotation" | "domain" | "supportTicket" | "supportTicketMessage" | "platformNotification" | "room" | "bed" | "roomAssignment" | "rentalListing" | "bookingRequest" | "mealSetting" | "mealDailyLog" | "memberMealEntry" | "mealOffRequest" | "guestMeal" | "mealPeriodLock" | "expenseCategory" | "expense" | "expenseItem" | "bazarSchedule" | "financialCategory" | "monthlyBillingPeriod" | "memberBill" | "billItem" | "memberPayment" | "balanceAdjustment" | "messSetting" | "notice" | "memberRequest" | "messEvent" | "eventRsvp" | "complaint" | "tenantNotification" | "notificationPreference" | "scheduledReminder" | "notificationDeliveryLog" | "inventoryItem" | "stockMovement" | "workOrder" | "workOrderStatusHistory" | "operationalTask" | "visitor"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -4541,6 +4542,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Visitor: {
+      payload: Prisma.$VisitorPayload<ExtArgs>
+      fields: Prisma.VisitorFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.VisitorFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.VisitorFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>
+        }
+        findFirst: {
+          args: Prisma.VisitorFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.VisitorFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>
+        }
+        findMany: {
+          args: Prisma.VisitorFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>[]
+        }
+        create: {
+          args: Prisma.VisitorCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>
+        }
+        createMany: {
+          args: Prisma.VisitorCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.VisitorCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>[]
+        }
+        delete: {
+          args: Prisma.VisitorDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>
+        }
+        update: {
+          args: Prisma.VisitorUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>
+        }
+        deleteMany: {
+          args: Prisma.VisitorDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.VisitorUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.VisitorUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>[]
+        }
+        upsert: {
+          args: Prisma.VisitorUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>
+        }
+        aggregate: {
+          args: Prisma.VisitorAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateVisitor>
+        }
+        groupBy: {
+          args: Prisma.VisitorGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VisitorGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.VisitorCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VisitorCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -5670,6 +5745,33 @@ export const OperationalTaskScalarFieldEnum = {
 export type OperationalTaskScalarFieldEnum = (typeof OperationalTaskScalarFieldEnum)[keyof typeof OperationalTaskScalarFieldEnum]
 
 
+export const VisitorScalarFieldEnum = {
+  id: 'id',
+  referenceNumber: 'referenceNumber',
+  tenantId: 'tenantId',
+  visitorName: 'visitorName',
+  visitorPhone: 'visitorPhone',
+  visitPurpose: 'visitPurpose',
+  hostMembershipId: 'hostMembershipId',
+  hostUserId: 'hostUserId',
+  expectedArrival: 'expectedArrival',
+  expectedDeparture: 'expectedDeparture',
+  actualCheckIn: 'actualCheckIn',
+  actualCheckOut: 'actualCheckOut',
+  numberOfVisitors: 'numberOfVisitors',
+  status: 'status',
+  rejectionReason: 'rejectionReason',
+  notes: 'notes',
+  recordedById: 'recordedById',
+  checkedInById: 'checkedInById',
+  checkedOutById: 'checkedOutById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type VisitorScalarFieldEnum = (typeof VisitorScalarFieldEnum)[keyof typeof VisitorScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -6636,6 +6738,7 @@ export type GlobalOmitConfig = {
   workOrder?: Prisma.WorkOrderOmit
   workOrderStatusHistory?: Prisma.WorkOrderStatusHistoryOmit
   operationalTask?: Prisma.OperationalTaskOmit
+  visitor?: Prisma.VisitorOmit
 }
 
 /* Types for Logging */
