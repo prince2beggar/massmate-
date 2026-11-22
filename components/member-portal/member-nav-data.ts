@@ -13,6 +13,7 @@ import {
   UserCheck,
   Vote,
   FileText,
+  ShoppingBag,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -66,6 +67,14 @@ export const MEMBER_NAV_ITEMS: MemberNavItem[] = [
     icon: UtensilsCrossed,
     isImplemented: true,
     description: 'Daily dining schedule, meal counts, menus, and meal-off.',
+  },
+  {
+    id: 'bazar',
+    name: 'Bazar & Shopping',
+    path: 'bazar',
+    icon: ShoppingBag,
+    isImplemented: true,
+    description: 'Shared mess bazar, rotating member contributions, and expense receipts.',
   },
   {
     id: 'notices',

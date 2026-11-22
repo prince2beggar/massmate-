@@ -255,6 +255,15 @@ export const SYSTEM_ROLE_DISPLAY_CONFIG: Record<
   },
 };
 
+export const STANDARD_MESS_ROLES = [
+  { id: 'role_member', slug: 'member' as SystemRoleSlug, name: 'General Member (সাধারণ সদস্য)', description: 'সাধারণ বাসিন্দা — নিজের মিল ও বিল দেখার সুবিধা' },
+  { id: 'role_meal_manager', slug: 'meal-manager' as SystemRoleSlug, name: 'Meal Manager (মিল ম্যানেজার)', description: 'মিলের দায়িত্ব — দৈনিক মিল কাউন্ট ও এন্ট্রি' },
+  { id: 'role_accountant', slug: 'accountant' as SystemRoleSlug, name: 'Finance & Accountant (হিসাবরক্ষক)', description: 'হিসাবের দায়িত্ব — বাজার খরচ, বিলিং ও পেমেন্ট' },
+  { id: 'role_admin', slug: 'admin' as SystemRoleSlug, name: 'Co-Admin / Manager (সহ-এডমিন)', description: 'সহ-এডমিন — মেসের সার্বিক পরিচালনা (মেসে ১+ এডমিন নিয়োগ সম্ভব)' },
+  { id: 'role_moderator', slug: 'moderator' as SystemRoleSlug, name: 'Moderator (সমন্বয়ক)', description: 'মেস সমন্বয়ক — নোটিশ ও কমপ্লেইন তদারকি' },
+  { id: 'role_owner', slug: 'owner' as SystemRoleSlug, name: 'Mess Owner (মেস ওনার)', description: 'মেস প্রতিষ্ঠাতা ও প্রধান মালিকানা — পূর্ণ নিয়ন্ত্রণ' },
+];
+
 /**
  * Ensures all 6 standard system roles exist for the given tenant.
  * Guarantees that any mess immediately has General Member, Meal Manager, Accountant, Co-Admin, etc.
@@ -276,8 +285,8 @@ export async function ensureTenantRoles(
     existingRoles = [];
   }
 
-  const existingSlugs = new Set(existingRoles.map((r: any) => r.slug));
-  const resultRoles = [...existingRoles];
+  const existingSlugs = new Set((existingRoles || []).map((r: any) => r.slug));
+  const resultRoles = [...(existingRoles || [])];
 
   for (const tpl of SYSTEM_ROLE_TEMPLATES) {
     if (!existingSlugs.has(tpl.slug)) {
@@ -311,6 +320,16 @@ export async function ensureTenantRoles(
         });
       }
     }
+  }
+
+  if (resultRoles.length === 0) {
+    return STANDARD_MESS_ROLES.map((r) => ({
+      id: `${r.id}_${tenantId}`,
+      tenantId,
+      name: r.name,
+      slug: r.slug,
+      description: r.description,
+    }));
   }
 
   // Desired display order: General Member first (index 0), then Meal Manager, Accountant, Admin, Moderator, Owner

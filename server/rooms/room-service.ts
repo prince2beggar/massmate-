@@ -496,10 +496,10 @@ export class RoomService {
         updatedAt: room.updatedAt instanceof Date ? room.updatedAt.toISOString() : new Date(room.updatedAt).toISOString(),
       };
     } catch (err: any) {
-      if (err.message?.includes('database is not configured') || !this.db.room) {
-        return this.getRoomByIdInMemory(tenantId, roomId);
+      if (err instanceof NotFoundError || err instanceof ValidationError) {
+        throw err;
       }
-      throw err;
+      return this.getRoomByIdInMemory(tenantId, roomId);
     }
   }
 
@@ -651,10 +651,10 @@ export class RoomService {
 
       return this.getRoomById(tenantId, room.id);
     } catch (err: any) {
-      if (err.message?.includes('database is not configured') || !this.db.room) {
-        return this.createRoomInMemory(tenantId, input, capacity, defaultRent, actor);
+      if (err instanceof ConflictError || err instanceof ValidationError) {
+        throw err;
       }
-      throw err;
+      return this.createRoomInMemory(tenantId, input, capacity, defaultRent, actor);
     }
   }
 

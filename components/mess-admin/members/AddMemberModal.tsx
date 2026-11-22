@@ -20,6 +20,7 @@ import {
   User,
 } from 'lucide-react';
 import type { MemberDto } from '@/server/members/member-service';
+import { STANDARD_MESS_ROLES } from '@/server/rbac/role-templates';
 
 interface AddMemberModalProps {
   tenantSlug: string;
@@ -36,12 +37,14 @@ export function AddMemberModal({
   onMemberAdded,
   roles = [],
 }: AddMemberModalProps) {
+  const effectiveRoles = roles && roles.length > 0 ? roles : STANDARD_MESS_ROLES;
+
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   
   // Default to General Member if present, else first available role
-  const defaultRole = roles.find((r) => r.slug === 'member') || roles[0];
+  const defaultRole = effectiveRoles.find((r) => r.slug === 'member') || effectiveRoles[0];
   const [roleId, setRoleId] = useState(defaultRole?.id || '');
   const [additionalRoles, setAdditionalRoles] = useState<string[]>([]);
 
@@ -60,11 +63,11 @@ export function AddMemberModal({
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    if (!roleId && roles.length > 0) {
-      const def = roles.find((r) => r.slug === 'member') || roles[0];
+    if (!roleId && effectiveRoles.length > 0) {
+      const def = effectiveRoles.find((r) => r.slug === 'member') || effectiveRoles[0];
       if (def) setRoleId(def.id);
     }
-  }, [roles, roleId]);
+  }, [effectiveRoles, roleId]);
 
   if (!isOpen) return null;
 
@@ -83,12 +86,12 @@ export function AddMemberModal({
       setLoading(true);
       setError(null);
 
-      const targetRoleId = roleId || roles.find((r) => r.slug === 'member')?.id || roles[0]?.id;
+      const targetRoleId = roleId || effectiveRoles.find((r) => r.slug === 'member')?.id || effectiveRoles[0]?.id;
       if (!targetRoleId) {
         throw new Error('Please select a valid role.');
       }
 
-      const selectedRole = roles.find((r) => r.id === targetRoleId);
+      const selectedRole = effectiveRoles.find((r) => r.id === targetRoleId || r.slug === targetRoleId);
       const combinedRoles = Array.from(new Set([
         selectedRole?.slug || 'member',
         ...additionalRoles,
@@ -114,7 +117,7 @@ export function AddMemberModal({
 
       const json = await res.json();
       if (!res.ok || !json.success) {
-        throw new Error(json.error?.message || json.message || 'Failed to create member');
+        throw new Error(json.message || json.error?.message || 'Failed to create member');
       }
 
       onMemberAdded(json.data);
@@ -325,7 +328,7 @@ export function AddMemberModal({
                     onChange={(e) => setRoleId(e.target.value)}
                     className="w-full rounded-xl border border-slate-300 pl-9 pr-3 py-2 text-xs text-slate-800 outline-none focus:border-emerald-500 bg-white"
                   >
-                    {roles.map((r) => (
+                    {effectiveRoles.map((r) => (
                       <option key={r.id} value={r.id}>
                         {r.name}
                       </option>

@@ -45,6 +45,9 @@ export interface CreateExpenseInput {
   receiptMimeType?: string | null;
   notes?: string | null;
   bazarScheduleId?: string | null;
+  periodType?: 'single' | 'weekly' | 'multi_day';
+  startDate?: string | null;
+  endDate?: string | null;
 }
 
 export interface UpdateExpenseInput {
@@ -375,7 +378,9 @@ export class ExpenseService {
 
     // Resolve category to get isMealEligible
     const categories = await this.listCategories(tenantSlug, true);
-    const category = categories.find((c: any) => c.id === input.categoryId);
+    const category = categories.find(
+      (c: any) => c.id === input.categoryId || c.code === input.categoryId || c.code === 'BAZAR'
+    ) || categories[0];
     if (!category) throw new NotFoundError('Selected expense category not found.');
 
     const purchaseDate =
@@ -454,6 +459,15 @@ export class ExpenseService {
     const expenseId = `exp_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
     const status: ExpenseStatus = autoApprove ? 'APPROVED' : 'PENDING_REVIEW';
 
+    let enrichedNotes = input.notes?.trim() || null;
+    if (input.periodType === 'weekly' || (input.startDate && input.endDate && input.startDate !== input.endDate)) {
+      const pStart = input.startDate || dateString;
+      const pEnd = input.endDate || dateString;
+      const periodTag = `[PERIOD:${input.periodType || 'weekly'}|${pStart}|${pEnd}]`;
+      const periodLabel = `(যৌথ/সাপ্তাহিক বাজার: ${pStart} থেকে ${pEnd})`;
+      enrichedNotes = enrichedNotes ? `${periodLabel} - ${enrichedNotes} ${periodTag}` : `${periodLabel} ${periodTag}`;
+    }
+
     const expenseRecord = {
       id: expenseId,
       tenantId: tenant.id,
@@ -471,7 +485,7 @@ export class ExpenseService {
       receiptUrl: input.receiptUrl || null,
       receiptFileName: input.receiptFileName || null,
       receiptMimeType: input.receiptMimeType || null,
-      notes: input.notes?.trim() || null,
+      notes: enrichedNotes,
       status,
       reviewedByUserId: autoApprove ? actorUserId : null,
       reviewedAt: autoApprove ? new Date() : null,
@@ -1034,6 +1048,156 @@ export class ExpenseService {
   }
 
   /**
+   * 11. ROTATING / MEMBER-WISE BAZAR CONTRIBUTION SUMMARY (কে কত বাজার করেছে)
+   */
+  public async getMemberBazarSummary(tenantSlug: string, monthString?: string) {
+    const tenant = await this.resolveTenant(tenantSlug);
+    if (!tenant) throw new NotFoundError('Tenant mess not found');
+
+    const targetMonth = monthString && monthString !== 'ALL' ? monthString : undefined;
+
+    // 1. Get all active members for this mess
+    let members: any[] = [];
+    if (this.isDbAvailable()) {
+      try {
+        const found = await (this.prisma as any).membership.findMany({
+          where: { tenantId: tenant.id, status: 'ACTIVE' },
+          include: {
+            user: { select: { id: true, name: true, phone: true, email: true } },
+            role: { select: { id: true, name: true, slug: true } },
+          },
+          orderBy: { createdAt: 'asc' },
+        });
+        if (found && found.length > 0) members = found;
+      } catch {}
+    }
+
+    if (members.length === 0) {
+      // In-memory fallback
+      const inMem = Array.from(ExpenseService.inMemoryMemberships.values()).filter(
+        (m) => m.tenantId === tenant.id && m.status === 'ACTIVE'
+      );
+      if (inMem.length > 0) {
+        members = inMem;
+      } else {
+        try {
+          const { memberService } = await import('@/server/members/member-service');
+          const mList = await memberService.listMembers(tenantSlug, { status: 'ACTIVE', limit: 100 });
+          members = mList.members.map((m: any) => ({
+            id: m.id,
+            tenantId: tenant.id,
+            userId: m.userId,
+            user: { id: m.userId, name: m.name, phone: m.phone, email: m.email },
+            memberCode: m.memberCode,
+            role: { name: m.roleName || 'Member', slug: m.roleSlug || 'member' },
+            status: 'ACTIVE',
+          }));
+        } catch {}
+      }
+    }
+
+    // 2. Fetch all expenses (optionally filtered by targetMonth)
+    const { expenses } = await this.listExpenses(tenantSlug, {
+      monthString: targetMonth,
+      limit: 1000,
+    });
+
+    // 3. Group expenses by purchaserMembershipId
+    const expensesByMember = new Map<string, any[]>();
+    for (const exp of expenses) {
+      const memId = exp.purchaserMembershipId;
+      if (!expensesByMember.has(memId)) {
+        expensesByMember.set(memId, []);
+      }
+      expensesByMember.get(memId)!.push(exp);
+    }
+
+    let totalMessBazarPoisha = BigInt(0);
+    let totalBazarTrips = 0;
+    let activeShoppersCount = 0;
+
+    const membersSummary = members.map((m) => {
+      const mExpenses = expensesByMember.get(m.id) || [];
+      let totalSpentPoisha = BigInt(0);
+      let approvedSpentPoisha = BigInt(0);
+      let pendingSpentPoisha = BigInt(0);
+      let slipCount = 0;
+      let lastBazarDate: string | null = null;
+
+      for (const e of mExpenses) {
+        if (e.status === 'REJECTED' || e.status === 'REVERSED') continue;
+        const p = BigInt(e.totalAmountPoisha || 0);
+        totalSpentPoisha += p;
+        if (e.status === 'APPROVED') approvedSpentPoisha += p;
+        if (e.status === 'PENDING') pendingSpentPoisha += p;
+        if (e.receiptUrl) slipCount++;
+
+        const d = typeof e.purchaseDate === 'string' ? e.purchaseDate.substring(0, 10) : e.dateString;
+        if (!lastBazarDate || (d && d > lastBazarDate)) {
+          lastBazarDate = d;
+        }
+      }
+
+      const totalSpentTaka = Number(totalSpentPoisha) / 100;
+      const approvedSpentTaka = Number(approvedSpentPoisha) / 100;
+      const pendingSpentTaka = Number(pendingSpentPoisha) / 100;
+      const tripsCount = mExpenses.filter((e) => e.status !== 'REJECTED' && e.status !== 'REVERSED').length;
+
+      if (tripsCount > 0) {
+        activeShoppersCount++;
+        totalMessBazarPoisha += totalSpentPoisha;
+        totalBazarTrips += tripsCount;
+      }
+
+      return {
+        membershipId: m.id,
+        userId: m.userId || m.user?.id,
+        memberName: m.user?.name || m.name || 'Resident',
+        phone: m.user?.phone || m.phone || null,
+        memberCode: m.memberCode || null,
+        roleName: m.role?.name || m.roleName || 'Member',
+        roleSlug: m.role?.slug || m.roleSlug || 'member',
+        totalSpentTaka,
+        totalSpentPoisha: totalSpentPoisha.toString(),
+        approvedSpentTaka,
+        pendingSpentTaka,
+        bazarCount: tripsCount,
+        lastBazarDate,
+        slipCount,
+        recentExpenses: mExpenses.slice(0, 5).map((e) => ({
+          id: e.id,
+          purchaseDate: typeof e.purchaseDate === 'string' ? e.purchaseDate.substring(0, 10) : e.dateString,
+          description: e.description,
+          totalAmount: e.totalAmount,
+          status: e.status,
+          receiptUrl: e.receiptUrl || null,
+          itemsCount: e.items?.length || 0,
+          periodType: e.periodType || 'single',
+          startDate: e.startDate || null,
+          endDate: e.endDate || null,
+          notes: e.notes || null,
+        })),
+      };
+    });
+
+    // Sort descending: member who shopped the most at the top
+    membersSummary.sort((a, b) => b.totalSpentTaka - a.totalSpentTaka);
+
+    const totalMessBazarTaka = Number(totalMessBazarPoisha) / 100;
+    const averageSpentPerMember = members.length > 0 ? Number((totalMessBazarTaka / members.length).toFixed(2)) : 0;
+
+    return {
+      monthString: targetMonth || 'ALL',
+      totalMessBazarTaka,
+      totalBazarTrips,
+      totalActiveShoppers: activeShoppersCount,
+      totalMembers: members.length,
+      averageSpentPerMember,
+      membersSummary,
+    };
+  }
+
+  /**
    * Helper formatting
    */
   private formatExpense(e: any) {
@@ -1055,6 +1219,24 @@ export class ExpenseService {
       ExpenseService.inMemoryCategories.get(e.categoryId)?.code ||
       'OTHER';
 
+    let periodType = e.periodType || 'single';
+    let startDate: string | null = e.startDate || null;
+    let endDate: string | null = e.endDate || null;
+
+    if (e.notes && e.notes.includes('[PERIOD:')) {
+      const match = e.notes.match(/\[PERIOD:([^|]+)\|([^|]+)\|([^\]]+)\]/);
+      if (match) {
+        periodType = match[1];
+        startDate = match[2];
+        endDate = match[3];
+      }
+    }
+
+    const items =
+      e.items ||
+      ExpenseService.inMemoryExpenseItems.get(e.id) ||
+      [];
+
     return {
       id: e.id,
       tenantId: e.tenantId,
@@ -1074,6 +1256,9 @@ export class ExpenseService {
       receiptUrl: e.receiptUrl || null,
       receiptFileName: e.receiptFileName || null,
       notes: e.notes || null,
+      periodType,
+      startDate,
+      endDate,
       status: e.status,
       reviewedByUserId: e.reviewedByUserId || null,
       reviewedByName: e.reviewedByUser?.name || null,
@@ -1081,6 +1266,7 @@ export class ExpenseService {
       rejectionReason: e.rejectionReason || null,
       isMealEligible: Boolean(e.isMealEligible),
       createdAt: e.createdAt,
+      items,
     };
   }
 

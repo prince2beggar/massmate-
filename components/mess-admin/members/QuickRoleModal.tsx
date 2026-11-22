@@ -14,6 +14,7 @@ import {
   HelpCircle,
 } from 'lucide-react';
 import type { MemberDto } from '@/server/members/member-service';
+import { STANDARD_MESS_ROLES } from '@/server/rbac/role-templates';
 
 interface QuickRoleModalProps {
   tenantSlug: string;
@@ -32,6 +33,8 @@ export function QuickRoleModal({
   onClose,
   onRoleUpdated,
 }: QuickRoleModalProps) {
+  const effectiveRoles = roles && roles.length > 0 ? roles : STANDARD_MESS_ROLES;
+
   const [roleId, setRoleId] = useState('');
   const [additionalRoles, setAdditionalRoles] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
@@ -39,10 +42,10 @@ export function QuickRoleModal({
 
   useEffect(() => {
     if (member) {
-      const currentRole = roles.find(
+      const currentRole = effectiveRoles.find(
         (r) => r.id === member.roleId || r.slug === member.roleSlug
       );
-      setRoleId(currentRole?.id || member.roleId || roles[0]?.id || '');
+      setRoleId(currentRole?.id || member.roleId || effectiveRoles[0]?.id || '');
 
       const primarySlug = currentRole?.slug || member.roleSlug || 'member';
       const assigned = member.assignedRoles || [primarySlug];
@@ -50,7 +53,7 @@ export function QuickRoleModal({
       setAdditionalRoles(extra);
       setError(null);
     }
-  }, [member, roles]);
+  }, [member, effectiveRoles]);
 
   if (!isOpen || !member) return null;
 
@@ -73,7 +76,7 @@ export function QuickRoleModal({
       setLoading(true);
       setError(null);
 
-      const selectedRole = roles.find((r) => r.id === roleId);
+      const selectedRole = effectiveRoles.find((r) => r.id === roleId || r.slug === roleId);
       const primarySlug = selectedRole?.slug || member.roleSlug || 'member';
       const combinedRoles = Array.from(
         new Set([primarySlug, ...additionalRoles])
@@ -91,7 +94,7 @@ export function QuickRoleModal({
       const json = await res.json();
       if (!res.ok || !json.success) {
         throw new Error(
-          json.error?.message || json.message || 'Failed to update member role'
+          json.message || json.error?.message || 'Failed to update member role'
         );
       }
 
@@ -161,7 +164,7 @@ export function QuickRoleModal({
                 onChange={(e) => setRoleId(e.target.value)}
                 className="w-full rounded-xl border border-slate-300 pl-9 pr-3 py-2 text-xs text-slate-800 outline-none focus:border-emerald-500 bg-white font-medium"
               >
-                {roles.map((r) => (
+                {effectiveRoles.map((r) => (
                   <option key={r.id} value={r.id}>
                     {r.name}
                   </option>

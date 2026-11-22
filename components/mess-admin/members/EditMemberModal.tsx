@@ -16,6 +16,7 @@ import {
   Check,
 } from 'lucide-react';
 import type { MemberDto } from '@/server/members/member-service';
+import { STANDARD_MESS_ROLES } from '@/server/rbac/role-templates';
 
 interface EditMemberModalProps {
   tenantSlug: string;
@@ -34,6 +35,8 @@ export function EditMemberModal({
   onMemberUpdated,
   roles = [],
 }: EditMemberModalProps) {
+  const effectiveRoles = roles && roles.length > 0 ? roles : STANDARD_MESS_ROLES;
+
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -58,10 +61,10 @@ export function EditMemberModal({
       setEmergencyPhone(member.emergencyContactPhone || '');
       setNotes(member.notes || '');
 
-      const currentRole = roles.find(
+      const currentRole = effectiveRoles.find(
         (r) => r.id === member.roleId || r.slug === member.roleSlug
       );
-      setRoleId(currentRole?.id || member.roleId || roles[0]?.id || '');
+      setRoleId(currentRole?.id || member.roleId || effectiveRoles[0]?.id || '');
 
       const primarySlug = currentRole?.slug || member.roleSlug || 'member';
       const assigned = member.assignedRoles || [primarySlug];
@@ -69,7 +72,7 @@ export function EditMemberModal({
       setAdditionalRoles(extra);
       setError(null);
     }
-  }, [member, roles]);
+  }, [member, effectiveRoles]);
 
   if (!isOpen || !member) return null;
 
@@ -92,7 +95,7 @@ export function EditMemberModal({
       setLoading(true);
       setError(null);
 
-      const selectedRole = roles.find((r) => r.id === roleId);
+      const selectedRole = effectiveRoles.find((r) => r.id === roleId || r.slug === roleId);
       const primarySlug = selectedRole?.slug || member.roleSlug || 'member';
       const combinedAssignedRoles = Array.from(
         new Set([primarySlug, ...additionalRoles])
@@ -120,7 +123,7 @@ export function EditMemberModal({
       const json = await res.json();
       if (!res.ok || !json.success) {
         throw new Error(
-          json.error?.message || json.message || 'Failed to update member'
+          json.message || json.error?.message || 'Failed to update member'
         );
       }
 
@@ -236,28 +239,27 @@ export function EditMemberModal({
           </div>
 
           {/* Role & Multi-Role Responsibilities */}
-          {roles.length > 0 && (
-            <div className="space-y-3 rounded-xl border border-slate-200 bg-slate-50/60 p-3.5">
-              <div className="space-y-1">
-                <label className="text-xs font-semibold text-slate-700 flex items-center justify-between">
-                  <span>Assigned Role / মূল ভূমিকা <span className="text-rose-500">*</span></span>
-                  <span className="text-[10px] text-slate-400">মেসের প্রধান পদবী</span>
-                </label>
-                <div className="relative">
-                  <Shield className="absolute left-3 top-2.5 h-3.5 w-3.5 text-slate-400" />
-                  <select
-                    value={roleId}
-                    onChange={(e) => setRoleId(e.target.value)}
-                    className="w-full rounded-xl border border-slate-300 pl-9 pr-3 py-2 text-xs text-slate-800 outline-none focus:border-emerald-500 bg-white"
-                  >
-                    {roles.map((r) => (
-                      <option key={r.id} value={r.id}>
-                        {r.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+          <div className="space-y-3 rounded-xl border border-slate-200 bg-slate-50/60 p-3.5">
+            <div className="space-y-1">
+              <label className="text-xs font-semibold text-slate-700 flex items-center justify-between">
+                <span>Assigned Role / মূল ভূমিকা <span className="text-rose-500">*</span></span>
+                <span className="text-[10px] text-slate-400">মেসের প্রধান পদবী</span>
+              </label>
+              <div className="relative">
+                <Shield className="absolute left-3 top-2.5 h-3.5 w-3.5 text-slate-400" />
+                <select
+                  value={roleId}
+                  onChange={(e) => setRoleId(e.target.value)}
+                  className="w-full rounded-xl border border-slate-300 pl-9 pr-3 py-2 text-xs text-slate-800 outline-none focus:border-emerald-500 bg-white"
+                >
+                  {effectiveRoles.map((r) => (
+                    <option key={r.id} value={r.id}>
+                      {r.name}
+                    </option>
+                  ))}
+                </select>
               </div>
+            </div>
 
               {/* Multi-Role Checklist */}
               <div className="space-y-2 pt-1 border-t border-slate-200/80">
@@ -374,7 +376,6 @@ export function EditMemberModal({
                 </div>
               </div>
             </div>
-          )}
 
           {/* Emergency Contact */}
           <div className="rounded-xl border border-slate-100 bg-slate-50 p-3 space-y-3">

@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ShoppingBag, Calendar, Tag, Plus, CalendarPlus } from 'lucide-react';
+import { ShoppingBag, Calendar, Tag, Plus, CalendarPlus, Users } from 'lucide-react';
 import { ExpensesListView } from './ExpensesListView';
+import { MemberBazarSummaryView } from './MemberBazarSummaryView';
 import { BazarScheduleView } from './BazarScheduleView';
 import { CategoriesView } from './CategoriesView';
 import { RecordExpenseModal } from './RecordExpenseModal';
@@ -28,7 +29,9 @@ export function BazarExpensesWorkspaceView({
   members,
   currentMonth,
 }: BazarExpensesWorkspaceViewProps) {
-  const [activeTab, setActiveTab] = useState<'expenses' | 'schedules' | 'categories'>('expenses');
+  const [activeTab, setActiveTab] = useState<
+    'expenses' | 'member-summary' | 'schedules' | 'categories'
+  >('expenses');
   const [selectedMonth, setSelectedMonth] = useState<string>(currentMonth);
 
   // Data states
@@ -151,6 +154,18 @@ export function BazarExpensesWorkspaceView({
         </button>
 
         <button
+          onClick={() => setActiveTab('member-summary')}
+          className={`flex items-center gap-2 pb-3 px-3 text-xs font-bold transition border-b-2 -mb-px ${
+            activeTab === 'member-summary'
+              ? 'border-emerald-600 text-emerald-700'
+              : 'border-transparent text-slate-500 hover:text-slate-800'
+          }`}
+        >
+          <Users className="h-4 w-4" />
+          <span>সদস্যভিত্তিক বাজার (কে কত বাজার করেছে)</span>
+        </button>
+
+        <button
           onClick={() => setActiveTab('schedules')}
           className={`flex items-center gap-2 pb-3 px-3 text-xs font-bold transition border-b-2 -mb-px ${
             activeTab === 'schedules'
@@ -193,6 +208,15 @@ export function BazarExpensesWorkspaceView({
           onOpenReviewModal={(exp) => setReviewExpense(exp)}
           onOpenReverseModal={(exp) => setReverseExpense(exp)}
           onOpenDetailsModal={(exp) => setDetailsExpense(exp)}
+        />
+      )}
+
+      {activeTab === 'member-summary' && (
+        <MemberBazarSummaryView
+          tenantSlug={tenantSlug}
+          selectedMonth={selectedMonth}
+          onMonthChange={handleMonthChange}
+          onRecordForMember={(memId) => handleOpenRecordModal(undefined, memId)}
         />
       )}
 

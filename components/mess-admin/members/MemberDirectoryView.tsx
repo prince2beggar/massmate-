@@ -28,6 +28,7 @@ import {
   User,
 } from 'lucide-react';
 import type { MemberDto } from '@/server/members/member-service';
+import { STANDARD_MESS_ROLES } from '@/server/rbac/role-templates';
 import { AddMemberModal } from './AddMemberModal';
 import { EditMemberModal } from './EditMemberModal';
 import { ChangeStatusModal } from './ChangeStatusModal';
@@ -63,6 +64,7 @@ export function MemberDirectoryView({
   roles = [],
   canCreate = true,
 }: MemberDirectoryViewProps) {
+  const effectiveRoles = roles && roles.length > 0 ? roles : STANDARD_MESS_ROLES;
   const router = useRouter();
   const [data, setData] = useState(initialData);
   const [search, setSearch] = useState('');
@@ -234,14 +236,14 @@ export function MemberDirectoryView({
       <button
         type="button"
         onClick={() => setQuickRoleMember(member)}
-        className="group flex flex-wrap items-center gap-1.5 p-1 -m-1 rounded-xl text-left hover:bg-slate-100/90 transition-all border border-transparent hover:border-slate-200/60"
+        className="group flex flex-wrap items-center gap-1.5 p-1 -m-1 rounded-xl text-left hover:bg-slate-100/90 transition-all border border-transparent hover:border-slate-200/60 cursor-pointer"
         title="রোল ও দায়িত্ব পরিবর্তন করতে ক্লিক করুন (Click to change role)"
       >
         <div className="flex flex-wrap items-center gap-1">
           {rolesToRender.map((r, i) => (
             <span
               key={i}
-              className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-semibold border ${r.color} transition-colors`}
+              className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-semibold border ${r.color} transition-colors shadow-2xs hover:shadow-xs`}
             >
               {r.icon === 'crown' && <Crown className="h-3 w-3 shrink-0" />}
               {r.icon === 'shield' && <Shield className="h-3 w-3 shrink-0" />}
@@ -253,9 +255,9 @@ export function MemberDirectoryView({
             </span>
           ))}
         </div>
-        <span className="inline-flex items-center gap-0.5 text-[10px] text-slate-400 group-hover:text-emerald-700 opacity-60 group-hover:opacity-100 transition-all">
+        <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded-md hover:bg-emerald-100 transition-all cursor-pointer shadow-2xs">
           <Edit className="h-3 w-3" />
-          <span className="hidden sm:inline">এডিট</span>
+          <span>রোল পরিবর্তন</span>
         </span>
       </button>
     );
@@ -613,7 +615,7 @@ export function MemberDirectoryView({
         tenantSlug={tenantSlug}
         isOpen={addModalOpen}
         onClose={() => setAddModalOpen(false)}
-        roles={roles}
+        roles={effectiveRoles}
         onMemberAdded={(newMem) => {
           fetchMembers(1);
         }}
@@ -622,7 +624,7 @@ export function MemberDirectoryView({
       <EditMemberModal
         tenantSlug={tenantSlug}
         member={editingMember}
-        roles={roles}
+        roles={effectiveRoles}
         isOpen={!!editingMember}
         onClose={() => setEditingMember(null)}
         onMemberUpdated={(updated) => {
@@ -638,7 +640,7 @@ export function MemberDirectoryView({
       <QuickRoleModal
         tenantSlug={tenantSlug}
         member={quickRoleMember}
-        roles={roles}
+        roles={effectiveRoles}
         isOpen={!!quickRoleMember}
         onClose={() => setQuickRoleMember(null)}
         onRoleUpdated={(updated) => {

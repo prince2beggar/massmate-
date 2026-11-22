@@ -615,20 +615,31 @@ export function createMockPrismaClient(): any {
   }
 
   // Root Client Proxy that intercepts model calls
-  return new Proxy(
-    {
-      $connect: async () => {},
-      $disconnect: async () => {},
-      $queryRawUnsafe: async () => [{ now: new Date(), db: 'mock_memory', ver: 'Mock Engine 1.0' }],
+  let clientProxy: any = null;
+  const rootTarget: any = {
+    $connect: async () => {},
+    $disconnect: async () => {},
+    $queryRawUnsafe: async () => [{ now: new Date(), db: 'mock_memory', ver: 'Mock Engine 1.0' }],
+    $transaction: async (input: any) => {
+      if (typeof input === 'function') {
+        return await input(clientProxy);
+      }
+      if (Array.isArray(input)) {
+        return await Promise.all(input);
+      }
+      return input;
     },
-    {
-      get(target: any, prop: string) {
-        if (prop in target) return target[prop];
-        if (typeof prop === 'string') {
-          return createModelProxy(prop);
-        }
-        return undefined;
-      },
-    }
-  );
+  };
+
+  clientProxy = new Proxy(rootTarget, {
+    get(target: any, prop: string) {
+      if (prop in target) return target[prop];
+      if (typeof prop === 'string') {
+        return createModelProxy(prop);
+      }
+      return undefined;
+    },
+  });
+
+  return clientProxy;
 }

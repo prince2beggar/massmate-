@@ -137,7 +137,7 @@ export function DailyMealSheetView({
 
       const json = await res.json();
       if (!res.ok || !json.success) {
-        throw new Error(json.message || 'Failed to save daily meals');
+        throw new Error(json.message || json.error?.message || 'মিল সেভ করতে ব্যর্থ হয়েছে');
       }
 
       setFeedback({

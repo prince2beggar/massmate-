@@ -18,6 +18,9 @@ import {
   Grid,
   Sparkles,
   Users,
+  Lock,
+  Eye,
+  ShieldAlert,
 } from 'lucide-react';
 import type { MemberMealOverviewDto } from '@/server/member-portal/member-portal-service';
 
@@ -35,6 +38,34 @@ export function MemberMealsView({ tenantSlug, initialData }: MemberMealsViewProp
   const [currentMonth, setCurrentMonth] = useState<string>(
     initialData?.monthString || new Date().toISOString().substring(0, 7)
   );
+
+  // Main Tab: 'my-meals' | 'all-members'
+  const [mainTab, setMainTab] = useState<'my-meals' | 'all-members'>('my-meals');
+  const [allMealsDate, setAllMealsDate] = useState<string>(
+    new Date().toISOString().split('T')[0]
+  );
+  const [allMealsData, setAllMealsData] = useState<{
+    date: string;
+    month: string;
+    dailySheet: any;
+    monthlySummary: any;
+  } | null>(null);
+  const [loadingAllMeals, setLoadingAllMeals] = useState<boolean>(false);
+  const [allMealsViewMode, setAllMealsViewMode] = useState<'daily' | 'monthly'>('daily');
+
+  const fetchAllMembersMeals = async (d = allMealsDate, m = currentMonth) => {
+    setLoadingAllMeals(true);
+    try {
+      const res = await fetch(`/api/v1/portal/${tenantSlug}/meals/all?date=${d}&month=${m}`);
+      const json = await res.json();
+      if (json.success && json.data) {
+        setAllMealsData(json.data);
+      }
+    } catch {}
+    finally {
+      setLoadingAllMeals(false);
+    }
+  };
 
   // View toggle: 'calendar' | 'list'
   const [viewMode, setViewMode] = useState<'calendar' | 'list'>('calendar');
@@ -221,7 +252,44 @@ export function MemberMealsView({ tenantSlug, initialData }: MemberMealsViewProp
         </button>
       </div>
 
-      {/* 2. Today's Dining Status & Menu Banner */}
+      {/* Main Tab Switcher */}
+      <div className="flex border-b border-slate-200 gap-2">
+        <button
+          onClick={() => setMainTab('my-meals')}
+          className={`flex items-center gap-2 pb-3 px-3 text-xs font-bold transition border-b-2 -mb-px ${
+            mainTab === 'my-meals'
+              ? 'border-emerald-600 text-emerald-700'
+              : 'border-transparent text-slate-500 hover:text-slate-800'
+          }`}
+        >
+          <UtensilsCrossed className="h-4 w-4" />
+          <span>আমার মিল ক্যালেন্ডার (My Meals)</span>
+        </button>
+
+        <button
+          onClick={() => {
+            setMainTab('all-members');
+            if (!allMealsData) {
+              void fetchAllMembersMeals(allMealsDate, currentMonth);
+            }
+          }}
+          className={`flex items-center gap-2 pb-3 px-3 text-xs font-bold transition border-b-2 -mb-px ${
+            mainTab === 'all-members'
+              ? 'border-emerald-600 text-emerald-700'
+              : 'border-transparent text-slate-500 hover:text-slate-800'
+          }`}
+        >
+          <Users className="h-4 w-4" />
+          <span>মেসের সবার মিল (All Members Meal Sheet)</span>
+          <span className="rounded-full bg-emerald-100 text-emerald-800 px-2 py-0.5 text-[10px] font-bold">
+            কে কয়টা মিল খাইছে
+          </span>
+        </button>
+      </div>
+
+      {mainTab === 'my-meals' && (
+        <>
+          {/* 2. Today's Dining Status & Menu Banner */}
       <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-6 sm:p-8 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
         {/* Today's Status */}
         <div className="space-y-2">
@@ -550,6 +618,369 @@ export function MemberMealsView({ tenantSlug, initialData }: MemberMealsViewProp
           </div>
         </div>
       )}
+      </>
+    )}
+
+    {/* All Members Meal Sheet View */}
+    {mainTab === 'all-members' && (
+      <div className="space-y-6">
+        {/* Authority / Read-Only Transparency Banner */}
+        <div className="rounded-2xl border border-amber-200 bg-amber-50/80 p-4 shadow-sm flex items-start gap-3">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-700">
+            <Lock className="h-5 w-5" />
+          </div>
+          <div className="text-xs text-amber-900 space-y-1">
+            <div className="font-bold text-sm text-amber-950 flex items-center gap-2">
+              <span>সবার মিল দেখার তালিকা (Read-Only Transparency Mode)</span>
+              <span className="rounded-full bg-amber-200/80 px-2 py-0.5 text-[10px] font-black text-amber-900">
+                🔒 সাধারণ সদস্যদের জন্য অপরিবর্তনযোগ্য
+              </span>
+            </div>
+            <p className="text-amber-800">
+              মেসের নিয়মানুযায়ী সকল সদস্য দেখতে পারবেন কে কয়টা মিল খেয়েছে। তবে মিলের সংখ্যা এন্ট্রি বা পরিবর্তন করার ক্ষমতা <strong>শুধুমাত্র মেস এডমিন এবং দায়িত্বপ্রাপ্ত মিল ম্যানেজারের</strong> রয়েছে।
+            </p>
+          </div>
+        </div>
+
+        {/* View Switcher: Daily vs Monthly */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+          <div className="flex items-center gap-1.5 p-1 bg-slate-100 rounded-xl">
+            <button
+              onClick={() => setAllMealsViewMode('daily')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition ${
+                allMealsViewMode === 'daily'
+                  ? 'bg-white text-emerald-700 shadow-sm'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Calendar className="h-3.5 w-3.5" />
+              <span>দৈনিক মিল শিট (Daily Sheet)</span>
+            </button>
+            <button
+              onClick={() => setAllMealsViewMode('monthly')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition ${
+                allMealsViewMode === 'monthly'
+                  ? 'bg-white text-emerald-700 shadow-sm'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Users className="h-3.5 w-3.5" />
+              <span>চলতি মাসের মোট সারাংশ (Monthly Totals)</span>
+            </button>
+          </div>
+
+          {/* Date / Month Controls */}
+          <div className="flex items-center gap-2">
+            {allMealsViewMode === 'daily' ? (
+              <>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const d = new Date(allMealsDate + 'T12:00:00Z');
+                    d.setDate(d.getDate() - 1);
+                    const prev = d.toISOString().split('T')[0];
+                    setAllMealsDate(prev);
+                    void fetchAllMembersMeals(prev, currentMonth);
+                  }}
+                  className="p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 transition"
+                  title="পূর্ববর্তী দিন"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+
+                <input
+                  type="date"
+                  value={allMealsDate}
+                  onChange={(e) => {
+                    setAllMealsDate(e.target.value);
+                    void fetchAllMembersMeals(e.target.value, currentMonth);
+                  }}
+                  className="rounded-xl border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-800 focus:outline-none focus:border-emerald-500"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    const d = new Date(allMealsDate + 'T12:00:00Z');
+                    d.setDate(d.getDate() + 1);
+                    const next = d.toISOString().split('T')[0];
+                    setAllMealsDate(next);
+                    void fetchAllMembersMeals(next, currentMonth);
+                  }}
+                  className="p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 transition"
+                  title="পরবর্তী দিন"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    const today = new Date().toISOString().split('T')[0];
+                    setAllMealsDate(today);
+                    void fetchAllMembersMeals(today, currentMonth);
+                  }}
+                  className="px-2.5 py-1.5 text-xs font-semibold rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition"
+                >
+                  আজকে
+                </button>
+              </>
+            ) : (
+              <>
+                <span className="text-xs font-semibold text-slate-500">মাস:</span>
+                <input
+                  type="month"
+                  value={currentMonth}
+                  onChange={(e) => {
+                    setCurrentMonth(e.target.value);
+                    void fetchAllMembersMeals(allMealsDate, e.target.value);
+                  }}
+                  className="rounded-xl border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-800 focus:outline-none focus:border-emerald-500"
+                />
+              </>
+            )}
+
+            <button
+              onClick={() => void fetchAllMembersMeals(allMealsDate, currentMonth)}
+              disabled={loadingAllMeals}
+              className="p-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-600 transition"
+              title="রিফ্রেশ করুন"
+            >
+              <RefreshCw className={`h-4 w-4 ${loadingAllMeals ? 'animate-spin text-emerald-600' : ''}`} />
+            </button>
+          </div>
+        </div>
+
+        {loadingAllMeals && !allMealsData ? (
+          <div className="flex flex-col items-center justify-center p-16 bg-white rounded-2xl border border-slate-200 shadow-sm">
+            <RefreshCw className="h-8 w-8 text-emerald-600 animate-spin mb-3" />
+            <p className="text-xs text-slate-500 font-medium">মেসের মিলের তালিকা লোড হচ্ছে...</p>
+          </div>
+        ) : allMealsViewMode === 'daily' ? (
+          /* Daily Meal Sheet for selected date */
+          <div className="space-y-4">
+            {/* Daily KPI Stats Strip */}
+            {allMealsData?.dailySheet?.summary && (
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-xs">
+                  <span className="text-xs text-slate-500 font-medium">সকালের নাশতা</span>
+                  <div className="text-xl font-black text-slate-900 mt-1">
+                    {allMealsData.dailySheet.summary.totalBreakfast}
+                  </div>
+                  <span className="text-[10px] text-slate-400">জন খেয়েছে</span>
+                </div>
+                <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-xs">
+                  <span className="text-xs text-slate-500 font-medium">দুপুরের খাবার</span>
+                  <div className="text-xl font-black text-slate-900 mt-1">
+                    {allMealsData.dailySheet.summary.totalLunch}
+                  </div>
+                  <span className="text-[10px] text-slate-400">জন খেয়েছে</span>
+                </div>
+                <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-xs">
+                  <span className="text-xs text-slate-500 font-medium">রাতের খাবার</span>
+                  <div className="text-xl font-black text-slate-900 mt-1">
+                    {allMealsData.dailySheet.summary.totalDinner}
+                  </div>
+                  <span className="text-[10px] text-slate-400">জন খেয়েছে</span>
+                </div>
+                <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-3 shadow-xs">
+                  <span className="text-xs text-emerald-800 font-medium">মোট চার্জযোগ্য ইউনিট</span>
+                  <div className="text-xl font-black text-emerald-900 mt-1">
+                    {allMealsData.dailySheet.summary.totalUnits}
+                  </div>
+                  <span className="text-[10px] text-emerald-700">আজকের মোট মিল</span>
+                </div>
+              </div>
+            )}
+
+            {/* Daily Members Table */}
+            <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+              <div className="p-4 border-b border-slate-100 flex items-center justify-between">
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900">
+                    দৈনিক মিল শিট — {allMealsDate}
+                  </h3>
+                  <p className="text-xs text-slate-500">
+                    মেসের সকল সদস্যের মিল বুকিং ও খাবার গ্রহণের হিসাব
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600">
+                  <Lock className="h-3 w-3" /> শুধুমাত্র প্রদর্শনযোগ্য
+                </span>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs">
+                  <thead className="bg-slate-50/80 text-slate-600 font-semibold border-b border-slate-200">
+                    <tr>
+                      <th className="px-4 py-3">সদস্যের নাম</th>
+                      <th className="px-4 py-3 text-center">সকাল</th>
+                      <th className="px-4 py-3 text-center">দুপুর</th>
+                      <th className="px-4 py-3 text-center">রাত</th>
+                      <th className="px-4 py-3 text-center">মেহমান</th>
+                      <th className="px-4 py-3 text-center font-bold text-slate-800">মোট ইউনিট</th>
+                      <th className="px-4 py-3 text-right">মিল অবস্থা</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {allMealsData?.dailySheet?.memberEntries?.map((entry: any) => {
+                      const totalMeals =
+                        (entry.breakfastCount || 0) +
+                        (entry.lunchCount || 0) +
+                        (entry.dinnerCount || 0);
+
+                      return (
+                        <tr key={entry.membershipId} className="hover:bg-slate-50/70 transition">
+                          <td className="px-4 py-3 font-semibold text-slate-900 whitespace-nowrap">
+                            <div className="flex items-center gap-2">
+                              <span>{entry.memberName || 'Resident'}</span>
+                              {entry.memberCode && (
+                                <span className="font-mono text-[10px] text-slate-400 font-normal">
+                                  ({entry.memberCode})
+                                </span>
+                              )}
+                            </div>
+                          </td>
+                          <td className="px-4 py-3 text-center">
+                            <span
+                              className={`inline-block px-2 py-0.5 rounded font-bold ${
+                                entry.breakfastCount > 0
+                                  ? 'bg-emerald-50 text-emerald-800 font-semibold'
+                                  : 'text-slate-400'
+                              }`}
+                            >
+                              {entry.breakfastCount || 0}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 text-center">
+                            <span
+                              className={`inline-block px-2 py-0.5 rounded font-bold ${
+                                entry.lunchCount > 0
+                                  ? 'bg-emerald-50 text-emerald-800 font-semibold'
+                                  : 'text-slate-400'
+                              }`}
+                            >
+                              {entry.lunchCount || 0}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 text-center">
+                            <span
+                              className={`inline-block px-2 py-0.5 rounded font-bold ${
+                                entry.dinnerCount > 0
+                                  ? 'bg-emerald-50 text-emerald-800 font-semibold'
+                                  : 'text-slate-400'
+                              }`}
+                            >
+                              {entry.dinnerCount || 0}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 text-center">
+                            <span className="text-slate-600 font-medium">
+                              {entry.guestMealCount || 0}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 text-center font-black text-emerald-700">
+                            {Number(entry.totalChargeableUnits || 0).toFixed(1)}
+                          </td>
+                          <td className="px-4 py-3 text-right whitespace-nowrap">
+                            {entry.isMealOff ? (
+                              <span className="inline-flex items-center gap-1 rounded-full bg-rose-50 px-2.5 py-0.5 text-[10px] font-bold text-rose-700 border border-rose-200">
+                                মিল অফ
+                              </span>
+                            ) : totalMeals > 0 ? (
+                              <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[10px] font-bold text-emerald-700 border border-emerald-200">
+                                সক্রিয় ({totalMeals}টি)
+                              </span>
+                            ) : (
+                              <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-500">
+                                মিল নেই
+                              </span>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        ) : (
+          /* Monthly Summary for selected month */
+          <div className="space-y-4">
+            <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+              <div className="p-4 border-b border-slate-100 flex items-center justify-between">
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900">
+                    মাসিক মিল সারাংশ — {currentMonth}
+                  </h3>
+                  <p className="text-xs text-slate-500">
+                    চলতি মাসে মেসের প্রত্যেক সদস্যের মোট মিল সংখ্যা ও ইউনিট
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-600">
+                  <Lock className="h-3 w-3" /> প্রদর্শনী মোড
+                </span>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs">
+                  <thead className="bg-slate-50/80 text-slate-600 font-semibold border-b border-slate-200">
+                    <tr>
+                      <th className="px-4 py-3">সদস্যের নাম</th>
+                      <th className="px-4 py-3 text-center">মোট সকাল</th>
+                      <th className="px-4 py-3 text-center">মোট দুপুর</th>
+                      <th className="px-4 py-3 text-center">মোট রাত</th>
+                      <th className="px-4 py-3 text-center">মোট মিল</th>
+                      <th className="px-4 py-3 text-center font-bold text-emerald-800">
+                        চার্জযোগ্য ইউনিট
+                      </th>
+                      <th className="px-4 py-3 text-center">মিল অফ দিন</th>
+                      <th className="px-4 py-3 text-right">আনুমানিক খরচ</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {allMealsData?.monthlySummary?.membersSummary?.map((m: any) => (
+                      <tr key={m.membershipId} className="hover:bg-slate-50/70 transition">
+                        <td className="px-4 py-3 font-semibold text-slate-900 whitespace-nowrap">
+                          <div className="flex items-center gap-2">
+                            <span>{m.memberName}</span>
+                            {m.memberCode && (
+                              <span className="font-mono text-[10px] text-slate-400 font-normal">
+                                ({m.memberCode})
+                              </span>
+                            )}
+                          </div>
+                        </td>
+                        <td className="px-4 py-3 text-center text-slate-700">{m.totalBreakfast}</td>
+                        <td className="px-4 py-3 text-center text-slate-700">{m.totalLunch}</td>
+                        <td className="px-4 py-3 text-center text-slate-700">{m.totalDinner}</td>
+                        <td className="px-4 py-3 text-center font-bold text-slate-900">
+                          {m.totalMeals}
+                        </td>
+                        <td className="px-4 py-3 text-center font-black text-emerald-700">
+                          {Number(m.totalChargeableUnits).toFixed(1)}
+                        </td>
+                        <td className="px-4 py-3 text-center">
+                          {m.mealOffDays > 0 ? (
+                            <span className="text-rose-600 font-semibold">{m.mealOffDays} দিন</span>
+                          ) : (
+                            <span className="text-slate-400">০ দিন</span>
+                          )}
+                        </td>
+                        <td className="px-4 py-3 text-right font-bold text-slate-900">
+                          ৳{Number(m.estimatedCostTaka || 0).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    )}
 
       {/* 6. Request Meal-Off Modal */}
       {isModalOpen && (

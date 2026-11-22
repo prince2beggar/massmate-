@@ -378,7 +378,12 @@ export function ExpensesListView({
                   return (
                     <tr key={exp.id} className="hover:bg-slate-50/60 transition">
                       <td className="px-4 py-3.5 font-semibold text-slate-900 whitespace-nowrap">
-                        {exp.purchaseDate}
+                        <div>{exp.purchaseDate}</div>
+                        {(exp.notes?.includes('যৌথ') || exp.notes?.includes('সাপ্তাহিক') || exp.notes?.includes('[PERIOD:weekly')) && (
+                          <span className="inline-flex items-center gap-1 mt-0.5 rounded-full bg-indigo-50 border border-indigo-200 px-2 py-0.5 text-[10px] font-bold text-indigo-700">
+                            🗓️ ৭ দিনের যৌথ স্লিপ
+                          </span>
+                        )}
                       </td>
                       <td className="px-4 py-3.5 whitespace-nowrap">
                         <div className="font-semibold text-slate-900">
@@ -406,9 +411,14 @@ export function ExpensesListView({
                         <div className="text-slate-800 font-medium max-w-xs truncate">
                           {itemsSummaryText || exp.description || 'No item detail'}
                         </div>
-                        <div className="text-[11px] text-slate-400">
-                          {itemsList.length} item{itemsList.length !== 1 ? 's' : ''}
-                          {exp.vendorName ? ` • ${exp.vendorName}` : ''}
+                        <div className="flex items-center gap-1.5 text-[11px] text-slate-400 mt-0.5">
+                          <span>{itemsList.length} item{itemsList.length !== 1 ? 's' : ''}</span>
+                          {exp.vendorName && <span>• {exp.vendorName}</span>}
+                          {exp.receiptUrl && (
+                            <span className="inline-flex items-center gap-0.5 rounded bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.2">
+                              📷 স্লিপ সংযুক্ত
+                            </span>
+                          )}
                         </div>
                       </td>
                       <td className="px-4 py-3.5 whitespace-nowrap">

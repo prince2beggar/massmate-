@@ -385,14 +385,12 @@ export class MemberService {
     if (!phone) {
       throw new ValidationError('Member phone number is required');
     }
-    if (!input.roleId) {
-      throw new ValidationError('Role assignment is required');
-    }
+    const roleIdentifier = (input.roleId || 'member').trim();
 
     // 1. Verify Role belongs to this Tenant, or find/seed standard role
     let role = await this.db.role.findFirst({
       where: {
-        id: input.roleId,
+        id: roleIdentifier,
         tenantId,
       },
     });
@@ -400,7 +398,7 @@ export class MemberService {
     if (!role) {
       role = await this.db.role.findFirst({
         where: {
-          slug: input.roleId,
+          slug: roleIdentifier,
           tenantId,
         },
       });
@@ -408,7 +406,12 @@ export class MemberService {
 
     if (!role) {
       const seeded = await ensureTenantRoles(tenantId, this.db);
-      role = (seeded.find((r) => r.id === input.roleId || r.slug === input.roleId) || seeded[0]) as any;
+      role = (seeded.find(
+        (r) =>
+          r.id === roleIdentifier ||
+          r.slug === roleIdentifier ||
+          r.name.toLowerCase().includes(roleIdentifier.toLowerCase())
+      ) || seeded[0]) as any;
     }
 
     if (!role) {

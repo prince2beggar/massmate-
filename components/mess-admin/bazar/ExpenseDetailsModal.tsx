@@ -1,7 +1,19 @@
 'use client';
 
-import React from 'react';
-import { X, ExternalLink, Calendar, User, Tag, CreditCard, Store, ShieldCheck, AlertCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import {
+  X,
+  ExternalLink,
+  Calendar,
+  User,
+  Tag,
+  CreditCard,
+  Store,
+  ShieldCheck,
+  AlertCircle,
+  Receipt,
+  Eye,
+} from 'lucide-react';
 
 interface ExpenseDetailsModalProps {
   isOpen: boolean;
@@ -10,6 +22,8 @@ interface ExpenseDetailsModalProps {
 }
 
 export function ExpenseDetailsModal({ isOpen, onClose, expense }: ExpenseDetailsModalProps) {
+  const [isReceiptZoomOpen, setIsReceiptZoomOpen] = useState(false);
+
   if (!isOpen || !expense) return null;
 
   const totalTaka = Number(expense.totalAmountPoisha || 0) / 100;
@@ -130,16 +144,29 @@ export function ExpenseDetailsModal({ isOpen, onClose, expense }: ExpenseDetails
                 </div>
               )}
               {expense.receiptUrl && (
-                <div className="pt-1 flex items-center gap-2">
-                  <span className="text-slate-500">Receipt Attachment:</span>
-                  <a
-                    href={expense.receiptUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-emerald-600 hover:text-emerald-700 font-medium flex items-center gap-1"
-                  >
-                    View Document <ExternalLink className="h-3 w-3" />
-                  </a>
+                <div className="pt-2 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <Receipt className="h-4 w-4 text-emerald-600" />
+                    <span className="font-semibold text-slate-700">বাজারের ভাউচার / স্লিপ:</span>
+                    <span className="text-slate-500 truncate max-w-xs">{expense.receiptFileName || 'রসিদ ফাইল'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setIsReceiptZoomOpen(true)}
+                      className="inline-flex items-center gap-1 rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-1.5 text-xs font-bold text-emerald-700 hover:bg-emerald-100 transition"
+                    >
+                      <Eye className="h-3.5 w-3.5" /> স্লিপ প্রিভিউ দেখুন
+                    </button>
+                    <a
+                      href={expense.receiptUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition"
+                    >
+                      <ExternalLink className="h-3 w-3" /> ব্রাউজারে খুলুন
+                    </a>
+                  </div>
                 </div>
               )}
             </div>
@@ -232,6 +259,48 @@ export function ExpenseDetailsModal({ isOpen, onClose, expense }: ExpenseDetails
           </div>
         </div>
       </div>
+
+      {/* Slip Zoom Modal */}
+      {isReceiptZoomOpen && expense.receiptUrl && (
+        <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/85 backdrop-blur-md p-4 animate-in fade-in duration-200">
+          <div className="relative max-w-4xl max-h-[92vh] bg-white rounded-2xl overflow-hidden shadow-2xl flex flex-col">
+            <div className="flex items-center justify-between px-6 py-3.5 border-b border-slate-200 bg-slate-50">
+              <div className="flex items-center gap-2.5">
+                <Receipt className="h-5 w-5 text-emerald-600" />
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900">
+                    বাজারের ক্যাশ মেমো / স্লিপ (Receipt Voucher)
+                  </h3>
+                  <p className="text-[11px] text-slate-500">
+                    ক্রেতা: {expense.purchaser?.user?.name || expense.purchaserName || 'সদস্য'} • তারিখ: {expense.purchaseDate}
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setIsReceiptZoomOpen(false)}
+                className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-200 hover:text-slate-800 transition"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            <div className="p-4 overflow-auto flex items-center justify-center bg-slate-900/10 max-h-[80vh]">
+              {expense.receiptUrl.startsWith('data:image') || expense.receiptUrl.startsWith('http') ? (
+                <img
+                  src={expense.receiptUrl}
+                  alt="Receipt Document"
+                  className="max-h-[75vh] w-auto object-contain rounded-lg shadow-lg border border-slate-200"
+                />
+              ) : (
+                <iframe
+                  src={expense.receiptUrl}
+                  title="PDF Receipt"
+                  className="w-[80vw] max-w-3xl h-[70vh] rounded-lg border border-slate-200"
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
