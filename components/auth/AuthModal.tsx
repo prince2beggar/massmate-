@@ -185,11 +185,11 @@ export function AuthCard({
         body: JSON.stringify({
           email:
             role === 'ADMIN'
-              ? 'owner@messmate.dev'
+              ? '123@gmail.com'
               : role === 'MEMBER'
               ? 'resident@messmate.dev'
               : 'admin@messmate.dev',
-          password: 'demo_password',
+          password: '12345',
           role,
           tenantSlug: 'prince-mess',
           isDemo: true,
@@ -269,6 +269,31 @@ export function AuthCard({
                   ? 'কোনো ক্রেডিট কার্ড লাগবে না · সঙ্গে সঙ্গে মেস ড্যাশবোর্ড চালু করুন'
                   : 'No credit card required · Instant access to your mess workspace'}
               </p>
+            </div>
+
+            {/* Quick Demo Test Hint */}
+            <div className="p-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/80 rounded-xl text-left shadow-xs">
+              <div className="flex items-center justify-between gap-2">
+                <div>
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-blue-900">
+                    <Sparkles className="h-3.5 w-3.5 text-blue-600" />
+                    <span>{isBn ? 'টেস্ট ডেমো একাউন্ট (Prince Mess):' : 'Demo Test Account (Prince Mess):'}</span>
+                  </div>
+                  <p className="text-xs text-blue-800 mt-1 font-mono">
+                    Email: <span className="font-bold underline cursor-pointer" onClick={() => { setEmail('123@gmail.com'); setPassword('12345'); }}>123@gmail.com</span> | Pass: <span className="font-bold underline cursor-pointer" onClick={() => { setEmail('123@gmail.com'); setPassword('12345'); }}>12345</span>
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setEmail('123@gmail.com');
+                    setPassword('12345');
+                  }}
+                  className="shrink-0 text-[11px] font-semibold bg-blue-600 hover:bg-blue-700 text-white px-2.5 py-1.5 rounded-lg shadow-sm transition cursor-pointer"
+                >
+                  {isBn ? 'অটো-ফিল' : 'Auto Fill'}
+                </button>
+              </div>
             </div>
 
             <div className="space-y-1.5">
@@ -363,6 +388,31 @@ export function AuthCard({
                   ? 'আপনার ইমেইল ও পাসওয়ার্ড দিয়ে ড্যাশবোর্ডে প্রবেশ করুন'
                   : 'Enter your credentials to access your dashboard'}
               </p>
+            </div>
+
+            {/* Quick Demo Test Hint */}
+            <div className="p-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/80 rounded-xl text-left shadow-xs">
+              <div className="flex items-center justify-between gap-2">
+                <div>
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-blue-900">
+                    <Sparkles className="h-3.5 w-3.5 text-blue-600" />
+                    <span>{isBn ? 'টেস্ট ডেমো একাউন্ট (Prince Mess):' : 'Demo Test Account (Prince Mess):'}</span>
+                  </div>
+                  <p className="text-xs text-blue-800 mt-1 font-mono">
+                    Email: <span className="font-bold underline cursor-pointer" onClick={() => { setEmail('123@gmail.com'); setPassword('12345'); }}>123@gmail.com</span> | Pass: <span className="font-bold underline cursor-pointer" onClick={() => { setEmail('123@gmail.com'); setPassword('12345'); }}>12345</span>
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setEmail('123@gmail.com');
+                    setPassword('12345');
+                  }}
+                  className="shrink-0 text-[11px] font-semibold bg-blue-600 hover:bg-blue-700 text-white px-2.5 py-1.5 rounded-lg shadow-sm transition cursor-pointer"
+                >
+                  {isBn ? 'অটো-ফিল' : 'Auto Fill'}
+                </button>
+              </div>
             </div>
 
             <div className="space-y-1.5">

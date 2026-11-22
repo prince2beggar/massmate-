@@ -15,6 +15,42 @@ export async function POST(req: Request) {
     }
 
     const cleanEmail = String(email).trim().toLowerCase();
+
+    // Prince Mess Demo Login redirect if 123@gmail.com is used in trial form
+    if (cleanEmail === '123@gmail.com' || cleanEmail === 'owner@messmate.dev') {
+      const userId = 'usr_owner_1';
+      const redirectUrl = '/mess/prince-mess';
+      const resolvedTenant = 'prince-mess';
+
+      const res = NextResponse.json({
+        success: true,
+        message: 'Prince Mess Demo Access Granted! Welcome to Prince Mess.',
+        redirectUrl,
+        tenantSlug: resolvedTenant,
+        user: {
+          id: userId,
+          email: '123@gmail.com',
+          name: 'Asadul Islam (Prince Mess Owner)',
+          role: 'OWNER',
+        },
+      });
+
+      res.cookies.set('messmate_user_id', userId, {
+        path: '/',
+        httpOnly: false,
+        sameSite: 'lax',
+        maxAge: 60 * 60 * 24 * 7,
+      });
+
+      res.cookies.set('messmate_tenant', resolvedTenant, {
+        path: '/',
+        httpOnly: false,
+        sameSite: 'lax',
+        maxAge: 60 * 60 * 24 * 7,
+      });
+
+      return res;
+    }
     const userPart = cleanEmail.split('@')[0] || 'manager';
     const defaultMessName = `${userPart.charAt(0).toUpperCase() + userPart.slice(1)}'s Mess`;
     const resolvedMessName = (inputMessName && String(inputMessName).trim()) ? String(inputMessName).trim() : defaultMessName;

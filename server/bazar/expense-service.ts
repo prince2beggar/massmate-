@@ -130,7 +130,7 @@ export class ExpenseService {
           },
         });
         if (tenant) return tenant;
-      } catch {}
+      } catch { }
     }
 
     const memTenant =
@@ -198,7 +198,7 @@ export class ExpenseService {
         }
 
         return list;
-      } catch {}
+      } catch { }
     }
 
     // In-memory fallback
@@ -280,7 +280,7 @@ export class ExpenseService {
           afterData: record,
         });
         return created;
-      } catch {}
+      } catch { }
     }
 
     ExpenseService.inMemoryCategories.set(record.id, record);
@@ -314,7 +314,7 @@ export class ExpenseService {
         current = await (this.prisma as any).expenseCategory.findUnique({
           where: { id: categoryId },
         });
-      } catch {}
+      } catch { }
     }
 
     if (!current || current.tenantId !== tenant.id) {
@@ -337,7 +337,7 @@ export class ExpenseService {
           where: { id: categoryId },
           data: updated,
         });
-      } catch {}
+      } catch { }
     }
     ExpenseService.inMemoryCategories.set(categoryId, updated);
 
@@ -527,7 +527,7 @@ export class ExpenseService {
             });
           }
         });
-      } catch {}
+      } catch { }
     }
 
     // In-memory fallback
@@ -606,7 +606,7 @@ export class ExpenseService {
         });
 
         items = found;
-      } catch {}
+      } catch { }
     }
 
     if (items.length === 0) {
@@ -716,7 +716,7 @@ export class ExpenseService {
           expense = found;
           items = found.items || [];
         }
-      } catch {}
+      } catch { }
     }
 
     if (!expense || expense.tenantId !== tenant.id) {
@@ -795,7 +795,7 @@ export class ExpenseService {
             rejectionReason: updated.rejectionReason,
           },
         });
-      } catch {}
+      } catch { }
     }
 
     ExpenseService.inMemoryExpenses.set(expenseId, updated);
@@ -851,7 +851,7 @@ export class ExpenseService {
             notes: updated.notes,
           },
         });
-      } catch {}
+      } catch { }
     }
 
     ExpenseService.inMemoryExpenses.set(expenseId, updated);
@@ -900,7 +900,7 @@ export class ExpenseService {
         });
 
         return list.map(this.formatBazarSchedule);
-      } catch {}
+      } catch { }
     }
 
     let list = Array.from(ExpenseService.inMemorySchedules.values()).filter(
@@ -948,7 +948,7 @@ export class ExpenseService {
         await (this.prisma as any).bazarSchedule.create({
           data: record,
         });
-      } catch {}
+      } catch { }
     }
 
     ExpenseService.inMemorySchedules.set(scheduleId, record);
@@ -982,7 +982,7 @@ export class ExpenseService {
         schedule = await (this.prisma as any).bazarSchedule.findUnique({
           where: { id: scheduleId },
         });
-      } catch {}
+      } catch { }
     }
 
     if (!schedule || schedule.tenantId !== tenant.id) {
@@ -1006,7 +1006,7 @@ export class ExpenseService {
             actualPurchaserMembershipId: updated.actualPurchaserMembershipId,
           },
         });
-      } catch {}
+      } catch { }
     }
 
     ExpenseService.inMemorySchedules.set(scheduleId, updated);
@@ -1069,7 +1069,7 @@ export class ExpenseService {
           orderBy: { createdAt: 'asc' },
         });
         if (found && found.length > 0) members = found;
-      } catch {}
+      } catch { }
     }
 
     if (members.length === 0) {
@@ -1092,7 +1092,7 @@ export class ExpenseService {
             role: { name: m.roleName || 'Member', slug: m.roleSlug || 'member' },
             status: 'ACTIVE',
           }));
-        } catch {}
+        } catch { }
       }
     }
 
@@ -1282,8 +1282,8 @@ export class ExpenseService {
 
     const actualPurchaserName = s.actualPurchaserMembershipId
       ? s.actualPurchaser?.user?.name ||
-        ExpenseService.inMemoryMemberships.get(s.actualPurchaserMembershipId)?.user?.name ||
-        null
+      ExpenseService.inMemoryMemberships.get(s.actualPurchaserMembershipId)?.user?.name ||
+      null
       : null;
 
     return {

@@ -230,11 +230,10 @@ export function DailyMealSheetView({
 
       {feedback && (
         <div
-          className={`p-3 rounded-lg text-xs flex items-center gap-2 border ${
-            feedback.type === 'success'
+          className={`p-3 rounded-lg text-xs flex items-center gap-2 border ${feedback.type === 'success'
               ? 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20'
               : 'bg-destructive/10 text-destructive border-destructive/20'
-          }`}
+            }`}
         >
           {feedback.type === 'success' ? (
             <CheckCircle className="w-4 h-4 shrink-0" />
@@ -352,9 +351,8 @@ export function DailyMealSheetView({
                 entries.map((m) => (
                   <tr
                     key={m.membershipId}
-                    className={`hover:bg-muted/20 transition ${
-                      m.hasMealOff ? 'bg-amber-500/5' : ''
-                    }`}
+                    className={`hover:bg-muted/20 transition ${m.hasMealOff ? 'bg-amber-500/5' : ''
+                      }`}
                   >
                     <td className="px-4 py-3">
                       <span className="font-semibold text-foreground">{m.memberName}</span>
