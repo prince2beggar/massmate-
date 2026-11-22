@@ -325,6 +325,8 @@ export type TenantWhereInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogListRelationFilter
   inventoryItems?: Prisma.InventoryItemListRelationFilter
   stockMovements?: Prisma.StockMovementListRelationFilter
+  workOrders?: Prisma.WorkOrderListRelationFilter
+  operationalTasks?: Prisma.OperationalTaskListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
@@ -385,6 +387,8 @@ export type TenantOrderByWithRelationInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogOrderByRelationAggregateInput
   inventoryItems?: Prisma.InventoryItemOrderByRelationAggregateInput
   stockMovements?: Prisma.StockMovementOrderByRelationAggregateInput
+  workOrders?: Prisma.WorkOrderOrderByRelationAggregateInput
+  operationalTasks?: Prisma.OperationalTaskOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -448,6 +452,8 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogListRelationFilter
   inventoryItems?: Prisma.InventoryItemListRelationFilter
   stockMovements?: Prisma.StockMovementListRelationFilter
+  workOrders?: Prisma.WorkOrderListRelationFilter
+  operationalTasks?: Prisma.OperationalTaskListRelationFilter
 }, "id" | "slug">
 
 export type TenantOrderByWithAggregationInput = {
@@ -556,6 +562,8 @@ export type TenantCreateInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
@@ -616,6 +624,8 @@ export type TenantUncheckedCreateInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
@@ -676,6 +686,8 @@ export type TenantUpdateInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
@@ -736,6 +748,8 @@ export type TenantUncheckedUpdateInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
@@ -1436,6 +1450,34 @@ export type TenantUpdateOneRequiredWithoutStockMovementsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutStockMovementsInput, Prisma.TenantUpdateWithoutStockMovementsInput>, Prisma.TenantUncheckedUpdateWithoutStockMovementsInput>
 }
 
+export type TenantCreateNestedOneWithoutWorkOrdersInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutWorkOrdersInput, Prisma.TenantUncheckedCreateWithoutWorkOrdersInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutWorkOrdersInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutWorkOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutWorkOrdersInput, Prisma.TenantUncheckedCreateWithoutWorkOrdersInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutWorkOrdersInput
+  upsert?: Prisma.TenantUpsertWithoutWorkOrdersInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutWorkOrdersInput, Prisma.TenantUpdateWithoutWorkOrdersInput>, Prisma.TenantUncheckedUpdateWithoutWorkOrdersInput>
+}
+
+export type TenantCreateNestedOneWithoutOperationalTasksInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutOperationalTasksInput, Prisma.TenantUncheckedCreateWithoutOperationalTasksInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutOperationalTasksInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutOperationalTasksNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutOperationalTasksInput, Prisma.TenantUncheckedCreateWithoutOperationalTasksInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutOperationalTasksInput
+  upsert?: Prisma.TenantUpsertWithoutOperationalTasksInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutOperationalTasksInput, Prisma.TenantUpdateWithoutOperationalTasksInput>, Prisma.TenantUncheckedUpdateWithoutOperationalTasksInput>
+}
+
 export type TenantCreateWithoutVerificationInput = {
   id?: string
   name: string
@@ -1493,6 +1535,8 @@ export type TenantCreateWithoutVerificationInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutVerificationInput = {
@@ -1552,6 +1596,8 @@ export type TenantUncheckedCreateWithoutVerificationInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutVerificationInput = {
@@ -1627,6 +1673,8 @@ export type TenantUpdateWithoutVerificationInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutVerificationInput = {
@@ -1686,6 +1734,8 @@ export type TenantUncheckedUpdateWithoutVerificationInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRolesInput = {
@@ -1745,6 +1795,8 @@ export type TenantCreateWithoutRolesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRolesInput = {
@@ -1804,6 +1856,8 @@ export type TenantUncheckedCreateWithoutRolesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRolesInput = {
@@ -1879,6 +1933,8 @@ export type TenantUpdateWithoutRolesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRolesInput = {
@@ -1938,6 +1994,8 @@ export type TenantUncheckedUpdateWithoutRolesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMembershipsInput = {
@@ -1997,6 +2055,8 @@ export type TenantCreateWithoutMembershipsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMembershipsInput = {
@@ -2056,6 +2116,8 @@ export type TenantUncheckedCreateWithoutMembershipsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMembershipsInput = {
@@ -2131,6 +2193,8 @@ export type TenantUpdateWithoutMembershipsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMembershipsInput = {
@@ -2190,6 +2254,8 @@ export type TenantUncheckedUpdateWithoutMembershipsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAuditLogsInput = {
@@ -2249,6 +2315,8 @@ export type TenantCreateWithoutAuditLogsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAuditLogsInput = {
@@ -2308,6 +2376,8 @@ export type TenantUncheckedCreateWithoutAuditLogsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAuditLogsInput = {
@@ -2383,6 +2453,8 @@ export type TenantUpdateWithoutAuditLogsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAuditLogsInput = {
@@ -2442,6 +2514,8 @@ export type TenantUncheckedUpdateWithoutAuditLogsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSubscriptionInput = {
@@ -2501,6 +2575,8 @@ export type TenantCreateWithoutSubscriptionInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSubscriptionInput = {
@@ -2560,6 +2636,8 @@ export type TenantUncheckedCreateWithoutSubscriptionInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSubscriptionInput = {
@@ -2635,6 +2713,8 @@ export type TenantUpdateWithoutSubscriptionInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSubscriptionInput = {
@@ -2694,6 +2774,8 @@ export type TenantUncheckedUpdateWithoutSubscriptionInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInvoicesInput = {
@@ -2753,6 +2835,8 @@ export type TenantCreateWithoutInvoicesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInvoicesInput = {
@@ -2812,6 +2896,8 @@ export type TenantUncheckedCreateWithoutInvoicesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInvoicesInput = {
@@ -2887,6 +2973,8 @@ export type TenantUpdateWithoutInvoicesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInvoicesInput = {
@@ -2946,6 +3034,8 @@ export type TenantUncheckedUpdateWithoutInvoicesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDomainsInput = {
@@ -3005,6 +3095,8 @@ export type TenantCreateWithoutDomainsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDomainsInput = {
@@ -3064,6 +3156,8 @@ export type TenantUncheckedCreateWithoutDomainsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDomainsInput = {
@@ -3139,6 +3233,8 @@ export type TenantUpdateWithoutDomainsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDomainsInput = {
@@ -3198,6 +3294,8 @@ export type TenantUncheckedUpdateWithoutDomainsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSupportTicketsInput = {
@@ -3257,6 +3355,8 @@ export type TenantCreateWithoutSupportTicketsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSupportTicketsInput = {
@@ -3316,6 +3416,8 @@ export type TenantUncheckedCreateWithoutSupportTicketsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSupportTicketsInput = {
@@ -3391,6 +3493,8 @@ export type TenantUpdateWithoutSupportTicketsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSupportTicketsInput = {
@@ -3450,6 +3554,8 @@ export type TenantUncheckedUpdateWithoutSupportTicketsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRoomsInput = {
@@ -3509,6 +3615,8 @@ export type TenantCreateWithoutRoomsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRoomsInput = {
@@ -3568,6 +3676,8 @@ export type TenantUncheckedCreateWithoutRoomsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRoomsInput = {
@@ -3643,6 +3753,8 @@ export type TenantUpdateWithoutRoomsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRoomsInput = {
@@ -3702,6 +3814,8 @@ export type TenantUncheckedUpdateWithoutRoomsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBedsInput = {
@@ -3761,6 +3875,8 @@ export type TenantCreateWithoutBedsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBedsInput = {
@@ -3820,6 +3936,8 @@ export type TenantUncheckedCreateWithoutBedsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBedsInput = {
@@ -3895,6 +4013,8 @@ export type TenantUpdateWithoutBedsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBedsInput = {
@@ -3954,6 +4074,8 @@ export type TenantUncheckedUpdateWithoutBedsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRoomAssignmentsInput = {
@@ -4013,6 +4135,8 @@ export type TenantCreateWithoutRoomAssignmentsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRoomAssignmentsInput = {
@@ -4072,6 +4196,8 @@ export type TenantUncheckedCreateWithoutRoomAssignmentsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRoomAssignmentsInput = {
@@ -4147,6 +4273,8 @@ export type TenantUpdateWithoutRoomAssignmentsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRoomAssignmentsInput = {
@@ -4206,6 +4334,8 @@ export type TenantUncheckedUpdateWithoutRoomAssignmentsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRentalListingsInput = {
@@ -4265,6 +4395,8 @@ export type TenantCreateWithoutRentalListingsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRentalListingsInput = {
@@ -4324,6 +4456,8 @@ export type TenantUncheckedCreateWithoutRentalListingsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRentalListingsInput = {
@@ -4399,6 +4533,8 @@ export type TenantUpdateWithoutRentalListingsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRentalListingsInput = {
@@ -4458,6 +4594,8 @@ export type TenantUncheckedUpdateWithoutRentalListingsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBookingRequestsInput = {
@@ -4517,6 +4655,8 @@ export type TenantCreateWithoutBookingRequestsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBookingRequestsInput = {
@@ -4576,6 +4716,8 @@ export type TenantUncheckedCreateWithoutBookingRequestsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBookingRequestsInput = {
@@ -4651,6 +4793,8 @@ export type TenantUpdateWithoutBookingRequestsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBookingRequestsInput = {
@@ -4710,6 +4854,8 @@ export type TenantUncheckedUpdateWithoutBookingRequestsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMealSettingInput = {
@@ -4769,6 +4915,8 @@ export type TenantCreateWithoutMealSettingInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMealSettingInput = {
@@ -4828,6 +4976,8 @@ export type TenantUncheckedCreateWithoutMealSettingInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMealSettingInput = {
@@ -4903,6 +5053,8 @@ export type TenantUpdateWithoutMealSettingInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMealSettingInput = {
@@ -4962,6 +5114,8 @@ export type TenantUncheckedUpdateWithoutMealSettingInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMealDailyLogsInput = {
@@ -5021,6 +5175,8 @@ export type TenantCreateWithoutMealDailyLogsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMealDailyLogsInput = {
@@ -5080,6 +5236,8 @@ export type TenantUncheckedCreateWithoutMealDailyLogsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMealDailyLogsInput = {
@@ -5155,6 +5313,8 @@ export type TenantUpdateWithoutMealDailyLogsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMealDailyLogsInput = {
@@ -5214,6 +5374,8 @@ export type TenantUncheckedUpdateWithoutMealDailyLogsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMemberMealEntriesInput = {
@@ -5273,6 +5435,8 @@ export type TenantCreateWithoutMemberMealEntriesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMemberMealEntriesInput = {
@@ -5332,6 +5496,8 @@ export type TenantUncheckedCreateWithoutMemberMealEntriesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMemberMealEntriesInput = {
@@ -5407,6 +5573,8 @@ export type TenantUpdateWithoutMemberMealEntriesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMemberMealEntriesInput = {
@@ -5466,6 +5634,8 @@ export type TenantUncheckedUpdateWithoutMemberMealEntriesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMealOffRequestsInput = {
@@ -5525,6 +5695,8 @@ export type TenantCreateWithoutMealOffRequestsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMealOffRequestsInput = {
@@ -5584,6 +5756,8 @@ export type TenantUncheckedCreateWithoutMealOffRequestsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMealOffRequestsInput = {
@@ -5659,6 +5833,8 @@ export type TenantUpdateWithoutMealOffRequestsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMealOffRequestsInput = {
@@ -5718,6 +5894,8 @@ export type TenantUncheckedUpdateWithoutMealOffRequestsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutGuestMealsInput = {
@@ -5777,6 +5955,8 @@ export type TenantCreateWithoutGuestMealsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutGuestMealsInput = {
@@ -5836,6 +6016,8 @@ export type TenantUncheckedCreateWithoutGuestMealsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutGuestMealsInput = {
@@ -5911,6 +6093,8 @@ export type TenantUpdateWithoutGuestMealsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutGuestMealsInput = {
@@ -5970,6 +6154,8 @@ export type TenantUncheckedUpdateWithoutGuestMealsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMealPeriodLocksInput = {
@@ -6029,6 +6215,8 @@ export type TenantCreateWithoutMealPeriodLocksInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMealPeriodLocksInput = {
@@ -6088,6 +6276,8 @@ export type TenantUncheckedCreateWithoutMealPeriodLocksInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMealPeriodLocksInput = {
@@ -6163,6 +6353,8 @@ export type TenantUpdateWithoutMealPeriodLocksInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMealPeriodLocksInput = {
@@ -6222,6 +6414,8 @@ export type TenantUncheckedUpdateWithoutMealPeriodLocksInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutExpenseCategoriesInput = {
@@ -6281,6 +6475,8 @@ export type TenantCreateWithoutExpenseCategoriesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutExpenseCategoriesInput = {
@@ -6340,6 +6536,8 @@ export type TenantUncheckedCreateWithoutExpenseCategoriesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutExpenseCategoriesInput = {
@@ -6415,6 +6613,8 @@ export type TenantUpdateWithoutExpenseCategoriesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutExpenseCategoriesInput = {
@@ -6474,6 +6674,8 @@ export type TenantUncheckedUpdateWithoutExpenseCategoriesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutExpensesInput = {
@@ -6533,6 +6735,8 @@ export type TenantCreateWithoutExpensesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutExpensesInput = {
@@ -6592,6 +6796,8 @@ export type TenantUncheckedCreateWithoutExpensesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutExpensesInput = {
@@ -6667,6 +6873,8 @@ export type TenantUpdateWithoutExpensesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutExpensesInput = {
@@ -6726,6 +6934,8 @@ export type TenantUncheckedUpdateWithoutExpensesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBazarSchedulesInput = {
@@ -6785,6 +6995,8 @@ export type TenantCreateWithoutBazarSchedulesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBazarSchedulesInput = {
@@ -6844,6 +7056,8 @@ export type TenantUncheckedCreateWithoutBazarSchedulesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBazarSchedulesInput = {
@@ -6919,6 +7133,8 @@ export type TenantUpdateWithoutBazarSchedulesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBazarSchedulesInput = {
@@ -6978,6 +7194,8 @@ export type TenantUncheckedUpdateWithoutBazarSchedulesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutFinancialCategoriesInput = {
@@ -7037,6 +7255,8 @@ export type TenantCreateWithoutFinancialCategoriesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutFinancialCategoriesInput = {
@@ -7096,6 +7316,8 @@ export type TenantUncheckedCreateWithoutFinancialCategoriesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutFinancialCategoriesInput = {
@@ -7171,6 +7393,8 @@ export type TenantUpdateWithoutFinancialCategoriesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutFinancialCategoriesInput = {
@@ -7230,6 +7454,8 @@ export type TenantUncheckedUpdateWithoutFinancialCategoriesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMonthlyBillingPeriodsInput = {
@@ -7289,6 +7515,8 @@ export type TenantCreateWithoutMonthlyBillingPeriodsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMonthlyBillingPeriodsInput = {
@@ -7348,6 +7576,8 @@ export type TenantUncheckedCreateWithoutMonthlyBillingPeriodsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMonthlyBillingPeriodsInput = {
@@ -7423,6 +7653,8 @@ export type TenantUpdateWithoutMonthlyBillingPeriodsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMonthlyBillingPeriodsInput = {
@@ -7482,6 +7714,8 @@ export type TenantUncheckedUpdateWithoutMonthlyBillingPeriodsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMemberBillsInput = {
@@ -7541,6 +7775,8 @@ export type TenantCreateWithoutMemberBillsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMemberBillsInput = {
@@ -7600,6 +7836,8 @@ export type TenantUncheckedCreateWithoutMemberBillsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMemberBillsInput = {
@@ -7675,6 +7913,8 @@ export type TenantUpdateWithoutMemberBillsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMemberBillsInput = {
@@ -7734,6 +7974,8 @@ export type TenantUncheckedUpdateWithoutMemberBillsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMemberPaymentsInput = {
@@ -7793,6 +8035,8 @@ export type TenantCreateWithoutMemberPaymentsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMemberPaymentsInput = {
@@ -7852,6 +8096,8 @@ export type TenantUncheckedCreateWithoutMemberPaymentsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMemberPaymentsInput = {
@@ -7927,6 +8173,8 @@ export type TenantUpdateWithoutMemberPaymentsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMemberPaymentsInput = {
@@ -7986,6 +8234,8 @@ export type TenantUncheckedUpdateWithoutMemberPaymentsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBalanceAdjustmentsInput = {
@@ -8045,6 +8295,8 @@ export type TenantCreateWithoutBalanceAdjustmentsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBalanceAdjustmentsInput = {
@@ -8104,6 +8356,8 @@ export type TenantUncheckedCreateWithoutBalanceAdjustmentsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBalanceAdjustmentsInput = {
@@ -8179,6 +8433,8 @@ export type TenantUpdateWithoutBalanceAdjustmentsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBalanceAdjustmentsInput = {
@@ -8238,6 +8494,8 @@ export type TenantUncheckedUpdateWithoutBalanceAdjustmentsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMessSettingInput = {
@@ -8297,6 +8555,8 @@ export type TenantCreateWithoutMessSettingInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMessSettingInput = {
@@ -8356,6 +8616,8 @@ export type TenantUncheckedCreateWithoutMessSettingInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMessSettingInput = {
@@ -8431,6 +8693,8 @@ export type TenantUpdateWithoutMessSettingInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMessSettingInput = {
@@ -8490,6 +8754,8 @@ export type TenantUncheckedUpdateWithoutMessSettingInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutNoticesInput = {
@@ -8549,6 +8815,8 @@ export type TenantCreateWithoutNoticesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutNoticesInput = {
@@ -8608,6 +8876,8 @@ export type TenantUncheckedCreateWithoutNoticesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutNoticesInput = {
@@ -8683,6 +8953,8 @@ export type TenantUpdateWithoutNoticesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutNoticesInput = {
@@ -8742,6 +9014,8 @@ export type TenantUncheckedUpdateWithoutNoticesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMemberRequestsInput = {
@@ -8801,6 +9075,8 @@ export type TenantCreateWithoutMemberRequestsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMemberRequestsInput = {
@@ -8860,6 +9136,8 @@ export type TenantUncheckedCreateWithoutMemberRequestsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMemberRequestsInput = {
@@ -8935,6 +9213,8 @@ export type TenantUpdateWithoutMemberRequestsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMemberRequestsInput = {
@@ -8994,6 +9274,8 @@ export type TenantUncheckedUpdateWithoutMemberRequestsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMessEventsInput = {
@@ -9053,6 +9335,8 @@ export type TenantCreateWithoutMessEventsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMessEventsInput = {
@@ -9112,6 +9396,8 @@ export type TenantUncheckedCreateWithoutMessEventsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMessEventsInput = {
@@ -9187,6 +9473,8 @@ export type TenantUpdateWithoutMessEventsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMessEventsInput = {
@@ -9246,6 +9534,8 @@ export type TenantUncheckedUpdateWithoutMessEventsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutEventRsvpsInput = {
@@ -9305,6 +9595,8 @@ export type TenantCreateWithoutEventRsvpsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutEventRsvpsInput = {
@@ -9364,6 +9656,8 @@ export type TenantUncheckedCreateWithoutEventRsvpsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutEventRsvpsInput = {
@@ -9439,6 +9733,8 @@ export type TenantUpdateWithoutEventRsvpsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutEventRsvpsInput = {
@@ -9498,6 +9794,8 @@ export type TenantUncheckedUpdateWithoutEventRsvpsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutComplaintsInput = {
@@ -9557,6 +9855,8 @@ export type TenantCreateWithoutComplaintsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutComplaintsInput = {
@@ -9616,6 +9916,8 @@ export type TenantUncheckedCreateWithoutComplaintsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutComplaintsInput = {
@@ -9691,6 +9993,8 @@ export type TenantUpdateWithoutComplaintsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutComplaintsInput = {
@@ -9750,6 +10054,8 @@ export type TenantUncheckedUpdateWithoutComplaintsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutTenantNotificationsInput = {
@@ -9809,6 +10115,8 @@ export type TenantCreateWithoutTenantNotificationsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutTenantNotificationsInput = {
@@ -9868,6 +10176,8 @@ export type TenantUncheckedCreateWithoutTenantNotificationsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutTenantNotificationsInput = {
@@ -9943,6 +10253,8 @@ export type TenantUpdateWithoutTenantNotificationsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutTenantNotificationsInput = {
@@ -10002,6 +10314,8 @@ export type TenantUncheckedUpdateWithoutTenantNotificationsInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutNotificationPreferencesInput = {
@@ -10061,6 +10375,8 @@ export type TenantCreateWithoutNotificationPreferencesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutNotificationPreferencesInput = {
@@ -10120,6 +10436,8 @@ export type TenantUncheckedCreateWithoutNotificationPreferencesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutNotificationPreferencesInput = {
@@ -10195,6 +10513,8 @@ export type TenantUpdateWithoutNotificationPreferencesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutNotificationPreferencesInput = {
@@ -10254,6 +10574,8 @@ export type TenantUncheckedUpdateWithoutNotificationPreferencesInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutScheduledRemindersInput = {
@@ -10313,6 +10635,8 @@ export type TenantCreateWithoutScheduledRemindersInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutScheduledRemindersInput = {
@@ -10372,6 +10696,8 @@ export type TenantUncheckedCreateWithoutScheduledRemindersInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutScheduledRemindersInput = {
@@ -10447,6 +10773,8 @@ export type TenantUpdateWithoutScheduledRemindersInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutScheduledRemindersInput = {
@@ -10506,6 +10834,8 @@ export type TenantUncheckedUpdateWithoutScheduledRemindersInput = {
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutNotificationDeliveryLogsInput = {
@@ -10565,6 +10895,8 @@ export type TenantCreateWithoutNotificationDeliveryLogsInput = {
   scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutNotificationDeliveryLogsInput = {
@@ -10624,6 +10956,8 @@ export type TenantUncheckedCreateWithoutNotificationDeliveryLogsInput = {
   scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutNotificationDeliveryLogsInput = {
@@ -10699,6 +11033,8 @@ export type TenantUpdateWithoutNotificationDeliveryLogsInput = {
   scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutNotificationDeliveryLogsInput = {
@@ -10758,6 +11094,8 @@ export type TenantUncheckedUpdateWithoutNotificationDeliveryLogsInput = {
   scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInventoryItemsInput = {
@@ -10817,6 +11155,8 @@ export type TenantCreateWithoutInventoryItemsInput = {
   scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInventoryItemsInput = {
@@ -10876,6 +11216,8 @@ export type TenantUncheckedCreateWithoutInventoryItemsInput = {
   scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInventoryItemsInput = {
@@ -10951,6 +11293,8 @@ export type TenantUpdateWithoutInventoryItemsInput = {
   scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInventoryItemsInput = {
@@ -11010,6 +11354,8 @@ export type TenantUncheckedUpdateWithoutInventoryItemsInput = {
   scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutStockMovementsInput = {
@@ -11069,6 +11415,8 @@ export type TenantCreateWithoutStockMovementsInput = {
   scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutStockMovementsInput = {
@@ -11128,6 +11476,8 @@ export type TenantUncheckedCreateWithoutStockMovementsInput = {
   scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutStockMovementsInput = {
@@ -11203,6 +11553,8 @@ export type TenantUpdateWithoutStockMovementsInput = {
   scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutStockMovementsInput = {
@@ -11262,6 +11614,528 @@ export type TenantUncheckedUpdateWithoutStockMovementsInput = {
   scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
   notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutWorkOrdersInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
+  inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
+  stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutWorkOrdersInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillUncheckedCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
+  inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
+  stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutWorkOrdersInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutWorkOrdersInput, Prisma.TenantUncheckedCreateWithoutWorkOrdersInput>
+}
+
+export type TenantUpsertWithoutWorkOrdersInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutWorkOrdersInput, Prisma.TenantUncheckedUpdateWithoutWorkOrdersInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutWorkOrdersInput, Prisma.TenantUncheckedCreateWithoutWorkOrdersInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutWorkOrdersInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutWorkOrdersInput, Prisma.TenantUncheckedUpdateWithoutWorkOrdersInput>
+}
+
+export type TenantUpdateWithoutWorkOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
+  inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
+  stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutWorkOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUncheckedUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
+  inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
+  stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutOperationalTasksInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
+  inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
+  stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutOperationalTasksInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillUncheckedCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
+  inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
+  stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutOperationalTasksInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutOperationalTasksInput, Prisma.TenantUncheckedCreateWithoutOperationalTasksInput>
+}
+
+export type TenantUpsertWithoutOperationalTasksInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutOperationalTasksInput, Prisma.TenantUncheckedUpdateWithoutOperationalTasksInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutOperationalTasksInput, Prisma.TenantUncheckedCreateWithoutOperationalTasksInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutOperationalTasksInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutOperationalTasksInput, Prisma.TenantUncheckedUpdateWithoutOperationalTasksInput>
+}
+
+export type TenantUpdateWithoutOperationalTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
+  inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
+  stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutOperationalTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUncheckedUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
+  inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
+  stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 
@@ -11305,6 +12179,8 @@ export type TenantCountOutputType = {
   notificationDeliveryLogs: number
   inventoryItems: number
   stockMovements: number
+  workOrders: number
+  operationalTasks: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -11343,6 +12219,8 @@ export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   notificationDeliveryLogs?: boolean | TenantCountOutputTypeCountNotificationDeliveryLogsArgs
   inventoryItems?: boolean | TenantCountOutputTypeCountInventoryItemsArgs
   stockMovements?: boolean | TenantCountOutputTypeCountStockMovementsArgs
+  workOrders?: boolean | TenantCountOutputTypeCountWorkOrdersArgs
+  operationalTasks?: boolean | TenantCountOutputTypeCountOperationalTasksArgs
 }
 
 /**
@@ -11600,6 +12478,20 @@ export type TenantCountOutputTypeCountStockMovementsArgs<ExtArgs extends runtime
   where?: Prisma.StockMovementWhereInput
 }
 
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountWorkOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WorkOrderWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountOperationalTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OperationalTaskWhereInput
+}
+
 
 export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -11659,6 +12551,8 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   notificationDeliveryLogs?: boolean | Prisma.Tenant$notificationDeliveryLogsArgs<ExtArgs>
   inventoryItems?: boolean | Prisma.Tenant$inventoryItemsArgs<ExtArgs>
   stockMovements?: boolean | Prisma.Tenant$stockMovementsArgs<ExtArgs>
+  workOrders?: boolean | Prisma.Tenant$workOrdersArgs<ExtArgs>
+  operationalTasks?: boolean | Prisma.Tenant$operationalTasksArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -11766,6 +12660,8 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   notificationDeliveryLogs?: boolean | Prisma.Tenant$notificationDeliveryLogsArgs<ExtArgs>
   inventoryItems?: boolean | Prisma.Tenant$inventoryItemsArgs<ExtArgs>
   stockMovements?: boolean | Prisma.Tenant$stockMovementsArgs<ExtArgs>
+  workOrders?: boolean | Prisma.Tenant$workOrdersArgs<ExtArgs>
+  operationalTasks?: boolean | Prisma.Tenant$operationalTasksArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -11813,6 +12709,8 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     notificationDeliveryLogs: Prisma.$NotificationDeliveryLogPayload<ExtArgs>[]
     inventoryItems: Prisma.$InventoryItemPayload<ExtArgs>[]
     stockMovements: Prisma.$StockMovementPayload<ExtArgs>[]
+    workOrders: Prisma.$WorkOrderPayload<ExtArgs>[]
+    operationalTasks: Prisma.$OperationalTaskPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -12266,6 +13164,8 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   notificationDeliveryLogs<T extends Prisma.Tenant$notificationDeliveryLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$notificationDeliveryLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationDeliveryLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   inventoryItems<T extends Prisma.Tenant$inventoryItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$inventoryItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventoryItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   stockMovements<T extends Prisma.Tenant$stockMovementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$stockMovementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StockMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  workOrders<T extends Prisma.Tenant$workOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$workOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  operationalTasks<T extends Prisma.Tenant$operationalTasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$operationalTasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OperationalTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13619,6 +14519,54 @@ export type Tenant$stockMovementsArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.StockMovementScalarFieldEnum | Prisma.StockMovementScalarFieldEnum[]
+}
+
+/**
+ * Tenant.workOrders
+ */
+export type Tenant$workOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WorkOrder
+   */
+  select?: Prisma.WorkOrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WorkOrder
+   */
+  omit?: Prisma.WorkOrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WorkOrderInclude<ExtArgs> | null
+  where?: Prisma.WorkOrderWhereInput
+  orderBy?: Prisma.WorkOrderOrderByWithRelationInput | Prisma.WorkOrderOrderByWithRelationInput[]
+  cursor?: Prisma.WorkOrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WorkOrderScalarFieldEnum | Prisma.WorkOrderScalarFieldEnum[]
+}
+
+/**
+ * Tenant.operationalTasks
+ */
+export type Tenant$operationalTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OperationalTask
+   */
+  select?: Prisma.OperationalTaskSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OperationalTask
+   */
+  omit?: Prisma.OperationalTaskOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OperationalTaskInclude<ExtArgs> | null
+  where?: Prisma.OperationalTaskWhereInput
+  orderBy?: Prisma.OperationalTaskOrderByWithRelationInput | Prisma.OperationalTaskOrderByWithRelationInput[]
+  cursor?: Prisma.OperationalTaskWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OperationalTaskScalarFieldEnum | Prisma.OperationalTaskScalarFieldEnum[]
 }
 
 /**

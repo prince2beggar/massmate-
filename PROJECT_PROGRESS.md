@@ -431,6 +431,39 @@
     - 16 test scenarios covering multi-tenant isolation, suspended mess protection, itemCode uniqueness, stock receipts, consumption sufficiency validation, location transfers, stock adjustments, idempotency duplicate submission protection, low-stock/out-of-stock notification triggers, non-destructive archiving, reusable asset tracking with room assignment, and exact integer poisha calculations.
 - **Verification:** TypeScript: 0 errors (`npx tsc --noEmit`); Automated tests: 16/16 Task 42 tests passing (321/321 full test suite); ESLint: 0 errors, 0 warnings; Next.js production build: clean compilation.
 
+### Task 43 — Maintenance, Work Orders & Task Management (Completed)
+- **Status:** Completed and Verified
+- **Scope & Implementation Details:**
+  - Prisma Schema (`prisma/schema.prisma`):
+    - `WorkOrder`: Model supporting multi-tenant maintenance ticketing, progressive lifecycle states (`DRAFT`, `OPEN`, `ASSIGNED`, `IN_PROGRESS`, `WAITING_FOR_PARTS`, `COMPLETED`, `VERIFIED`, `CANCELLED`), room/asset/complaint foreign keys, technician/vendor tracking, poisha cost accounting (`estimatedCostPoisha`, `actualCostPoisha` BigInt), staff-only `internalNotes`, member-visible `memberUpdates`, and completion audit timestamps (`completedAt`, `verifiedAt`).
+    - `WorkOrderStatusHistory`: Immutable transition ledger recording `fromStatus`, `toStatus`, `changedByUserId`, and reason.
+    - `OperationalTask`: General task management model for recurring and one-time tasks (`DAILY`, `WEEKLY`, `MONTHLY`, `NONE`), priorities, checklists (JSON), assignees, and completion tracking.
+  - Backend Service (`server/maintenance/maintenance-service.ts`):
+    - `getMaintenanceDashboard`: Executive KPIs (total orders, open/assigned/in-progress/waiting-parts/completed, overdue count, total operational tasks, total maintenance expenditure in exact poisha and formatted BDT, category breakdown, recent orders, and current user assignments).
+    - `listWorkOrders` & `getWorkOrderById`: Tenant-isolated filtering with staff vs member privacy bounds (hiding internal notes and private vendor contact information from members).
+    - `createWorkOrder`: Enforces cross-tenant boundary validation on rooms, inventory assets, and complaints; generates unique reference numbers (`WO-YYMM-XXX`).
+    - `convertComplaintToWorkOrder`: Converts resident complaints to formal work orders, updating complaint state to `IN_PROGRESS`.
+    - `updateWorkOrder`: Enforces strict lifecycle state transition rules, assignee-only edit boundaries, completion notes validation, and status history logging.
+    - `assignWorkOrder`: Validates assignee belongs to tenant and sends automated assignment notifications via Task 41 notification infrastructure.
+    - `linkInventoryItemToWorkOrder`: Authoritatively records item consumption via `InventoryService` and increments work order actual costs without duplicating expenses or causing negative stock balances.
+    - `listOperationalTasks`, `createOperationalTask`, `updateOperationalTask`: Manages operational tasks with duplicate recurring task protection and checklist tracking.
+    - `getMaintenanceReports`: Expenditure by category, staff workload distribution, and overdue analysis.
+  - REST API Routes:
+    - `/api/v1/mess/[tenantSlug]/maintenance` (GET list work orders, POST create work order)
+    - `/api/v1/mess/[tenantSlug]/maintenance/dashboard` (GET executive KPIs)
+    - `/api/v1/mess/[tenantSlug]/maintenance/work-orders/[id]` (GET details, PATCH update/assign)
+    - `/api/v1/mess/[tenantSlug]/maintenance/tasks` (GET list tasks, POST create task)
+    - `/api/v1/mess/[tenantSlug]/maintenance/tasks/[id]` (PATCH update task)
+    - `/api/v1/mess/[tenantSlug]/maintenance/reports` (GET expenditure and workload reports)
+  - UI Components & Server Pages:
+    - `MaintenanceManagementView` (`components/maintenance/MaintenanceManagementView.tsx`): 4-tab interface (Dashboard, Work Orders Roster, Operational Tasks, Workload & Audits) with 3 modals (Create Work Order, Manage Work Order, New Operational Task) featuring real-time search, filters, overdue alert banners, and interactive checklists.
+    - `/mess/[tenantSlug]/maintenance/page.tsx`: Server page with tenant metadata and dynamic slug integration.
+    - `/mess/[tenantSlug]/complaints/page.tsx`: Upgraded from placeholder to connect to maintenance workflows.
+  - Automated Tests (`server/maintenance/maintenance-management.test.ts`):
+    - 17 test scenarios covering tenant isolation, suspended mess protection, cross-tenant room and asset reference rejection, lifecycle progressive transitions and invalid transition blocking, staff/vendor assignment, assignee-only edit restrictions, member privacy/internal notes redaction, complaint conversion and linkage, operational tasks and duplicate recurring task prevention, inventory consumption and exact cost accounting, reports with `Asia/Dhaka` timezone verification, and immutable status history.
+- **Verification:** TypeScript: 0 errors (`npx tsc --noEmit`); Automated tests: 17/17 Task 43 tests passing (338/338 full test suite); ESLint: 0 errors, 0 warnings; Next.js production build: clean compilation.
+
+
 
 
 

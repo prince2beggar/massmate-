@@ -257,6 +257,7 @@ export type ComplaintWhereInput = {
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   membership?: Prisma.XOR<Prisma.MembershipScalarRelationFilter, Prisma.MembershipWhereInput>
   reviewer?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  workOrders?: Prisma.WorkOrderListRelationFilter
 }
 
 export type ComplaintOrderByWithRelationInput = {
@@ -277,6 +278,7 @@ export type ComplaintOrderByWithRelationInput = {
   tenant?: Prisma.TenantOrderByWithRelationInput
   membership?: Prisma.MembershipOrderByWithRelationInput
   reviewer?: Prisma.UserOrderByWithRelationInput
+  workOrders?: Prisma.WorkOrderOrderByRelationAggregateInput
 }
 
 export type ComplaintWhereUniqueInput = Prisma.AtLeast<{
@@ -300,6 +302,7 @@ export type ComplaintWhereUniqueInput = Prisma.AtLeast<{
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   membership?: Prisma.XOR<Prisma.MembershipScalarRelationFilter, Prisma.MembershipWhereInput>
   reviewer?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  workOrders?: Prisma.WorkOrderListRelationFilter
 }, "id" | "referenceNumber">
 
 export type ComplaintOrderByWithAggregationInput = {
@@ -357,6 +360,7 @@ export type ComplaintCreateInput = {
   tenant: Prisma.TenantCreateNestedOneWithoutComplaintsInput
   membership: Prisma.MembershipCreateNestedOneWithoutComplaintsInput
   reviewer?: Prisma.UserCreateNestedOneWithoutReviewedComplaintsInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintUncheckedCreateInput = {
@@ -374,6 +378,7 @@ export type ComplaintUncheckedCreateInput = {
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintUpdateInput = {
@@ -391,6 +396,7 @@ export type ComplaintUpdateInput = {
   tenant?: Prisma.TenantUpdateOneRequiredWithoutComplaintsNestedInput
   membership?: Prisma.MembershipUpdateOneRequiredWithoutComplaintsNestedInput
   reviewer?: Prisma.UserUpdateOneWithoutReviewedComplaintsNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintUncheckedUpdateInput = {
@@ -408,6 +414,7 @@ export type ComplaintUncheckedUpdateInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintCreateManyInput = {
@@ -517,6 +524,11 @@ export type ComplaintMinOrderByAggregateInput = {
   reviewedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type ComplaintNullableScalarRelationFilter = {
+  is?: Prisma.ComplaintWhereInput | null
+  isNot?: Prisma.ComplaintWhereInput | null
 }
 
 export type ComplaintCreateNestedManyWithoutReviewerInput = {
@@ -645,6 +657,22 @@ export type ComplaintUncheckedUpdateManyWithoutMembershipNestedInput = {
   deleteMany?: Prisma.ComplaintScalarWhereInput | Prisma.ComplaintScalarWhereInput[]
 }
 
+export type ComplaintCreateNestedOneWithoutWorkOrdersInput = {
+  create?: Prisma.XOR<Prisma.ComplaintCreateWithoutWorkOrdersInput, Prisma.ComplaintUncheckedCreateWithoutWorkOrdersInput>
+  connectOrCreate?: Prisma.ComplaintCreateOrConnectWithoutWorkOrdersInput
+  connect?: Prisma.ComplaintWhereUniqueInput
+}
+
+export type ComplaintUpdateOneWithoutWorkOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.ComplaintCreateWithoutWorkOrdersInput, Prisma.ComplaintUncheckedCreateWithoutWorkOrdersInput>
+  connectOrCreate?: Prisma.ComplaintCreateOrConnectWithoutWorkOrdersInput
+  upsert?: Prisma.ComplaintUpsertWithoutWorkOrdersInput
+  disconnect?: Prisma.ComplaintWhereInput | boolean
+  delete?: Prisma.ComplaintWhereInput | boolean
+  connect?: Prisma.ComplaintWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ComplaintUpdateToOneWithWhereWithoutWorkOrdersInput, Prisma.ComplaintUpdateWithoutWorkOrdersInput>, Prisma.ComplaintUncheckedUpdateWithoutWorkOrdersInput>
+}
+
 export type ComplaintCreateWithoutReviewerInput = {
   id?: string
   referenceNumber: string
@@ -659,6 +687,7 @@ export type ComplaintCreateWithoutReviewerInput = {
   updatedAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutComplaintsInput
   membership: Prisma.MembershipCreateNestedOneWithoutComplaintsInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintUncheckedCreateWithoutReviewerInput = {
@@ -675,6 +704,7 @@ export type ComplaintUncheckedCreateWithoutReviewerInput = {
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintCreateOrConnectWithoutReviewerInput = {
@@ -737,6 +767,7 @@ export type ComplaintCreateWithoutTenantInput = {
   updatedAt?: Date | string
   membership: Prisma.MembershipCreateNestedOneWithoutComplaintsInput
   reviewer?: Prisma.UserCreateNestedOneWithoutReviewedComplaintsInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintUncheckedCreateWithoutTenantInput = {
@@ -753,6 +784,7 @@ export type ComplaintUncheckedCreateWithoutTenantInput = {
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintCreateOrConnectWithoutTenantInput = {
@@ -795,6 +827,7 @@ export type ComplaintCreateWithoutMembershipInput = {
   updatedAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutComplaintsInput
   reviewer?: Prisma.UserCreateNestedOneWithoutReviewedComplaintsInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintUncheckedCreateWithoutMembershipInput = {
@@ -811,6 +844,7 @@ export type ComplaintUncheckedCreateWithoutMembershipInput = {
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutComplaintInput
 }
 
 export type ComplaintCreateOrConnectWithoutMembershipInput = {
@@ -837,6 +871,90 @@ export type ComplaintUpdateWithWhereUniqueWithoutMembershipInput = {
 export type ComplaintUpdateManyWithWhereWithoutMembershipInput = {
   where: Prisma.ComplaintScalarWhereInput
   data: Prisma.XOR<Prisma.ComplaintUpdateManyMutationInput, Prisma.ComplaintUncheckedUpdateManyWithoutMembershipInput>
+}
+
+export type ComplaintCreateWithoutWorkOrdersInput = {
+  id?: string
+  referenceNumber: string
+  category?: string
+  title: string
+  description: string
+  attachmentUrl?: string | null
+  status?: string
+  adminResponse?: string | null
+  reviewedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutComplaintsInput
+  membership: Prisma.MembershipCreateNestedOneWithoutComplaintsInput
+  reviewer?: Prisma.UserCreateNestedOneWithoutReviewedComplaintsInput
+}
+
+export type ComplaintUncheckedCreateWithoutWorkOrdersInput = {
+  id?: string
+  referenceNumber: string
+  tenantId: string
+  membershipId: string
+  category?: string
+  title: string
+  description: string
+  attachmentUrl?: string | null
+  status?: string
+  adminResponse?: string | null
+  reviewedByUserId?: string | null
+  reviewedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ComplaintCreateOrConnectWithoutWorkOrdersInput = {
+  where: Prisma.ComplaintWhereUniqueInput
+  create: Prisma.XOR<Prisma.ComplaintCreateWithoutWorkOrdersInput, Prisma.ComplaintUncheckedCreateWithoutWorkOrdersInput>
+}
+
+export type ComplaintUpsertWithoutWorkOrdersInput = {
+  update: Prisma.XOR<Prisma.ComplaintUpdateWithoutWorkOrdersInput, Prisma.ComplaintUncheckedUpdateWithoutWorkOrdersInput>
+  create: Prisma.XOR<Prisma.ComplaintCreateWithoutWorkOrdersInput, Prisma.ComplaintUncheckedCreateWithoutWorkOrdersInput>
+  where?: Prisma.ComplaintWhereInput
+}
+
+export type ComplaintUpdateToOneWithWhereWithoutWorkOrdersInput = {
+  where?: Prisma.ComplaintWhereInput
+  data: Prisma.XOR<Prisma.ComplaintUpdateWithoutWorkOrdersInput, Prisma.ComplaintUncheckedUpdateWithoutWorkOrdersInput>
+}
+
+export type ComplaintUpdateWithoutWorkOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  referenceNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  attachmentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  adminResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutComplaintsNestedInput
+  membership?: Prisma.MembershipUpdateOneRequiredWithoutComplaintsNestedInput
+  reviewer?: Prisma.UserUpdateOneWithoutReviewedComplaintsNestedInput
+}
+
+export type ComplaintUncheckedUpdateWithoutWorkOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  referenceNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  membershipId?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  attachmentUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  adminResponse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedByUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ComplaintCreateManyReviewerInput = {
@@ -869,6 +987,7 @@ export type ComplaintUpdateWithoutReviewerInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutComplaintsNestedInput
   membership?: Prisma.MembershipUpdateOneRequiredWithoutComplaintsNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintUncheckedUpdateWithoutReviewerInput = {
@@ -885,6 +1004,7 @@ export type ComplaintUncheckedUpdateWithoutReviewerInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintUncheckedUpdateManyWithoutReviewerInput = {
@@ -933,6 +1053,7 @@ export type ComplaintUpdateWithoutTenantInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   membership?: Prisma.MembershipUpdateOneRequiredWithoutComplaintsNestedInput
   reviewer?: Prisma.UserUpdateOneWithoutReviewedComplaintsNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintUncheckedUpdateWithoutTenantInput = {
@@ -949,6 +1070,7 @@ export type ComplaintUncheckedUpdateWithoutTenantInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintUncheckedUpdateManyWithoutTenantInput = {
@@ -997,6 +1119,7 @@ export type ComplaintUpdateWithoutMembershipInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutComplaintsNestedInput
   reviewer?: Prisma.UserUpdateOneWithoutReviewedComplaintsNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintUncheckedUpdateWithoutMembershipInput = {
@@ -1013,6 +1136,7 @@ export type ComplaintUncheckedUpdateWithoutMembershipInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutComplaintNestedInput
 }
 
 export type ComplaintUncheckedUpdateManyWithoutMembershipInput = {
@@ -1031,6 +1155,35 @@ export type ComplaintUncheckedUpdateManyWithoutMembershipInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type ComplaintCountOutputType
+ */
+
+export type ComplaintCountOutputType = {
+  workOrders: number
+}
+
+export type ComplaintCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  workOrders?: boolean | ComplaintCountOutputTypeCountWorkOrdersArgs
+}
+
+/**
+ * ComplaintCountOutputType without action
+ */
+export type ComplaintCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ComplaintCountOutputType
+   */
+  select?: Prisma.ComplaintCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ComplaintCountOutputType without action
+ */
+export type ComplaintCountOutputTypeCountWorkOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WorkOrderWhereInput
+}
 
 
 export type ComplaintSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1051,6 +1204,8 @@ export type ComplaintSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   membership?: boolean | Prisma.MembershipDefaultArgs<ExtArgs>
   reviewer?: boolean | Prisma.Complaint$reviewerArgs<ExtArgs>
+  workOrders?: boolean | Prisma.Complaint$workOrdersArgs<ExtArgs>
+  _count?: boolean | Prisma.ComplaintCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["complaint"]>
 
 export type ComplaintSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1115,6 +1270,8 @@ export type ComplaintInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   membership?: boolean | Prisma.MembershipDefaultArgs<ExtArgs>
   reviewer?: boolean | Prisma.Complaint$reviewerArgs<ExtArgs>
+  workOrders?: boolean | Prisma.Complaint$workOrdersArgs<ExtArgs>
+  _count?: boolean | Prisma.ComplaintCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ComplaintIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
@@ -1133,6 +1290,7 @@ export type $ComplaintPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     tenant: Prisma.$TenantPayload<ExtArgs>
     membership: Prisma.$MembershipPayload<ExtArgs>
     reviewer: Prisma.$UserPayload<ExtArgs> | null
+    workOrders: Prisma.$WorkOrderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1546,6 +1704,7 @@ export interface Prisma__ComplaintClient<T, Null = never, ExtArgs extends runtim
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   membership<T extends Prisma.MembershipDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MembershipDefaultArgs<ExtArgs>>): Prisma.Prisma__MembershipClient<runtime.Types.Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   reviewer<T extends Prisma.Complaint$reviewerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Complaint$reviewerArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  workOrders<T extends Prisma.Complaint$workOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Complaint$workOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2006,6 +2165,30 @@ export type Complaint$reviewerArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   include?: Prisma.UserInclude<ExtArgs> | null
   where?: Prisma.UserWhereInput
+}
+
+/**
+ * Complaint.workOrders
+ */
+export type Complaint$workOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WorkOrder
+   */
+  select?: Prisma.WorkOrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WorkOrder
+   */
+  omit?: Prisma.WorkOrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WorkOrderInclude<ExtArgs> | null
+  where?: Prisma.WorkOrderWhereInput
+  orderBy?: Prisma.WorkOrderOrderByWithRelationInput | Prisma.WorkOrderOrderByWithRelationInput[]
+  cursor?: Prisma.WorkOrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WorkOrderScalarFieldEnum | Prisma.WorkOrderScalarFieldEnum[]
 }
 
 /**

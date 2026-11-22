@@ -277,3 +277,18 @@ export type InventoryItem = Prisma.InventoryItemModel
  * 
  */
 export type StockMovement = Prisma.StockMovementModel
+/**
+ * Model WorkOrder
+ * 
+ */
+export type WorkOrder = Prisma.WorkOrderModel
+/**
+ * Model WorkOrderStatusHistory
+ * 
+ */
+export type WorkOrderStatusHistory = Prisma.WorkOrderStatusHistoryModel
+/**
+ * Model OperationalTask
+ * 
+ */
+export type OperationalTask = Prisma.OperationalTaskModel

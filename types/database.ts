@@ -58,6 +58,9 @@ import type {
   NotificationDeliveryLog as PrismaNotificationDeliveryLog,
   InventoryItem as PrismaInventoryItem,
   StockMovement as PrismaStockMovement,
+  WorkOrder as PrismaWorkOrder,
+  WorkOrderStatusHistory as PrismaWorkOrderStatusHistory,
+  OperationalTask as PrismaOperationalTask,
   AllocationRule,
   BillingPeriodStatus,
   BillStatus,
@@ -204,6 +207,9 @@ export type ScheduledReminder = PrismaScheduledReminder;
 export type NotificationDeliveryLog = PrismaNotificationDeliveryLog;
 export type InventoryItem = PrismaInventoryItem;
 export type StockMovement = PrismaStockMovement;
+export type WorkOrder = PrismaWorkOrder;
+export type WorkOrderStatusHistory = PrismaWorkOrderStatusHistory;
+export type OperationalTask = PrismaOperationalTask;
 
 // -----------------------------------------------------------------------------
 // COMPOSITE & RELATIONAL TYPES

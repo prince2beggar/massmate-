@@ -339,6 +339,7 @@ export type InventoryItemWhereInput = {
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   assignedRoom?: Prisma.XOR<Prisma.RoomNullableScalarRelationFilter, Prisma.RoomWhereInput> | null
   movements?: Prisma.StockMovementListRelationFilter
+  workOrders?: Prisma.WorkOrderListRelationFilter
 }
 
 export type InventoryItemOrderByWithRelationInput = {
@@ -364,6 +365,7 @@ export type InventoryItemOrderByWithRelationInput = {
   tenant?: Prisma.TenantOrderByWithRelationInput
   assignedRoom?: Prisma.RoomOrderByWithRelationInput
   movements?: Prisma.StockMovementOrderByRelationAggregateInput
+  workOrders?: Prisma.WorkOrderOrderByRelationAggregateInput
 }
 
 export type InventoryItemWhereUniqueInput = Prisma.AtLeast<{
@@ -393,6 +395,7 @@ export type InventoryItemWhereUniqueInput = Prisma.AtLeast<{
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   assignedRoom?: Prisma.XOR<Prisma.RoomNullableScalarRelationFilter, Prisma.RoomWhereInput> | null
   movements?: Prisma.StockMovementListRelationFilter
+  workOrders?: Prisma.WorkOrderListRelationFilter
 }, "id" | "tenantId_itemCode">
 
 export type InventoryItemOrderByWithAggregationInput = {
@@ -468,6 +471,7 @@ export type InventoryItemCreateInput = {
   tenant: Prisma.TenantCreateNestedOneWithoutInventoryItemsInput
   assignedRoom?: Prisma.RoomCreateNestedOneWithoutInventoryItemsInput
   movements?: Prisma.StockMovementCreateNestedManyWithoutItemInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutAssetInput
 }
 
 export type InventoryItemUncheckedCreateInput = {
@@ -491,6 +495,7 @@ export type InventoryItemUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   movements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutItemInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutAssetInput
 }
 
 export type InventoryItemUpdateInput = {
@@ -514,6 +519,7 @@ export type InventoryItemUpdateInput = {
   tenant?: Prisma.TenantUpdateOneRequiredWithoutInventoryItemsNestedInput
   assignedRoom?: Prisma.RoomUpdateOneWithoutInventoryItemsNestedInput
   movements?: Prisma.StockMovementUpdateManyWithoutItemNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutAssetNestedInput
 }
 
 export type InventoryItemUncheckedUpdateInput = {
@@ -537,6 +543,7 @@ export type InventoryItemUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   movements?: Prisma.StockMovementUncheckedUpdateManyWithoutItemNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutAssetNestedInput
 }
 
 export type InventoryItemCreateManyInput = {
@@ -701,6 +708,11 @@ export type InventoryItemScalarRelationFilter = {
   isNot?: Prisma.InventoryItemWhereInput
 }
 
+export type InventoryItemNullableScalarRelationFilter = {
+  is?: Prisma.InventoryItemWhereInput | null
+  isNot?: Prisma.InventoryItemWhereInput | null
+}
+
 export type InventoryItemCreateNestedManyWithoutTenantInput = {
   create?: Prisma.XOR<Prisma.InventoryItemCreateWithoutTenantInput, Prisma.InventoryItemUncheckedCreateWithoutTenantInput> | Prisma.InventoryItemCreateWithoutTenantInput[] | Prisma.InventoryItemUncheckedCreateWithoutTenantInput[]
   connectOrCreate?: Prisma.InventoryItemCreateOrConnectWithoutTenantInput | Prisma.InventoryItemCreateOrConnectWithoutTenantInput[]
@@ -807,6 +819,22 @@ export type InventoryItemUpdateOneRequiredWithoutMovementsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.InventoryItemUpdateToOneWithWhereWithoutMovementsInput, Prisma.InventoryItemUpdateWithoutMovementsInput>, Prisma.InventoryItemUncheckedUpdateWithoutMovementsInput>
 }
 
+export type InventoryItemCreateNestedOneWithoutWorkOrdersInput = {
+  create?: Prisma.XOR<Prisma.InventoryItemCreateWithoutWorkOrdersInput, Prisma.InventoryItemUncheckedCreateWithoutWorkOrdersInput>
+  connectOrCreate?: Prisma.InventoryItemCreateOrConnectWithoutWorkOrdersInput
+  connect?: Prisma.InventoryItemWhereUniqueInput
+}
+
+export type InventoryItemUpdateOneWithoutWorkOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.InventoryItemCreateWithoutWorkOrdersInput, Prisma.InventoryItemUncheckedCreateWithoutWorkOrdersInput>
+  connectOrCreate?: Prisma.InventoryItemCreateOrConnectWithoutWorkOrdersInput
+  upsert?: Prisma.InventoryItemUpsertWithoutWorkOrdersInput
+  disconnect?: Prisma.InventoryItemWhereInput | boolean
+  delete?: Prisma.InventoryItemWhereInput | boolean
+  connect?: Prisma.InventoryItemWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InventoryItemUpdateToOneWithWhereWithoutWorkOrdersInput, Prisma.InventoryItemUpdateWithoutWorkOrdersInput>, Prisma.InventoryItemUncheckedUpdateWithoutWorkOrdersInput>
+}
+
 export type InventoryItemCreateWithoutTenantInput = {
   id?: string
   name: string
@@ -827,6 +855,7 @@ export type InventoryItemCreateWithoutTenantInput = {
   updatedAt?: Date | string
   assignedRoom?: Prisma.RoomCreateNestedOneWithoutInventoryItemsInput
   movements?: Prisma.StockMovementCreateNestedManyWithoutItemInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutAssetInput
 }
 
 export type InventoryItemUncheckedCreateWithoutTenantInput = {
@@ -849,6 +878,7 @@ export type InventoryItemUncheckedCreateWithoutTenantInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   movements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutItemInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutAssetInput
 }
 
 export type InventoryItemCreateOrConnectWithoutTenantInput = {
@@ -922,6 +952,7 @@ export type InventoryItemCreateWithoutAssignedRoomInput = {
   updatedAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutInventoryItemsInput
   movements?: Prisma.StockMovementCreateNestedManyWithoutItemInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutAssetInput
 }
 
 export type InventoryItemUncheckedCreateWithoutAssignedRoomInput = {
@@ -944,6 +975,7 @@ export type InventoryItemUncheckedCreateWithoutAssignedRoomInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   movements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutItemInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutAssetInput
 }
 
 export type InventoryItemCreateOrConnectWithoutAssignedRoomInput = {
@@ -992,6 +1024,7 @@ export type InventoryItemCreateWithoutMovementsInput = {
   updatedAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutInventoryItemsInput
   assignedRoom?: Prisma.RoomCreateNestedOneWithoutInventoryItemsInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutAssetInput
 }
 
 export type InventoryItemUncheckedCreateWithoutMovementsInput = {
@@ -1014,6 +1047,7 @@ export type InventoryItemUncheckedCreateWithoutMovementsInput = {
   lastStockAlertAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutAssetInput
 }
 
 export type InventoryItemCreateOrConnectWithoutMovementsInput = {
@@ -1052,6 +1086,7 @@ export type InventoryItemUpdateWithoutMovementsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutInventoryItemsNestedInput
   assignedRoom?: Prisma.RoomUpdateOneWithoutInventoryItemsNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutAssetNestedInput
 }
 
 export type InventoryItemUncheckedUpdateWithoutMovementsInput = {
@@ -1074,6 +1109,115 @@ export type InventoryItemUncheckedUpdateWithoutMovementsInput = {
   lastStockAlertAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutAssetNestedInput
+}
+
+export type InventoryItemCreateWithoutWorkOrdersInput = {
+  id?: string
+  name: string
+  itemCode?: string | null
+  category?: string
+  itemType?: string
+  description?: string | null
+  unit?: string
+  quantity?: number
+  minStockAlert?: number
+  location?: string | null
+  costPerUnitPoisha?: bigint | number | null
+  supplierName?: string | null
+  assetCondition?: string | null
+  status?: string
+  lastStockAlertAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutInventoryItemsInput
+  assignedRoom?: Prisma.RoomCreateNestedOneWithoutInventoryItemsInput
+  movements?: Prisma.StockMovementCreateNestedManyWithoutItemInput
+}
+
+export type InventoryItemUncheckedCreateWithoutWorkOrdersInput = {
+  id?: string
+  tenantId: string
+  name: string
+  itemCode?: string | null
+  category?: string
+  itemType?: string
+  description?: string | null
+  unit?: string
+  quantity?: number
+  minStockAlert?: number
+  location?: string | null
+  costPerUnitPoisha?: bigint | number | null
+  supplierName?: string | null
+  assetCondition?: string | null
+  assignedRoomId?: string | null
+  status?: string
+  lastStockAlertAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  movements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutItemInput
+}
+
+export type InventoryItemCreateOrConnectWithoutWorkOrdersInput = {
+  where: Prisma.InventoryItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.InventoryItemCreateWithoutWorkOrdersInput, Prisma.InventoryItemUncheckedCreateWithoutWorkOrdersInput>
+}
+
+export type InventoryItemUpsertWithoutWorkOrdersInput = {
+  update: Prisma.XOR<Prisma.InventoryItemUpdateWithoutWorkOrdersInput, Prisma.InventoryItemUncheckedUpdateWithoutWorkOrdersInput>
+  create: Prisma.XOR<Prisma.InventoryItemCreateWithoutWorkOrdersInput, Prisma.InventoryItemUncheckedCreateWithoutWorkOrdersInput>
+  where?: Prisma.InventoryItemWhereInput
+}
+
+export type InventoryItemUpdateToOneWithWhereWithoutWorkOrdersInput = {
+  where?: Prisma.InventoryItemWhereInput
+  data: Prisma.XOR<Prisma.InventoryItemUpdateWithoutWorkOrdersInput, Prisma.InventoryItemUncheckedUpdateWithoutWorkOrdersInput>
+}
+
+export type InventoryItemUpdateWithoutWorkOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  itemCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  itemType?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.FloatFieldUpdateOperationsInput | number
+  minStockAlert?: Prisma.FloatFieldUpdateOperationsInput | number
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costPerUnitPoisha?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  supplierName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assetCondition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lastStockAlertAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutInventoryItemsNestedInput
+  assignedRoom?: Prisma.RoomUpdateOneWithoutInventoryItemsNestedInput
+  movements?: Prisma.StockMovementUpdateManyWithoutItemNestedInput
+}
+
+export type InventoryItemUncheckedUpdateWithoutWorkOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  itemCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  itemType?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unit?: Prisma.StringFieldUpdateOperationsInput | string
+  quantity?: Prisma.FloatFieldUpdateOperationsInput | number
+  minStockAlert?: Prisma.FloatFieldUpdateOperationsInput | number
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  costPerUnitPoisha?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  supplierName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assetCondition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedRoomId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lastStockAlertAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  movements?: Prisma.StockMovementUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type InventoryItemCreateManyTenantInput = {
@@ -1117,6 +1261,7 @@ export type InventoryItemUpdateWithoutTenantInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignedRoom?: Prisma.RoomUpdateOneWithoutInventoryItemsNestedInput
   movements?: Prisma.StockMovementUpdateManyWithoutItemNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutAssetNestedInput
 }
 
 export type InventoryItemUncheckedUpdateWithoutTenantInput = {
@@ -1139,6 +1284,7 @@ export type InventoryItemUncheckedUpdateWithoutTenantInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   movements?: Prisma.StockMovementUncheckedUpdateManyWithoutItemNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutAssetNestedInput
 }
 
 export type InventoryItemUncheckedUpdateManyWithoutTenantInput = {
@@ -1203,6 +1349,7 @@ export type InventoryItemUpdateWithoutAssignedRoomInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutInventoryItemsNestedInput
   movements?: Prisma.StockMovementUpdateManyWithoutItemNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutAssetNestedInput
 }
 
 export type InventoryItemUncheckedUpdateWithoutAssignedRoomInput = {
@@ -1225,6 +1372,7 @@ export type InventoryItemUncheckedUpdateWithoutAssignedRoomInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   movements?: Prisma.StockMovementUncheckedUpdateManyWithoutItemNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutAssetNestedInput
 }
 
 export type InventoryItemUncheckedUpdateManyWithoutAssignedRoomInput = {
@@ -1255,10 +1403,12 @@ export type InventoryItemUncheckedUpdateManyWithoutAssignedRoomInput = {
 
 export type InventoryItemCountOutputType = {
   movements: number
+  workOrders: number
 }
 
 export type InventoryItemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   movements?: boolean | InventoryItemCountOutputTypeCountMovementsArgs
+  workOrders?: boolean | InventoryItemCountOutputTypeCountWorkOrdersArgs
 }
 
 /**
@@ -1276,6 +1426,13 @@ export type InventoryItemCountOutputTypeDefaultArgs<ExtArgs extends runtime.Type
  */
 export type InventoryItemCountOutputTypeCountMovementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.StockMovementWhereInput
+}
+
+/**
+ * InventoryItemCountOutputType without action
+ */
+export type InventoryItemCountOutputTypeCountWorkOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WorkOrderWhereInput
 }
 
 
@@ -1302,6 +1459,7 @@ export type InventoryItemSelect<ExtArgs extends runtime.Types.Extensions.Interna
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   assignedRoom?: boolean | Prisma.InventoryItem$assignedRoomArgs<ExtArgs>
   movements?: boolean | Prisma.InventoryItem$movementsArgs<ExtArgs>
+  workOrders?: boolean | Prisma.InventoryItem$workOrdersArgs<ExtArgs>
   _count?: boolean | Prisma.InventoryItemCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["inventoryItem"]>
 
@@ -1380,6 +1538,7 @@ export type InventoryItemInclude<ExtArgs extends runtime.Types.Extensions.Intern
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   assignedRoom?: boolean | Prisma.InventoryItem$assignedRoomArgs<ExtArgs>
   movements?: boolean | Prisma.InventoryItem$movementsArgs<ExtArgs>
+  workOrders?: boolean | Prisma.InventoryItem$workOrdersArgs<ExtArgs>
   _count?: boolean | Prisma.InventoryItemCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type InventoryItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1397,6 +1556,7 @@ export type $InventoryItemPayload<ExtArgs extends runtime.Types.Extensions.Inter
     tenant: Prisma.$TenantPayload<ExtArgs>
     assignedRoom: Prisma.$RoomPayload<ExtArgs> | null
     movements: Prisma.$StockMovementPayload<ExtArgs>[]
+    workOrders: Prisma.$WorkOrderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1815,6 +1975,7 @@ export interface Prisma__InventoryItemClient<T, Null = never, ExtArgs extends ru
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   assignedRoom<T extends Prisma.InventoryItem$assignedRoomArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InventoryItem$assignedRoomArgs<ExtArgs>>): Prisma.Prisma__RoomClient<runtime.Types.Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   movements<T extends Prisma.InventoryItem$movementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InventoryItem$movementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StockMovementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  workOrders<T extends Prisma.InventoryItem$workOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InventoryItem$workOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2304,6 +2465,30 @@ export type InventoryItem$movementsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.StockMovementScalarFieldEnum | Prisma.StockMovementScalarFieldEnum[]
+}
+
+/**
+ * InventoryItem.workOrders
+ */
+export type InventoryItem$workOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WorkOrder
+   */
+  select?: Prisma.WorkOrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WorkOrder
+   */
+  omit?: Prisma.WorkOrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WorkOrderInclude<ExtArgs> | null
+  where?: Prisma.WorkOrderWhereInput
+  orderBy?: Prisma.WorkOrderOrderByWithRelationInput | Prisma.WorkOrderOrderByWithRelationInput[]
+  cursor?: Prisma.WorkOrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WorkOrderScalarFieldEnum | Prisma.WorkOrderScalarFieldEnum[]
 }
 
 /**

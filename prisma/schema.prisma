@@ -382,6 +382,12 @@ model User {
   notificationPreferences NotificationPreference[] @relation("UserNotificationPreferences")
   createdScheduledReminders ScheduledReminder[] @relation("CreatedScheduledReminders")
   createdStockMovements   StockMovement[]        @relation("CreatedStockMovements")
+  assignedWorkOrders      WorkOrder[]            @relation("AssignedWorkOrders")
+  createdWorkOrders       WorkOrder[]            @relation("CreatedWorkOrders")
+  closedWorkOrders        WorkOrder[]            @relation("ClosedWorkOrders")
+  workOrderStatusChanges  WorkOrderStatusHistory[] @relation("StatusChangedBy")
+  assignedOperationalTasks OperationalTask[]     @relation("AssignedTasks")
+  createdOperationalTasks OperationalTask[]      @relation("CreatedTasks")
 
   @@index([status])
   @@index([platformRole])
@@ -452,6 +458,8 @@ model Tenant {
   notificationDeliveryLogs NotificationDeliveryLog[]
   inventoryItems        InventoryItem[]
   stockMovements        StockMovement[]
+  workOrders            WorkOrder[]
+  operationalTasks      OperationalTask[]
 
   @@index([status])
   @@index([verificationStatus])
@@ -970,6 +978,7 @@ model Room {
   rentalListings RentalListing[]
   roomChangeRequests MemberRequest[] @relation("RequestedRoom")
   inventoryItems InventoryItem[]
+  workOrders     WorkOrder[]
 
   @@unique([tenantId, roomNumber])
   @@index([tenantId])
@@ -1688,6 +1697,7 @@ model Complaint {
   tenant     Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   membership Membership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
   reviewer   User?      @relation("ReviewedComplaints", fields: [reviewedByUserId], references: [id], onDelete: SetNull)
+  workOrders WorkOrder[]
 
   @@index([tenantId])
   @@index([membershipId])
@@ -1822,6 +1832,7 @@ model InventoryItem {
   tenant            Tenant          @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   assignedRoom      Room?           @relation(fields: [assignedRoomId], references: [id], onDelete: SetNull)
   movements         StockMovement[]
+  workOrders        WorkOrder[]
 
   @@unique([tenantId, itemCode])
   @@index([tenantId, category])
@@ -1857,6 +1868,106 @@ model StockMovement {
   @@index([tenantId, referenceNumber])
   @@index([tenantId, createdAt])
   @@map("stock_movements")
+}
+
+// -----------------------------------------------------------------------------
+// MAINTENANCE, WORK ORDERS & OPERATIONAL TASKS (Task 43)
+// -----------------------------------------------------------------------------
+
+model WorkOrder {
+  id                    String                   @id @default(cuid())
+  referenceNumber       String                   @unique @map("reference_number")
+  tenantId              String                   @map("tenant_id")
+  title                 String
+  description           String
+  category              String                   @default("OTHER") // ELECTRICAL, PLUMBING, APPLIANCE, FURNITURE, CLEANING, PEST_CONTROL, BUILDING_REPAIR, INTERNET_NETWORK, OTHER
+  priority              String                   @default("MEDIUM") // LOW, MEDIUM, HIGH, URGENT
+  status                String                   @default("OPEN") // DRAFT, OPEN, ASSIGNED, IN_PROGRESS, WAITING_FOR_PARTS, COMPLETED, VERIFIED, CANCELLED
+  roomId                String?                  @map("room_id")
+  assetId               String?                  @map("asset_id")
+  complaintId           String?                  @map("complaint_id")
+  assignedUserId        String?                  @map("assigned_user_id")
+  assignedVendorName    String?                  @map("assigned_vendor_name")
+  assignedVendorContact String?                  @map("assigned_vendor_contact")
+  expectedStartDate     DateTime?                @map("expected_start_date")
+  dueDate               DateTime?                @map("due_date")
+  completedAt           DateTime?                @map("completed_at")
+  verifiedAt            DateTime?                @map("verified_at")
+  estimatedCostPoisha   BigInt?                  @default(0) @map("estimated_cost_poisha")
+  actualCostPoisha      BigInt?                  @default(0) @map("actual_cost_poisha")
+  internalNotes         String?                  @map("internal_notes")
+  memberUpdates         String?                  @map("member_updates")
+  completionNotes       String?                  @map("completion_notes")
+  attachmentUrl         String?                  @map("attachment_url")
+  createdById           String?                  @map("created_by_id")
+  closedById            String?                  @map("closed_by_id")
+  createdAt             DateTime                 @default(now()) @map("created_at")
+  updatedAt             DateTime                 @updatedAt @map("updated_at")
+
+  tenant                Tenant                   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  room                  Room?                    @relation(fields: [roomId], references: [id], onDelete: SetNull)
+  asset                 InventoryItem?           @relation(fields: [assetId], references: [id], onDelete: SetNull)
+  complaint             Complaint?               @relation(fields: [complaintId], references: [id], onDelete: SetNull)
+  assignedUser          User?                    @relation("AssignedWorkOrders", fields: [assignedUserId], references: [id], onDelete: SetNull)
+  creator               User?                    @relation("CreatedWorkOrders", fields: [createdById], references: [id], onDelete: SetNull)
+  closer                User?                    @relation("ClosedWorkOrders", fields: [closedById], references: [id], onDelete: SetNull)
+  statusHistory         WorkOrderStatusHistory[]
+  tasks                 OperationalTask[]
+
+  @@index([tenantId, status])
+  @@index([tenantId, category])
+  @@index([tenantId, priority])
+  @@index([tenantId, assignedUserId])
+  @@index([tenantId, createdAt])
+  @@map("work_orders")
+}
+
+model WorkOrderStatusHistory {
+  id              String    @id @default(cuid())
+  workOrderId     String    @map("work_order_id")
+  fromStatus      String    @map("from_status")
+  toStatus        String    @map("to_status")
+  changedByUserId String?   @map("changed_by_user_id")
+  reason          String?
+  createdAt       DateTime  @default(now()) @map("created_at")
+
+  workOrder       WorkOrder @relation(fields: [workOrderId], references: [id], onDelete: Cascade)
+  changedBy       User?     @relation("StatusChangedBy", fields: [changedByUserId], references: [id], onDelete: SetNull)
+
+  @@index([workOrderId])
+  @@map("work_order_status_history")
+}
+
+model OperationalTask {
+  id              String     @id @default(cuid())
+  referenceNumber String     @unique @map("reference_number")
+  tenantId        String     @map("tenant_id")
+  workOrderId     String?    @map("work_order_id")
+  title           String
+  description     String?
+  category        String     @default("OTHER") // CLEANING, INSPECTION, MAINTENANCE, UTILITY, ADMINISTRATIVE, OTHER
+  priority        String     @default("MEDIUM") // LOW, MEDIUM, HIGH, URGENT
+  status          String     @default("TODO") // TODO, IN_PROGRESS, COMPLETED, CANCELLED
+  assignedUserId  String?    @map("assigned_user_id")
+  recurrenceRule  String?    @default("NONE") @map("recurrence_rule") // NONE, DAILY, WEEKLY, MONTHLY
+  dueDate         DateTime?  @map("due_date")
+  completedAt     DateTime?  @map("completed_at")
+  checklistJson   String?    @map("checklist_json")
+  completionNotes String?    @map("completion_notes")
+  createdById     String?    @map("created_by_id")
+  createdAt       DateTime   @default(now()) @map("created_at")
+  updatedAt       DateTime   @updatedAt @map("updated_at")
+
+  tenant          Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  workOrder       WorkOrder? @relation(fields: [workOrderId], references: [id], onDelete: SetNull)
+  assignedUser    User?      @relation("AssignedTasks", fields: [assignedUserId], references: [id], onDelete: SetNull)
+  creator         User?      @relation("CreatedTasks", fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@index([tenantId, status])
+  @@index([tenantId, category])
+  @@index([tenantId, assignedUserId])
+  @@index([tenantId, dueDate])
+  @@map("operational_tasks")
 }
 
 

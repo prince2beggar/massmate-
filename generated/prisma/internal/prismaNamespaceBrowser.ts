@@ -102,7 +102,10 @@ export const ModelName = {
   ScheduledReminder: 'ScheduledReminder',
   NotificationDeliveryLog: 'NotificationDeliveryLog',
   InventoryItem: 'InventoryItem',
-  StockMovement: 'StockMovement'
+  StockMovement: 'StockMovement',
+  WorkOrder: 'WorkOrder',
+  WorkOrderStatusHistory: 'WorkOrderStatusHistory',
+  OperationalTask: 'OperationalTask'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1138,6 +1141,77 @@ export const StockMovementScalarFieldEnum = {
 } as const
 
 export type StockMovementScalarFieldEnum = (typeof StockMovementScalarFieldEnum)[keyof typeof StockMovementScalarFieldEnum]
+
+
+export const WorkOrderScalarFieldEnum = {
+  id: 'id',
+  referenceNumber: 'referenceNumber',
+  tenantId: 'tenantId',
+  title: 'title',
+  description: 'description',
+  category: 'category',
+  priority: 'priority',
+  status: 'status',
+  roomId: 'roomId',
+  assetId: 'assetId',
+  complaintId: 'complaintId',
+  assignedUserId: 'assignedUserId',
+  assignedVendorName: 'assignedVendorName',
+  assignedVendorContact: 'assignedVendorContact',
+  expectedStartDate: 'expectedStartDate',
+  dueDate: 'dueDate',
+  completedAt: 'completedAt',
+  verifiedAt: 'verifiedAt',
+  estimatedCostPoisha: 'estimatedCostPoisha',
+  actualCostPoisha: 'actualCostPoisha',
+  internalNotes: 'internalNotes',
+  memberUpdates: 'memberUpdates',
+  completionNotes: 'completionNotes',
+  attachmentUrl: 'attachmentUrl',
+  createdById: 'createdById',
+  closedById: 'closedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WorkOrderScalarFieldEnum = (typeof WorkOrderScalarFieldEnum)[keyof typeof WorkOrderScalarFieldEnum]
+
+
+export const WorkOrderStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  workOrderId: 'workOrderId',
+  fromStatus: 'fromStatus',
+  toStatus: 'toStatus',
+  changedByUserId: 'changedByUserId',
+  reason: 'reason',
+  createdAt: 'createdAt'
+} as const
+
+export type WorkOrderStatusHistoryScalarFieldEnum = (typeof WorkOrderStatusHistoryScalarFieldEnum)[keyof typeof WorkOrderStatusHistoryScalarFieldEnum]
+
+
+export const OperationalTaskScalarFieldEnum = {
+  id: 'id',
+  referenceNumber: 'referenceNumber',
+  tenantId: 'tenantId',
+  workOrderId: 'workOrderId',
+  title: 'title',
+  description: 'description',
+  category: 'category',
+  priority: 'priority',
+  status: 'status',
+  assignedUserId: 'assignedUserId',
+  recurrenceRule: 'recurrenceRule',
+  dueDate: 'dueDate',
+  completedAt: 'completedAt',
+  checklistJson: 'checklistJson',
+  completionNotes: 'completionNotes',
+  createdById: 'createdById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OperationalTaskScalarFieldEnum = (typeof OperationalTaskScalarFieldEnum)[keyof typeof OperationalTaskScalarFieldEnum]
 
 
 export const SortOrder = {
