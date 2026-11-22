@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import {
   BedDouble,
@@ -14,13 +14,18 @@ import {
   RefreshCw,
   Clock,
   ChevronRight,
-  Shield,
-  Tag,
   ArrowUpRight,
   Pin,
-  Calendar,
 } from 'lucide-react';
 import type { MemberDashboardDto } from '@/server/member-portal/member-portal-service';
+
+const QUICK_ACTION_ICONS: Record<string, React.ElementType> = {
+  Wallet,
+  Utensils: UtensilsCrossed,
+  CalendarOff,
+  CreditCard,
+  Megaphone,
+};
 
 interface MemberDashboardViewProps {
   tenantSlug: string;
@@ -35,30 +40,55 @@ export function MemberDashboardView({ tenantSlug, initialData }: MemberDashboard
   useEffect(() => {
     if (initialData) return;
     let isMounted = true;
-    async function loadDashboard() {
-      try {
-        const res = await fetch(`/api/v1/portal/${tenantSlug}/dashboard`);
+    fetch(`/api/v1/portal/${tenantSlug}/dashboard`)
+      .then(async (res) => {
         if (!res.ok) {
           const errData = await res.json().catch(() => ({}));
-          throw new Error(errData.error?.message || 'Failed to load member dashboard');
+          throw new Error(errData.message || errData.error?.message || 'Failed to load member dashboard');
         }
-        const json = await res.json();
+        return res.json();
+      })
+      .then((json) => {
         if (isMounted && json.success && json.data) {
           setData(json.data);
+          setLoading(false);
         }
-      } catch (err: any) {
+      })
+      .catch((err: any) => {
         if (isMounted) {
           setError(err.message || 'Error connecting to member portal');
+          setLoading(false);
         }
-      } finally {
-        if (isMounted) setLoading(false);
-      }
-    }
-    loadDashboard();
+      });
+
     return () => {
       isMounted = false;
     };
   }, [tenantSlug, initialData]);
+
+  const handleRetry = useCallback(() => {
+    setLoading(true);
+    setError(null);
+    fetch(`/api/v1/portal/${tenantSlug}/dashboard`)
+      .then(async (res) => {
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.message || errData.error?.message || 'Failed to load member dashboard');
+        }
+        return res.json();
+      })
+      .then((json) => {
+        if (json.success && json.data) {
+          setData(json.data);
+        }
+      })
+      .catch((err: any) => {
+        setError(err.message || 'Error connecting to member portal');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [tenantSlug]);
 
   if (loading) {
     return (
@@ -82,8 +112,8 @@ export function MemberDashboardView({ tenantSlug, initialData }: MemberDashboard
           {error || 'Unable to load member dashboard records.'}
         </p>
         <button
-          onClick={() => window.location.reload()}
-          className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-lg text-xs font-medium inline-flex items-center gap-1.5"
+          onClick={handleRetry}
+          className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-lg text-xs font-medium inline-flex items-center gap-1.5 transition-colors"
         >
           <RefreshCw className="h-3.5 w-3.5" />
           Retry
@@ -92,7 +122,16 @@ export function MemberDashboardView({ tenantSlug, initialData }: MemberDashboard
     );
   }
 
-  const { member, mess, overviewCards, monthlyAccountSnapshot, mealSnapshot, recentActivities, notices, quickActions } = data;
+  const {
+    member,
+    mess,
+    overviewCards,
+    monthlyAccountSnapshot,
+    mealSnapshot,
+    recentActivities,
+    notices,
+    quickActions,
+  } = data;
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
@@ -104,7 +143,13 @@ export function MemberDashboardView({ tenantSlug, initialData }: MemberDashboard
               <span className="text-xs font-semibold uppercase tracking-wider text-primary">
                 Welcome Back
               </span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+              <span
+                className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold border ${
+                  member.status === 'ACTIVE'
+                    ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20'
+                    : 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20'
+                }`}
+              >
                 <CheckCircle className="h-3 w-3" />
                 {member.status} Resident
               </span>
@@ -199,21 +244,31 @@ export function MemberDashboardView({ tenantSlug, initialData }: MemberDashboard
           <div>
             <div className="flex items-center gap-2">
               <h3 className="text-xl font-bold text-foreground">
-                {overviewCards.meals.todayStatus === 'OFF' ? 'Meal Off' : 'Active Today'}
+                {overviewCards.meals.todayStatus === 'OFF'
+                  ? 'Meal Off'
+                  : overviewCards.meals.todayStatus === 'NO_SCHEDULE'
+                  ? 'No Schedule'
+                  : 'Active Today'}
               </h3>
               <span
                 className={`text-[10px] font-bold px-2 py-0.5 rounded-full uppercase ${
                   overviewCards.meals.todayStatus === 'OFF'
                     ? 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20'
+                    : overviewCards.meals.todayStatus === 'NO_SCHEDULE'
+                    ? 'bg-slate-500/10 text-slate-600 dark:text-slate-400 border border-slate-500/20'
                     : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
                 }`}
               >
-                {overviewCards.meals.todayStatus}
+                {overviewCards.meals.todayStatus === 'NO_SCHEDULE'
+                  ? 'No Schedule'
+                  : overviewCards.meals.todayStatus}
               </span>
             </div>
 
             <p className="text-xs text-muted-foreground mt-1">
-              B: {overviewCards.meals.todayCounts.breakfast ? '✓' : '—'} • L: {overviewCards.meals.todayCounts.lunch ? '✓' : '—'} • D: {overviewCards.meals.todayCounts.dinner ? '✓' : '—'}
+              B: {overviewCards.meals.todayCounts.breakfast ? '✓' : '—'} • L:{' '}
+              {overviewCards.meals.todayCounts.lunch ? '✓' : '—'} • D:{' '}
+              {overviewCards.meals.todayCounts.dinner ? '✓' : '—'}
             </p>
 
             <p className="text-xs text-muted-foreground mt-1">
@@ -278,7 +333,7 @@ export function MemberDashboardView({ tenantSlug, initialData }: MemberDashboard
                   {overviewCards.account.lastConfirmedPayment.amountFormatted}
                 </h3>
                 <p className="text-xs text-muted-foreground mt-0.5">
-                  via {overviewCards.account.lastConfirmedPayment.method}
+                  via {overviewCards.account.lastConfirmedPayment.method || 'Direct'}
                 </p>
                 <p className="text-[11px] text-muted-foreground mt-1">
                   {overviewCards.account.lastConfirmedPayment.date}
@@ -360,19 +415,27 @@ export function MemberDashboardView({ tenantSlug, initialData }: MemberDashboard
           <div className="p-4 rounded-xl bg-muted/20 border border-border space-y-2 text-xs">
             <div className="flex justify-between items-center text-muted-foreground">
               <span>Total New Charges:</span>
-              <span className="font-semibold text-foreground">{monthlyAccountSnapshot.totalChargesFormatted}</span>
+              <span className="font-semibold text-foreground">
+                {monthlyAccountSnapshot.totalChargesFormatted}
+              </span>
             </div>
             <div className="flex justify-between items-center text-emerald-600 dark:text-emerald-400">
               <span>Confirmed Payments Deducted:</span>
-              <span className="font-semibold">-{monthlyAccountSnapshot.confirmedPaymentsFormatted}</span>
+              <span className="font-semibold">
+                − {monthlyAccountSnapshot.confirmedPaymentsFormatted}
+              </span>
             </div>
             <div className="flex justify-between items-center text-muted-foreground">
               <span>Credits & Adjustments:</span>
-              <span className="font-semibold text-foreground">-{monthlyAccountSnapshot.adjustmentsFormatted}</span>
+              <span className="font-semibold text-foreground">
+                − {monthlyAccountSnapshot.adjustmentsFormatted}
+              </span>
             </div>
             <div className="pt-2 border-t border-border flex justify-between items-center text-sm font-bold">
               <span className="text-foreground">Net Closing Balance Due:</span>
-              <span className="text-primary text-base">{monthlyAccountSnapshot.closingDueFormatted}</span>
+              <span className="text-primary text-base">
+                {monthlyAccountSnapshot.closingDueFormatted}
+              </span>
             </div>
           </div>
 
@@ -467,11 +530,10 @@ export function MemberDashboardView({ tenantSlug, initialData }: MemberDashboard
               {notices.map((n) => (
                 <div
                   key={n.id}
-                  className={`p-3.5 rounded-lg border text-xs space-y-1.5 transition-colors ${
-                    n.isPinned
-                      ? 'bg-primary/5 border-primary/30'
-                      : 'bg-muted/20 border-border'
-                  }`}
+                  className={`p-3.5 rounded-lg border text-xs space-y-1.5 transition-colors ${n.isPinned
+                    ? 'bg-primary/5 border-primary/30'
+                    : 'bg-muted/20 border-border'
+                    }`}
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span className="font-bold text-foreground flex items-center gap-1.5">
@@ -533,24 +595,31 @@ export function MemberDashboardView({ tenantSlug, initialData }: MemberDashboard
       <div className="bg-card border border-border rounded-xl p-6 shadow-sm space-y-4">
         <h2 className="text-base font-bold text-foreground">Quick Action Shortcuts</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-          {quickActions.map((qa) => (
-            <Link
-              key={qa.id}
-              href={qa.href}
-              className="p-3.5 rounded-lg border border-border bg-muted/20 hover:bg-muted/60 transition-colors flex flex-col justify-between space-y-2 group"
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-semibold text-xs text-foreground group-hover:text-primary transition-colors">
-                  {qa.label}
-                </span>
-                <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground group-hover:text-primary transition-colors" />
-              </div>
-              <p className="text-[11px] text-muted-foreground">{qa.description}</p>
-            </Link>
-          ))}
+          {quickActions.map((qa) => {
+            const IconComponent = QUICK_ACTION_ICONS[qa.icon] || ArrowUpRight;
+            return (
+              <Link
+                key={qa.id}
+                href={qa.href}
+                className="p-3.5 rounded-lg border border-border bg-muted/20 hover:bg-muted/60 transition-colors flex flex-col justify-between space-y-2 group"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="p-1.5 rounded bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <IconComponent className="h-3.5 w-3.5" />
+                    </div>
+                    <span className="font-semibold text-xs text-foreground group-hover:text-primary transition-colors">
+                      {qa.label}
+                    </span>
+                  </div>
+                  <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground group-hover:text-primary transition-colors" />
+                </div>
+                <p className="text-[11px] text-muted-foreground">{qa.description}</p>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>
   );
 }
-
