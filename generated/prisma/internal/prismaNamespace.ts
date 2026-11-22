@@ -436,7 +436,8 @@ export const ModelName = {
   MemberBill: 'MemberBill',
   BillItem: 'BillItem',
   MemberPayment: 'MemberPayment',
-  BalanceAdjustment: 'BalanceAdjustment'
+  BalanceAdjustment: 'BalanceAdjustment',
+  MessSetting: 'MessSetting'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -452,7 +453,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "tenant" | "tenantVerification" | "role" | "roleTemplate" | "permission" | "rolePermission" | "roleTemplatePermission" | "membership" | "auditLog" | "plan" | "subscription" | "subscriptionInvoice" | "customPlanInquiry" | "customQuotation" | "domain" | "supportTicket" | "supportTicketMessage" | "platformNotification" | "room" | "bed" | "roomAssignment" | "rentalListing" | "bookingRequest" | "mealSetting" | "mealDailyLog" | "memberMealEntry" | "mealOffRequest" | "guestMeal" | "mealPeriodLock" | "expenseCategory" | "expense" | "expenseItem" | "bazarSchedule" | "financialCategory" | "monthlyBillingPeriod" | "memberBill" | "billItem" | "memberPayment" | "balanceAdjustment"
+    modelProps: "user" | "tenant" | "tenantVerification" | "role" | "roleTemplate" | "permission" | "rolePermission" | "roleTemplatePermission" | "membership" | "auditLog" | "plan" | "subscription" | "subscriptionInvoice" | "customPlanInquiry" | "customQuotation" | "domain" | "supportTicket" | "supportTicketMessage" | "platformNotification" | "room" | "bed" | "roomAssignment" | "rentalListing" | "bookingRequest" | "mealSetting" | "mealDailyLog" | "memberMealEntry" | "mealOffRequest" | "guestMeal" | "mealPeriodLock" | "expenseCategory" | "expense" | "expenseItem" | "bazarSchedule" | "financialCategory" | "monthlyBillingPeriod" | "memberBill" | "billItem" | "memberPayment" | "balanceAdjustment" | "messSetting"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3416,6 +3417,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    MessSetting: {
+      payload: Prisma.$MessSettingPayload<ExtArgs>
+      fields: Prisma.MessSettingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MessSettingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessSettingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MessSettingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessSettingPayload>
+        }
+        findFirst: {
+          args: Prisma.MessSettingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessSettingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MessSettingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessSettingPayload>
+        }
+        findMany: {
+          args: Prisma.MessSettingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessSettingPayload>[]
+        }
+        create: {
+          args: Prisma.MessSettingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessSettingPayload>
+        }
+        createMany: {
+          args: Prisma.MessSettingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MessSettingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessSettingPayload>[]
+        }
+        delete: {
+          args: Prisma.MessSettingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessSettingPayload>
+        }
+        update: {
+          args: Prisma.MessSettingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessSettingPayload>
+        }
+        deleteMany: {
+          args: Prisma.MessSettingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MessSettingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MessSettingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessSettingPayload>[]
+        }
+        upsert: {
+          args: Prisma.MessSettingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MessSettingPayload>
+        }
+        aggregate: {
+          args: Prisma.MessSettingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMessSetting>
+        }
+        groupBy: {
+          args: Prisma.MessSettingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MessSettingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MessSettingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MessSettingCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -4224,6 +4299,38 @@ export const BalanceAdjustmentScalarFieldEnum = {
 } as const
 
 export type BalanceAdjustmentScalarFieldEnum = (typeof BalanceAdjustmentScalarFieldEnum)[keyof typeof BalanceAdjustmentScalarFieldEnum]
+
+
+export const MessSettingScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  preferredLanguage: 'preferredLanguage',
+  contactPhone: 'contactPhone',
+  contactEmail: 'contactEmail',
+  address: 'address',
+  city: 'city',
+  timezone: 'timezone',
+  themeColor: 'themeColor',
+  publicWebsiteEnabled: 'publicWebsiteEnabled',
+  showMenuOnHomepage: 'showMenuOnHomepage',
+  customTagline: 'customTagline',
+  defaultBillingPeriod: 'defaultBillingPeriod',
+  currency: 'currency',
+  enableRentalModule: 'enableRentalModule',
+  enableMealModule: 'enableMealModule',
+  enableBazarModule: 'enableBazarModule',
+  notifyOnNewExpense: 'notifyOnNewExpense',
+  notifyOnPaymentReceived: 'notifyOnPaymentReceived',
+  notifyOnMealCutoff: 'notifyOnMealCutoff',
+  memberDirectoryVisibility: 'memberDirectoryVisibility',
+  contactVisibility: 'contactVisibility',
+  rentalVisibility: 'rentalVisibility',
+  emergencyContactVisibility: 'emergencyContactVisibility',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MessSettingScalarFieldEnum = (typeof MessSettingScalarFieldEnum)[keyof typeof MessSettingScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -5177,6 +5284,7 @@ export type GlobalOmitConfig = {
   billItem?: Prisma.BillItemOmit
   memberPayment?: Prisma.MemberPaymentOmit
   balanceAdjustment?: Prisma.BalanceAdjustmentOmit
+  messSetting?: Prisma.MessSettingOmit
 }
 
 /* Types for Logging */

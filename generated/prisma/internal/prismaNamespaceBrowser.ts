@@ -90,7 +90,8 @@ export const ModelName = {
   MemberBill: 'MemberBill',
   BillItem: 'BillItem',
   MemberPayment: 'MemberPayment',
-  BalanceAdjustment: 'BalanceAdjustment'
+  BalanceAdjustment: 'BalanceAdjustment',
+  MessSetting: 'MessSetting'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -878,6 +879,38 @@ export const BalanceAdjustmentScalarFieldEnum = {
 } as const
 
 export type BalanceAdjustmentScalarFieldEnum = (typeof BalanceAdjustmentScalarFieldEnum)[keyof typeof BalanceAdjustmentScalarFieldEnum]
+
+
+export const MessSettingScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  preferredLanguage: 'preferredLanguage',
+  contactPhone: 'contactPhone',
+  contactEmail: 'contactEmail',
+  address: 'address',
+  city: 'city',
+  timezone: 'timezone',
+  themeColor: 'themeColor',
+  publicWebsiteEnabled: 'publicWebsiteEnabled',
+  showMenuOnHomepage: 'showMenuOnHomepage',
+  customTagline: 'customTagline',
+  defaultBillingPeriod: 'defaultBillingPeriod',
+  currency: 'currency',
+  enableRentalModule: 'enableRentalModule',
+  enableMealModule: 'enableMealModule',
+  enableBazarModule: 'enableBazarModule',
+  notifyOnNewExpense: 'notifyOnNewExpense',
+  notifyOnPaymentReceived: 'notifyOnPaymentReceived',
+  notifyOnMealCutoff: 'notifyOnMealCutoff',
+  memberDirectoryVisibility: 'memberDirectoryVisibility',
+  contactVisibility: 'contactVisibility',
+  rentalVisibility: 'rentalVisibility',
+  emergencyContactVisibility: 'emergencyContactVisibility',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MessSettingScalarFieldEnum = (typeof MessSettingScalarFieldEnum)[keyof typeof MessSettingScalarFieldEnum]
 
 
 export const SortOrder = {

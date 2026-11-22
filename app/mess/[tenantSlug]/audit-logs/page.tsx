@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessModulePlaceholder } from '@/components/mess-admin/MessModulePlaceholder';
+import { AuditLogsWorkspaceView } from '@/components/mess-admin/audit/AuditLogsWorkspaceView';
 
 export default async function AuditLogsPage({
   params,
@@ -7,5 +7,5 @@ export default async function AuditLogsPage({
   params: Promise<{ tenantSlug: string }>;
 }) {
   const { tenantSlug } = await params;
-  return <MessModulePlaceholder tenantSlug={tenantSlug} moduleId="audit-logs" />;
+  return <AuditLogsWorkspaceView tenantSlug={tenantSlug} />;
 }

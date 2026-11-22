@@ -680,8 +680,7 @@ export class MessDashboardService {
         href: `/mess/${slug}/settings`,
         permission: 'settings.manage',
         isAllowed: has('settings.manage'),
-        isImplemented: false,
-        moduleNote: 'Mess Settings module launches in upcoming task',
+        isImplemented: true,
       },
     ];
   }

@@ -433,6 +433,7 @@ model Tenant {
   memberBills           MemberBill[]
   memberPayments        MemberPayment[]
   balanceAdjustments    BalanceAdjustment[]
+  messSetting           MessSetting?
 
   @@index([status])
   @@index([verificationStatus])
@@ -1496,4 +1497,43 @@ model BalanceAdjustment {
   @@index([billId])
   @@map("balance_adjustments")
 }
+
+// -----------------------------------------------------------------------------
+// MESS SETTINGS & PREFERENCES (Task 36)
+// -----------------------------------------------------------------------------
+
+model MessSetting {
+  id                         String   @id @default(cuid())
+  tenantId                   String   @unique @map("tenant_id")
+  preferredLanguage          String   @default("en") @map("preferred_language") // 'en' | 'bn'
+  contactPhone               String?  @map("contact_phone")
+  contactEmail               String?  @map("contact_email")
+  address                    String?
+  city                       String?
+  timezone                   String   @default("Asia/Dhaka")
+  themeColor                 String   @default("emerald") @map("theme_color")
+  publicWebsiteEnabled       Boolean  @default(true) @map("public_website_enabled")
+  showMenuOnHomepage         Boolean  @default(true) @map("show_menu_on_homepage")
+  customTagline              String?  @map("custom_tagline")
+  defaultBillingPeriod       String   @default("CALENDAR_MONTH") @map("default_billing_period")
+  currency                   String   @default("BDT")
+  enableRentalModule         Boolean  @default(true) @map("enable_rental_module")
+  enableMealModule           Boolean  @default(true) @map("enable_meal_module")
+  enableBazarModule          Boolean  @default(true) @map("enable_bazar_module")
+  notifyOnNewExpense         Boolean  @default(true) @map("notify_on_new_expense")
+  notifyOnPaymentReceived    Boolean  @default(true) @map("notify_on_payment_received")
+  notifyOnMealCutoff         Boolean  @default(true) @map("notify_on_meal_cutoff")
+  memberDirectoryVisibility  String   @default("MEMBERS_ONLY") @map("member_directory_visibility")
+  contactVisibility          String   @default("PUBLIC") @map("contact_visibility")
+  rentalVisibility           String   @default("PUBLIC") @map("rental_visibility")
+  emergencyContactVisibility String   @default("ADMINS_ONLY") @map("emergency_contact_visibility")
+  createdAt                  DateTime @default(now()) @map("created_at")
+  updatedAt                  DateTime @updatedAt @map("updated_at")
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@map("mess_settings")
+}
+
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessModulePlaceholder } from '@/components/mess-admin/MessModulePlaceholder';
+import { RolesManagementView } from '@/components/mess-admin/roles/RolesManagementView';
 
 export default async function RolesPage({
   params,
@@ -7,5 +7,5 @@ export default async function RolesPage({
   params: Promise<{ tenantSlug: string }>;
 }) {
   const { tenantSlug } = await params;
-  return <MessModulePlaceholder tenantSlug={tenantSlug} moduleId="roles" />;
+  return <RolesManagementView tenantSlug={tenantSlug} />;
 }

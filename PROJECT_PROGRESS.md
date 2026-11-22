@@ -17,7 +17,7 @@
 | **Task 33** | Meal Management System | **Completed and Verified** | 2026-11-22 | Fixed/flexible meal schedules, daily logs, meal-off cutoffs in Asia/Dhaka, guest meals, zero-drift meal rate calculation, period locking. | 15/15 Automated Tests Passed (56/56 suite); Production build passed. | Proceed to Task 34 |
 | **Task 34** | Bazar and Expense Management | **Completed and Verified** | 2026-11-22 | Configurable expense categories, itemized purchases, server-side poisha calculations, bazar schedule rota, approval workflow with self-approval guards, reversals, and meal rate integration. | 11/11 Automated Tests Passed (67/67 suite); Production build passed. | Proceed to Task 35 |
 | **Task 35** | Finance, Billing and Payment Management | **Completed and Verified** | 2026-11-22 | Tenant financial categories, monthly billing generation with zero-drift integer poisha allocation, rolling opening due, member statements with privacy checks, payment recording & verification with duplicate TrxID guard, period locking. | 11/11 Automated Tests Passed (78/78 suite); Production build passed. | Proceed to Task 36 |
-| **Task 36** | Mess Settings, Roles & Permissions, Audit Logs | **In Progress** | — | Settings management, custom RBAC permissions matrix, immutable audit log explorer. | Pending | Execute Task 36 |
+| **Task 36** | Mess Settings, Roles & Permissions, Audit Logs | **Completed and Verified** | 2026-11-22 | Mess settings (general, appearance, operational defaults, privacy & visibility), 6 system roles + custom roles with 44-capability RBAC matrix, anti-privilege escalation, sole active owner protection, append-only immutable audit log explorer. | 14/14 Automated Tests Passed (92/92 Phase 4 suite); Production build passed. | **Phase 4 Complete** — Ready for Phase 5 (Member Portal) |
 
 ---
 
@@ -196,5 +196,38 @@
     - Navigation integration: `finance` and `payments` marked active (`isImplemented: true`) in sidebar and quick actions.
   - Automated test suite (`server/finance/finance-management.test.ts`): 11 comprehensive unit and integration tests covering category configuration, zero-drift remainder distribution, rollover of opening due, period locking protection, privacy boundary on member statements, duplicate TrxID conflict detection, payment verification, refunds, adjustments, and cross-tenant isolation.
 - **Verification:** TypeScript: 0 errors; ESLint: 0 errors, 0 warnings; 78/78 total regression tests passing (100%); Next.js production build: 49/49 routes compiled cleanly.
+
+### Task 36: Mess Settings, Roles & Permissions, Audit Logs
+- **Status:** Completed and Verified
+- **Date:** 2026-11-22
+- **Key Deliverables:**
+  - Database schema extension: `MessSetting` model linked 1-to-1 with `Tenant`, storing General preferences, Appearance tokens, Operational defaults, and Privacy governance rules.
+  - Backend `MessSettingsService` (`server/settings/mess-settings-service.ts`):
+    - Multi-tenant settings configuration: general mess profile, branding/colors, operational defaults, and strict emergency contact privacy protection (cannot be set to `PUBLIC`).
+    - Roles & permissions management: auto-seeds the 6 standard system roles (`Owner`, `Admin`, `Moderator`, `Accountant`, `Meal Manager`, `Member`) and manages custom roles across the 44-capability catalog.
+    - Security invariants:
+      - Sole active Owner protection: prevents demoting or removing the mess's last active Owner.
+      - Anti-privilege escalation: prevents non-owners from delegating capabilities they do not hold.
+      - Anti-self-promotion: prevents members from modifying their own roles.
+      - System role protection: prevents renaming or deleting system roles.
+      - Cross-tenant shield: prevents cross-tenant access to settings, roles, and audit logs.
+    - Append-only audit log ledger: tenant-scoped chronological records with Asia/Dhaka timestamps, sanitized diffs (sensitive tokens/passwords automatically redacted), and strict deletion rejection (`deleteAuditLog` throws ForbiddenError).
+  - REST API routes (8 endpoints):
+    - `/api/v1/mess/[tenantSlug]/settings` (GET full settings)
+    - `/api/v1/mess/[tenantSlug]/settings/general` (PATCH general profile)
+    - `/api/v1/mess/[tenantSlug]/settings/appearance` (PATCH theme & branding)
+    - `/api/v1/mess/[tenantSlug]/settings/operational` (PATCH defaults & modules)
+    - `/api/v1/mess/[tenantSlug]/settings/privacy` (PATCH privacy bounds)
+    - `/api/v1/mess/[tenantSlug]/roles` (GET list, POST create)
+    - `/api/v1/mess/[tenantSlug]/roles/[id]` (PATCH update, DELETE role)
+    - `/api/v1/mess/[tenantSlug]/audit-logs` (GET paginated, filtered audit logs)
+  - UI components and pages:
+    - `/mess/[tenantSlug]/settings`: Tabbed settings view (`MessSettingsView` with General, Appearance, Operational, and Privacy tabs, live theme preview, and bilingual English/Bangla labels).
+    - `/mess/[tenantSlug]/roles`: Roles & permissions control center (`RolesManagementView`, `CreateRoleModal`, and `EditRoleModal` with grouped 10-module capability matrix, system badges, member counters, and deletion safety dialogs).
+    - `/mess/[tenantSlug]/audit-logs`: Audit log explorer (`AuditLogsWorkspaceView` and `AuditDiffModal` with search, module filtering, Asia/Dhaka timestamps, narrative descriptions, sanitized before/after diffs, and tamper notice banner).
+    - Navigation integration: `settings`, `roles`, and `audit-logs` marked active (`isImplemented: true`) in sidebar and quick actions.
+  - Automated test suite (`server/settings/mess-settings.test.ts`): 14 comprehensive unit and integration tests covering default settings auto-seeding, general profile updates, appearance validation, operational defaults, emergency contact privacy enforcement, 6 system role templates, custom role creation, anti-privilege escalation, system role protection, owner protection, role deletion safety, audit log filtering and redaction, append-only immutability, and cross-tenant isolation.
+- **Verification:** TypeScript: 0 errors; ESLint: 0 errors, 0 warnings; 92/92 total regression tests passing (100%); Next.js production build: 53/53 routes compiled cleanly.
+
 
 

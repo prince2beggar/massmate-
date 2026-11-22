@@ -241,3 +241,8 @@ export type MemberPayment = Prisma.MemberPaymentModel
  * 
  */
 export type BalanceAdjustment = Prisma.BalanceAdjustmentModel
+/**
+ * Model MessSetting
+ * 
+ */
+export type MessSetting = Prisma.MessSettingModel

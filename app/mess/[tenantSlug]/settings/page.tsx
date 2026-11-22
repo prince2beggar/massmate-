@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessModulePlaceholder } from '@/components/mess-admin/MessModulePlaceholder';
+import { MessSettingsView } from '@/components/mess-admin/settings/MessSettingsView';
 
 export default async function MessSettingsPage({
   params,
@@ -7,5 +7,5 @@ export default async function MessSettingsPage({
   params: Promise<{ tenantSlug: string }>;
 }) {
   const { tenantSlug } = await params;
-  return <MessModulePlaceholder tenantSlug={tenantSlug} moduleId="settings" />;
+  return <MessSettingsView tenantSlug={tenantSlug} />;
 }
