@@ -15,7 +15,8 @@
 | **Task 42** | Inventory, Assets & Stock Management | **Completed and Verified** | 2026-11-22 | Full multi-tenant inventory & asset management with double-entry stock movements (`StockMovement`), minimum stock threshold alerts, reusable asset room tracking, consumption tracking, damaged/loss write-offs, poisha unit valuation (`BigInt`), and 4-tab executive workspace (`/mess/[tenantSlug]/inventory`). | 16/16 Automated Tests Passed (321/321 full suite); 0 TS errors, 0 ESLint warnings; Production build passed. | Proceed to Task 43 |
 | **Task 43** | Maintenance, Work Orders & Task Management | **Completed and Verified** | 2026-11-22 | Work order ticketing with lifecycle transitions (`DRAFT`, `OPEN`, `ASSIGNED`, `IN_PROGRESS`, `WAITING_FOR_PARTS`, `COMPLETED`, `VERIFIED`, `CANCELLED`), room/asset cross-tenant validation, complaint-to-work-order conversion, staff assignment with automated alerts, operational task checklists, recurring task management, inventory linkage with zero negative stock, and member privacy bounds (`/mess/[tenantSlug]/maintenance`). | 17/17 Automated Tests Passed (338/338 full suite); 0 TS errors, 0 ESLint warnings; Production build passed. | Proceed to Task 44 |
 | **Task 44** | Visitor, Guest & Entry Management | **Completed and Verified** | 2026-11-22 | Tenant-isolated visitor tracking with executive gate dashboard, member pre-registration, self-approval prevention, staff review (Approve/Reject with reasons), check-in/check-out lifecycle with server timestamps in `Asia/Dhaka`, duplicate check-in prevention, checkout before check-in rejection, walk-in registration with host arrival alerts, member privacy & contact number redaction, cancellation workflow, and dual interfaces for Admin (`/mess/[tenantSlug]/visitors`) and Member Portal (`/portal/[tenantSlug]/visitors`). | 22/22 Automated Tests Passed (360/360 full test suite); 0 TS errors, 0 ESLint warnings; Next.js production build cleanly compiled (47/47 routes). | Proceed to Task 45 |
-| **Task 45** | Community Polling, Voting & Decision Making | **Completed and Verified** | 2026-11-22 | Full multi-tenant community polling module for Mess Admin (`/mess/[tenantSlug]/polls`) and Member Portal (`/portal/[tenantSlug]/polls`). Supports single-choice and multiple-choice voting, identified and secret-ballot (anonymous) modes, results visibility controls (`ALWAYS`, `AFTER_VOTE`, `AFTER_CLOSE`, `STAFF_ONLY`), duplicate voting prevention, active voting window enforcement, poll lifecycle (`DRAFT`, `PUBLISHED`, `CLOSED`, `CANCELLED`), member community suggestion submission and staff review with internal notes, and Task 41 notification integration. | 21/21 Automated Tests Passed (381/381 full test suite); 0 TypeScript errors, 0 ESLint warnings; Next.js production build cleanly compiled (47/47 routes). | **Phase 6 Complete** — Ready for Final Acceptance Review |
+| **Task 45** | Community Polling, Voting & Decision Making | **Completed and Verified** | 2026-11-22 | Full multi-tenant community polling module for Mess Admin (`/mess/[tenantSlug]/polls`) and Member Portal (`/portal/[tenantSlug]/polls`). Supports single-choice and multiple-choice voting, identified and secret-ballot (anonymous) modes, results visibility controls (`ALWAYS`, `AFTER_VOTE`, `AFTER_CLOSE`, `STAFF_ONLY`), duplicate voting prevention, active voting window enforcement, poll lifecycle (`DRAFT`, `PUBLISHED`, `CLOSED`, `CANCELLED`), member community suggestion submission and staff review with internal notes, and Task 41 notification integration. | 21/21 Automated Tests Passed (381/381 full test suite); 0 TypeScript errors, 0 ESLint warnings; Next.js production build cleanly compiled (47/47 routes). | Proceed to Task 46 |
+| **Task 46** | Document Vault & Budget Management System | **Completed and Verified** | 2026-11-22 | Part A: Multi-tenant secure Document Vault (`/mess/[tenantSlug]/documents` & `/portal/[tenantSlug]/documents`), 11 configurable categories, client/server file validation (PDF, JPG, PNG, DOC/DOCX, XLS/XLSX, max 15MB), secure HMAC-SHA256 time-limited signed access URLs (private storage keys never exposed publicly), preview/download stream, non-destructive archiving, permanent deletion with audit logging (`DocumentActivity`), member IDOR privacy protection, and automated expiry tracking with deduplicated reminders (`DOC_EXP_*`).<br>Part B: Exact integer poisha (`BigInt`) Budget Management (`/mess/[tenantSlug]/budget`), monthly/quarterly/yearly/custom periods, category allocations, actual expense integration from approved eligible expenses (strictly excluding rejected, voided, unapproved, member payments, and subscription fees), approval workflow with mandatory self-approval prevention (separation of duties), threshold alerts (75%, 90%, 100%, >100%) with deduplicated notifications, mandatory justification audit history (`BudgetChangeHistory`), and analytics reports with CSV export. | 28/28 Automated Tests Passed (409/409 full test suite); 0 TypeScript errors (`npx tsc --noEmit`), 0 ESLint warnings; Next.js production build cleanly compiled (47/47 routes). | **Phase 6 Complete (Tasks 41–46)** — Ready for Final Acceptance Review |
 
 ---
 
@@ -530,7 +531,61 @@
     - Navigation updated in `components/member-portal/member-nav-data.ts`.
   - Automated Tests (`server/polls/poll-management.test.ts`):
     - 21 test scenarios across 8 suites covering tenant isolation, suspended mess protection, draft poll creation, option validation, start/end date validation, publishing/closing lifecycle, active membership voting eligibility, duplicate voting prevention, voting outside active window rejection, closed/cancelled poll voting rejection, multiple-choice selection limits, cross-poll option rejection, option modification restrictions after voting commences, `AFTER_CLOSE` privacy visibility locking, zero-vote render safety, anonymous voting voter identity protection, suggestion submission, moderation privacy, staff review with admin notes, and dashboard metrics.
-- **Verification:** TypeScript: 0 errors (`npx tsc --noEmit`); Automated tests: 21/21 Task 45 tests passing (381/381 full test suite); ESLint: 0 errors, 0 warnings; Next.js production build: clean compilation (47/47 routes).
+### Task 46 — Document Vault & Budget Management System (Completed)
+- **Status:** Completed and Verified
+- **Scope & Implementation Details:**
+  - **Prisma Schema (`prisma/schema.prisma`):**
+    - `DocumentCategory`: 11 standard configurable categories per tenant (`rental-agreements`, `member-documents`, `mess-agreements`, `bills-and-invoices`, `utility-bills`, `payment-receipts`, `legal-documents`, `identity-documents`, `property-documents`, `emergency-safety`, `other-documents`) with unique slug enforcement per tenant (`@@unique([tenantId, slug])`).
+    - `MessDocument`: Document metadata model tracking reference number (`DOC-XXXXXX-XXX`), file key (S3/storage abstraction), file name, file type (pdf, jpg, jpeg, png, doc, docx, xls, xlsx), file size in bytes (max 15MB), issue date, expiry date, tags, visibility (`OWNER_ADMIN`, `SELECTED_ROLES`, `SPECIFIC_MEMBER`, `MEMBER_VISIBLE`), review status (`APPROVED`, `PENDING_REVIEW`, `REJECTED`, `ARCHIVED`), and relations to `Tenant`, `User`, `Membership`, and `Room`.
+    - `DocumentActivity`: Append-only immutable document audit log recording user actions (`UPLOAD`, `PREVIEW`, `DOWNLOAD`, `UPDATE_METADATA`, `ARCHIVE`, `DELETE`).
+    - `Budget`: Multi-period budget model (`MONTHLY`, `QUARTERLY`, `YEARLY`, `CUSTOM`) storing total allocated amount in exact integer poisha (`BigInt`), period dates, status (`DRAFT`, `PENDING_APPROVAL`, `APPROVED`, `REJECTED`, `ARCHIVED`), approval history, and currency (BDT ৳).
+    - `BudgetAllocation`: Category-wise allocation links to `ExpenseCategory` tracking allocated poisha amount and calculated actual spent / remaining balance.
+    - `BudgetChangeHistory`: Revision history tracking previous allocated poisha amount, new allocated poisha amount, changed by actor, and mandatory audit justification reason.
+    - `BudgetAlert`: Threshold alert records tracking threshold percentage (75%, 90%, 100%, >100%) and notification status to prevent duplicate alert spam.
+  - **Backend Services:**
+    - `DocumentService` (`server/documents/document-service.ts`):
+      - `getDocumentDashboard`: Computes total documents, storage bytes used, formatted storage string, added this month, pending review, expiring soon, expired, and recent uploads.
+      - `listDocuments` & `getDocumentById`: Enforces tenant isolation and strict resident IDOR privacy (non-staff residents can only see `MEMBER_VISIBLE` files or files matching their `relatedMemberId` or `uploadedById`; `OWNER_ADMIN` internal files are strictly hidden).
+      - `createDocument`: Server-side file extension check (PDF, JPG, PNG, DOC/DOCX, XLS/XLSX) and 15MB file size limit validation; records `UPLOAD` activity.
+      - `generateSignedToken` & `verifySignedToken`: HMAC-SHA256 time-limited signed URL access token generation, keeping private storage keys confidential.
+      - `archiveDocument` & `deleteDocument`: Non-destructive archiving and permanent deletion with full audit activity tracking.
+      - `checkAndDispatchExpiryReminders`: Identifies expiring soon (<=30 days) and expired documents, dispatching deduplicated notifications via `tenantNotificationService`.
+    - `BudgetService` (`server/budget/budget-service.ts`):
+      - `getBudgetDashboard`: Executive dashboard metrics (current monthly budget, total actual expenses, remaining budget, utilization percentage, over-budget categories count, upcoming commitments).
+      - `createBudget`: Validates period, start/end dates, total amount in poisha, and ensures category allocations do not exceed total budget amount.
+      - `reviewBudget`: Enforces mandatory separation of duties (budget creators cannot approve their own budgets when approval is required, throwing `ForbiddenError`).
+      - `updateBudget`: Requires mandatory justification reason for any revision and logs change details in `BudgetChangeHistory`.
+      - `checkThresholdAlerts`: Monitors consumption against thresholds (75%, 90%, 100%, >100%) and dispatches deduplicated alerts.
+      - `getBudgetReports`: Generates planned vs. actual analytics, category spending breakdown, monthly trends, and CSV export.
+  - **REST API Routes (13 endpoints):**
+    - Mess Admin Documents:
+      - `/api/v1/mess/[tenantSlug]/documents` (GET list, POST upload)
+      - `/api/v1/mess/[tenantSlug]/documents/dashboard` (GET executive KPIs)
+      - `/api/v1/mess/[tenantSlug]/documents/categories` (GET list, POST create)
+      - `/api/v1/mess/[tenantSlug]/documents/[id]` (GET detail, PATCH update/archive, DELETE)
+      - `/api/v1/mess/[tenantSlug]/documents/[id]/file` (GET signed preview/download stream)
+    - Mess Admin Budget:
+      - `/api/v1/mess/[tenantSlug]/budget` (GET list, POST create)
+      - `/api/v1/mess/[tenantSlug]/budget/dashboard` (GET executive KPIs)
+      - `/api/v1/mess/[tenantSlug]/budget/[id]` (GET detail, PATCH update)
+      - `/api/v1/mess/[tenantSlug]/budget/[id]/approve` (POST approve/reject)
+      - `/api/v1/mess/[tenantSlug]/budget/reports` (GET reports / CSV export)
+    - Member Portal:
+      - `/api/v1/portal/[tenantSlug]/documents` (GET permitted documents)
+      - `/api/v1/portal/[tenantSlug]/documents/[id]` (GET document detail)
+      - `/api/v1/portal/[tenantSlug]/documents/[id]/file` (GET signed download stream)
+  - **UI Components & Server Pages:**
+    - `MessDocumentVaultView` (`components/documents/MessDocumentVaultView.tsx`): 5 KPI summary cards, search, category filter, file type filter, status filter, grid and list views, Upload Document modal with client-side 15MB & file extension validation, Document Detail & Preview modal (PDF/Image embedded viewer, metadata, activity history, non-destructive archive, and delete).
+    - `/mess/[tenantSlug]/documents/page.tsx`: Admin Document Vault page.
+    - `MessBudgetManagementView` (`components/budget/MessBudgetManagementView.tsx`): 6 KPI cards, progress bars with threshold color coding, 3 tabs (Active Budgets, Analytics & Reports, Revision History), Create Budget modal with dynamic category allocation rows and balance calculations, and Budget Review dialog.
+    - `/mess/[tenantSlug]/budget/page.tsx`: Admin Budget Management page.
+    - `PortalDocumentVaultView` (`components/member-portal/PortalDocumentVaultView.tsx`): Resident document portal displaying authorized documents, expiry warning badges, and instant secure download actions.
+    - `/portal/[tenantSlug]/documents/page.tsx`: Member Portal Documents page.
+    - Navigation updated in `components/member-portal/member-nav-data.ts`.
+  - **Automated Tests (`server/vault-budget/vault-budget.test.ts`):**
+    - 28 test scenarios across 13 suites covering tenant isolation, suspended mess protection, client/server file type and size validation, HMAC-SHA256 signed URL generation and validation, member privacy and IDOR prevention, 11 seeded categories, custom category creation, non-destructive archival, permanent deletion, expiry tracking and deduplicated reminders, integer poisha math accuracy, category allocation boundaries, actual expense calculation from eligible expenses only, approval workflow and self-approval prevention, mandatory revision audit reasons and history tracking, threshold alert deduplication, and budget analytics with CSV export.
+- **Verification:** TypeScript: 0 errors (`npx tsc --noEmit`); Automated tests: 28/28 Task 46 tests passing (409/409 full test suite); ESLint: 0 errors, 0 warnings; Next.js production build: clean compilation (47/47 routes).
+
 
 
 

@@ -395,6 +395,11 @@ model User {
   createdPolls            Poll[]                 @relation("CreatedPolls")
   pollVotes               PollVote[]             @relation("UserPollVotes")
   memberSuggestions       MemberSuggestion[]     @relation("UserSuggestions")
+  uploadedDocuments       MessDocument[]         @relation("UploadedDocuments")
+  documentActivities      DocumentActivity[]     @relation("DocumentActivities")
+  createdBudgets          Budget[]               @relation("CreatedBudgets")
+  approvedBudgets         Budget[]               @relation("ApprovedBudgets")
+  budgetChangeHistories   BudgetChangeHistory[]  @relation("BudgetChangeHistories")
 
   @@index([status])
   @@index([platformRole])
@@ -471,6 +476,11 @@ model Tenant {
   polls                 Poll[]
   pollVotes             PollVote[]
   memberSuggestions     MemberSuggestion[]
+  documentCategories    DocumentCategory[]
+  documents             MessDocument[]
+  documentActivities    DocumentActivity[]
+  budgets               Budget[]
+  budgetAlerts          BudgetAlert[]
 
   @@index([status])
   @@index([verificationStatus])
@@ -648,6 +658,7 @@ model Membership {
   hostedVisitors          Visitor[]
   pollVotes               PollVote[]
   memberSuggestions       MemberSuggestion[]
+  documents               MessDocument[]
 
   @@unique([userId, tenantId])
   @@index([tenantId])
@@ -993,6 +1004,7 @@ model Room {
   roomChangeRequests MemberRequest[] @relation("RequestedRoom")
   inventoryItems InventoryItem[]
   workOrders     WorkOrder[]
+  documents      MessDocument[]
 
   @@unique([tenantId, roomNumber])
   @@index([tenantId])
@@ -1295,6 +1307,7 @@ model ExpenseCategory {
 
   tenant   Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   expenses Expense[]
+  budgetAllocations BudgetAllocation[]
 
   @@unique([tenantId, code])
   @@index([tenantId])
@@ -2119,6 +2132,159 @@ model MemberSuggestion {
   @@index([tenantId, userId])
   @@map("member_suggestions")
 }
+
+// -----------------------------------------------------------------------------
+// DOCUMENT VAULT & BUDGET MANAGEMENT (Task 46)
+// -----------------------------------------------------------------------------
+
+model DocumentCategory {
+  id          String   @id @default(cuid())
+  tenantId    String   @map("tenant_id")
+  name        String
+  slug        String
+  description String?
+  isSystem    Boolean  @default(false) @map("is_system")
+  isArchived  Boolean  @default(false) @map("is_archived")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  tenant    Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  documents MessDocument[]
+
+  @@unique([tenantId, slug])
+  @@index([tenantId, isArchived])
+  @@map("document_categories")
+}
+
+model MessDocument {
+  id               String    @id @default(cuid())
+  referenceNumber  String    @unique @map("reference_number")
+  tenantId         String    @map("tenant_id")
+  title            String
+  description      String?
+  categoryId       String    @map("category_id")
+  fileKey          String    @map("file_key") // Secure storage key, never exposed publicly
+  fileName         String    @map("file_name") // Original file name
+  fileType         String    @map("file_type") // pdf, jpg, jpeg, png, doc, docx, xls, xlsx
+  fileSizeBytes    Int       @map("file_size_bytes")
+  relatedMemberId  String?   @map("related_member_id")
+  relatedRoomId    String?   @map("related_room_id")
+  issueDate        DateTime? @map("issue_date")
+  expiryDate       DateTime? @map("expiry_date")
+  tags             Json      @default("[]") // string[]
+  visibility       String    @default("OWNER_ADMIN") @map("visibility") // OWNER_ADMIN, SELECTED_ROLES, SPECIFIC_MEMBER, MEMBER_VISIBLE
+  reviewStatus     String    @default("APPROVED") @map("review_status") // PENDING, APPROVED, REJECTED, ARCHIVED
+  uploadedById     String    @map("uploaded_by_id")
+  isArchived       Boolean   @default(false) @map("is_archived")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @updatedAt @map("updated_at")
+
+  tenant        Tenant             @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  category      DocumentCategory   @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  uploadedBy    User               @relation("UploadedDocuments", fields: [uploadedById], references: [id], onDelete: Restrict)
+  relatedMember Membership?        @relation(fields: [relatedMemberId], references: [id], onDelete: SetNull)
+  relatedRoom   Room?              @relation(fields: [relatedRoomId], references: [id], onDelete: SetNull)
+  activities    DocumentActivity[]
+
+  @@index([tenantId, categoryId, isArchived])
+  @@index([tenantId, expiryDate])
+  @@index([tenantId, relatedMemberId])
+  @@map("mess_documents")
+}
+
+model DocumentActivity {
+  id          String   @id @default(cuid())
+  tenantId    String   @map("tenant_id")
+  documentId  String   @map("document_id")
+  actorUserId String   @map("actor_user_id")
+  action      String   // UPLOAD, PREVIEW, DOWNLOAD, UPDATE_METADATA, REPLACE, ARCHIVE, DELETE
+  details     String?
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  tenant    Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  document  MessDocument @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  actorUser User         @relation("DocumentActivities", fields: [actorUserId], references: [id], onDelete: Restrict)
+
+  @@index([tenantId, documentId])
+  @@map("document_activities")
+}
+
+model Budget {
+  id                 String    @id @default(cuid())
+  referenceNumber    String    @unique @map("reference_number")
+  tenantId           String    @map("tenant_id")
+  name               String
+  periodType         String    @default("MONTHLY") @map("period_type") // MONTHLY, QUARTERLY, YEARLY, CUSTOM
+  startDate          DateTime  @map("start_date")
+  endDate            DateTime  @map("end_date")
+  totalAmountPoisha  BigInt    @map("total_amount_poisha")
+  description        String?
+  status             String    @default("DRAFT") // DRAFT, PENDING_APPROVAL, APPROVED, REJECTED, ARCHIVED
+  approvalRequired   Boolean   @default(false) @map("approval_required")
+  createdById        String    @map("created_by_id")
+  approvedById       String?   @map("approved_by_id")
+  approvedAt         DateTime? @map("approved_at")
+  rejectionReason    String?   @map("rejection_reason")
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime  @updatedAt @map("updated_at")
+
+  tenant          Tenant                @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  creator         User                  @relation("CreatedBudgets", fields: [createdById], references: [id], onDelete: Restrict)
+  approver        User?                 @relation("ApprovedBudgets", fields: [approvedById], references: [id], onDelete: SetNull)
+  allocations     BudgetAllocation[]
+  changeHistories BudgetChangeHistory[]
+  alerts          BudgetAlert[]
+
+  @@index([tenantId, status, startDate])
+  @@map("budgets")
+}
+
+model BudgetAllocation {
+  id                    String          @id @default(cuid())
+  budgetId              String          @map("budget_id")
+  expenseCategoryId     String?         @map("expense_category_id")
+  categoryName          String          @map("category_name")
+  allocatedAmountPoisha BigInt          @map("allocated_amount_poisha")
+
+  budget          Budget           @relation(fields: [budgetId], references: [id], onDelete: Cascade)
+  expenseCategory ExpenseCategory? @relation(fields: [expenseCategoryId], references: [id], onDelete: SetNull)
+
+  @@index([budgetId])
+  @@map("budget_allocations")
+}
+
+model BudgetChangeHistory {
+  id                   String   @id @default(cuid())
+  budgetId             String   @map("budget_id")
+  changedById          String   @map("changed_by_id")
+  previousAmountPoisha BigInt   @map("previous_amount_poisha")
+  newAmountPoisha      BigInt   @map("new_amount_poisha")
+  reason               String
+  createdAt            DateTime @default(now()) @map("created_at")
+
+  budget    Budget @relation(fields: [budgetId], references: [id], onDelete: Cascade)
+  changedBy User   @relation("BudgetChangeHistories", fields: [changedById], references: [id], onDelete: Restrict)
+
+  @@index([budgetId])
+  @@map("budget_change_histories")
+}
+
+model BudgetAlert {
+  id                String   @id @default(cuid())
+  tenantId          String   @map("tenant_id")
+  budgetId          String   @map("budget_id")
+  thresholdPercent  Int      @map("threshold_percent") // 75, 90, 100, 105
+  actualSpentPoisha BigInt   @map("actual_spent_poisha")
+  alertTriggeredAt  DateTime @default(now()) @map("alert_triggered_at")
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  budget Budget @relation(fields: [budgetId], references: [id], onDelete: Cascade)
+
+  @@unique([budgetId, thresholdPercent])
+  @@index([tenantId, budgetId])
+  @@map("budget_alerts")
+}
+
 
 
 

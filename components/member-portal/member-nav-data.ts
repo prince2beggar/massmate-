@@ -12,6 +12,7 @@ import {
   Bell,
   UserCheck,
   Vote,
+  FileText,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -129,5 +130,13 @@ export const MEMBER_NAV_ITEMS: MemberNavItem[] = [
     icon: Vote,
     isImplemented: true,
     description: 'Vote on meal preferences, facility decisions, and submit ideas.',
+  },
+  {
+    id: 'documents',
+    name: 'My Documents',
+    path: 'documents',
+    icon: FileText,
+    isImplemented: true,
+    description: 'Rental contracts, mess agreements, receipts, and permitted private documents.',
   },
 ];

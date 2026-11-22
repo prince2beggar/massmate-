@@ -224,6 +224,7 @@ export type ExpenseCategoryWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"ExpenseCategory"> | Date | string
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   expenses?: Prisma.ExpenseListRelationFilter
+  budgetAllocations?: Prisma.BudgetAllocationListRelationFilter
 }
 
 export type ExpenseCategoryOrderByWithRelationInput = {
@@ -239,6 +240,7 @@ export type ExpenseCategoryOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   tenant?: Prisma.TenantOrderByWithRelationInput
   expenses?: Prisma.ExpenseOrderByRelationAggregateInput
+  budgetAllocations?: Prisma.BudgetAllocationOrderByRelationAggregateInput
 }
 
 export type ExpenseCategoryWhereUniqueInput = Prisma.AtLeast<{
@@ -258,6 +260,7 @@ export type ExpenseCategoryWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"ExpenseCategory"> | Date | string
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   expenses?: Prisma.ExpenseListRelationFilter
+  budgetAllocations?: Prisma.BudgetAllocationListRelationFilter
 }, "id" | "tenantId_code">
 
 export type ExpenseCategoryOrderByWithAggregationInput = {
@@ -304,6 +307,7 @@ export type ExpenseCategoryCreateInput = {
   updatedAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutExpenseCategoriesInput
   expenses?: Prisma.ExpenseCreateNestedManyWithoutCategoryInput
+  budgetAllocations?: Prisma.BudgetAllocationCreateNestedManyWithoutExpenseCategoryInput
 }
 
 export type ExpenseCategoryUncheckedCreateInput = {
@@ -318,6 +322,7 @@ export type ExpenseCategoryUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutCategoryInput
+  budgetAllocations?: Prisma.BudgetAllocationUncheckedCreateNestedManyWithoutExpenseCategoryInput
 }
 
 export type ExpenseCategoryUpdateInput = {
@@ -332,6 +337,7 @@ export type ExpenseCategoryUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutExpenseCategoriesNestedInput
   expenses?: Prisma.ExpenseUpdateManyWithoutCategoryNestedInput
+  budgetAllocations?: Prisma.BudgetAllocationUpdateManyWithoutExpenseCategoryNestedInput
 }
 
 export type ExpenseCategoryUncheckedUpdateInput = {
@@ -346,6 +352,7 @@ export type ExpenseCategoryUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutCategoryNestedInput
+  budgetAllocations?: Prisma.BudgetAllocationUncheckedUpdateManyWithoutExpenseCategoryNestedInput
 }
 
 export type ExpenseCategoryCreateManyInput = {
@@ -445,6 +452,11 @@ export type ExpenseCategoryScalarRelationFilter = {
   isNot?: Prisma.ExpenseCategoryWhereInput
 }
 
+export type ExpenseCategoryNullableScalarRelationFilter = {
+  is?: Prisma.ExpenseCategoryWhereInput | null
+  isNot?: Prisma.ExpenseCategoryWhereInput | null
+}
+
 export type ExpenseCategoryCreateNestedManyWithoutTenantInput = {
   create?: Prisma.XOR<Prisma.ExpenseCategoryCreateWithoutTenantInput, Prisma.ExpenseCategoryUncheckedCreateWithoutTenantInput> | Prisma.ExpenseCategoryCreateWithoutTenantInput[] | Prisma.ExpenseCategoryUncheckedCreateWithoutTenantInput[]
   connectOrCreate?: Prisma.ExpenseCategoryCreateOrConnectWithoutTenantInput | Prisma.ExpenseCategoryCreateOrConnectWithoutTenantInput[]
@@ -501,6 +513,22 @@ export type ExpenseCategoryUpdateOneRequiredWithoutExpensesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ExpenseCategoryUpdateToOneWithWhereWithoutExpensesInput, Prisma.ExpenseCategoryUpdateWithoutExpensesInput>, Prisma.ExpenseCategoryUncheckedUpdateWithoutExpensesInput>
 }
 
+export type ExpenseCategoryCreateNestedOneWithoutBudgetAllocationsInput = {
+  create?: Prisma.XOR<Prisma.ExpenseCategoryCreateWithoutBudgetAllocationsInput, Prisma.ExpenseCategoryUncheckedCreateWithoutBudgetAllocationsInput>
+  connectOrCreate?: Prisma.ExpenseCategoryCreateOrConnectWithoutBudgetAllocationsInput
+  connect?: Prisma.ExpenseCategoryWhereUniqueInput
+}
+
+export type ExpenseCategoryUpdateOneWithoutBudgetAllocationsNestedInput = {
+  create?: Prisma.XOR<Prisma.ExpenseCategoryCreateWithoutBudgetAllocationsInput, Prisma.ExpenseCategoryUncheckedCreateWithoutBudgetAllocationsInput>
+  connectOrCreate?: Prisma.ExpenseCategoryCreateOrConnectWithoutBudgetAllocationsInput
+  upsert?: Prisma.ExpenseCategoryUpsertWithoutBudgetAllocationsInput
+  disconnect?: Prisma.ExpenseCategoryWhereInput | boolean
+  delete?: Prisma.ExpenseCategoryWhereInput | boolean
+  connect?: Prisma.ExpenseCategoryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ExpenseCategoryUpdateToOneWithWhereWithoutBudgetAllocationsInput, Prisma.ExpenseCategoryUpdateWithoutBudgetAllocationsInput>, Prisma.ExpenseCategoryUncheckedUpdateWithoutBudgetAllocationsInput>
+}
+
 export type ExpenseCategoryCreateWithoutTenantInput = {
   id?: string
   name: string
@@ -512,6 +540,7 @@ export type ExpenseCategoryCreateWithoutTenantInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   expenses?: Prisma.ExpenseCreateNestedManyWithoutCategoryInput
+  budgetAllocations?: Prisma.BudgetAllocationCreateNestedManyWithoutExpenseCategoryInput
 }
 
 export type ExpenseCategoryUncheckedCreateWithoutTenantInput = {
@@ -525,6 +554,7 @@ export type ExpenseCategoryUncheckedCreateWithoutTenantInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutCategoryInput
+  budgetAllocations?: Prisma.BudgetAllocationUncheckedCreateNestedManyWithoutExpenseCategoryInput
 }
 
 export type ExpenseCategoryCreateOrConnectWithoutTenantInput = {
@@ -580,6 +610,7 @@ export type ExpenseCategoryCreateWithoutExpensesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutExpenseCategoriesInput
+  budgetAllocations?: Prisma.BudgetAllocationCreateNestedManyWithoutExpenseCategoryInput
 }
 
 export type ExpenseCategoryUncheckedCreateWithoutExpensesInput = {
@@ -593,6 +624,7 @@ export type ExpenseCategoryUncheckedCreateWithoutExpensesInput = {
   isSystem?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  budgetAllocations?: Prisma.BudgetAllocationUncheckedCreateNestedManyWithoutExpenseCategoryInput
 }
 
 export type ExpenseCategoryCreateOrConnectWithoutExpensesInput = {
@@ -622,6 +654,7 @@ export type ExpenseCategoryUpdateWithoutExpensesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutExpenseCategoriesNestedInput
+  budgetAllocations?: Prisma.BudgetAllocationUpdateManyWithoutExpenseCategoryNestedInput
 }
 
 export type ExpenseCategoryUncheckedUpdateWithoutExpensesInput = {
@@ -635,6 +668,79 @@ export type ExpenseCategoryUncheckedUpdateWithoutExpensesInput = {
   isSystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  budgetAllocations?: Prisma.BudgetAllocationUncheckedUpdateManyWithoutExpenseCategoryNestedInput
+}
+
+export type ExpenseCategoryCreateWithoutBudgetAllocationsInput = {
+  id?: string
+  name: string
+  code: string
+  description?: string | null
+  isMealEligible?: boolean
+  isActive?: boolean
+  isSystem?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutExpenseCategoriesInput
+  expenses?: Prisma.ExpenseCreateNestedManyWithoutCategoryInput
+}
+
+export type ExpenseCategoryUncheckedCreateWithoutBudgetAllocationsInput = {
+  id?: string
+  tenantId: string
+  name: string
+  code: string
+  description?: string | null
+  isMealEligible?: boolean
+  isActive?: boolean
+  isSystem?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutCategoryInput
+}
+
+export type ExpenseCategoryCreateOrConnectWithoutBudgetAllocationsInput = {
+  where: Prisma.ExpenseCategoryWhereUniqueInput
+  create: Prisma.XOR<Prisma.ExpenseCategoryCreateWithoutBudgetAllocationsInput, Prisma.ExpenseCategoryUncheckedCreateWithoutBudgetAllocationsInput>
+}
+
+export type ExpenseCategoryUpsertWithoutBudgetAllocationsInput = {
+  update: Prisma.XOR<Prisma.ExpenseCategoryUpdateWithoutBudgetAllocationsInput, Prisma.ExpenseCategoryUncheckedUpdateWithoutBudgetAllocationsInput>
+  create: Prisma.XOR<Prisma.ExpenseCategoryCreateWithoutBudgetAllocationsInput, Prisma.ExpenseCategoryUncheckedCreateWithoutBudgetAllocationsInput>
+  where?: Prisma.ExpenseCategoryWhereInput
+}
+
+export type ExpenseCategoryUpdateToOneWithWhereWithoutBudgetAllocationsInput = {
+  where?: Prisma.ExpenseCategoryWhereInput
+  data: Prisma.XOR<Prisma.ExpenseCategoryUpdateWithoutBudgetAllocationsInput, Prisma.ExpenseCategoryUncheckedUpdateWithoutBudgetAllocationsInput>
+}
+
+export type ExpenseCategoryUpdateWithoutBudgetAllocationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isMealEligible?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isSystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutExpenseCategoriesNestedInput
+  expenses?: Prisma.ExpenseUpdateManyWithoutCategoryNestedInput
+}
+
+export type ExpenseCategoryUncheckedUpdateWithoutBudgetAllocationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isMealEligible?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isSystem?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutCategoryNestedInput
 }
 
 export type ExpenseCategoryCreateManyTenantInput = {
@@ -660,6 +766,7 @@ export type ExpenseCategoryUpdateWithoutTenantInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expenses?: Prisma.ExpenseUpdateManyWithoutCategoryNestedInput
+  budgetAllocations?: Prisma.BudgetAllocationUpdateManyWithoutExpenseCategoryNestedInput
 }
 
 export type ExpenseCategoryUncheckedUpdateWithoutTenantInput = {
@@ -673,6 +780,7 @@ export type ExpenseCategoryUncheckedUpdateWithoutTenantInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutCategoryNestedInput
+  budgetAllocations?: Prisma.BudgetAllocationUncheckedUpdateManyWithoutExpenseCategoryNestedInput
 }
 
 export type ExpenseCategoryUncheckedUpdateManyWithoutTenantInput = {
@@ -694,10 +802,12 @@ export type ExpenseCategoryUncheckedUpdateManyWithoutTenantInput = {
 
 export type ExpenseCategoryCountOutputType = {
   expenses: number
+  budgetAllocations: number
 }
 
 export type ExpenseCategoryCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   expenses?: boolean | ExpenseCategoryCountOutputTypeCountExpensesArgs
+  budgetAllocations?: boolean | ExpenseCategoryCountOutputTypeCountBudgetAllocationsArgs
 }
 
 /**
@@ -717,6 +827,13 @@ export type ExpenseCategoryCountOutputTypeCountExpensesArgs<ExtArgs extends runt
   where?: Prisma.ExpenseWhereInput
 }
 
+/**
+ * ExpenseCategoryCountOutputType without action
+ */
+export type ExpenseCategoryCountOutputTypeCountBudgetAllocationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BudgetAllocationWhereInput
+}
+
 
 export type ExpenseCategorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -731,6 +848,7 @@ export type ExpenseCategorySelect<ExtArgs extends runtime.Types.Extensions.Inter
   updatedAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   expenses?: boolean | Prisma.ExpenseCategory$expensesArgs<ExtArgs>
+  budgetAllocations?: boolean | Prisma.ExpenseCategory$budgetAllocationsArgs<ExtArgs>
   _count?: boolean | Prisma.ExpenseCategoryCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["expenseCategory"]>
 
@@ -779,6 +897,7 @@ export type ExpenseCategoryOmit<ExtArgs extends runtime.Types.Extensions.Interna
 export type ExpenseCategoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   expenses?: boolean | Prisma.ExpenseCategory$expensesArgs<ExtArgs>
+  budgetAllocations?: boolean | Prisma.ExpenseCategory$budgetAllocationsArgs<ExtArgs>
   _count?: boolean | Prisma.ExpenseCategoryCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ExpenseCategoryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -793,6 +912,7 @@ export type $ExpenseCategoryPayload<ExtArgs extends runtime.Types.Extensions.Int
   objects: {
     tenant: Prisma.$TenantPayload<ExtArgs>
     expenses: Prisma.$ExpensePayload<ExtArgs>[]
+    budgetAllocations: Prisma.$BudgetAllocationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1201,6 +1321,7 @@ export interface Prisma__ExpenseCategoryClient<T, Null = never, ExtArgs extends 
   readonly [Symbol.toStringTag]: "PrismaPromise"
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   expenses<T extends Prisma.ExpenseCategory$expensesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ExpenseCategory$expensesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ExpensePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  budgetAllocations<T extends Prisma.ExpenseCategory$budgetAllocationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ExpenseCategory$budgetAllocationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetAllocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1662,6 +1783,30 @@ export type ExpenseCategory$expensesArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.ExpenseScalarFieldEnum | Prisma.ExpenseScalarFieldEnum[]
+}
+
+/**
+ * ExpenseCategory.budgetAllocations
+ */
+export type ExpenseCategory$budgetAllocationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BudgetAllocation
+   */
+  select?: Prisma.BudgetAllocationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BudgetAllocation
+   */
+  omit?: Prisma.BudgetAllocationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BudgetAllocationInclude<ExtArgs> | null
+  where?: Prisma.BudgetAllocationWhereInput
+  orderBy?: Prisma.BudgetAllocationOrderByWithRelationInput | Prisma.BudgetAllocationOrderByWithRelationInput[]
+  cursor?: Prisma.BudgetAllocationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BudgetAllocationScalarFieldEnum | Prisma.BudgetAllocationScalarFieldEnum[]
 }
 
 /**

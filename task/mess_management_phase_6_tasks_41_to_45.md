@@ -1441,4 +1441,423 @@ only the safe parts that can be verified and clearly document the
 missing dependency.
 
 **Start with Task 41. Complete, test, and report Task 41 before starting
-Task 42. Continue sequentially through Task 45.**
+Task 42. Continue sequentially through Task 46.**
+
+------------------------------------------------------------------------
+
+# TASK 46 — DOCUMENT VAULT & BUDGET MANAGEMENT SYSTEM
+
+## Objective
+
+Build a complete, secure, interactive Document Vault and Budget Management System for the existing Mess Management SaaS platform.
+
+This is the final task of Phase 6.
+
+The implementation must integrate with the existing application, database, authentication, tenant architecture, role-based permissions, finance module, expense management, and audit logging system.
+
+Do not create a separate application or duplicate existing features.
+
+---
+
+### PART A — DOCUMENT VAULT
+
+#### 1. Document Management Dashboard
+
+Create a professional Document Vault interface for Mess Admin users.
+
+Display summary cards:
+- Total Documents
+- Total Storage Used
+- Documents Added This Month
+- Documents Pending Review
+- Expiring Documents
+
+Include:
+- Document search
+- Category filters
+- File type filters
+- Date filters
+- Upload button
+- List and grid view
+- Sorting options
+
+#### 2. Document Categories
+
+Create configurable document categories, including:
+- Rental Agreements
+- Member Documents
+- Mess Agreements
+- Bills and Invoices
+- Utility Bills
+- Payment Receipts
+- Legal Documents
+- Identity Documents
+- Property Documents
+- Emergency and Safety Documents
+- Other Documents
+
+Allow authorized administrators to create, edit, and archive categories.
+
+#### 3. Document Upload
+
+Allow authorized users to upload documents.
+
+Supported file types:
+- PDF
+- JPG
+- JPEG
+- PNG
+- DOC
+- DOCX
+- XLS
+- XLSX
+
+Each document should support:
+- Document title
+- Description
+- Category
+- Related member (optional)
+- Related room (optional)
+- Issue date (optional)
+- Expiry date (optional)
+- Tags
+- Uploaded by
+- Upload date
+- Visibility settings
+- Review status
+
+Validate file type and file size on both client and server.
+Use private S3-compatible object storage or the existing configured storage provider.
+Never expose private storage URLs publicly.
+Use signed URLs or an equivalent secure file-access mechanism.
+
+#### 4. Document Preview and Management
+
+Implement:
+- PDF preview
+- Image preview
+- Download
+- Rename
+- Edit metadata
+- Replace document
+- Archive
+- Delete with confirmation
+- Document activity history
+
+Do not allow unsupported file types to execute in the browser.
+
+#### 5. Document Permissions and Privacy
+
+Integrate with the existing custom role and permission system.
+
+Example permissions:
+- View documents
+- Upload documents
+- Edit document information
+- Download documents
+- Delete documents
+- Manage categories
+- Review documents
+
+Support visibility options:
+- Owner and authorized admins only
+- Selected roles
+- Specific member
+- Member-visible documents
+
+A member must never access another member's private documents.
+Super Admin must not automatically gain access to tenant-private document contents.
+Any exceptional platform access must follow an explicit, authorized support process and be audited.
+
+#### 6. Document Expiry and Reminders
+
+Allow expiry dates for documents.
+
+Show:
+- Expiring soon
+- Expired
+- Valid documents
+
+Create reminders using the existing notification system.
+Allow configurable reminder intervals, such as:
+- 30 days before expiry
+- 7 days before expiry
+- On expiry date
+
+Prevent duplicate reminders.
+
+---
+
+### PART B — BUDGET MANAGEMENT
+
+#### 7. Budget Dashboard
+
+Create a Budget Management dashboard for each Mess.
+
+Display:
+- Monthly Budget
+- Total Actual Expenses
+- Remaining Budget
+- Budget Utilization Percentage
+- Over-budget Categories
+- Upcoming Budget Commitments
+
+Include a monthly and yearly overview.
+
+#### 8. Budget Creation
+
+Allow authorized users to create budgets.
+
+Budget fields:
+- Budget name
+- Budget period
+- Start date
+- End date
+- Total budget amount
+- Description
+- Budget categories
+- Category-wise allocated amounts
+- Created by
+- Approval status
+
+Support:
+- Monthly budget
+- Quarterly budget
+- Yearly budget
+- Custom date-range budget
+
+Use the tenant's configured currency. Default currency: BDT (৳).
+Store financial values using the existing exact monetary data type. Never use floating-point arithmetic for financial calculations.
+
+#### 9. Budget Categories
+
+Provide configurable categories such as:
+- Food and Groceries
+- Rent
+- Electricity
+- Gas
+- Water
+- Internet
+- Cleaning
+- Maintenance
+- Staff Expenses
+- Emergency Expenses
+- Other Expenses
+
+Connect these categories with the existing Expense Management module.
+Avoid creating duplicate expense records.
+
+#### 10. Actual Expense Integration
+
+Automatically calculate actual expenses from eligible, approved expense records in the existing finance and expense modules.
+
+Display:
+- Planned Amount
+- Actual Spent
+- Remaining Amount
+- Utilization Percentage
+- Difference from Budget
+
+Formula:
+Remaining Budget = Allocated Budget - Actual Eligible Expenses
+Budget Utilization = (Actual Eligible Expenses / Allocated Budget) × 100
+
+Only include expenses that meet the tenant's configured eligibility and approval rules.
+
+Do not count:
+- Rejected expenses
+- Deleted or voided expenses
+- Duplicate expenses
+- Unapproved expenses, unless explicitly configured
+
+Do not include member payments or SaaS subscription payments as expenses.
+
+#### 11. Budget Alerts
+
+Generate alerts when:
+- Budget reaches 75%
+- Budget reaches 90%
+- Budget reaches 100%
+- Budget exceeds 100%
+
+Allow administrators to configure alert thresholds.
+Send notifications through the existing notification system.
+Prevent duplicate alerts for the same budget threshold.
+
+#### 12. Budget Reports and Analytics
+
+Create reports showing:
+- Monthly planned vs actual expenses
+- Category-wise spending
+- Budget utilization
+- Over-budget categories
+- Expense trends
+- Previous month comparison
+- Yearly budget performance
+
+Use clear charts and tables.
+Allow date and category filters.
+Support CSV export if the existing export infrastructure allows it.
+
+#### 13. Budget Approval Workflow
+
+Support optional approval workflows.
+
+Example:
+1. Accountant creates a budget.
+2. Owner or authorized approver reviews it.
+3. Approver approves or rejects it.
+4. Approved budget becomes active.
+
+Allow tenant administrators to configure whether approval is required.
+Record approval history.
+Prevent unauthorized users from approving their own budgets when the tenant's approval policy prohibits it.
+
+#### 14. Budget Changes and Audit History
+
+Allow authorized users to edit budgets.
+
+Track:
+- Previous budget amount
+- Updated budget amount
+- Changed categories
+- Updated by
+- Change date
+- Reason for change
+
+Never silently overwrite important financial history.
+Completed budget periods must remain available for historical reporting.
+
+---
+
+### PART C — INTEGRATION
+
+#### 15. Navigation Integration
+
+Add the following navigation items to the existing Mess Admin Dashboard:
+- Document Vault
+- Budget Management
+
+Place them logically within the existing navigation structure.
+Do not duplicate existing menu items.
+
+#### 16. Member Portal Integration
+
+Allow members to:
+- View documents specifically shared with them
+- Download permitted documents
+- View their own document status, if applicable
+
+Members must not see internal administrative documents or other members' private files.
+Do not expose budget administration tools to ordinary members.
+
+#### 17. Notification Integration
+
+Use the existing notification infrastructure for:
+- Document expiry reminders
+- Document review notifications
+- Budget approval requests
+- Budget approval or rejection
+- Budget threshold alerts
+
+Respect user notification preferences and role permissions.
+
+---
+
+### PART D — DATABASE AND BACKEND
+
+#### 18. Database Requirements
+
+Inspect the existing Prisma schema before making changes.
+Create or update appropriate models for:
+- Document
+- DocumentCategory
+- DocumentAccessRule (if required)
+- DocumentActivity
+- Budget
+- BudgetCategory
+- BudgetAllocation
+- BudgetApproval
+- BudgetAlert
+
+Every tenant-owned record must be properly associated with its tenant.
+Add appropriate foreign keys, indexes, unique constraints, relationships, timestamps, and soft deletion/archival fields.
+Create Prisma migrations / regenerate client.
+Never delete or damage existing data.
+
+#### 19. API and Server Actions
+
+Implement secure backend functionality for:
+- Document upload
+- Document listing
+- Document preview access
+- Document download
+- Document updates
+- Document deletion or archival
+- Category management
+- Expiry tracking
+- Budget creation
+- Budget updates
+- Budget approval
+- Budget calculations
+- Budget reports
+- Budget alerts
+
+Validate all inputs on the server. Check authentication, tenant ownership, and permissions for every protected operation.
+
+#### 20. Security Requirements
+
+Mandatory security requirements:
+- Strict tenant isolation
+- Server-side authorization
+- Private document storage
+- Signed access URLs
+- File type validation
+- File size validation
+- Safe file naming
+- Protection against path traversal
+- Protection against unauthorized file access
+- Audit logging for sensitive operations
+- Rate limiting where appropriate
+
+Do not expose storage credentials, private URLs, or sensitive document metadata.
+
+---
+
+### PART E — UI/UX REQUIREMENTS
+
+- Desktop, tablet, and mobile responsive
+- Clean dashboard cards
+- Search and filtering
+- Loading, empty, error, and success states
+- Confirmation dialogs and form validation
+- Accessible controls and clear permission-denied messages
+
+---
+
+### PART F — TESTING
+
+#### 21. Functional Testing
+Test:
+- Document upload, preview, download, metadata updates, deletion/archival
+- Document visibility rules and expiry reminders
+- Budget creation, editing, approval/rejection
+- Actual expense calculations, utilization calculations, budget alerts, reports
+
+#### 22. Security Testing
+Test:
+- Tenant A cannot access Tenant B's documents or budgets
+- Members cannot access other members' private documents
+- Unauthorized roles cannot upload, delete, or approve documents/budgets
+- Expired or invalid signed URLs cannot provide indefinite access
+- Direct API requests cannot bypass permissions
+
+#### 23. Regression Testing
+Verify that all existing modules (Tasks 23–45) continue to pass.
+
+---
+
+### PART G — COMPLETION REPORT
+
+Provide a detailed completion report and update `PROJECT_PROGRESS.md`.
+

@@ -66,6 +66,13 @@ import type {
   PollOption as PrismaPollOption,
   PollVote as PrismaPollVote,
   MemberSuggestion as PrismaMemberSuggestion,
+  DocumentCategory as PrismaDocumentCategory,
+  MessDocument as PrismaMessDocument,
+  DocumentActivity as PrismaDocumentActivity,
+  Budget as PrismaBudget,
+  BudgetAllocation as PrismaBudgetAllocation,
+  BudgetChangeHistory as PrismaBudgetChangeHistory,
+  BudgetAlert as PrismaBudgetAlert,
   AllocationRule,
   BillingPeriodStatus,
   BillStatus,
@@ -220,6 +227,13 @@ export type Poll = PrismaPoll;
 export type PollOption = PrismaPollOption;
 export type PollVote = PrismaPollVote;
 export type MemberSuggestion = PrismaMemberSuggestion;
+export type DocumentCategory = PrismaDocumentCategory;
+export type MessDocument = PrismaMessDocument;
+export type DocumentActivity = PrismaDocumentActivity;
+export type Budget = PrismaBudget;
+export type BudgetAllocation = PrismaBudgetAllocation;
+export type BudgetChangeHistory = PrismaBudgetChangeHistory;
+export type BudgetAlert = PrismaBudgetAlert;
 
 // -----------------------------------------------------------------------------
 // COMPOSITE & RELATIONAL TYPES

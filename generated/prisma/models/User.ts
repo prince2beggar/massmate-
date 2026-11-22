@@ -280,6 +280,11 @@ export type UserWhereInput = {
   createdPolls?: Prisma.PollListRelationFilter
   pollVotes?: Prisma.PollVoteListRelationFilter
   memberSuggestions?: Prisma.MemberSuggestionListRelationFilter
+  uploadedDocuments?: Prisma.MessDocumentListRelationFilter
+  documentActivities?: Prisma.DocumentActivityListRelationFilter
+  createdBudgets?: Prisma.BudgetListRelationFilter
+  approvedBudgets?: Prisma.BudgetListRelationFilter
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -337,6 +342,11 @@ export type UserOrderByWithRelationInput = {
   createdPolls?: Prisma.PollOrderByRelationAggregateInput
   pollVotes?: Prisma.PollVoteOrderByRelationAggregateInput
   memberSuggestions?: Prisma.MemberSuggestionOrderByRelationAggregateInput
+  uploadedDocuments?: Prisma.MessDocumentOrderByRelationAggregateInput
+  documentActivities?: Prisma.DocumentActivityOrderByRelationAggregateInput
+  createdBudgets?: Prisma.BudgetOrderByRelationAggregateInput
+  approvedBudgets?: Prisma.BudgetOrderByRelationAggregateInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -397,6 +407,11 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdPolls?: Prisma.PollListRelationFilter
   pollVotes?: Prisma.PollVoteListRelationFilter
   memberSuggestions?: Prisma.MemberSuggestionListRelationFilter
+  uploadedDocuments?: Prisma.MessDocumentListRelationFilter
+  documentActivities?: Prisma.DocumentActivityListRelationFilter
+  createdBudgets?: Prisma.BudgetListRelationFilter
+  approvedBudgets?: Prisma.BudgetListRelationFilter
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryListRelationFilter
 }, "id" | "email" | "phone">
 
 export type UserOrderByWithAggregationInput = {
@@ -490,6 +505,11 @@ export type UserCreateInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -547,6 +567,11 @@ export type UserUncheckedCreateInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUpdateInput = {
@@ -604,6 +629,11 @@ export type UserUpdateInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -661,6 +691,11 @@ export type UserUncheckedUpdateInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -1445,6 +1480,78 @@ export type UserUpdateOneRequiredWithoutMemberSuggestionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMemberSuggestionsInput, Prisma.UserUpdateWithoutMemberSuggestionsInput>, Prisma.UserUncheckedUpdateWithoutMemberSuggestionsInput>
 }
 
+export type UserCreateNestedOneWithoutUploadedDocumentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUploadedDocumentsInput, Prisma.UserUncheckedCreateWithoutUploadedDocumentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUploadedDocumentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutUploadedDocumentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUploadedDocumentsInput, Prisma.UserUncheckedCreateWithoutUploadedDocumentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUploadedDocumentsInput
+  upsert?: Prisma.UserUpsertWithoutUploadedDocumentsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUploadedDocumentsInput, Prisma.UserUpdateWithoutUploadedDocumentsInput>, Prisma.UserUncheckedUpdateWithoutUploadedDocumentsInput>
+}
+
+export type UserCreateNestedOneWithoutDocumentActivitiesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDocumentActivitiesInput, Prisma.UserUncheckedCreateWithoutDocumentActivitiesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDocumentActivitiesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutDocumentActivitiesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDocumentActivitiesInput, Prisma.UserUncheckedCreateWithoutDocumentActivitiesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDocumentActivitiesInput
+  upsert?: Prisma.UserUpsertWithoutDocumentActivitiesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDocumentActivitiesInput, Prisma.UserUpdateWithoutDocumentActivitiesInput>, Prisma.UserUncheckedUpdateWithoutDocumentActivitiesInput>
+}
+
+export type UserCreateNestedOneWithoutCreatedBudgetsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedBudgetsInput, Prisma.UserUncheckedCreateWithoutCreatedBudgetsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedBudgetsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutApprovedBudgetsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutApprovedBudgetsInput, Prisma.UserUncheckedCreateWithoutApprovedBudgetsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutApprovedBudgetsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCreatedBudgetsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedBudgetsInput, Prisma.UserUncheckedCreateWithoutCreatedBudgetsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedBudgetsInput
+  upsert?: Prisma.UserUpsertWithoutCreatedBudgetsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedBudgetsInput, Prisma.UserUpdateWithoutCreatedBudgetsInput>, Prisma.UserUncheckedUpdateWithoutCreatedBudgetsInput>
+}
+
+export type UserUpdateOneWithoutApprovedBudgetsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutApprovedBudgetsInput, Prisma.UserUncheckedCreateWithoutApprovedBudgetsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutApprovedBudgetsInput
+  upsert?: Prisma.UserUpsertWithoutApprovedBudgetsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutApprovedBudgetsInput, Prisma.UserUpdateWithoutApprovedBudgetsInput>, Prisma.UserUncheckedUpdateWithoutApprovedBudgetsInput>
+}
+
+export type UserCreateNestedOneWithoutBudgetChangeHistoriesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBudgetChangeHistoriesInput, Prisma.UserUncheckedCreateWithoutBudgetChangeHistoriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBudgetChangeHistoriesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutBudgetChangeHistoriesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBudgetChangeHistoriesInput, Prisma.UserUncheckedCreateWithoutBudgetChangeHistoriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBudgetChangeHistoriesInput
+  upsert?: Prisma.UserUpsertWithoutBudgetChangeHistoriesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBudgetChangeHistoriesInput, Prisma.UserUpdateWithoutBudgetChangeHistoriesInput>, Prisma.UserUncheckedUpdateWithoutBudgetChangeHistoriesInput>
+}
+
 export type UserCreateWithoutReviewedVerificationsInput = {
   id?: string
   name: string
@@ -1499,6 +1606,11 @@ export type UserCreateWithoutReviewedVerificationsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutReviewedVerificationsInput = {
@@ -1555,6 +1667,11 @@ export type UserUncheckedCreateWithoutReviewedVerificationsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutReviewedVerificationsInput = {
@@ -1627,6 +1744,11 @@ export type UserUpdateWithoutReviewedVerificationsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedVerificationsInput = {
@@ -1683,6 +1805,11 @@ export type UserUncheckedUpdateWithoutReviewedVerificationsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutMembershipsInput = {
@@ -1739,6 +1866,11 @@ export type UserCreateWithoutMembershipsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutMembershipsInput = {
@@ -1795,6 +1927,11 @@ export type UserUncheckedCreateWithoutMembershipsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -1867,6 +2004,11 @@ export type UserUpdateWithoutMembershipsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMembershipsInput = {
@@ -1923,6 +2065,11 @@ export type UserUncheckedUpdateWithoutMembershipsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -1979,6 +2126,11 @@ export type UserCreateWithoutAuditLogsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -2035,6 +2187,11 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -2107,6 +2264,11 @@ export type UserUpdateWithoutAuditLogsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -2163,6 +2325,11 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutApprovedSubscriptionsInput = {
@@ -2219,6 +2386,11 @@ export type UserCreateWithoutApprovedSubscriptionsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutApprovedSubscriptionsInput = {
@@ -2275,6 +2447,11 @@ export type UserUncheckedCreateWithoutApprovedSubscriptionsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutApprovedSubscriptionsInput = {
@@ -2347,6 +2524,11 @@ export type UserUpdateWithoutApprovedSubscriptionsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedSubscriptionsInput = {
@@ -2403,6 +2585,11 @@ export type UserUncheckedUpdateWithoutApprovedSubscriptionsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutConfirmedInvoicesInput = {
@@ -2459,6 +2646,11 @@ export type UserCreateWithoutConfirmedInvoicesInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutConfirmedInvoicesInput = {
@@ -2515,6 +2707,11 @@ export type UserUncheckedCreateWithoutConfirmedInvoicesInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutConfirmedInvoicesInput = {
@@ -2587,6 +2784,11 @@ export type UserUpdateWithoutConfirmedInvoicesInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConfirmedInvoicesInput = {
@@ -2643,6 +2845,11 @@ export type UserUncheckedUpdateWithoutConfirmedInvoicesInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutAssignedInquiriesInput = {
@@ -2699,6 +2906,11 @@ export type UserCreateWithoutAssignedInquiriesInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutAssignedInquiriesInput = {
@@ -2755,6 +2967,11 @@ export type UserUncheckedCreateWithoutAssignedInquiriesInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutAssignedInquiriesInput = {
@@ -2827,6 +3044,11 @@ export type UserUpdateWithoutAssignedInquiriesInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedInquiriesInput = {
@@ -2883,6 +3105,11 @@ export type UserUncheckedUpdateWithoutAssignedInquiriesInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutPreparedQuotationsInput = {
@@ -2939,6 +3166,11 @@ export type UserCreateWithoutPreparedQuotationsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutPreparedQuotationsInput = {
@@ -2995,6 +3227,11 @@ export type UserUncheckedCreateWithoutPreparedQuotationsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutPreparedQuotationsInput = {
@@ -3056,6 +3293,11 @@ export type UserCreateWithoutApprovedQuotationsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutApprovedQuotationsInput = {
@@ -3112,6 +3354,11 @@ export type UserUncheckedCreateWithoutApprovedQuotationsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutApprovedQuotationsInput = {
@@ -3184,6 +3431,11 @@ export type UserUpdateWithoutPreparedQuotationsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPreparedQuotationsInput = {
@@ -3240,6 +3492,11 @@ export type UserUncheckedUpdateWithoutPreparedQuotationsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUpsertWithoutApprovedQuotationsInput = {
@@ -3307,6 +3564,11 @@ export type UserUpdateWithoutApprovedQuotationsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedQuotationsInput = {
@@ -3363,6 +3625,11 @@ export type UserUncheckedUpdateWithoutApprovedQuotationsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutRequestedTicketsInput = {
@@ -3419,6 +3686,11 @@ export type UserCreateWithoutRequestedTicketsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutRequestedTicketsInput = {
@@ -3475,6 +3747,11 @@ export type UserUncheckedCreateWithoutRequestedTicketsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutRequestedTicketsInput = {
@@ -3536,6 +3813,11 @@ export type UserCreateWithoutAssignedTicketsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutAssignedTicketsInput = {
@@ -3592,6 +3874,11 @@ export type UserUncheckedCreateWithoutAssignedTicketsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutAssignedTicketsInput = {
@@ -3664,6 +3951,11 @@ export type UserUpdateWithoutRequestedTicketsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequestedTicketsInput = {
@@ -3720,6 +4012,11 @@ export type UserUncheckedUpdateWithoutRequestedTicketsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUpsertWithoutAssignedTicketsInput = {
@@ -3787,6 +4084,11 @@ export type UserUpdateWithoutAssignedTicketsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedTicketsInput = {
@@ -3843,6 +4145,11 @@ export type UserUncheckedUpdateWithoutAssignedTicketsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutTicketMessagesInput = {
@@ -3899,6 +4206,11 @@ export type UserCreateWithoutTicketMessagesInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutTicketMessagesInput = {
@@ -3955,6 +4267,11 @@ export type UserUncheckedCreateWithoutTicketMessagesInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutTicketMessagesInput = {
@@ -4027,6 +4344,11 @@ export type UserUpdateWithoutTicketMessagesInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTicketMessagesInput = {
@@ -4083,6 +4405,11 @@ export type UserUncheckedUpdateWithoutTicketMessagesInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -4139,6 +4466,11 @@ export type UserCreateWithoutNotificationsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -4195,6 +4527,11 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -4267,6 +4604,11 @@ export type UserUpdateWithoutNotificationsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -4323,6 +4665,11 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutAssignedRoomAssignmentsInput = {
@@ -4379,6 +4726,11 @@ export type UserCreateWithoutAssignedRoomAssignmentsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutAssignedRoomAssignmentsInput = {
@@ -4435,6 +4787,11 @@ export type UserUncheckedCreateWithoutAssignedRoomAssignmentsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutAssignedRoomAssignmentsInput = {
@@ -4507,6 +4864,11 @@ export type UserUpdateWithoutAssignedRoomAssignmentsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput = {
@@ -4563,6 +4925,11 @@ export type UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutReviewedBookingsInput = {
@@ -4619,6 +4986,11 @@ export type UserCreateWithoutReviewedBookingsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutReviewedBookingsInput = {
@@ -4675,6 +5047,11 @@ export type UserUncheckedCreateWithoutReviewedBookingsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutReviewedBookingsInput = {
@@ -4747,6 +5124,11 @@ export type UserUpdateWithoutReviewedBookingsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedBookingsInput = {
@@ -4803,6 +5185,11 @@ export type UserUncheckedUpdateWithoutReviewedBookingsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutReviewedMealOffRequestsInput = {
@@ -4859,6 +5246,11 @@ export type UserCreateWithoutReviewedMealOffRequestsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutReviewedMealOffRequestsInput = {
@@ -4915,6 +5307,11 @@ export type UserUncheckedCreateWithoutReviewedMealOffRequestsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutReviewedMealOffRequestsInput = {
@@ -4987,6 +5384,11 @@ export type UserUpdateWithoutReviewedMealOffRequestsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedMealOffRequestsInput = {
@@ -5043,6 +5445,11 @@ export type UserUncheckedUpdateWithoutReviewedMealOffRequestsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutRecordedGuestMealsInput = {
@@ -5099,6 +5506,11 @@ export type UserCreateWithoutRecordedGuestMealsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutRecordedGuestMealsInput = {
@@ -5155,6 +5567,11 @@ export type UserUncheckedCreateWithoutRecordedGuestMealsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutRecordedGuestMealsInput = {
@@ -5227,6 +5644,11 @@ export type UserUpdateWithoutRecordedGuestMealsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRecordedGuestMealsInput = {
@@ -5283,6 +5705,11 @@ export type UserUncheckedUpdateWithoutRecordedGuestMealsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutLockedMealPeriodsInput = {
@@ -5339,6 +5766,11 @@ export type UserCreateWithoutLockedMealPeriodsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutLockedMealPeriodsInput = {
@@ -5395,6 +5827,11 @@ export type UserUncheckedCreateWithoutLockedMealPeriodsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutLockedMealPeriodsInput = {
@@ -5467,6 +5904,11 @@ export type UserUpdateWithoutLockedMealPeriodsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLockedMealPeriodsInput = {
@@ -5523,6 +5965,11 @@ export type UserUncheckedUpdateWithoutLockedMealPeriodsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutReviewedExpensesInput = {
@@ -5579,6 +6026,11 @@ export type UserCreateWithoutReviewedExpensesInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutReviewedExpensesInput = {
@@ -5635,6 +6087,11 @@ export type UserUncheckedCreateWithoutReviewedExpensesInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutReviewedExpensesInput = {
@@ -5707,6 +6164,11 @@ export type UserUpdateWithoutReviewedExpensesInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedExpensesInput = {
@@ -5763,6 +6225,11 @@ export type UserUncheckedUpdateWithoutReviewedExpensesInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutClosedBillingPeriodsInput = {
@@ -5819,6 +6286,11 @@ export type UserCreateWithoutClosedBillingPeriodsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutClosedBillingPeriodsInput = {
@@ -5875,6 +6347,11 @@ export type UserUncheckedCreateWithoutClosedBillingPeriodsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutClosedBillingPeriodsInput = {
@@ -5947,6 +6424,11 @@ export type UserUpdateWithoutClosedBillingPeriodsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutClosedBillingPeriodsInput = {
@@ -6003,6 +6485,11 @@ export type UserUncheckedUpdateWithoutClosedBillingPeriodsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutReceivedMemberPaymentsInput = {
@@ -6059,6 +6546,11 @@ export type UserCreateWithoutReceivedMemberPaymentsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutReceivedMemberPaymentsInput = {
@@ -6115,6 +6607,11 @@ export type UserUncheckedCreateWithoutReceivedMemberPaymentsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutReceivedMemberPaymentsInput = {
@@ -6176,6 +6673,11 @@ export type UserCreateWithoutVerifiedMemberPaymentsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutVerifiedMemberPaymentsInput = {
@@ -6232,6 +6734,11 @@ export type UserUncheckedCreateWithoutVerifiedMemberPaymentsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutVerifiedMemberPaymentsInput = {
@@ -6304,6 +6811,11 @@ export type UserUpdateWithoutReceivedMemberPaymentsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReceivedMemberPaymentsInput = {
@@ -6360,6 +6872,11 @@ export type UserUncheckedUpdateWithoutReceivedMemberPaymentsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUpsertWithoutVerifiedMemberPaymentsInput = {
@@ -6427,6 +6944,11 @@ export type UserUpdateWithoutVerifiedMemberPaymentsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVerifiedMemberPaymentsInput = {
@@ -6483,6 +7005,11 @@ export type UserUncheckedUpdateWithoutVerifiedMemberPaymentsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutAuthorizedAdjustmentsInput = {
@@ -6539,6 +7066,11 @@ export type UserCreateWithoutAuthorizedAdjustmentsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutAuthorizedAdjustmentsInput = {
@@ -6595,6 +7127,11 @@ export type UserUncheckedCreateWithoutAuthorizedAdjustmentsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutAuthorizedAdjustmentsInput = {
@@ -6667,6 +7204,11 @@ export type UserUpdateWithoutAuthorizedAdjustmentsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuthorizedAdjustmentsInput = {
@@ -6723,6 +7265,11 @@ export type UserUncheckedUpdateWithoutAuthorizedAdjustmentsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutAuthoredNoticesInput = {
@@ -6779,6 +7326,11 @@ export type UserCreateWithoutAuthoredNoticesInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutAuthoredNoticesInput = {
@@ -6835,6 +7387,11 @@ export type UserUncheckedCreateWithoutAuthoredNoticesInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutAuthoredNoticesInput = {
@@ -6907,6 +7464,11 @@ export type UserUpdateWithoutAuthoredNoticesInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuthoredNoticesInput = {
@@ -6963,6 +7525,11 @@ export type UserUncheckedUpdateWithoutAuthoredNoticesInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutReviewedMemberRequestsInput = {
@@ -7019,6 +7586,11 @@ export type UserCreateWithoutReviewedMemberRequestsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutReviewedMemberRequestsInput = {
@@ -7075,6 +7647,11 @@ export type UserUncheckedCreateWithoutReviewedMemberRequestsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutReviewedMemberRequestsInput = {
@@ -7147,6 +7724,11 @@ export type UserUpdateWithoutReviewedMemberRequestsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedMemberRequestsInput = {
@@ -7203,6 +7785,11 @@ export type UserUncheckedUpdateWithoutReviewedMemberRequestsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutReviewedComplaintsInput = {
@@ -7259,6 +7846,11 @@ export type UserCreateWithoutReviewedComplaintsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutReviewedComplaintsInput = {
@@ -7315,6 +7907,11 @@ export type UserUncheckedCreateWithoutReviewedComplaintsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutReviewedComplaintsInput = {
@@ -7387,6 +7984,11 @@ export type UserUpdateWithoutReviewedComplaintsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedComplaintsInput = {
@@ -7443,6 +8045,11 @@ export type UserUncheckedUpdateWithoutReviewedComplaintsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutTenantNotificationsInput = {
@@ -7499,6 +8106,11 @@ export type UserCreateWithoutTenantNotificationsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutTenantNotificationsInput = {
@@ -7555,6 +8167,11 @@ export type UserUncheckedCreateWithoutTenantNotificationsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutTenantNotificationsInput = {
@@ -7627,6 +8244,11 @@ export type UserUpdateWithoutTenantNotificationsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTenantNotificationsInput = {
@@ -7683,6 +8305,11 @@ export type UserUncheckedUpdateWithoutTenantNotificationsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutNotificationPreferencesInput = {
@@ -7739,6 +8366,11 @@ export type UserCreateWithoutNotificationPreferencesInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutNotificationPreferencesInput = {
@@ -7795,6 +8427,11 @@ export type UserUncheckedCreateWithoutNotificationPreferencesInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutNotificationPreferencesInput = {
@@ -7867,6 +8504,11 @@ export type UserUpdateWithoutNotificationPreferencesInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationPreferencesInput = {
@@ -7923,6 +8565,11 @@ export type UserUncheckedUpdateWithoutNotificationPreferencesInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutCreatedScheduledRemindersInput = {
@@ -7979,6 +8626,11 @@ export type UserCreateWithoutCreatedScheduledRemindersInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedScheduledRemindersInput = {
@@ -8035,6 +8687,11 @@ export type UserUncheckedCreateWithoutCreatedScheduledRemindersInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedScheduledRemindersInput = {
@@ -8107,6 +8764,11 @@ export type UserUpdateWithoutCreatedScheduledRemindersInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedScheduledRemindersInput = {
@@ -8163,6 +8825,11 @@ export type UserUncheckedUpdateWithoutCreatedScheduledRemindersInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutCreatedStockMovementsInput = {
@@ -8219,6 +8886,11 @@ export type UserCreateWithoutCreatedStockMovementsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedStockMovementsInput = {
@@ -8275,6 +8947,11 @@ export type UserUncheckedCreateWithoutCreatedStockMovementsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedStockMovementsInput = {
@@ -8347,6 +9024,11 @@ export type UserUpdateWithoutCreatedStockMovementsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedStockMovementsInput = {
@@ -8403,6 +9085,11 @@ export type UserUncheckedUpdateWithoutCreatedStockMovementsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutAssignedWorkOrdersInput = {
@@ -8459,6 +9146,11 @@ export type UserCreateWithoutAssignedWorkOrdersInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutAssignedWorkOrdersInput = {
@@ -8515,6 +9207,11 @@ export type UserUncheckedCreateWithoutAssignedWorkOrdersInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutAssignedWorkOrdersInput = {
@@ -8576,6 +9273,11 @@ export type UserCreateWithoutCreatedWorkOrdersInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedWorkOrdersInput = {
@@ -8632,6 +9334,11 @@ export type UserUncheckedCreateWithoutCreatedWorkOrdersInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedWorkOrdersInput = {
@@ -8693,6 +9400,11 @@ export type UserCreateWithoutClosedWorkOrdersInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutClosedWorkOrdersInput = {
@@ -8749,6 +9461,11 @@ export type UserUncheckedCreateWithoutClosedWorkOrdersInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutClosedWorkOrdersInput = {
@@ -8821,6 +9538,11 @@ export type UserUpdateWithoutAssignedWorkOrdersInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedWorkOrdersInput = {
@@ -8877,6 +9599,11 @@ export type UserUncheckedUpdateWithoutAssignedWorkOrdersInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUpsertWithoutCreatedWorkOrdersInput = {
@@ -8944,6 +9671,11 @@ export type UserUpdateWithoutCreatedWorkOrdersInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedWorkOrdersInput = {
@@ -9000,6 +9732,11 @@ export type UserUncheckedUpdateWithoutCreatedWorkOrdersInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUpsertWithoutClosedWorkOrdersInput = {
@@ -9067,6 +9804,11 @@ export type UserUpdateWithoutClosedWorkOrdersInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutClosedWorkOrdersInput = {
@@ -9123,6 +9865,11 @@ export type UserUncheckedUpdateWithoutClosedWorkOrdersInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutWorkOrderStatusChangesInput = {
@@ -9179,6 +9926,11 @@ export type UserCreateWithoutWorkOrderStatusChangesInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutWorkOrderStatusChangesInput = {
@@ -9235,6 +9987,11 @@ export type UserUncheckedCreateWithoutWorkOrderStatusChangesInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutWorkOrderStatusChangesInput = {
@@ -9307,6 +10064,11 @@ export type UserUpdateWithoutWorkOrderStatusChangesInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkOrderStatusChangesInput = {
@@ -9363,6 +10125,11 @@ export type UserUncheckedUpdateWithoutWorkOrderStatusChangesInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutAssignedOperationalTasksInput = {
@@ -9419,6 +10186,11 @@ export type UserCreateWithoutAssignedOperationalTasksInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutAssignedOperationalTasksInput = {
@@ -9475,6 +10247,11 @@ export type UserUncheckedCreateWithoutAssignedOperationalTasksInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutAssignedOperationalTasksInput = {
@@ -9536,6 +10313,11 @@ export type UserCreateWithoutCreatedOperationalTasksInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedOperationalTasksInput = {
@@ -9592,6 +10374,11 @@ export type UserUncheckedCreateWithoutCreatedOperationalTasksInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedOperationalTasksInput = {
@@ -9664,6 +10451,11 @@ export type UserUpdateWithoutAssignedOperationalTasksInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedOperationalTasksInput = {
@@ -9720,6 +10512,11 @@ export type UserUncheckedUpdateWithoutAssignedOperationalTasksInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUpsertWithoutCreatedOperationalTasksInput = {
@@ -9787,6 +10584,11 @@ export type UserUpdateWithoutCreatedOperationalTasksInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedOperationalTasksInput = {
@@ -9843,6 +10645,11 @@ export type UserUncheckedUpdateWithoutCreatedOperationalTasksInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutHostedVisitorsInput = {
@@ -9899,6 +10706,11 @@ export type UserCreateWithoutHostedVisitorsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutHostedVisitorsInput = {
@@ -9955,6 +10767,11 @@ export type UserUncheckedCreateWithoutHostedVisitorsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutHostedVisitorsInput = {
@@ -10016,6 +10833,11 @@ export type UserCreateWithoutRecordedVisitorsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutRecordedVisitorsInput = {
@@ -10072,6 +10894,11 @@ export type UserUncheckedCreateWithoutRecordedVisitorsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutRecordedVisitorsInput = {
@@ -10133,6 +10960,11 @@ export type UserCreateWithoutCheckedInVisitorsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutCheckedInVisitorsInput = {
@@ -10189,6 +11021,11 @@ export type UserUncheckedCreateWithoutCheckedInVisitorsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutCheckedInVisitorsInput = {
@@ -10250,6 +11087,11 @@ export type UserCreateWithoutCheckedOutVisitorsInput = {
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutCheckedOutVisitorsInput = {
@@ -10306,6 +11148,11 @@ export type UserUncheckedCreateWithoutCheckedOutVisitorsInput = {
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutCheckedOutVisitorsInput = {
@@ -10378,6 +11225,11 @@ export type UserUpdateWithoutHostedVisitorsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutHostedVisitorsInput = {
@@ -10434,6 +11286,11 @@ export type UserUncheckedUpdateWithoutHostedVisitorsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUpsertWithoutRecordedVisitorsInput = {
@@ -10501,6 +11358,11 @@ export type UserUpdateWithoutRecordedVisitorsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRecordedVisitorsInput = {
@@ -10557,6 +11419,11 @@ export type UserUncheckedUpdateWithoutRecordedVisitorsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUpsertWithoutCheckedInVisitorsInput = {
@@ -10624,6 +11491,11 @@ export type UserUpdateWithoutCheckedInVisitorsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCheckedInVisitorsInput = {
@@ -10680,6 +11552,11 @@ export type UserUncheckedUpdateWithoutCheckedInVisitorsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUpsertWithoutCheckedOutVisitorsInput = {
@@ -10747,6 +11624,11 @@ export type UserUpdateWithoutCheckedOutVisitorsInput = {
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCheckedOutVisitorsInput = {
@@ -10803,6 +11685,11 @@ export type UserUncheckedUpdateWithoutCheckedOutVisitorsInput = {
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutCreatedPollsInput = {
@@ -10859,6 +11746,11 @@ export type UserCreateWithoutCreatedPollsInput = {
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutCreatedPollsInput = {
@@ -10915,6 +11807,11 @@ export type UserUncheckedCreateWithoutCreatedPollsInput = {
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutCreatedPollsInput = {
@@ -10987,6 +11884,11 @@ export type UserUpdateWithoutCreatedPollsInput = {
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedPollsInput = {
@@ -11043,6 +11945,11 @@ export type UserUncheckedUpdateWithoutCreatedPollsInput = {
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutPollVotesInput = {
@@ -11099,6 +12006,11 @@ export type UserCreateWithoutPollVotesInput = {
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutPollVotesInput = {
@@ -11155,6 +12067,11 @@ export type UserUncheckedCreateWithoutPollVotesInput = {
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutPollVotesInput = {
@@ -11227,6 +12144,11 @@ export type UserUpdateWithoutPollVotesInput = {
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPollVotesInput = {
@@ -11283,6 +12205,11 @@ export type UserUncheckedUpdateWithoutPollVotesInput = {
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserCreateWithoutMemberSuggestionsInput = {
@@ -11339,6 +12266,11 @@ export type UserCreateWithoutMemberSuggestionsInput = {
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
   createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
 }
 
 export type UserUncheckedCreateWithoutMemberSuggestionsInput = {
@@ -11395,6 +12327,11 @@ export type UserUncheckedCreateWithoutMemberSuggestionsInput = {
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
   createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
   pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
 }
 
 export type UserCreateOrConnectWithoutMemberSuggestionsInput = {
@@ -11467,6 +12404,11 @@ export type UserUpdateWithoutMemberSuggestionsInput = {
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
   createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMemberSuggestionsInput = {
@@ -11523,6 +12465,1311 @@ export type UserUncheckedUpdateWithoutMemberSuggestionsInput = {
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
   createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
   pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+}
+
+export type UserCreateWithoutUploadedDocumentsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
+  assignedWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutAssignedUserInput
+  createdWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutCreatorInput
+  closedWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutCloserInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryCreateNestedManyWithoutChangedByInput
+  assignedOperationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutAssignedUserInput
+  createdOperationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutCreatorInput
+  hostedVisitors?: Prisma.VisitorCreateNestedManyWithoutHostUserInput
+  recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
+  checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
+  checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
+}
+
+export type UserUncheckedCreateWithoutUploadedDocumentsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
+  assignedWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutAssignedUserInput
+  createdWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatorInput
+  closedWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCloserInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutAssignedUserInput
+  createdOperationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutCreatorInput
+  hostedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutHostUserInput
+  recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
+  checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
+  checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
+}
+
+export type UserCreateOrConnectWithoutUploadedDocumentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutUploadedDocumentsInput, Prisma.UserUncheckedCreateWithoutUploadedDocumentsInput>
+}
+
+export type UserUpsertWithoutUploadedDocumentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutUploadedDocumentsInput, Prisma.UserUncheckedUpdateWithoutUploadedDocumentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutUploadedDocumentsInput, Prisma.UserUncheckedCreateWithoutUploadedDocumentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutUploadedDocumentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutUploadedDocumentsInput, Prisma.UserUncheckedUpdateWithoutUploadedDocumentsInput>
+}
+
+export type UserUpdateWithoutUploadedDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
+  assignedWorkOrders?: Prisma.WorkOrderUpdateManyWithoutAssignedUserNestedInput
+  createdWorkOrders?: Prisma.WorkOrderUpdateManyWithoutCreatorNestedInput
+  closedWorkOrders?: Prisma.WorkOrderUpdateManyWithoutCloserNestedInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUpdateManyWithoutChangedByNestedInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUpdateManyWithoutAssignedUserNestedInput
+  createdOperationalTasks?: Prisma.OperationalTaskUpdateManyWithoutCreatorNestedInput
+  hostedVisitors?: Prisma.VisitorUpdateManyWithoutHostUserNestedInput
+  recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
+  checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
+  checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutUploadedDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
+  assignedWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutAssignedUserNestedInput
+  createdWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatorNestedInput
+  closedWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutCloserNestedInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutAssignedUserNestedInput
+  createdOperationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  hostedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutHostUserNestedInput
+  recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
+  checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
+  checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+}
+
+export type UserCreateWithoutDocumentActivitiesInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
+  assignedWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutAssignedUserInput
+  createdWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutCreatorInput
+  closedWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutCloserInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryCreateNestedManyWithoutChangedByInput
+  assignedOperationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutAssignedUserInput
+  createdOperationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutCreatorInput
+  hostedVisitors?: Prisma.VisitorCreateNestedManyWithoutHostUserInput
+  recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
+  checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
+  checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
+}
+
+export type UserUncheckedCreateWithoutDocumentActivitiesInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
+  assignedWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutAssignedUserInput
+  createdWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatorInput
+  closedWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCloserInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutAssignedUserInput
+  createdOperationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutCreatorInput
+  hostedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutHostUserInput
+  recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
+  checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
+  checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
+}
+
+export type UserCreateOrConnectWithoutDocumentActivitiesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDocumentActivitiesInput, Prisma.UserUncheckedCreateWithoutDocumentActivitiesInput>
+}
+
+export type UserUpsertWithoutDocumentActivitiesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDocumentActivitiesInput, Prisma.UserUncheckedUpdateWithoutDocumentActivitiesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDocumentActivitiesInput, Prisma.UserUncheckedCreateWithoutDocumentActivitiesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDocumentActivitiesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDocumentActivitiesInput, Prisma.UserUncheckedUpdateWithoutDocumentActivitiesInput>
+}
+
+export type UserUpdateWithoutDocumentActivitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
+  assignedWorkOrders?: Prisma.WorkOrderUpdateManyWithoutAssignedUserNestedInput
+  createdWorkOrders?: Prisma.WorkOrderUpdateManyWithoutCreatorNestedInput
+  closedWorkOrders?: Prisma.WorkOrderUpdateManyWithoutCloserNestedInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUpdateManyWithoutChangedByNestedInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUpdateManyWithoutAssignedUserNestedInput
+  createdOperationalTasks?: Prisma.OperationalTaskUpdateManyWithoutCreatorNestedInput
+  hostedVisitors?: Prisma.VisitorUpdateManyWithoutHostUserNestedInput
+  recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
+  checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
+  checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDocumentActivitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
+  assignedWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutAssignedUserNestedInput
+  createdWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatorNestedInput
+  closedWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutCloserNestedInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutAssignedUserNestedInput
+  createdOperationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  hostedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutHostUserNestedInput
+  recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
+  checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
+  checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+}
+
+export type UserCreateWithoutCreatedBudgetsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
+  assignedWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutAssignedUserInput
+  createdWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutCreatorInput
+  closedWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutCloserInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryCreateNestedManyWithoutChangedByInput
+  assignedOperationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutAssignedUserInput
+  createdOperationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutCreatorInput
+  hostedVisitors?: Prisma.VisitorCreateNestedManyWithoutHostUserInput
+  recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
+  checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
+  checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
+}
+
+export type UserUncheckedCreateWithoutCreatedBudgetsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
+  assignedWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutAssignedUserInput
+  createdWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatorInput
+  closedWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCloserInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutAssignedUserInput
+  createdOperationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutCreatorInput
+  hostedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutHostUserInput
+  recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
+  checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
+  checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
+}
+
+export type UserCreateOrConnectWithoutCreatedBudgetsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedBudgetsInput, Prisma.UserUncheckedCreateWithoutCreatedBudgetsInput>
+}
+
+export type UserCreateWithoutApprovedBudgetsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
+  assignedWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutAssignedUserInput
+  createdWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutCreatorInput
+  closedWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutCloserInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryCreateNestedManyWithoutChangedByInput
+  assignedOperationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutAssignedUserInput
+  createdOperationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutCreatorInput
+  hostedVisitors?: Prisma.VisitorCreateNestedManyWithoutHostUserInput
+  recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
+  checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
+  checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryCreateNestedManyWithoutChangedByInput
+}
+
+export type UserUncheckedCreateWithoutApprovedBudgetsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
+  assignedWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutAssignedUserInput
+  createdWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatorInput
+  closedWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCloserInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutAssignedUserInput
+  createdOperationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutCreatorInput
+  hostedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutHostUserInput
+  recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
+  checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
+  checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedCreateNestedManyWithoutChangedByInput
+}
+
+export type UserCreateOrConnectWithoutApprovedBudgetsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutApprovedBudgetsInput, Prisma.UserUncheckedCreateWithoutApprovedBudgetsInput>
+}
+
+export type UserUpsertWithoutCreatedBudgetsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedBudgetsInput, Prisma.UserUncheckedUpdateWithoutCreatedBudgetsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedBudgetsInput, Prisma.UserUncheckedCreateWithoutCreatedBudgetsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedBudgetsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedBudgetsInput, Prisma.UserUncheckedUpdateWithoutCreatedBudgetsInput>
+}
+
+export type UserUpdateWithoutCreatedBudgetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
+  assignedWorkOrders?: Prisma.WorkOrderUpdateManyWithoutAssignedUserNestedInput
+  createdWorkOrders?: Prisma.WorkOrderUpdateManyWithoutCreatorNestedInput
+  closedWorkOrders?: Prisma.WorkOrderUpdateManyWithoutCloserNestedInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUpdateManyWithoutChangedByNestedInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUpdateManyWithoutAssignedUserNestedInput
+  createdOperationalTasks?: Prisma.OperationalTaskUpdateManyWithoutCreatorNestedInput
+  hostedVisitors?: Prisma.VisitorUpdateManyWithoutHostUserNestedInput
+  recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
+  checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
+  checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedBudgetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
+  assignedWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutAssignedUserNestedInput
+  createdWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatorNestedInput
+  closedWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutCloserNestedInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutAssignedUserNestedInput
+  createdOperationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  hostedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutHostUserNestedInput
+  recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
+  checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
+  checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+}
+
+export type UserUpsertWithoutApprovedBudgetsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutApprovedBudgetsInput, Prisma.UserUncheckedUpdateWithoutApprovedBudgetsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutApprovedBudgetsInput, Prisma.UserUncheckedCreateWithoutApprovedBudgetsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutApprovedBudgetsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutApprovedBudgetsInput, Prisma.UserUncheckedUpdateWithoutApprovedBudgetsInput>
+}
+
+export type UserUpdateWithoutApprovedBudgetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
+  assignedWorkOrders?: Prisma.WorkOrderUpdateManyWithoutAssignedUserNestedInput
+  createdWorkOrders?: Prisma.WorkOrderUpdateManyWithoutCreatorNestedInput
+  closedWorkOrders?: Prisma.WorkOrderUpdateManyWithoutCloserNestedInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUpdateManyWithoutChangedByNestedInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUpdateManyWithoutAssignedUserNestedInput
+  createdOperationalTasks?: Prisma.OperationalTaskUpdateManyWithoutCreatorNestedInput
+  hostedVisitors?: Prisma.VisitorUpdateManyWithoutHostUserNestedInput
+  recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
+  checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
+  checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUpdateManyWithoutChangedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutApprovedBudgetsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
+  assignedWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutAssignedUserNestedInput
+  createdWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatorNestedInput
+  closedWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutCloserNestedInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutAssignedUserNestedInput
+  createdOperationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  hostedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutHostUserNestedInput
+  recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
+  checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
+  checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  budgetChangeHistories?: Prisma.BudgetChangeHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+}
+
+export type UserCreateWithoutBudgetChangeHistoriesInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
+  assignedWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutAssignedUserInput
+  createdWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutCreatorInput
+  closedWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutCloserInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryCreateNestedManyWithoutChangedByInput
+  assignedOperationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutAssignedUserInput
+  createdOperationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutCreatorInput
+  hostedVisitors?: Prisma.VisitorCreateNestedManyWithoutHostUserInput
+  recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
+  checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
+  checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetCreateNestedManyWithoutApproverInput
+}
+
+export type UserUncheckedCreateWithoutBudgetChangeHistoriesInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
+  assignedWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutAssignedUserInput
+  createdWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatorInput
+  closedWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCloserInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutAssignedUserInput
+  createdOperationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutCreatorInput
+  hostedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutHostUserInput
+  recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
+  checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
+  checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutUploadedByInput
+  documentActivities?: Prisma.DocumentActivityUncheckedCreateNestedManyWithoutActorUserInput
+  createdBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutCreatorInput
+  approvedBudgets?: Prisma.BudgetUncheckedCreateNestedManyWithoutApproverInput
+}
+
+export type UserCreateOrConnectWithoutBudgetChangeHistoriesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutBudgetChangeHistoriesInput, Prisma.UserUncheckedCreateWithoutBudgetChangeHistoriesInput>
+}
+
+export type UserUpsertWithoutBudgetChangeHistoriesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBudgetChangeHistoriesInput, Prisma.UserUncheckedUpdateWithoutBudgetChangeHistoriesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBudgetChangeHistoriesInput, Prisma.UserUncheckedCreateWithoutBudgetChangeHistoriesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutBudgetChangeHistoriesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBudgetChangeHistoriesInput, Prisma.UserUncheckedUpdateWithoutBudgetChangeHistoriesInput>
+}
+
+export type UserUpdateWithoutBudgetChangeHistoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
+  assignedWorkOrders?: Prisma.WorkOrderUpdateManyWithoutAssignedUserNestedInput
+  createdWorkOrders?: Prisma.WorkOrderUpdateManyWithoutCreatorNestedInput
+  closedWorkOrders?: Prisma.WorkOrderUpdateManyWithoutCloserNestedInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUpdateManyWithoutChangedByNestedInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUpdateManyWithoutAssignedUserNestedInput
+  createdOperationalTasks?: Prisma.OperationalTaskUpdateManyWithoutCreatorNestedInput
+  hostedVisitors?: Prisma.VisitorUpdateManyWithoutHostUserNestedInput
+  recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
+  checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
+  checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUpdateManyWithoutApproverNestedInput
+}
+
+export type UserUncheckedUpdateWithoutBudgetChangeHistoriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
+  assignedWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutAssignedUserNestedInput
+  createdWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatorNestedInput
+  closedWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutCloserNestedInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutAssignedUserNestedInput
+  createdOperationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  hostedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutHostUserNestedInput
+  recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
+  checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
+  checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+  uploadedDocuments?: Prisma.MessDocumentUncheckedUpdateManyWithoutUploadedByNestedInput
+  documentActivities?: Prisma.DocumentActivityUncheckedUpdateManyWithoutActorUserNestedInput
+  createdBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutCreatorNestedInput
+  approvedBudgets?: Prisma.BudgetUncheckedUpdateManyWithoutApproverNestedInput
 }
 
 
@@ -11573,6 +13820,11 @@ export type UserCountOutputType = {
   createdPolls: number
   pollVotes: number
   memberSuggestions: number
+  uploadedDocuments: number
+  documentActivities: number
+  createdBudgets: number
+  approvedBudgets: number
+  budgetChangeHistories: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -11618,6 +13870,11 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   createdPolls?: boolean | UserCountOutputTypeCountCreatedPollsArgs
   pollVotes?: boolean | UserCountOutputTypeCountPollVotesArgs
   memberSuggestions?: boolean | UserCountOutputTypeCountMemberSuggestionsArgs
+  uploadedDocuments?: boolean | UserCountOutputTypeCountUploadedDocumentsArgs
+  documentActivities?: boolean | UserCountOutputTypeCountDocumentActivitiesArgs
+  createdBudgets?: boolean | UserCountOutputTypeCountCreatedBudgetsArgs
+  approvedBudgets?: boolean | UserCountOutputTypeCountApprovedBudgetsArgs
+  budgetChangeHistories?: boolean | UserCountOutputTypeCountBudgetChangeHistoriesArgs
 }
 
 /**
@@ -11924,6 +14181,41 @@ export type UserCountOutputTypeCountMemberSuggestionsArgs<ExtArgs extends runtim
   where?: Prisma.MemberSuggestionWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountUploadedDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MessDocumentWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDocumentActivitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DocumentActivityWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedBudgetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BudgetWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountApprovedBudgetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BudgetWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountBudgetChangeHistoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BudgetChangeHistoryWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -11980,6 +14272,11 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdPolls?: boolean | Prisma.User$createdPollsArgs<ExtArgs>
   pollVotes?: boolean | Prisma.User$pollVotesArgs<ExtArgs>
   memberSuggestions?: boolean | Prisma.User$memberSuggestionsArgs<ExtArgs>
+  uploadedDocuments?: boolean | Prisma.User$uploadedDocumentsArgs<ExtArgs>
+  documentActivities?: boolean | Prisma.User$documentActivitiesArgs<ExtArgs>
+  createdBudgets?: boolean | Prisma.User$createdBudgetsArgs<ExtArgs>
+  approvedBudgets?: boolean | Prisma.User$approvedBudgetsArgs<ExtArgs>
+  budgetChangeHistories?: boolean | Prisma.User$budgetChangeHistoriesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -12072,6 +14369,11 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   createdPolls?: boolean | Prisma.User$createdPollsArgs<ExtArgs>
   pollVotes?: boolean | Prisma.User$pollVotesArgs<ExtArgs>
   memberSuggestions?: boolean | Prisma.User$memberSuggestionsArgs<ExtArgs>
+  uploadedDocuments?: boolean | Prisma.User$uploadedDocumentsArgs<ExtArgs>
+  documentActivities?: boolean | Prisma.User$documentActivitiesArgs<ExtArgs>
+  createdBudgets?: boolean | Prisma.User$createdBudgetsArgs<ExtArgs>
+  approvedBudgets?: boolean | Prisma.User$approvedBudgetsArgs<ExtArgs>
+  budgetChangeHistories?: boolean | Prisma.User$budgetChangeHistoriesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -12122,6 +14424,11 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     createdPolls: Prisma.$PollPayload<ExtArgs>[]
     pollVotes: Prisma.$PollVotePayload<ExtArgs>[]
     memberSuggestions: Prisma.$MemberSuggestionPayload<ExtArgs>[]
+    uploadedDocuments: Prisma.$MessDocumentPayload<ExtArgs>[]
+    documentActivities: Prisma.$DocumentActivityPayload<ExtArgs>[]
+    createdBudgets: Prisma.$BudgetPayload<ExtArgs>[]
+    approvedBudgets: Prisma.$BudgetPayload<ExtArgs>[]
+    budgetChangeHistories: Prisma.$BudgetChangeHistoryPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -12572,6 +14879,11 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   createdPolls<T extends Prisma.User$createdPollsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdPollsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PollPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   pollVotes<T extends Prisma.User$pollVotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pollVotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PollVotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   memberSuggestions<T extends Prisma.User$memberSuggestionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$memberSuggestionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberSuggestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  uploadedDocuments<T extends Prisma.User$uploadedDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$uploadedDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  documentActivities<T extends Prisma.User$documentActivitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$documentActivitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdBudgets<T extends Prisma.User$createdBudgetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdBudgetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  approvedBudgets<T extends Prisma.User$approvedBudgetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$approvedBudgetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  budgetChangeHistories<T extends Prisma.User$budgetChangeHistoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$budgetChangeHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BudgetChangeHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14011,6 +16323,126 @@ export type User$memberSuggestionsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.MemberSuggestionScalarFieldEnum | Prisma.MemberSuggestionScalarFieldEnum[]
+}
+
+/**
+ * User.uploadedDocuments
+ */
+export type User$uploadedDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MessDocument
+   */
+  select?: Prisma.MessDocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MessDocument
+   */
+  omit?: Prisma.MessDocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MessDocumentInclude<ExtArgs> | null
+  where?: Prisma.MessDocumentWhereInput
+  orderBy?: Prisma.MessDocumentOrderByWithRelationInput | Prisma.MessDocumentOrderByWithRelationInput[]
+  cursor?: Prisma.MessDocumentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MessDocumentScalarFieldEnum | Prisma.MessDocumentScalarFieldEnum[]
+}
+
+/**
+ * User.documentActivities
+ */
+export type User$documentActivitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DocumentActivity
+   */
+  select?: Prisma.DocumentActivitySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DocumentActivity
+   */
+  omit?: Prisma.DocumentActivityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DocumentActivityInclude<ExtArgs> | null
+  where?: Prisma.DocumentActivityWhereInput
+  orderBy?: Prisma.DocumentActivityOrderByWithRelationInput | Prisma.DocumentActivityOrderByWithRelationInput[]
+  cursor?: Prisma.DocumentActivityWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DocumentActivityScalarFieldEnum | Prisma.DocumentActivityScalarFieldEnum[]
+}
+
+/**
+ * User.createdBudgets
+ */
+export type User$createdBudgetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Budget
+   */
+  select?: Prisma.BudgetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Budget
+   */
+  omit?: Prisma.BudgetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BudgetInclude<ExtArgs> | null
+  where?: Prisma.BudgetWhereInput
+  orderBy?: Prisma.BudgetOrderByWithRelationInput | Prisma.BudgetOrderByWithRelationInput[]
+  cursor?: Prisma.BudgetWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BudgetScalarFieldEnum | Prisma.BudgetScalarFieldEnum[]
+}
+
+/**
+ * User.approvedBudgets
+ */
+export type User$approvedBudgetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Budget
+   */
+  select?: Prisma.BudgetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Budget
+   */
+  omit?: Prisma.BudgetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BudgetInclude<ExtArgs> | null
+  where?: Prisma.BudgetWhereInput
+  orderBy?: Prisma.BudgetOrderByWithRelationInput | Prisma.BudgetOrderByWithRelationInput[]
+  cursor?: Prisma.BudgetWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BudgetScalarFieldEnum | Prisma.BudgetScalarFieldEnum[]
+}
+
+/**
+ * User.budgetChangeHistories
+ */
+export type User$budgetChangeHistoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BudgetChangeHistory
+   */
+  select?: Prisma.BudgetChangeHistorySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BudgetChangeHistory
+   */
+  omit?: Prisma.BudgetChangeHistoryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BudgetChangeHistoryInclude<ExtArgs> | null
+  where?: Prisma.BudgetChangeHistoryWhereInput
+  orderBy?: Prisma.BudgetChangeHistoryOrderByWithRelationInput | Prisma.BudgetChangeHistoryOrderByWithRelationInput[]
+  cursor?: Prisma.BudgetChangeHistoryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BudgetChangeHistoryScalarFieldEnum | Prisma.BudgetChangeHistoryScalarFieldEnum[]
 }
 
 /**

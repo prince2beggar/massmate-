@@ -295,6 +295,7 @@ export type RoomWhereInput = {
   roomChangeRequests?: Prisma.MemberRequestListRelationFilter
   inventoryItems?: Prisma.InventoryItemListRelationFilter
   workOrders?: Prisma.WorkOrderListRelationFilter
+  documents?: Prisma.MessDocumentListRelationFilter
 }
 
 export type RoomOrderByWithRelationInput = {
@@ -319,6 +320,7 @@ export type RoomOrderByWithRelationInput = {
   roomChangeRequests?: Prisma.MemberRequestOrderByRelationAggregateInput
   inventoryItems?: Prisma.InventoryItemOrderByRelationAggregateInput
   workOrders?: Prisma.WorkOrderOrderByRelationAggregateInput
+  documents?: Prisma.MessDocumentOrderByRelationAggregateInput
 }
 
 export type RoomWhereUniqueInput = Prisma.AtLeast<{
@@ -347,6 +349,7 @@ export type RoomWhereUniqueInput = Prisma.AtLeast<{
   roomChangeRequests?: Prisma.MemberRequestListRelationFilter
   inventoryItems?: Prisma.InventoryItemListRelationFilter
   workOrders?: Prisma.WorkOrderListRelationFilter
+  documents?: Prisma.MessDocumentListRelationFilter
 }, "id" | "tenantId_roomNumber">
 
 export type RoomOrderByWithAggregationInput = {
@@ -412,6 +415,7 @@ export type RoomCreateInput = {
   roomChangeRequests?: Prisma.MemberRequestCreateNestedManyWithoutRequestedRoomInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutAssignedRoomInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutRoomInput
+  documents?: Prisma.MessDocumentCreateNestedManyWithoutRelatedRoomInput
 }
 
 export type RoomUncheckedCreateInput = {
@@ -435,6 +439,7 @@ export type RoomUncheckedCreateInput = {
   roomChangeRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutRequestedRoomInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutAssignedRoomInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutRoomInput
+  documents?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutRelatedRoomInput
 }
 
 export type RoomUpdateInput = {
@@ -458,6 +463,7 @@ export type RoomUpdateInput = {
   roomChangeRequests?: Prisma.MemberRequestUpdateManyWithoutRequestedRoomNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutAssignedRoomNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutRoomNestedInput
+  documents?: Prisma.MessDocumentUpdateManyWithoutRelatedRoomNestedInput
 }
 
 export type RoomUncheckedUpdateInput = {
@@ -481,6 +487,7 @@ export type RoomUncheckedUpdateInput = {
   roomChangeRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutRequestedRoomNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutAssignedRoomNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutRoomNestedInput
+  documents?: Prisma.MessDocumentUncheckedUpdateManyWithoutRelatedRoomNestedInput
 }
 
 export type RoomCreateManyInput = {
@@ -755,6 +762,22 @@ export type RoomUpdateOneWithoutWorkOrdersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.RoomUpdateToOneWithWhereWithoutWorkOrdersInput, Prisma.RoomUpdateWithoutWorkOrdersInput>, Prisma.RoomUncheckedUpdateWithoutWorkOrdersInput>
 }
 
+export type RoomCreateNestedOneWithoutDocumentsInput = {
+  create?: Prisma.XOR<Prisma.RoomCreateWithoutDocumentsInput, Prisma.RoomUncheckedCreateWithoutDocumentsInput>
+  connectOrCreate?: Prisma.RoomCreateOrConnectWithoutDocumentsInput
+  connect?: Prisma.RoomWhereUniqueInput
+}
+
+export type RoomUpdateOneWithoutDocumentsNestedInput = {
+  create?: Prisma.XOR<Prisma.RoomCreateWithoutDocumentsInput, Prisma.RoomUncheckedCreateWithoutDocumentsInput>
+  connectOrCreate?: Prisma.RoomCreateOrConnectWithoutDocumentsInput
+  upsert?: Prisma.RoomUpsertWithoutDocumentsInput
+  disconnect?: Prisma.RoomWhereInput | boolean
+  delete?: Prisma.RoomWhereInput | boolean
+  connect?: Prisma.RoomWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RoomUpdateToOneWithWhereWithoutDocumentsInput, Prisma.RoomUpdateWithoutDocumentsInput>, Prisma.RoomUncheckedUpdateWithoutDocumentsInput>
+}
+
 export type RoomCreateWithoutTenantInput = {
   id?: string
   roomNumber: string
@@ -775,6 +798,7 @@ export type RoomCreateWithoutTenantInput = {
   roomChangeRequests?: Prisma.MemberRequestCreateNestedManyWithoutRequestedRoomInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutAssignedRoomInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutRoomInput
+  documents?: Prisma.MessDocumentCreateNestedManyWithoutRelatedRoomInput
 }
 
 export type RoomUncheckedCreateWithoutTenantInput = {
@@ -797,6 +821,7 @@ export type RoomUncheckedCreateWithoutTenantInput = {
   roomChangeRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutRequestedRoomInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutAssignedRoomInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutRoomInput
+  documents?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutRelatedRoomInput
 }
 
 export type RoomCreateOrConnectWithoutTenantInput = {
@@ -865,6 +890,7 @@ export type RoomCreateWithoutBedsInput = {
   roomChangeRequests?: Prisma.MemberRequestCreateNestedManyWithoutRequestedRoomInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutAssignedRoomInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutRoomInput
+  documents?: Prisma.MessDocumentCreateNestedManyWithoutRelatedRoomInput
 }
 
 export type RoomUncheckedCreateWithoutBedsInput = {
@@ -887,6 +913,7 @@ export type RoomUncheckedCreateWithoutBedsInput = {
   roomChangeRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutRequestedRoomInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutAssignedRoomInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutRoomInput
+  documents?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutRelatedRoomInput
 }
 
 export type RoomCreateOrConnectWithoutBedsInput = {
@@ -925,6 +952,7 @@ export type RoomUpdateWithoutBedsInput = {
   roomChangeRequests?: Prisma.MemberRequestUpdateManyWithoutRequestedRoomNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutAssignedRoomNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutRoomNestedInput
+  documents?: Prisma.MessDocumentUpdateManyWithoutRelatedRoomNestedInput
 }
 
 export type RoomUncheckedUpdateWithoutBedsInput = {
@@ -947,6 +975,7 @@ export type RoomUncheckedUpdateWithoutBedsInput = {
   roomChangeRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutRequestedRoomNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutAssignedRoomNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutRoomNestedInput
+  documents?: Prisma.MessDocumentUncheckedUpdateManyWithoutRelatedRoomNestedInput
 }
 
 export type RoomCreateWithoutAssignmentsInput = {
@@ -969,6 +998,7 @@ export type RoomCreateWithoutAssignmentsInput = {
   roomChangeRequests?: Prisma.MemberRequestCreateNestedManyWithoutRequestedRoomInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutAssignedRoomInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutRoomInput
+  documents?: Prisma.MessDocumentCreateNestedManyWithoutRelatedRoomInput
 }
 
 export type RoomUncheckedCreateWithoutAssignmentsInput = {
@@ -991,6 +1021,7 @@ export type RoomUncheckedCreateWithoutAssignmentsInput = {
   roomChangeRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutRequestedRoomInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutAssignedRoomInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutRoomInput
+  documents?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutRelatedRoomInput
 }
 
 export type RoomCreateOrConnectWithoutAssignmentsInput = {
@@ -1029,6 +1060,7 @@ export type RoomUpdateWithoutAssignmentsInput = {
   roomChangeRequests?: Prisma.MemberRequestUpdateManyWithoutRequestedRoomNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutAssignedRoomNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutRoomNestedInput
+  documents?: Prisma.MessDocumentUpdateManyWithoutRelatedRoomNestedInput
 }
 
 export type RoomUncheckedUpdateWithoutAssignmentsInput = {
@@ -1051,6 +1083,7 @@ export type RoomUncheckedUpdateWithoutAssignmentsInput = {
   roomChangeRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutRequestedRoomNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutAssignedRoomNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutRoomNestedInput
+  documents?: Prisma.MessDocumentUncheckedUpdateManyWithoutRelatedRoomNestedInput
 }
 
 export type RoomCreateWithoutRentalListingsInput = {
@@ -1073,6 +1106,7 @@ export type RoomCreateWithoutRentalListingsInput = {
   roomChangeRequests?: Prisma.MemberRequestCreateNestedManyWithoutRequestedRoomInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutAssignedRoomInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutRoomInput
+  documents?: Prisma.MessDocumentCreateNestedManyWithoutRelatedRoomInput
 }
 
 export type RoomUncheckedCreateWithoutRentalListingsInput = {
@@ -1095,6 +1129,7 @@ export type RoomUncheckedCreateWithoutRentalListingsInput = {
   roomChangeRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutRequestedRoomInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutAssignedRoomInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutRoomInput
+  documents?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutRelatedRoomInput
 }
 
 export type RoomCreateOrConnectWithoutRentalListingsInput = {
@@ -1133,6 +1168,7 @@ export type RoomUpdateWithoutRentalListingsInput = {
   roomChangeRequests?: Prisma.MemberRequestUpdateManyWithoutRequestedRoomNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutAssignedRoomNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutRoomNestedInput
+  documents?: Prisma.MessDocumentUpdateManyWithoutRelatedRoomNestedInput
 }
 
 export type RoomUncheckedUpdateWithoutRentalListingsInput = {
@@ -1155,6 +1191,7 @@ export type RoomUncheckedUpdateWithoutRentalListingsInput = {
   roomChangeRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutRequestedRoomNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutAssignedRoomNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutRoomNestedInput
+  documents?: Prisma.MessDocumentUncheckedUpdateManyWithoutRelatedRoomNestedInput
 }
 
 export type RoomCreateWithoutRoomChangeRequestsInput = {
@@ -1177,6 +1214,7 @@ export type RoomCreateWithoutRoomChangeRequestsInput = {
   rentalListings?: Prisma.RentalListingCreateNestedManyWithoutRoomInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutAssignedRoomInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutRoomInput
+  documents?: Prisma.MessDocumentCreateNestedManyWithoutRelatedRoomInput
 }
 
 export type RoomUncheckedCreateWithoutRoomChangeRequestsInput = {
@@ -1199,6 +1237,7 @@ export type RoomUncheckedCreateWithoutRoomChangeRequestsInput = {
   rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutRoomInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutAssignedRoomInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutRoomInput
+  documents?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutRelatedRoomInput
 }
 
 export type RoomCreateOrConnectWithoutRoomChangeRequestsInput = {
@@ -1237,6 +1276,7 @@ export type RoomUpdateWithoutRoomChangeRequestsInput = {
   rentalListings?: Prisma.RentalListingUpdateManyWithoutRoomNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutAssignedRoomNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutRoomNestedInput
+  documents?: Prisma.MessDocumentUpdateManyWithoutRelatedRoomNestedInput
 }
 
 export type RoomUncheckedUpdateWithoutRoomChangeRequestsInput = {
@@ -1259,6 +1299,7 @@ export type RoomUncheckedUpdateWithoutRoomChangeRequestsInput = {
   rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutRoomNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutAssignedRoomNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutRoomNestedInput
+  documents?: Prisma.MessDocumentUncheckedUpdateManyWithoutRelatedRoomNestedInput
 }
 
 export type RoomCreateWithoutInventoryItemsInput = {
@@ -1281,6 +1322,7 @@ export type RoomCreateWithoutInventoryItemsInput = {
   rentalListings?: Prisma.RentalListingCreateNestedManyWithoutRoomInput
   roomChangeRequests?: Prisma.MemberRequestCreateNestedManyWithoutRequestedRoomInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutRoomInput
+  documents?: Prisma.MessDocumentCreateNestedManyWithoutRelatedRoomInput
 }
 
 export type RoomUncheckedCreateWithoutInventoryItemsInput = {
@@ -1303,6 +1345,7 @@ export type RoomUncheckedCreateWithoutInventoryItemsInput = {
   rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutRoomInput
   roomChangeRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutRequestedRoomInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutRoomInput
+  documents?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutRelatedRoomInput
 }
 
 export type RoomCreateOrConnectWithoutInventoryItemsInput = {
@@ -1341,6 +1384,7 @@ export type RoomUpdateWithoutInventoryItemsInput = {
   rentalListings?: Prisma.RentalListingUpdateManyWithoutRoomNestedInput
   roomChangeRequests?: Prisma.MemberRequestUpdateManyWithoutRequestedRoomNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutRoomNestedInput
+  documents?: Prisma.MessDocumentUpdateManyWithoutRelatedRoomNestedInput
 }
 
 export type RoomUncheckedUpdateWithoutInventoryItemsInput = {
@@ -1363,6 +1407,7 @@ export type RoomUncheckedUpdateWithoutInventoryItemsInput = {
   rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutRoomNestedInput
   roomChangeRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutRequestedRoomNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutRoomNestedInput
+  documents?: Prisma.MessDocumentUncheckedUpdateManyWithoutRelatedRoomNestedInput
 }
 
 export type RoomCreateWithoutWorkOrdersInput = {
@@ -1385,6 +1430,7 @@ export type RoomCreateWithoutWorkOrdersInput = {
   rentalListings?: Prisma.RentalListingCreateNestedManyWithoutRoomInput
   roomChangeRequests?: Prisma.MemberRequestCreateNestedManyWithoutRequestedRoomInput
   inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutAssignedRoomInput
+  documents?: Prisma.MessDocumentCreateNestedManyWithoutRelatedRoomInput
 }
 
 export type RoomUncheckedCreateWithoutWorkOrdersInput = {
@@ -1407,6 +1453,7 @@ export type RoomUncheckedCreateWithoutWorkOrdersInput = {
   rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutRoomInput
   roomChangeRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutRequestedRoomInput
   inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutAssignedRoomInput
+  documents?: Prisma.MessDocumentUncheckedCreateNestedManyWithoutRelatedRoomInput
 }
 
 export type RoomCreateOrConnectWithoutWorkOrdersInput = {
@@ -1445,6 +1492,7 @@ export type RoomUpdateWithoutWorkOrdersInput = {
   rentalListings?: Prisma.RentalListingUpdateManyWithoutRoomNestedInput
   roomChangeRequests?: Prisma.MemberRequestUpdateManyWithoutRequestedRoomNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutAssignedRoomNestedInput
+  documents?: Prisma.MessDocumentUpdateManyWithoutRelatedRoomNestedInput
 }
 
 export type RoomUncheckedUpdateWithoutWorkOrdersInput = {
@@ -1467,6 +1515,115 @@ export type RoomUncheckedUpdateWithoutWorkOrdersInput = {
   rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutRoomNestedInput
   roomChangeRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutRequestedRoomNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutAssignedRoomNestedInput
+  documents?: Prisma.MessDocumentUncheckedUpdateManyWithoutRelatedRoomNestedInput
+}
+
+export type RoomCreateWithoutDocumentsInput = {
+  id?: string
+  roomNumber: string
+  name?: string | null
+  floor?: string | null
+  building?: string | null
+  capacity?: number
+  defaultRent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  facilities: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.RoomStatus
+  description?: string | null
+  internalNotes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutRoomsInput
+  beds?: Prisma.BedCreateNestedManyWithoutRoomInput
+  assignments?: Prisma.RoomAssignmentCreateNestedManyWithoutRoomInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutRoomInput
+  roomChangeRequests?: Prisma.MemberRequestCreateNestedManyWithoutRequestedRoomInput
+  inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutAssignedRoomInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutRoomInput
+}
+
+export type RoomUncheckedCreateWithoutDocumentsInput = {
+  id?: string
+  tenantId: string
+  roomNumber: string
+  name?: string | null
+  floor?: string | null
+  building?: string | null
+  capacity?: number
+  defaultRent?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  facilities: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.RoomStatus
+  description?: string | null
+  internalNotes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutRoomInput
+  assignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutRoomInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutRoomInput
+  roomChangeRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutRequestedRoomInput
+  inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutAssignedRoomInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutRoomInput
+}
+
+export type RoomCreateOrConnectWithoutDocumentsInput = {
+  where: Prisma.RoomWhereUniqueInput
+  create: Prisma.XOR<Prisma.RoomCreateWithoutDocumentsInput, Prisma.RoomUncheckedCreateWithoutDocumentsInput>
+}
+
+export type RoomUpsertWithoutDocumentsInput = {
+  update: Prisma.XOR<Prisma.RoomUpdateWithoutDocumentsInput, Prisma.RoomUncheckedUpdateWithoutDocumentsInput>
+  create: Prisma.XOR<Prisma.RoomCreateWithoutDocumentsInput, Prisma.RoomUncheckedCreateWithoutDocumentsInput>
+  where?: Prisma.RoomWhereInput
+}
+
+export type RoomUpdateToOneWithWhereWithoutDocumentsInput = {
+  where?: Prisma.RoomWhereInput
+  data: Prisma.XOR<Prisma.RoomUpdateWithoutDocumentsInput, Prisma.RoomUncheckedUpdateWithoutDocumentsInput>
+}
+
+export type RoomUpdateWithoutDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  roomNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  floor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  building?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  defaultRent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  facilities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumRoomStatusFieldUpdateOperationsInput | $Enums.RoomStatus
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  internalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutRoomsNestedInput
+  beds?: Prisma.BedUpdateManyWithoutRoomNestedInput
+  assignments?: Prisma.RoomAssignmentUpdateManyWithoutRoomNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutRoomNestedInput
+  roomChangeRequests?: Prisma.MemberRequestUpdateManyWithoutRequestedRoomNestedInput
+  inventoryItems?: Prisma.InventoryItemUpdateManyWithoutAssignedRoomNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutRoomNestedInput
+}
+
+export type RoomUncheckedUpdateWithoutDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  roomNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  floor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  building?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  defaultRent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  facilities?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumRoomStatusFieldUpdateOperationsInput | $Enums.RoomStatus
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  internalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  beds?: Prisma.BedUncheckedUpdateManyWithoutRoomNestedInput
+  assignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutRoomNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutRoomNestedInput
+  roomChangeRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutRequestedRoomNestedInput
+  inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutAssignedRoomNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutRoomNestedInput
 }
 
 export type RoomCreateManyTenantInput = {
@@ -1505,6 +1662,7 @@ export type RoomUpdateWithoutTenantInput = {
   roomChangeRequests?: Prisma.MemberRequestUpdateManyWithoutRequestedRoomNestedInput
   inventoryItems?: Prisma.InventoryItemUpdateManyWithoutAssignedRoomNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutRoomNestedInput
+  documents?: Prisma.MessDocumentUpdateManyWithoutRelatedRoomNestedInput
 }
 
 export type RoomUncheckedUpdateWithoutTenantInput = {
@@ -1527,6 +1685,7 @@ export type RoomUncheckedUpdateWithoutTenantInput = {
   roomChangeRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutRequestedRoomNestedInput
   inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutAssignedRoomNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutRoomNestedInput
+  documents?: Prisma.MessDocumentUncheckedUpdateManyWithoutRelatedRoomNestedInput
 }
 
 export type RoomUncheckedUpdateManyWithoutTenantInput = {
@@ -1557,6 +1716,7 @@ export type RoomCountOutputType = {
   roomChangeRequests: number
   inventoryItems: number
   workOrders: number
+  documents: number
 }
 
 export type RoomCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1566,6 +1726,7 @@ export type RoomCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   roomChangeRequests?: boolean | RoomCountOutputTypeCountRoomChangeRequestsArgs
   inventoryItems?: boolean | RoomCountOutputTypeCountInventoryItemsArgs
   workOrders?: boolean | RoomCountOutputTypeCountWorkOrdersArgs
+  documents?: boolean | RoomCountOutputTypeCountDocumentsArgs
 }
 
 /**
@@ -1620,6 +1781,13 @@ export type RoomCountOutputTypeCountWorkOrdersArgs<ExtArgs extends runtime.Types
   where?: Prisma.WorkOrderWhereInput
 }
 
+/**
+ * RoomCountOutputType without action
+ */
+export type RoomCountOutputTypeCountDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MessDocumentWhereInput
+}
+
 
 export type RoomSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1643,6 +1811,7 @@ export type RoomSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   roomChangeRequests?: boolean | Prisma.Room$roomChangeRequestsArgs<ExtArgs>
   inventoryItems?: boolean | Prisma.Room$inventoryItemsArgs<ExtArgs>
   workOrders?: boolean | Prisma.Room$workOrdersArgs<ExtArgs>
+  documents?: boolean | Prisma.Room$documentsArgs<ExtArgs>
   _count?: boolean | Prisma.RoomCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["room"]>
 
@@ -1708,6 +1877,7 @@ export type RoomInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   roomChangeRequests?: boolean | Prisma.Room$roomChangeRequestsArgs<ExtArgs>
   inventoryItems?: boolean | Prisma.Room$inventoryItemsArgs<ExtArgs>
   workOrders?: boolean | Prisma.Room$workOrdersArgs<ExtArgs>
+  documents?: boolean | Prisma.Room$documentsArgs<ExtArgs>
   _count?: boolean | Prisma.RoomCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RoomIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1727,6 +1897,7 @@ export type $RoomPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     roomChangeRequests: Prisma.$MemberRequestPayload<ExtArgs>[]
     inventoryItems: Prisma.$InventoryItemPayload<ExtArgs>[]
     workOrders: Prisma.$WorkOrderPayload<ExtArgs>[]
+    documents: Prisma.$MessDocumentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2144,6 +2315,7 @@ export interface Prisma__RoomClient<T, Null = never, ExtArgs extends runtime.Typ
   roomChangeRequests<T extends Prisma.Room$roomChangeRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Room$roomChangeRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   inventoryItems<T extends Prisma.Room$inventoryItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Room$inventoryItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventoryItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workOrders<T extends Prisma.Room$workOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Room$workOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  documents<T extends Prisma.Room$documentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Room$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2729,6 +2901,30 @@ export type Room$workOrdersArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.WorkOrderScalarFieldEnum | Prisma.WorkOrderScalarFieldEnum[]
+}
+
+/**
+ * Room.documents
+ */
+export type Room$documentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MessDocument
+   */
+  select?: Prisma.MessDocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MessDocument
+   */
+  omit?: Prisma.MessDocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MessDocumentInclude<ExtArgs> | null
+  where?: Prisma.MessDocumentWhereInput
+  orderBy?: Prisma.MessDocumentOrderByWithRelationInput | Prisma.MessDocumentOrderByWithRelationInput[]
+  cursor?: Prisma.MessDocumentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MessDocumentScalarFieldEnum | Prisma.MessDocumentScalarFieldEnum[]
 }
 
 /**

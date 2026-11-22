@@ -1,10 +1,4 @@
 import type { Metadata } from 'next';
-import {
-  Plus_Jakarta_Sans,
-  DM_Sans,
-  Hind_Siliguri,
-  JetBrains_Mono,
-} from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { MotionProvider } from '@/components/layout/MotionProvider';
@@ -13,33 +7,10 @@ import { SiteFooter } from '@/components/layout/SiteFooter';
 import { ScrollToTopButton } from '@/components/layout/ScrollToTopButton';
 import { cn } from '@/lib/utils';
 
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
-  variable: '--font-plus-jakarta',
-  display: 'swap',
-});
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-dm-sans',
-  display: 'swap',
-});
-
-const hindSiliguri = Hind_Siliguri({
-  subsets: ['bengali', 'latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-hind-siliguri',
-  display: 'swap',
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-jetbrains-mono',
-  display: 'swap',
-});
+const plusJakarta = { variable: '--font-plus-jakarta' };
+const dmSans = { variable: '--font-dm-sans' };
+const hindSiliguri = { variable: '--font-hind-siliguri' };
+const jetbrainsMono = { variable: '--font-jetbrains-mono' };
 
 export const metadata: Metadata = {
   title: {

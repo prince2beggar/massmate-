@@ -341,3 +341,38 @@ export type PollVote = Prisma.PollVoteModel
  * 
  */
 export type MemberSuggestion = Prisma.MemberSuggestionModel
+/**
+ * Model DocumentCategory
+ * 
+ */
+export type DocumentCategory = Prisma.DocumentCategoryModel
+/**
+ * Model MessDocument
+ * 
+ */
+export type MessDocument = Prisma.MessDocumentModel
+/**
+ * Model DocumentActivity
+ * 
+ */
+export type DocumentActivity = Prisma.DocumentActivityModel
+/**
+ * Model Budget
+ * 
+ */
+export type Budget = Prisma.BudgetModel
+/**
+ * Model BudgetAllocation
+ * 
+ */
+export type BudgetAllocation = Prisma.BudgetAllocationModel
+/**
+ * Model BudgetChangeHistory
+ * 
+ */
+export type BudgetChangeHistory = Prisma.BudgetChangeHistoryModel
+/**
+ * Model BudgetAlert
+ * 
+ */
+export type BudgetAlert = Prisma.BudgetAlertModel

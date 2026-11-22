@@ -110,7 +110,14 @@ export const ModelName = {
   Poll: 'Poll',
   PollOption: 'PollOption',
   PollVote: 'PollVote',
-  MemberSuggestion: 'MemberSuggestion'
+  MemberSuggestion: 'MemberSuggestion',
+  DocumentCategory: 'DocumentCategory',
+  MessDocument: 'MessDocument',
+  DocumentActivity: 'DocumentActivity',
+  Budget: 'Budget',
+  BudgetAllocation: 'BudgetAllocation',
+  BudgetChangeHistory: 'BudgetChangeHistory',
+  BudgetAlert: 'BudgetAlert'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1313,6 +1320,120 @@ export const MemberSuggestionScalarFieldEnum = {
 } as const
 
 export type MemberSuggestionScalarFieldEnum = (typeof MemberSuggestionScalarFieldEnum)[keyof typeof MemberSuggestionScalarFieldEnum]
+
+
+export const DocumentCategoryScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  isSystem: 'isSystem',
+  isArchived: 'isArchived',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DocumentCategoryScalarFieldEnum = (typeof DocumentCategoryScalarFieldEnum)[keyof typeof DocumentCategoryScalarFieldEnum]
+
+
+export const MessDocumentScalarFieldEnum = {
+  id: 'id',
+  referenceNumber: 'referenceNumber',
+  tenantId: 'tenantId',
+  title: 'title',
+  description: 'description',
+  categoryId: 'categoryId',
+  fileKey: 'fileKey',
+  fileName: 'fileName',
+  fileType: 'fileType',
+  fileSizeBytes: 'fileSizeBytes',
+  relatedMemberId: 'relatedMemberId',
+  relatedRoomId: 'relatedRoomId',
+  issueDate: 'issueDate',
+  expiryDate: 'expiryDate',
+  tags: 'tags',
+  visibility: 'visibility',
+  reviewStatus: 'reviewStatus',
+  uploadedById: 'uploadedById',
+  isArchived: 'isArchived',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MessDocumentScalarFieldEnum = (typeof MessDocumentScalarFieldEnum)[keyof typeof MessDocumentScalarFieldEnum]
+
+
+export const DocumentActivityScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  documentId: 'documentId',
+  actorUserId: 'actorUserId',
+  action: 'action',
+  details: 'details',
+  createdAt: 'createdAt'
+} as const
+
+export type DocumentActivityScalarFieldEnum = (typeof DocumentActivityScalarFieldEnum)[keyof typeof DocumentActivityScalarFieldEnum]
+
+
+export const BudgetScalarFieldEnum = {
+  id: 'id',
+  referenceNumber: 'referenceNumber',
+  tenantId: 'tenantId',
+  name: 'name',
+  periodType: 'periodType',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  totalAmountPoisha: 'totalAmountPoisha',
+  description: 'description',
+  status: 'status',
+  approvalRequired: 'approvalRequired',
+  createdById: 'createdById',
+  approvedById: 'approvedById',
+  approvedAt: 'approvedAt',
+  rejectionReason: 'rejectionReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BudgetScalarFieldEnum = (typeof BudgetScalarFieldEnum)[keyof typeof BudgetScalarFieldEnum]
+
+
+export const BudgetAllocationScalarFieldEnum = {
+  id: 'id',
+  budgetId: 'budgetId',
+  expenseCategoryId: 'expenseCategoryId',
+  categoryName: 'categoryName',
+  allocatedAmountPoisha: 'allocatedAmountPoisha'
+} as const
+
+export type BudgetAllocationScalarFieldEnum = (typeof BudgetAllocationScalarFieldEnum)[keyof typeof BudgetAllocationScalarFieldEnum]
+
+
+export const BudgetChangeHistoryScalarFieldEnum = {
+  id: 'id',
+  budgetId: 'budgetId',
+  changedById: 'changedById',
+  previousAmountPoisha: 'previousAmountPoisha',
+  newAmountPoisha: 'newAmountPoisha',
+  reason: 'reason',
+  createdAt: 'createdAt'
+} as const
+
+export type BudgetChangeHistoryScalarFieldEnum = (typeof BudgetChangeHistoryScalarFieldEnum)[keyof typeof BudgetChangeHistoryScalarFieldEnum]
+
+
+export const BudgetAlertScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  budgetId: 'budgetId',
+  thresholdPercent: 'thresholdPercent',
+  actualSpentPoisha: 'actualSpentPoisha',
+  alertTriggeredAt: 'alertTriggeredAt'
+} as const
+
+export type BudgetAlertScalarFieldEnum = (typeof BudgetAlertScalarFieldEnum)[keyof typeof BudgetAlertScalarFieldEnum]
 
 
 export const SortOrder = {
