@@ -92,7 +92,8 @@ export const ModelName = {
   MemberPayment: 'MemberPayment',
   BalanceAdjustment: 'BalanceAdjustment',
   MessSetting: 'MessSetting',
-  Notice: 'Notice'
+  Notice: 'Notice',
+  MemberRequest: 'MemberRequest'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -931,6 +932,27 @@ export const NoticeScalarFieldEnum = {
 } as const
 
 export type NoticeScalarFieldEnum = (typeof NoticeScalarFieldEnum)[keyof typeof NoticeScalarFieldEnum]
+
+
+export const MemberRequestScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  membershipId: 'membershipId',
+  requestType: 'requestType',
+  title: 'title',
+  description: 'description',
+  requestedRoomId: 'requestedRoomId',
+  preferredDate: 'preferredDate',
+  status: 'status',
+  adminResponse: 'adminResponse',
+  reviewedByUserId: 'reviewedByUserId',
+  reviewedAt: 'reviewedAt',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MemberRequestScalarFieldEnum = (typeof MemberRequestScalarFieldEnum)[keyof typeof MemberRequestScalarFieldEnum]
 
 
 export const SortOrder = {

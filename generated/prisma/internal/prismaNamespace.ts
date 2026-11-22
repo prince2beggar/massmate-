@@ -438,7 +438,8 @@ export const ModelName = {
   MemberPayment: 'MemberPayment',
   BalanceAdjustment: 'BalanceAdjustment',
   MessSetting: 'MessSetting',
-  Notice: 'Notice'
+  Notice: 'Notice',
+  MemberRequest: 'MemberRequest'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -454,7 +455,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "tenant" | "tenantVerification" | "role" | "roleTemplate" | "permission" | "rolePermission" | "roleTemplatePermission" | "membership" | "auditLog" | "plan" | "subscription" | "subscriptionInvoice" | "customPlanInquiry" | "customQuotation" | "domain" | "supportTicket" | "supportTicketMessage" | "platformNotification" | "room" | "bed" | "roomAssignment" | "rentalListing" | "bookingRequest" | "mealSetting" | "mealDailyLog" | "memberMealEntry" | "mealOffRequest" | "guestMeal" | "mealPeriodLock" | "expenseCategory" | "expense" | "expenseItem" | "bazarSchedule" | "financialCategory" | "monthlyBillingPeriod" | "memberBill" | "billItem" | "memberPayment" | "balanceAdjustment" | "messSetting" | "notice"
+    modelProps: "user" | "tenant" | "tenantVerification" | "role" | "roleTemplate" | "permission" | "rolePermission" | "roleTemplatePermission" | "membership" | "auditLog" | "plan" | "subscription" | "subscriptionInvoice" | "customPlanInquiry" | "customQuotation" | "domain" | "supportTicket" | "supportTicketMessage" | "platformNotification" | "room" | "bed" | "roomAssignment" | "rentalListing" | "bookingRequest" | "mealSetting" | "mealDailyLog" | "memberMealEntry" | "mealOffRequest" | "guestMeal" | "mealPeriodLock" | "expenseCategory" | "expense" | "expenseItem" | "bazarSchedule" | "financialCategory" | "monthlyBillingPeriod" | "memberBill" | "billItem" | "memberPayment" | "balanceAdjustment" | "messSetting" | "notice" | "memberRequest"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3566,6 +3567,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    MemberRequest: {
+      payload: Prisma.$MemberRequestPayload<ExtArgs>
+      fields: Prisma.MemberRequestFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MemberRequestFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MemberRequestPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MemberRequestFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MemberRequestPayload>
+        }
+        findFirst: {
+          args: Prisma.MemberRequestFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MemberRequestPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MemberRequestFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MemberRequestPayload>
+        }
+        findMany: {
+          args: Prisma.MemberRequestFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MemberRequestPayload>[]
+        }
+        create: {
+          args: Prisma.MemberRequestCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MemberRequestPayload>
+        }
+        createMany: {
+          args: Prisma.MemberRequestCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MemberRequestCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MemberRequestPayload>[]
+        }
+        delete: {
+          args: Prisma.MemberRequestDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MemberRequestPayload>
+        }
+        update: {
+          args: Prisma.MemberRequestUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MemberRequestPayload>
+        }
+        deleteMany: {
+          args: Prisma.MemberRequestDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MemberRequestUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MemberRequestUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MemberRequestPayload>[]
+        }
+        upsert: {
+          args: Prisma.MemberRequestUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MemberRequestPayload>
+        }
+        aggregate: {
+          args: Prisma.MemberRequestAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMemberRequest>
+        }
+        groupBy: {
+          args: Prisma.MemberRequestGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MemberRequestGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MemberRequestCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MemberRequestCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -4425,6 +4500,27 @@ export const NoticeScalarFieldEnum = {
 } as const
 
 export type NoticeScalarFieldEnum = (typeof NoticeScalarFieldEnum)[keyof typeof NoticeScalarFieldEnum]
+
+
+export const MemberRequestScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  membershipId: 'membershipId',
+  requestType: 'requestType',
+  title: 'title',
+  description: 'description',
+  requestedRoomId: 'requestedRoomId',
+  preferredDate: 'preferredDate',
+  status: 'status',
+  adminResponse: 'adminResponse',
+  reviewedByUserId: 'reviewedByUserId',
+  reviewedAt: 'reviewedAt',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MemberRequestScalarFieldEnum = (typeof MemberRequestScalarFieldEnum)[keyof typeof MemberRequestScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -5380,6 +5476,7 @@ export type GlobalOmitConfig = {
   balanceAdjustment?: Prisma.BalanceAdjustmentOmit
   messSetting?: Prisma.MessSettingOmit
   notice?: Prisma.NoticeOmit
+  memberRequest?: Prisma.MemberRequestOmit
 }
 
 /* Types for Logging */

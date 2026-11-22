@@ -376,6 +376,7 @@ model User {
   verifiedMemberPayments  MemberPayment[]        @relation("VerifiedMemberPayments")
   authorizedAdjustments   BalanceAdjustment[]    @relation("AuthorizedAdjustments")
   authoredNotices         Notice[]               @relation("AuthoredNotices")
+  reviewedMemberRequests  MemberRequest[]        @relation("ReviewedMemberRequests")
 
   @@index([status])
   @@index([platformRole])
@@ -436,6 +437,7 @@ model Tenant {
   balanceAdjustments    BalanceAdjustment[]
   messSetting           MessSetting?
   notices               Notice[]
+  memberRequests        MemberRequest[]
 
   @@index([status])
   @@index([verificationStatus])
@@ -606,6 +608,7 @@ model Membership {
   memberBills             MemberBill[]
   memberPayments          MemberPayment[]
   balanceAdjustments      BalanceAdjustment[]
+  memberRequests          MemberRequest[]
 
   @@unique([userId, tenantId])
   @@index([tenantId])
@@ -948,6 +951,7 @@ model Room {
   beds           Bed[]
   assignments    RoomAssignment[]
   rentalListings RentalListing[]
+  roomChangeRequests MemberRequest[] @relation("RequestedRoom")
 
   @@unique([tenantId, roomNumber])
   @@index([tenantId])
@@ -1565,6 +1569,39 @@ model Notice {
   @@index([isPinned])
   @@map("notices")
 }
+
+// -----------------------------------------------------------------------------
+// MEMBER PERSONAL REQUESTS (Task 38)
+// -----------------------------------------------------------------------------
+
+model MemberRequest {
+  id               String    @id @default(cuid())
+  tenantId         String    @map("tenant_id")
+  membershipId     String    @map("membership_id")
+  requestType      String    @map("request_type") // ROOM_CHANGE, PROFILE_UPDATE, MAINTENANCE, GENERAL_QUERY
+  title            String
+  description      String
+  requestedRoomId  String?   @map("requested_room_id")
+  preferredDate    DateTime? @map("preferred_date")
+  status           String    @default("PENDING") // PENDING, APPROVED, REJECTED, CANCELLED
+  adminResponse    String?   @map("admin_response")
+  reviewedByUserId String?   @map("reviewed_by_user_id")
+  reviewedAt       DateTime? @map("reviewed_at")
+  metadata         Json?     // Proposed profile/emergency contact updates, custom parameters
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @updatedAt @map("updated_at")
+
+  tenant        Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  membership    Membership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  requestedRoom Room?      @relation("RequestedRoom", fields: [requestedRoomId], references: [id], onDelete: SetNull)
+  reviewer      User?      @relation("ReviewedMemberRequests", fields: [reviewedByUserId], references: [id], onDelete: SetNull)
+
+  @@index([tenantId])
+  @@index([membershipId])
+  @@index([status])
+  @@map("member_requests")
+}
+
 
 
 

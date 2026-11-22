@@ -12,7 +12,7 @@
 | Task | Task Name | Status | Completion Date | Main Deliverables | Test Results | Next Step |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Task 37** | Member Portal Foundation, Access Control & Dashboard | **Completed and Verified** | 2026-11-22 | Dedicated `/portal/[tenantSlug]` shell, `withMemberAuth` access control, anti-IDOR validation, 4 KPI cards (Room, Meals, Due Balance, Last Payment), zero-drift financial snapshot via `FinanceService`, today's dining & menus, published notices feed, recent activities stream, quick actions. | 14/14 Automated Tests Passed (106/106 full suite); 0 TS errors, 0 ESLint warnings; Production build passed. | Proceed to Task 38 |
-| **Task 38** | Resident Profile, Emergency Contacts & Room Management | *Upcoming* | — | Profile viewing/editing, emergency contacts, room & bed details, room-change request workflow. | Pending Task 37 signoff | Upcoming |
+| **Task 38** | Resident Profile, Emergency Contacts & Room Management | **Completed and Verified** | 2026-11-22 | Self-service profile editing (`phone`, `emergencyContactName`, `emergencyContactPhone`, `avatar`), Bangladeshi mobile validation/normalization, anti-mass-assignment guards, approval-required name update workflow (`MemberRequest`), room & bed details with privacy-safe occupancy counts, historical room timeline, room transfer request center with atomic transfer execution. | 18/18 Automated Tests Passed (32/32 Member Portal suite, 124/124 full suite); 0 TS errors, 0 ESLint warnings; Production build passed. | Proceed to Task 39 |
 | **Task 39** | Member Meal Calendar, Preferences & Meal-Off Requests | *Upcoming* | — | Monthly meal calendar, daily meal bookings, cutoff-enforced meal-off submissions, dietary notes. | Pending Task 38 signoff | Upcoming |
 | **Task 40** | Member Billing, Payments & Statements | *Upcoming* | — | Detailed ledger statement, deposit payment submission (bKash/Nagad/Bank/Cash), printable receipt. | Pending Task 39 signoff | Upcoming |
 
@@ -265,6 +265,39 @@
     - Landing hub at `/member-portal` guiding residents to their mess portals.
   - Automated test suite (`server/member-portal/member-portal.test.ts`): 14 unit and integration tests covering currency/poisha arithmetic, active member resolution, 401 unauthenticated guard, 403 non-member and suspended guards, IDOR prevention, complete dashboard data aggregation, unassigned room empty state, active meal-off status reflection, notice tenant isolation, and `withMemberAuth` API wrapper.
 - **Verification:** TypeScript: 0 errors; ESLint: 0 errors, 0 warnings; 106/106 full regression tests passing (100%); Next.js production build: 47/47 routes compiled cleanly.
+
+### Task 38: My Profile, Room Information & Personal Requests
+- **Status:** Completed and Verified
+- **Date:** 2026-11-22
+- **Key Deliverables:**
+  - Prisma Schema expansion: `MemberRequest` model with `tenantId`, `membershipId`, `requestType` (`ROOM_CHANGE`, `PROFILE_UPDATE`, `MAINTENANCE`, `GENERAL_QUERY`), `requestedRoomId`, `status` (`PENDING`, `APPROVED`, `REJECTED`, `CANCELLED`), `adminResponse`, `reviewedByUserId`, `reviewedAt`, and `metadata`.
+  - Backend Service (`server/member-portal/member-portal-service.ts`):
+    - `getMemberProfile`: returns authoritative member identity, member code, phone, emergency contacts, avatar, and mess details without leaking password hashes or internal ledger items.
+    - `normalizeBdPhone`: validates and canonicalizes Bangladeshi mobile numbers into 11-digit `01XXXXXXXXX` format; rejects invalid operators or character tokens.
+    - `updateMemberProfile`: enables self-service updates to phone, emergency contacts, and avatar while strictly enforcing anti-mass-assignment protections (rejects/ignores alterations to `role`, `status`, `balancePoisha`, `membershipId`, `tenantId`).
+    - Name change security workflow: resident name edits automatically generate a `MemberRequest` (`PROFILE_UPDATE`) for Mess Admin verification rather than directly mutating authoritative records.
+    - `getMemberRoomDetails`: displays current room number, floor, building, bed label, monthly rent in BDT, start date, and amenities.
+    - Co-resident privacy protection: displays room occupancy strictly as a count (`1 / 2 beds occupied`) without leaking other residents' personal identities.
+    - Friendly unassigned room state (`hasAssignment: false`) with quick allocation CTA.
+    - Historical room assignment timeline (`TRANSFERRED`, `COMPLETED`, `TERMINATED`) with duration and move-out reasons.
+    - Available mess rooms list with capacity and vacant bed counts.
+    - `listMemberRequests`: anti-IDOR scoped request listing with status and type filters.
+    - `createMemberRequest`: creates pending requests (`status: 'PENDING'`) with minimum 5-character validation and room target verification; does NOT instantly alter room assignments.
+    - `cancelMemberRequest`: members can cancel their own `PENDING` tickets; prevents cancelling `APPROVED` or `REJECTED` requests.
+    - `reviewMemberRequest`: administrative review action; verifies room capacity and executes atomic room transfer transaction (`RoomAssignment`) upon `APPROVED` decision.
+  - REST API Routes:
+    - `app/api/v1/portal/[tenantSlug]/profile/route.ts` (GET, PATCH with `withMemberAuth`)
+    - `app/api/v1/portal/[tenantSlug]/room/route.ts` (GET with `withMemberAuth`)
+    - `app/api/v1/portal/[tenantSlug]/requests/route.ts` (GET, POST with `withMemberAuth`)
+    - `app/api/v1/portal/[tenantSlug]/requests/[id]/cancel/route.ts` (PATCH with `withMemberAuth`)
+  - UI Components & Server Pages:
+    - `/portal/[tenantSlug]/profile`: `MemberProfileView` with resident identity card, self-service contact edit form, emergency contacts, name change admin-approval badge, and security guidance banner.
+    - `/portal/[tenantSlug]/room`: `MemberRoomView` with active accommodation banner, bed slot details, privacy-safe occupancy count, facilities chips, room rules, unassigned empty state, available rooms grid, assignment history table, and "Request Room Change" modal.
+    - `/portal/[tenantSlug]/requests`: `MemberRequestsView` with status/type filter tabs, request reference tags, color-coded badges, admin response narratives, cancellation action for pending tickets, and "New Request" modal.
+    - Navigation updated in `components/member-portal/member-nav-data.ts`: `profile`, `room`, and `requests` enabled (`isImplemented: true`).
+  - Automated test suite (`server/member-portal/member-profile-room.test.ts`): 18 comprehensive tests covering Bangladeshi phone normalization, profile security, permitted edits, anti-mass-assignment, name change approval workflow, room details, privacy-safe occupancy counts, unassigned state, history, room transfer request submission, cancellation rules, anti-IDOR cross-tenant isolation, and admin review atomic transfer.
+- **Verification:** TypeScript: 0 errors (`npx tsc --noEmit`); ESLint: 0 errors, 0 warnings (`npm run lint`); 32/32 Member Portal tests passing (100%); Next.js production build: 47/47 routes compiled cleanly.
+
 
 
 

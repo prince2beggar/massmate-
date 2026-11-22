@@ -36,8 +36,7 @@ export const MEMBER_NAV_ITEMS: MemberNavItem[] = [
     name: 'My Profile',
     path: 'profile',
     icon: User,
-    isImplemented: false,
-    upcomingTask: 'Task 38',
+    isImplemented: true,
     description: 'Personal details, contact numbers, and profile settings.',
   },
   {
@@ -45,8 +44,7 @@ export const MEMBER_NAV_ITEMS: MemberNavItem[] = [
     name: 'My Room',
     path: 'room',
     icon: BedDouble,
-    isImplemented: false,
-    upcomingTask: 'Task 38',
+    isImplemented: true,
     description: 'Current room seat, bed assignment, and room rules.',
   },
   {
@@ -54,8 +52,7 @@ export const MEMBER_NAV_ITEMS: MemberNavItem[] = [
     name: 'Personal Requests',
     path: 'requests',
     icon: FileQuestion,
-    isImplemented: false,
-    upcomingTask: 'Task 38',
+    isImplemented: true,
     description: 'Track profile updates and room transfer requests.',
   },
   {

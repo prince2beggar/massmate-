@@ -227,3 +227,8 @@ export type MessSetting = Prisma.MessSettingModel
  * 
  */
 export type Notice = Prisma.NoticeModel
+/**
+ * Model MemberRequest
+ * 
+ */
+export type MemberRequest = Prisma.MemberRequestModel
