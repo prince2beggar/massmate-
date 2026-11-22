@@ -242,8 +242,8 @@ export class RoomService {
       ]);
 
       const formattedRooms = rooms.map((r: any) => {
-        const activeOccupants = r.assignments.length;
-        const vacantBeds = Math.max(0, r.capacity - activeOccupants);
+        const activeOccupants = (r.assignments || []).length;
+        const vacantBeds = Math.max(0, (r.capacity || 0) - activeOccupants);
         return {
           id: r.id,
           roomNumber: r.roomNumber,
@@ -253,13 +253,13 @@ export class RoomService {
           capacity: r.capacity,
           occupancy: activeOccupants,
           vacantBeds,
-          defaultRent: Number(r.defaultRent),
+          defaultRent: Number(r.defaultRent || 0),
           facilities: (r.facilities as string[]) || [],
           status: r.status,
           description: r.description,
           internalNotes: r.internalNotes,
-          createdAt: r.createdAt.toISOString(),
-          updatedAt: r.updatedAt.toISOString(),
+          createdAt: r.createdAt ? (r.createdAt instanceof Date ? r.createdAt.toISOString() : new Date(r.createdAt).toISOString()) : new Date().toISOString(),
+          updatedAt: r.updatedAt ? (r.updatedAt instanceof Date ? r.updatedAt.toISOString() : new Date(r.updatedAt).toISOString()) : new Date().toISOString(),
         };
       });
 
@@ -271,10 +271,10 @@ export class RoomService {
 
       const summary = {
         totalRooms: allTenantRooms.length,
-        totalCapacity: allTenantRooms.reduce((acc, rm) => acc + rm.capacity, 0),
-        totalOccupied: allTenantRooms.reduce((acc, rm) => acc + rm.assignments.length, 0),
+        totalCapacity: allTenantRooms.reduce((acc, rm) => acc + (rm.capacity || 0), 0),
+        totalOccupied: allTenantRooms.reduce((acc, rm) => acc + (rm.assignments || []).length, 0),
         totalVacant: allTenantRooms.reduce(
-          (acc, rm) => acc + Math.max(0, rm.capacity - rm.assignments.length),
+          (acc, rm) => acc + Math.max(0, (rm.capacity || 0) - (rm.assignments || []).length),
           0
         ),
         underMaintenance: allTenantRooms.filter((rm) => rm.status === 'MAINTENANCE').length,
@@ -422,37 +422,41 @@ export class RoomService {
         throw new NotFoundError(`Room with ID "${roomId}" was not found in this mess.`);
       }
 
-      const activeAssignments = room.assignments.filter((a: any) => a.status === 'ACTIVE');
-      const assignmentHistory = room.assignments.map((a: any) => ({
+      const assignmentsList = (room.assignments as any[]) || [];
+      const bedsList = (room.beds as any[]) || [];
+      const listingsList = (room.rentalListings as any[]) || [];
+
+      const activeAssignments = assignmentsList.filter((a: any) => a.status === 'ACTIVE');
+      const assignmentHistory = assignmentsList.map((a: any) => ({
         id: a.id,
         membershipId: a.membershipId,
         memberName: a.membership?.user?.name || 'Unknown',
         memberPhone: a.membership?.user?.phone || null,
         bedId: a.bedId,
-        startDate: a.startDate.toISOString(),
-        endDate: a.endDate ? a.endDate.toISOString() : null,
-        monthlyRent: Number(a.monthlyRent),
+        startDate: a.startDate instanceof Date ? a.startDate.toISOString() : new Date(a.startDate).toISOString(),
+        endDate: a.endDate ? (a.endDate instanceof Date ? a.endDate.toISOString() : new Date(a.endDate).toISOString()) : null,
+        monthlyRent: Number(a.monthlyRent || 0),
         status: a.status,
         moveOutReason: a.moveOutReason,
         notes: a.notes,
-        createdAt: a.createdAt.toISOString(),
+        createdAt: a.createdAt instanceof Date ? a.createdAt.toISOString() : new Date(a.createdAt).toISOString(),
       }));
 
-      const bedsWithOccupants = room.beds.map((b: any) => {
+      const bedsWithOccupants = bedsList.map((b: any) => {
         const activeAssignment = activeAssignments.find((a: any) => a.bedId === b.id);
         return {
           id: b.id,
           bedNumber: b.bedNumber,
           status: b.status,
-          rentAmount: b.rentAmount ? Number(b.rentAmount) : Number(room.defaultRent),
+          rentAmount: b.rentAmount ? Number(b.rentAmount) : Number(room.defaultRent || 0),
           currentOccupant: activeAssignment
             ? {
                 assignmentId: activeAssignment.id,
                 membershipId: activeAssignment.membershipId,
                 name: activeAssignment.membership?.user?.name,
                 phone: activeAssignment.membership?.user?.phone,
-                startDate: activeAssignment.startDate.toISOString(),
-                monthlyRent: Number(activeAssignment.monthlyRent),
+                startDate: activeAssignment.startDate instanceof Date ? activeAssignment.startDate.toISOString() : new Date(activeAssignment.startDate).toISOString(),
+                monthlyRent: Number(activeAssignment.monthlyRent || 0),
               }
             : null,
         };
@@ -466,8 +470,8 @@ export class RoomService {
         building: room.building,
         capacity: room.capacity,
         occupancy: activeAssignments.length,
-        vacantBeds: Math.max(0, room.capacity - activeAssignments.length),
-        defaultRent: Number(room.defaultRent),
+        vacantBeds: Math.max(0, (room.capacity || 0) - activeAssignments.length),
+        defaultRent: Number(room.defaultRent || 0),
         facilities: (room.facilities as string[]) || [],
         status: room.status,
         description: room.description,
@@ -477,19 +481,19 @@ export class RoomService {
           id: a.id,
           membershipId: a.membershipId,
           memberName: a.membership?.user?.name,
-          startDate: a.startDate.toISOString(),
-          monthlyRent: Number(a.monthlyRent),
+          startDate: a.startDate instanceof Date ? a.startDate.toISOString() : new Date(a.startDate).toISOString(),
+          monthlyRent: Number(a.monthlyRent || 0),
         })),
         assignmentHistory,
-        rentalListings: room.rentalListings.map((l: any) => ({
+        rentalListings: listingsList.map((l: any) => ({
           id: l.id,
           title: l.title,
           status: l.status,
           dailyRate: l.dailyRate ? Number(l.dailyRate) : null,
           monthlyRate: l.monthlyRate ? Number(l.monthlyRate) : null,
         })),
-        createdAt: room.createdAt.toISOString(),
-        updatedAt: room.updatedAt.toISOString(),
+        createdAt: room.createdAt instanceof Date ? room.createdAt.toISOString() : new Date(room.createdAt).toISOString(),
+        updatedAt: room.updatedAt instanceof Date ? room.updatedAt.toISOString() : new Date(room.updatedAt).toISOString(),
       };
     } catch (err: any) {
       if (err.message?.includes('database is not configured') || !this.db.room) {
@@ -750,7 +754,7 @@ export class RoomService {
       }
 
       // Safety check: Cannot reduce capacity below current active occupancy
-      const activeOccupancy = room.assignments.length;
+      const activeOccupancy = (room.assignments || []).length;
       if (input.capacity !== undefined) {
         const newCap = Number(input.capacity);
         if (isNaN(newCap) || newCap < 1) {
@@ -957,7 +961,7 @@ export class RoomService {
       if (!room) {
         throw new NotFoundError('Room not found in this mess.');
       }
-      if (room.assignments.length >= room.capacity) {
+      if ((room.assignments || []).length >= room.capacity) {
         throw new ConflictError(
           `Room ${room.roomNumber} is already at full capacity (${room.capacity}/${room.capacity} occupied).`
         );
@@ -965,8 +969,9 @@ export class RoomService {
 
       // 3. Find Bed
       let targetBed: any = null;
+      const roomBeds = (room.beds as any[]) || [];
       if (input.bedId) {
-        targetBed = room.beds.find((b) => b.id === input.bedId);
+        targetBed = roomBeds.find((b) => b.id === input.bedId);
         if (!targetBed) {
           throw new NotFoundError(`Bed was not found in Room ${room.roomNumber}.`);
         }
@@ -975,10 +980,10 @@ export class RoomService {
         }
       } else {
         // Find first available bed
-        targetBed = room.beds.find((b) => b.status === 'AVAILABLE');
+        targetBed = roomBeds.find((b) => b.status === 'AVAILABLE');
         if (!targetBed) {
           // If no bed entity has AVAILABLE status, check if capacity allows creating a bed
-          targetBed = room.beds[0] || null;
+          targetBed = roomBeds[0] || null;
         }
       }
 
@@ -1006,7 +1011,7 @@ export class RoomService {
         });
       }
 
-      if (room.assignments.length + 1 >= room.capacity) {
+      if ((room.assignments || []).length + 1 >= room.capacity) {
         await this.db.room.update({
           where: { id: room.id },
           data: { status: 'OCCUPIED' },
@@ -1192,19 +1197,20 @@ export class RoomService {
       if (!destRoom) {
         throw new NotFoundError('Destination room was not found.');
       }
-      if (destRoom.assignments.length >= destRoom.capacity) {
+      if ((destRoom.assignments || []).length >= destRoom.capacity) {
         throw new ConflictError(
           `Destination Room ${destRoom.roomNumber} is at full capacity.`
         );
       }
 
       let destBed: any = null;
+      const destBeds = (destRoom.beds as any[]) || [];
       if (input.newBedId) {
-        destBed = destRoom.beds.find((b) => b.id === input.newBedId);
+        destBed = destBeds.find((b) => b.id === input.newBedId);
         if (!destBed) throw new NotFoundError('Specified destination bed was not found.');
         if (destBed.status === 'OCCUPIED') throw new ConflictError('Specified destination bed is already occupied.');
       } else {
-        destBed = destRoom.beds.find((b) => b.status === 'AVAILABLE') || destRoom.beds[0] || null;
+        destBed = destBeds.find((b) => b.status === 'AVAILABLE') || destBeds[0] || null;
       }
 
       const agreedRent = input.newMonthlyRent !== undefined ? Number(input.newMonthlyRent) : Number(destRoom.defaultRent);
@@ -1256,7 +1262,7 @@ export class RoomService {
           data: { status: 'OCCUPIED' },
         });
       }
-      if (destRoom.assignments.length + 1 >= destRoom.capacity) {
+      if ((destRoom.assignments || []).length + 1 >= destRoom.capacity) {
         await this.db.room.update({
           where: { id: destRoom.id },
           data: { status: 'OCCUPIED' },

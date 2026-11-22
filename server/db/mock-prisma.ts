@@ -267,6 +267,9 @@ export function createMockPrismaClient(): any {
       { id: 'bed_102_b', roomId: 'room_102', bedNumber: 'Bed B', status: 'AVAILABLE' },
     ],
 
+    roomAssignment: [],
+    rentalListing: [],
+
     subscriptionInvoice: [
       {
         id: 'inv_seed_1',
@@ -428,6 +431,46 @@ export function createMockPrismaClient(): any {
     if (modelName === 'tenant') {
       if (include.memberships) {
         resolved.memberships = collections.membership?.filter((m) => m.tenantId === item.id) || [];
+      }
+    }
+
+    if (modelName === 'room') {
+      if (include.beds) {
+        resolved.beds = (collections.bed || []).filter((b) => b.roomId === item.id);
+      }
+      if (include.assignments) {
+        let assignments = (collections.roomAssignment || []).filter((a) => a.roomId === item.id);
+        if (include.assignments.where) {
+          assignments = assignments.filter((a) => matchCondition(a, include.assignments.where));
+        }
+        resolved.assignments = assignments.map((a) =>
+          resolveRelations(a, 'roomAssignment', include.assignments.include)
+        );
+      }
+      if (include.rentalListings) {
+        resolved.rentalListings = (collections.rentalListing || []).filter((l) => l.roomId === item.id);
+      }
+    }
+
+    if (modelName === 'roomAssignment') {
+      if (include.membership) {
+        const mem = (collections.membership || []).find((m) => m.id === item.membershipId);
+        resolved.membership = mem ? resolveRelations(mem, 'membership', include.membership.include) : null;
+      }
+      if (include.room) {
+        const rm = (collections.room || []).find((r) => r.id === item.roomId);
+        resolved.room = rm ? { ...rm } : null;
+      }
+      if (include.bed) {
+        const b = (collections.bed || []).find((bd) => bd.id === item.bedId);
+        resolved.bed = b ? { ...b } : null;
+      }
+    }
+
+    if (modelName === 'bed') {
+      if (include.room) {
+        const rm = (collections.room || []).find((r) => r.id === item.roomId);
+        resolved.room = rm ? { ...rm } : null;
       }
     }
 

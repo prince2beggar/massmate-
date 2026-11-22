@@ -103,7 +103,7 @@ export function AddRoomModal({
 
       const json = await res.json();
       if (!res.ok || !json.success) {
-        throw new Error(json.message || 'Failed to create room');
+        throw new Error(json.error?.message || json.message || 'Failed to create room');
       }
 
       onRoomAdded(json.data);
