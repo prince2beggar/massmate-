@@ -110,8 +110,8 @@ export async function getMessAdminSession(tenantSlug: string): Promise<MessAdmin
         isOwner: true,
         permissions: allPermissions,
       };
-      userName = 'Mess Owner (Dev)';
-      userEmail = 'owner@messmate.dev';
+      userName = 'Mess Owner';
+      userEmail = userEmail || 'owner@messmate.dev';
     }
 
     if (!tenantContext) {

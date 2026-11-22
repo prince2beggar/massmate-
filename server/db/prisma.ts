@@ -43,8 +43,8 @@ export function getPrismaClient(): PrismaClient {
     if (isMysql) {
       // Standard Prisma Client connection for MySQL
       const client = new PrismaClient({
-        datasourceUrl: config.runtimeUrl,
-      });
+        datasources: { db: { url: config.runtimeUrl } },
+      } as any);
       if (process.env.NODE_ENV !== 'production') {
         globalThis.__messmatePrismaClient__ = client;
       }

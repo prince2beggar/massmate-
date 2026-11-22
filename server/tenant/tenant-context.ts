@@ -4,7 +4,7 @@ if (typeof window !== 'undefined') {
 
 import { prisma as defaultPrisma } from '@/server/db/prisma';
 import type { PrismaClient } from '@/generated/prisma/client';
-import type { PermissionKey } from '@/server/rbac/permissions';
+import { PERMISSION_CATALOG, type PermissionKey } from '@/server/rbac/permissions';
 import {
   UnauthenticatedError,
   TenantNotFoundError,
@@ -134,9 +134,22 @@ export class TenantContextService {
     }
 
     // 8. Permission Set Assembly
-    const permissionSet = new Set<string>(
-      role.rolePermissions.map((rp) => rp.permission.key)
-    );
+    let permissionSet: Set<string>;
+    if (role.rolePermissions && Array.isArray(role.rolePermissions)) {
+      permissionSet = new Set<string>(
+        role.rolePermissions.map((rp: any) => rp.permission?.key || rp.permissionKey || rp)
+      );
+    } else if ((role as any).permissions && Array.isArray((role as any).permissions)) {
+      if ((role as any).permissions.includes('*')) {
+        permissionSet = new Set<string>(PERMISSION_CATALOG.map((p) => p.key));
+      } else {
+        permissionSet = new Set<string>((role as any).permissions);
+      }
+    } else {
+      permissionSet = new Set<string>(
+        role.slug === 'owner' ? PERMISSION_CATALOG.map((p) => p.key) : []
+      );
+    }
 
     return {
       userId,

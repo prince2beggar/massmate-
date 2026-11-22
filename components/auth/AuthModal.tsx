@@ -91,7 +91,7 @@ export function AuthCard({
   // Form Fields
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [messName, setMessName] = useState('Prince Mess');
+  const [messName, setMessName] = useState('');
 
   useEffect(() => {
     setTab(activeTab);
@@ -114,9 +114,9 @@ export function AuthCard({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          email: email.trim() || 'demo@messmate.dev',
-          password: password || 'messmate123',
-          messName: messName.trim() || 'Prince Mess',
+          email: email.trim(),
+          password: password,
+          messName: messName.trim(),
         }),
       });
 
@@ -133,8 +133,8 @@ export function AuthCard({
 
       if (onSuccess) onSuccess();
       setTimeout(() => {
-        window.location.href = data.redirectUrl || '/mess/prince-mess';
-      }, 600);
+        window.location.href = data.redirectUrl;
+      }, 500);
     } catch (err: any) {
       setError(err.message || 'Trial activation failed. Please try again.');
     } finally {
@@ -152,10 +152,8 @@ export function AuthCard({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          email: email.trim() || 'owner@messmate.dev',
-          password: password || 'messmate123',
-          role: 'ADMIN',
-          tenantSlug: 'prince-mess',
+          email: email.trim(),
+          password: password,
         }),
       });
 
@@ -167,7 +165,7 @@ export function AuthCard({
       setSuccessMsg(isBn ? 'লগইন সফল! রিডাইরেক্ট হচ্ছে...' : 'Login successful! Redirecting...');
       if (onSuccess) onSuccess();
       setTimeout(() => {
-        window.location.href = data.redirectUrl || '/mess/prince-mess';
+        window.location.href = data.redirectUrl;
       }, 500);
     } catch (err: any) {
       setError(err.message || 'Login failed. Please check your credentials.');
@@ -310,7 +308,9 @@ export function AuthCard({
             <div className="space-y-1.5">
               <label className="text-xs font-semibold text-slate-700 flex items-center justify-between">
                 <span>{isBn ? 'মেসের নাম (ঐচ্ছিক)' : 'Mess Name (Optional)'}</span>
-                <span className="text-[10px] text-slate-400">{isBn ? 'ডিফল্ট: Prince Mess' : 'Default: Prince Mess'}</span>
+                <span className="text-[10px] text-slate-400">
+                  {isBn ? 'ফাঁকা রাখলে স্বয়ংক্রিয়ভাবে তৈরি হবে' : 'Auto-generated if left blank'}
+                </span>
               </label>
               <div className="relative">
                 <Building2 className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
@@ -318,7 +318,7 @@ export function AuthCard({
                   type="text"
                   value={messName}
                   onChange={(e) => setMessName(e.target.value)}
-                  placeholder="Prince Mess"
+                  placeholder={isBn ? 'যেমন: ঢাকা স্টুডেন্ট মেস / Green Valley Mess' : 'e.g. Dhaka Student Mess / Green Valley Mess'}
                   className="w-full pl-10 pr-3.5 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-[#324CDD] focus:ring-2 focus:ring-[#324CDD]/15 outline-none transition-all"
                 />
               </div>
@@ -419,8 +419,8 @@ export function AuthCard({
 
             {/* Quick 1-Click Persona Demo Logins */}
             <div className="pt-3 border-t border-slate-100">
-              <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 text-center mb-2.5">
-                {isBn ? '⚡ দ্রুত টেস্ট করতে ১-ক্লিক ডেমো লগইন:' : '⚡ Quick 1-Click Demo Login:'}
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 text-center mb-2.5">
+                {isBn ? '⚡ টেস্ট করার জন্য ডেমো একাউন্ট (Prince Mess):' : '⚡ 1-Click Demo Accounts (Prince Mess):'}
               </p>
               <div className="grid grid-cols-3 gap-2">
                 <button

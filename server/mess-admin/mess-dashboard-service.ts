@@ -434,8 +434,8 @@ export class MessDashboardService {
       }
     }
 
-    // In development or demo mode when DB is not configured, provide realistic tenant data
-    if (!this.isCustomDb && (!this.isDbAvailable() || (totalMembers === 0 && allInvoices.length === 0))) {
+    // In development or demo mode for Prince Mess ONLY, provide realistic sample tenant data
+    if (tenantContext.tenantSlug === 'prince-mess' && (!this.isCustomDb && (!this.isDbAvailable() || (totalMembers === 0 && allInvoices.length === 0)))) {
       totalMembers = 12;
       activeMembers = 10;
       pendingMembers = 1;
@@ -492,6 +492,25 @@ export class MessDashboardService {
           actorUser: { name: 'Mess Owner', platformRole: 'OWNER' },
         },
       ];
+    } else if (tenantContext.tenantSlug !== 'prince-mess' && totalMembers === 0) {
+      // For any newly created mess, the creator/owner is the first active member
+      totalMembers = 1;
+      activeMembers = 1;
+      pendingMembers = 0;
+      suspendedMembers = 0;
+      if (!auditLogs || auditLogs.length === 0) {
+        auditLogs = [
+          {
+            id: `log_init_${tenantContext.tenantId}`,
+            action: 'WORKSPACE_INITIALIZED',
+            description: `Mess "${tenantContext.tenantName}" workspace initialized with 7-Day Free Trial`,
+            entityType: 'TENANT',
+            createdAt: new Date(),
+            actorUserId: tenantContext.userId,
+            actorUser: { name: tenantContext.tenantName + ' Owner', platformRole: 'OWNER' },
+          },
+        ];
+      }
     }
 
     // 2. Financial Aggregations using exact BigInt Poisha

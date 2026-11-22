@@ -329,6 +329,33 @@ export function createMockPrismaClient(): any {
 
       if (expected === undefined) continue;
 
+      // Handle Compound unique keys (e.g. userId_tenantId: { userId, tenantId }) or relation filters
+      if (item[key] === undefined && typeof expected === 'object' && expected !== null && !(expected instanceof Date)) {
+        const subKeys = Object.keys(expected);
+        const isCompound = subKeys.length > 0 && subKeys.every((k) => k in item);
+        if (isCompound) {
+          if (!subKeys.every((k) => item[k] === expected[k])) return false;
+          continue;
+        }
+
+        // Relation filter e.g. tenant: { status: 'ACTIVE' }
+        if (key === 'tenant' && item.tenantId && collections.tenant) {
+          const rel = collections.tenant.find((t) => t.id === item.tenantId);
+          if (!rel || !matchCondition(rel, expected)) return false;
+          continue;
+        }
+        if (key === 'user' && item.userId && collections.user) {
+          const rel = collections.user.find((u) => u.id === item.userId);
+          if (!rel || !matchCondition(rel, expected)) return false;
+          continue;
+        }
+        if (key === 'role' && item.roleId && collections.role) {
+          const rel = collections.role.find((r) => r.id === item.roleId);
+          if (!rel || !matchCondition(rel, expected)) return false;
+          continue;
+        }
+      }
+
       if (typeof expected === 'object' && expected !== null && !(expected instanceof Date)) {
         if ('equals' in expected && actual !== expected.equals) return false;
         if ('in' in expected && Array.isArray(expected.in) && !expected.in.includes(actual)) return false;
@@ -359,6 +386,14 @@ export function createMockPrismaClient(): any {
     if (!item || !include) return item;
     const resolved = { ...item };
 
+    if (modelName === 'role') {
+      if (include.rolePermissions) {
+        resolved.rolePermissions = (resolved.permissions || []).map((p: string) => ({
+          permission: { key: p },
+        }));
+      }
+    }
+
     if (modelName === 'membership') {
       if (include.user) {
         const user = collections.user?.find((u) => u.id === item.userId);
@@ -366,7 +401,16 @@ export function createMockPrismaClient(): any {
       }
       if (include.role) {
         const role = collections.role?.find((r) => r.id === item.roleId);
-        resolved.role = role ? { ...role } : null;
+        if (role) {
+          resolved.role = {
+            ...role,
+            rolePermissions: (role.permissions || []).map((p: string) => ({
+              permission: { key: p },
+            })),
+          };
+        } else {
+          resolved.role = null;
+        }
       }
       if (include.tenant) {
         const tenant = collections.tenant?.find((t) => t.id === item.tenantId);
@@ -398,8 +442,24 @@ export function createMockPrismaClient(): any {
 
     return {
       async findMany(args?: any) {
-        const { where, skip = 0, take = 100, include } = args || {};
-        const filtered = store.filter((item) => matchCondition(item, where));
+        const { where, skip = 0, take = 100, include, orderBy } = args || {};
+        let filtered = store.filter((item) => matchCondition(item, where));
+        if (orderBy && typeof orderBy === 'object') {
+          const sortKey = Object.keys(orderBy)[0];
+          const sortDir = orderBy[sortKey];
+          if (sortKey) {
+            filtered = [...filtered].sort((a, b) => {
+              const valA = a[sortKey];
+              const valB = b[sortKey];
+              if (valA instanceof Date && valB instanceof Date) {
+                return sortDir === 'asc' ? valA.getTime() - valB.getTime() : valB.getTime() - valA.getTime();
+              }
+              if (valA < valB) return sortDir === 'asc' ? -1 : 1;
+              if (valA > valB) return sortDir === 'asc' ? 1 : -1;
+              return 0;
+            });
+          }
+        }
         const paginated = filtered.slice(skip, take ? skip + take : undefined);
         return paginated.map((item) => resolveRelations(item, modelName, include));
       },
