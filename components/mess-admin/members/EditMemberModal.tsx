@@ -16,7 +16,7 @@ import {
   Check,
 } from 'lucide-react';
 import type { MemberDto } from '@/server/members/member-service';
-import { STANDARD_MESS_ROLES } from '@/server/rbac/role-templates';
+import { STANDARD_MESS_ROLES } from '@/server/rbac/role-constants';
 
 interface EditMemberModalProps {
   tenantSlug: string;

@@ -28,7 +28,7 @@ import {
   User,
 } from 'lucide-react';
 import type { MemberDto } from '@/server/members/member-service';
-import { STANDARD_MESS_ROLES } from '@/server/rbac/role-templates';
+import { STANDARD_MESS_ROLES } from '@/server/rbac/role-constants';
 import { AddMemberModal } from './AddMemberModal';
 import { EditMemberModal } from './EditMemberModal';
 import { ChangeStatusModal } from './ChangeStatusModal';

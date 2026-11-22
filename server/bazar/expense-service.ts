@@ -1232,6 +1232,25 @@ export class ExpenseService {
       }
     }
 
+    const purchaseDate =
+      typeof e.purchaseDate === 'string'
+        ? e.purchaseDate
+        : e.purchaseDate instanceof Date
+        ? e.purchaseDate.toISOString().slice(0, 10)
+        : String(e.dateString || '');
+
+    const createdAt =
+      e.createdAt instanceof Date
+        ? e.createdAt.toISOString()
+        : String(e.createdAt || new Date().toISOString());
+
+    const reviewedAt =
+      e.reviewedAt instanceof Date
+        ? e.reviewedAt.toISOString()
+        : e.reviewedAt
+        ? String(e.reviewedAt)
+        : null;
+
     const items =
       e.items ||
       ExpenseService.inMemoryExpenseItems.get(e.id) ||
@@ -1246,13 +1265,13 @@ export class ExpenseService {
       purchaserMembershipId: e.purchaserMembershipId,
       purchaserName,
       purchaserCode,
-      purchaseDate: e.purchaseDate,
-      dateString: e.dateString,
+      purchaseDate,
+      dateString: e.dateString || purchaseDate,
       description: e.description,
       vendor: e.vendor || null,
       paymentMethod: e.paymentMethod,
-      totalAmountPoisha: e.totalAmountPoisha.toString(),
-      totalAmount: Number(e.totalAmount),
+      totalAmountPoisha: e.totalAmountPoisha ? e.totalAmountPoisha.toString() : '0',
+      totalAmount: e.totalAmount ? Number(e.totalAmount) : e.totalAmountPoisha ? Number(e.totalAmountPoisha) / 100 : 0,
       receiptUrl: e.receiptUrl || null,
       receiptFileName: e.receiptFileName || null,
       notes: e.notes || null,
@@ -1262,10 +1281,10 @@ export class ExpenseService {
       status: e.status,
       reviewedByUserId: e.reviewedByUserId || null,
       reviewedByName: e.reviewedByUser?.name || null,
-      reviewedAt: e.reviewedAt || null,
+      reviewedAt,
       rejectionReason: e.rejectionReason || null,
       isMealEligible: Boolean(e.isMealEligible),
-      createdAt: e.createdAt,
+      createdAt,
       items,
     };
   }

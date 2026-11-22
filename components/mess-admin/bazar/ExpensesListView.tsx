@@ -98,8 +98,10 @@ export function ExpensesListView({
   // Filtered expenses
   const filteredExpenses = useMemo(() => {
     return expenses.filter((exp) => {
+      const pDate = String((exp as any).purchaseDate || (exp as any).dateString || '');
+
       // Month match (purchaseDate starts with YYYY-MM)
-      if (selectedMonth && !exp.purchaseDate.startsWith(selectedMonth)) {
+      if (selectedMonth && !pDate.startsWith(selectedMonth)) {
         return false;
       }
       // Status filter
