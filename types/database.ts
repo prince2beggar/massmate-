@@ -47,6 +47,7 @@ import type {
   MemberPayment as PrismaMemberPayment,
   BalanceAdjustment as PrismaBalanceAdjustment,
   MessSetting as PrismaMessSetting,
+  Notice as PrismaNotice,
   AllocationRule,
   BillingPeriodStatus,
   BillStatus,
@@ -176,6 +177,7 @@ export type BillItem = PrismaBillItem;
 export type MemberPayment = PrismaMemberPayment;
 export type BalanceAdjustment = PrismaBalanceAdjustment;
 export type MessSetting = PrismaMessSetting;
+export type Notice = PrismaNotice;
 export type CustomPlanInquiry = PrismaCustomPlanInquiry;
 export type CustomQuotation = PrismaCustomQuotation;
 export type Domain = PrismaDomain;

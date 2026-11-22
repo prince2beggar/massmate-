@@ -375,6 +375,7 @@ model User {
   receivedMemberPayments  MemberPayment[]        @relation("ReceivedMemberPayments")
   verifiedMemberPayments  MemberPayment[]        @relation("VerifiedMemberPayments")
   authorizedAdjustments   BalanceAdjustment[]    @relation("AuthorizedAdjustments")
+  authoredNotices         Notice[]               @relation("AuthoredNotices")
 
   @@index([status])
   @@index([platformRole])
@@ -434,6 +435,7 @@ model Tenant {
   memberPayments        MemberPayment[]
   balanceAdjustments    BalanceAdjustment[]
   messSetting           MessSetting?
+  notices               Notice[]
 
   @@index([status])
   @@index([verificationStatus])
@@ -1535,5 +1537,34 @@ model MessSetting {
   @@index([tenantId])
   @@map("mess_settings")
 }
+
+// -----------------------------------------------------------------------------
+// MESS NOTICES & ANNOUNCEMENTS (Task 37 & 39)
+// -----------------------------------------------------------------------------
+
+model Notice {
+  id           String    @id @default(cuid())
+  tenantId     String    @map("tenant_id")
+  title        String
+  content      String
+  category     String    @default("GENERAL") // GENERAL, DINING, MAINTENANCE, FINANCE, EMERGENCY
+  priority     String    @default("NORMAL")  // LOW, NORMAL, HIGH, URGENT
+  isPinned     Boolean   @default(false)     @map("is_pinned")
+  status       String    @default("PUBLISHED") // DRAFT, PUBLISHED, ARCHIVED
+  authorUserId String?   @map("author_user_id")
+  publishedAt  DateTime? @map("published_at")
+  expiresAt    DateTime? @map("expires_at")
+  createdAt    DateTime  @default(now())      @map("created_at")
+  updatedAt    DateTime  @updatedAt          @map("updated_at")
+
+  tenant     Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  authorUser User?  @relation("AuthoredNotices", fields: [authorUserId], references: [id], onDelete: SetNull)
+
+  @@index([tenantId])
+  @@index([status])
+  @@index([isPinned])
+  @@map("notices")
+}
+
 
 

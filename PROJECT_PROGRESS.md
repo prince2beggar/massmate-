@@ -2,12 +2,23 @@
 
 > **Project:** Multi-tenant Mess Management SaaS  
 > **Repository:** `D:\messmate`  
-> **Active Phase:** Phase 4 — Mess Admin Dashboard & Operations (Tasks 29–36)  
+> **Active Phase:** Phase 5 — Member Portal & Resident Self-Service (Tasks 37–40)  
 > **Last Updated:** 2026-11-22  
 
 ---
 
-## Phase 4 Roadmap Status
+## Phase 5 Roadmap Status (Member Portal & Resident Self-Service)
+
+| Task | Task Name | Status | Completion Date | Main Deliverables | Test Results | Next Step |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Task 37** | Member Portal Foundation, Access Control & Dashboard | **Completed and Verified** | 2026-11-22 | Dedicated `/portal/[tenantSlug]` shell, `withMemberAuth` access control, anti-IDOR validation, 4 KPI cards (Room, Meals, Due Balance, Last Payment), zero-drift financial snapshot via `FinanceService`, today's dining & menus, published notices feed, recent activities stream, quick actions. | 14/14 Automated Tests Passed (106/106 full suite); 0 TS errors, 0 ESLint warnings; Production build passed. | Proceed to Task 38 |
+| **Task 38** | Resident Profile, Emergency Contacts & Room Management | *Upcoming* | — | Profile viewing/editing, emergency contacts, room & bed details, room-change request workflow. | Pending Task 37 signoff | Upcoming |
+| **Task 39** | Member Meal Calendar, Preferences & Meal-Off Requests | *Upcoming* | — | Monthly meal calendar, daily meal bookings, cutoff-enforced meal-off submissions, dietary notes. | Pending Task 38 signoff | Upcoming |
+| **Task 40** | Member Billing, Payments & Statements | *Upcoming* | — | Detailed ledger statement, deposit payment submission (bKash/Nagad/Bank/Cash), printable receipt. | Pending Task 39 signoff | Upcoming |
+
+---
+
+## Phase 4 Roadmap Status (Mess Admin Dashboard & Operations)
 
 | Task | Task Name | Status | Completion Date | Main Deliverables | Test Results | Next Step |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -228,6 +239,33 @@
     - Navigation integration: `settings`, `roles`, and `audit-logs` marked active (`isImplemented: true`) in sidebar and quick actions.
   - Automated test suite (`server/settings/mess-settings.test.ts`): 14 comprehensive unit and integration tests covering default settings auto-seeding, general profile updates, appearance validation, operational defaults, emergency contact privacy enforcement, 6 system role templates, custom role creation, anti-privilege escalation, system role protection, owner protection, role deletion safety, audit log filtering and redaction, append-only immutability, and cross-tenant isolation.
 - **Verification:** TypeScript: 0 errors; ESLint: 0 errors, 0 warnings; 92/92 total regression tests passing (100%); Next.js production build: 53/53 routes compiled cleanly.
+
+### Task 37: Member Portal Foundation, Access Control & Dashboard
+- **Status:** Completed and Verified
+- **Date:** 2026-11-22
+- **Key Deliverables:**
+  - Dedicated Member Portal routing at `/portal/[tenantSlug]` matching tenant-scoping patterns without collision.
+  - Server-side access control with `withMemberAuth` (`server/api/with-member-auth.ts`):
+    - Authenticates actor user identity (`userId`).
+    - Resolves target mess by `tenantSlug`.
+    - Enforces active resident membership (`status: 'ACTIVE'`).
+    - Blocks unauthenticated callers (401), non-members (403), inactive/suspended members (403), and provides full anti-IDOR protection.
+  - Backend `MemberPortalService` (`server/member-portal/member-portal-service.ts`):
+    - Member context resolution and data-driven aggregation for dashboard view.
+    - Zero financial drift rule: reuses `FinanceService` (`getMemberStatement`) with integer Poisha precision.
+    - Today's dining status, meal counts, and menu in `Asia/Dhaka` timezone.
+    - Published notices feed filtering drafts and cross-tenant entries.
+    - Resident recent activity stream (payments, meal-off, room assignment).
+  - Database schema extension: `Notice` model (`prisma/schema.prisma`) with priority, pin, category, and lifecycle statuses.
+  - UI components and layout:
+    - `MemberPortalLayoutShell`: responsive desktop sidebar and mobile drawer.
+    - `MemberPortalNavbar`: mess branding, resident identity, active status badge, and sign-out action.
+    - `MemberPortalSidebar`: 10 navigation items with upcoming task badges and encrypted session security badge.
+    - `MemberDashboardView`: welcome header with localized Dhaka timestamp, 4 KPI cards (Room, Meals, Current Due, Last Payment), monthly account ledger snapshot, today's dining & menus, published notices, activity stream, and quick action shortcuts.
+    - Landing hub at `/member-portal` guiding residents to their mess portals.
+  - Automated test suite (`server/member-portal/member-portal.test.ts`): 14 unit and integration tests covering currency/poisha arithmetic, active member resolution, 401 unauthenticated guard, 403 non-member and suspended guards, IDOR prevention, complete dashboard data aggregation, unassigned room empty state, active meal-off status reflection, notice tenant isolation, and `withMemberAuth` API wrapper.
+- **Verification:** TypeScript: 0 errors; ESLint: 0 errors, 0 warnings; 106/106 full regression tests passing (100%); Next.js production build: 47/47 routes compiled cleanly.
+
 
 
 

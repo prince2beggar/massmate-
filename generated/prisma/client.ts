@@ -246,3 +246,8 @@ export type BalanceAdjustment = Prisma.BalanceAdjustmentModel
  * 
  */
 export type MessSetting = Prisma.MessSettingModel
+/**
+ * Model Notice
+ * 
+ */
+export type Notice = Prisma.NoticeModel

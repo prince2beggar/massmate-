@@ -91,7 +91,8 @@ export const ModelName = {
   BillItem: 'BillItem',
   MemberPayment: 'MemberPayment',
   BalanceAdjustment: 'BalanceAdjustment',
-  MessSetting: 'MessSetting'
+  MessSetting: 'MessSetting',
+  Notice: 'Notice'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -911,6 +912,25 @@ export const MessSettingScalarFieldEnum = {
 } as const
 
 export type MessSettingScalarFieldEnum = (typeof MessSettingScalarFieldEnum)[keyof typeof MessSettingScalarFieldEnum]
+
+
+export const NoticeScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  title: 'title',
+  content: 'content',
+  category: 'category',
+  priority: 'priority',
+  isPinned: 'isPinned',
+  status: 'status',
+  authorUserId: 'authorUserId',
+  publishedAt: 'publishedAt',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type NoticeScalarFieldEnum = (typeof NoticeScalarFieldEnum)[keyof typeof NoticeScalarFieldEnum]
 
 
 export const SortOrder = {

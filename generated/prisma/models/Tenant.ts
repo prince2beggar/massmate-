@@ -314,6 +314,7 @@ export type TenantWhereInput = {
   memberPayments?: Prisma.MemberPaymentListRelationFilter
   balanceAdjustments?: Prisma.BalanceAdjustmentListRelationFilter
   messSetting?: Prisma.XOR<Prisma.MessSettingNullableScalarRelationFilter, Prisma.MessSettingWhereInput> | null
+  notices?: Prisma.NoticeListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
@@ -363,6 +364,7 @@ export type TenantOrderByWithRelationInput = {
   memberPayments?: Prisma.MemberPaymentOrderByRelationAggregateInput
   balanceAdjustments?: Prisma.BalanceAdjustmentOrderByRelationAggregateInput
   messSetting?: Prisma.MessSettingOrderByWithRelationInput
+  notices?: Prisma.NoticeOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -415,6 +417,7 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   memberPayments?: Prisma.MemberPaymentListRelationFilter
   balanceAdjustments?: Prisma.BalanceAdjustmentListRelationFilter
   messSetting?: Prisma.XOR<Prisma.MessSettingNullableScalarRelationFilter, Prisma.MessSettingWhereInput> | null
+  notices?: Prisma.NoticeListRelationFilter
 }, "id" | "slug">
 
 export type TenantOrderByWithAggregationInput = {
@@ -512,6 +515,7 @@ export type TenantCreateInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
@@ -561,6 +565,7 @@ export type TenantUncheckedCreateInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
@@ -610,6 +615,7 @@ export type TenantUpdateInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
@@ -659,6 +665,7 @@ export type TenantUncheckedUpdateInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
@@ -1205,6 +1212,20 @@ export type TenantUpdateOneRequiredWithoutMessSettingNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutMessSettingInput, Prisma.TenantUpdateWithoutMessSettingInput>, Prisma.TenantUncheckedUpdateWithoutMessSettingInput>
 }
 
+export type TenantCreateNestedOneWithoutNoticesInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutNoticesInput, Prisma.TenantUncheckedCreateWithoutNoticesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutNoticesInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutNoticesNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutNoticesInput, Prisma.TenantUncheckedCreateWithoutNoticesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutNoticesInput
+  upsert?: Prisma.TenantUpsertWithoutNoticesInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutNoticesInput, Prisma.TenantUpdateWithoutNoticesInput>, Prisma.TenantUncheckedUpdateWithoutNoticesInput>
+}
+
 export type TenantCreateWithoutVerificationInput = {
   id?: string
   name: string
@@ -1251,6 +1272,7 @@ export type TenantCreateWithoutVerificationInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutVerificationInput = {
@@ -1299,6 +1321,7 @@ export type TenantUncheckedCreateWithoutVerificationInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutVerificationInput = {
@@ -1363,6 +1386,7 @@ export type TenantUpdateWithoutVerificationInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutVerificationInput = {
@@ -1411,6 +1435,7 @@ export type TenantUncheckedUpdateWithoutVerificationInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRolesInput = {
@@ -1459,6 +1484,7 @@ export type TenantCreateWithoutRolesInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRolesInput = {
@@ -1507,6 +1533,7 @@ export type TenantUncheckedCreateWithoutRolesInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRolesInput = {
@@ -1571,6 +1598,7 @@ export type TenantUpdateWithoutRolesInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRolesInput = {
@@ -1619,6 +1647,7 @@ export type TenantUncheckedUpdateWithoutRolesInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMembershipsInput = {
@@ -1667,6 +1696,7 @@ export type TenantCreateWithoutMembershipsInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMembershipsInput = {
@@ -1715,6 +1745,7 @@ export type TenantUncheckedCreateWithoutMembershipsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMembershipsInput = {
@@ -1779,6 +1810,7 @@ export type TenantUpdateWithoutMembershipsInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMembershipsInput = {
@@ -1827,6 +1859,7 @@ export type TenantUncheckedUpdateWithoutMembershipsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAuditLogsInput = {
@@ -1875,6 +1908,7 @@ export type TenantCreateWithoutAuditLogsInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAuditLogsInput = {
@@ -1923,6 +1957,7 @@ export type TenantUncheckedCreateWithoutAuditLogsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAuditLogsInput = {
@@ -1987,6 +2022,7 @@ export type TenantUpdateWithoutAuditLogsInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAuditLogsInput = {
@@ -2035,6 +2071,7 @@ export type TenantUncheckedUpdateWithoutAuditLogsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSubscriptionInput = {
@@ -2083,6 +2120,7 @@ export type TenantCreateWithoutSubscriptionInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSubscriptionInput = {
@@ -2131,6 +2169,7 @@ export type TenantUncheckedCreateWithoutSubscriptionInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSubscriptionInput = {
@@ -2195,6 +2234,7 @@ export type TenantUpdateWithoutSubscriptionInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSubscriptionInput = {
@@ -2243,6 +2283,7 @@ export type TenantUncheckedUpdateWithoutSubscriptionInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInvoicesInput = {
@@ -2291,6 +2332,7 @@ export type TenantCreateWithoutInvoicesInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInvoicesInput = {
@@ -2339,6 +2381,7 @@ export type TenantUncheckedCreateWithoutInvoicesInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInvoicesInput = {
@@ -2403,6 +2446,7 @@ export type TenantUpdateWithoutInvoicesInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInvoicesInput = {
@@ -2451,6 +2495,7 @@ export type TenantUncheckedUpdateWithoutInvoicesInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDomainsInput = {
@@ -2499,6 +2544,7 @@ export type TenantCreateWithoutDomainsInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDomainsInput = {
@@ -2547,6 +2593,7 @@ export type TenantUncheckedCreateWithoutDomainsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDomainsInput = {
@@ -2611,6 +2658,7 @@ export type TenantUpdateWithoutDomainsInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDomainsInput = {
@@ -2659,6 +2707,7 @@ export type TenantUncheckedUpdateWithoutDomainsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSupportTicketsInput = {
@@ -2707,6 +2756,7 @@ export type TenantCreateWithoutSupportTicketsInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSupportTicketsInput = {
@@ -2755,6 +2805,7 @@ export type TenantUncheckedCreateWithoutSupportTicketsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSupportTicketsInput = {
@@ -2819,6 +2870,7 @@ export type TenantUpdateWithoutSupportTicketsInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSupportTicketsInput = {
@@ -2867,6 +2919,7 @@ export type TenantUncheckedUpdateWithoutSupportTicketsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRoomsInput = {
@@ -2915,6 +2968,7 @@ export type TenantCreateWithoutRoomsInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRoomsInput = {
@@ -2963,6 +3017,7 @@ export type TenantUncheckedCreateWithoutRoomsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRoomsInput = {
@@ -3027,6 +3082,7 @@ export type TenantUpdateWithoutRoomsInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRoomsInput = {
@@ -3075,6 +3131,7 @@ export type TenantUncheckedUpdateWithoutRoomsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBedsInput = {
@@ -3123,6 +3180,7 @@ export type TenantCreateWithoutBedsInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBedsInput = {
@@ -3171,6 +3229,7 @@ export type TenantUncheckedCreateWithoutBedsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBedsInput = {
@@ -3235,6 +3294,7 @@ export type TenantUpdateWithoutBedsInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBedsInput = {
@@ -3283,6 +3343,7 @@ export type TenantUncheckedUpdateWithoutBedsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRoomAssignmentsInput = {
@@ -3331,6 +3392,7 @@ export type TenantCreateWithoutRoomAssignmentsInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRoomAssignmentsInput = {
@@ -3379,6 +3441,7 @@ export type TenantUncheckedCreateWithoutRoomAssignmentsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRoomAssignmentsInput = {
@@ -3443,6 +3506,7 @@ export type TenantUpdateWithoutRoomAssignmentsInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRoomAssignmentsInput = {
@@ -3491,6 +3555,7 @@ export type TenantUncheckedUpdateWithoutRoomAssignmentsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRentalListingsInput = {
@@ -3539,6 +3604,7 @@ export type TenantCreateWithoutRentalListingsInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRentalListingsInput = {
@@ -3587,6 +3653,7 @@ export type TenantUncheckedCreateWithoutRentalListingsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRentalListingsInput = {
@@ -3651,6 +3718,7 @@ export type TenantUpdateWithoutRentalListingsInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRentalListingsInput = {
@@ -3699,6 +3767,7 @@ export type TenantUncheckedUpdateWithoutRentalListingsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBookingRequestsInput = {
@@ -3747,6 +3816,7 @@ export type TenantCreateWithoutBookingRequestsInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBookingRequestsInput = {
@@ -3795,6 +3865,7 @@ export type TenantUncheckedCreateWithoutBookingRequestsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBookingRequestsInput = {
@@ -3859,6 +3930,7 @@ export type TenantUpdateWithoutBookingRequestsInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBookingRequestsInput = {
@@ -3907,6 +3979,7 @@ export type TenantUncheckedUpdateWithoutBookingRequestsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMealSettingInput = {
@@ -3955,6 +4028,7 @@ export type TenantCreateWithoutMealSettingInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMealSettingInput = {
@@ -4003,6 +4077,7 @@ export type TenantUncheckedCreateWithoutMealSettingInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMealSettingInput = {
@@ -4067,6 +4142,7 @@ export type TenantUpdateWithoutMealSettingInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMealSettingInput = {
@@ -4115,6 +4191,7 @@ export type TenantUncheckedUpdateWithoutMealSettingInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMealDailyLogsInput = {
@@ -4163,6 +4240,7 @@ export type TenantCreateWithoutMealDailyLogsInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMealDailyLogsInput = {
@@ -4211,6 +4289,7 @@ export type TenantUncheckedCreateWithoutMealDailyLogsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMealDailyLogsInput = {
@@ -4275,6 +4354,7 @@ export type TenantUpdateWithoutMealDailyLogsInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMealDailyLogsInput = {
@@ -4323,6 +4403,7 @@ export type TenantUncheckedUpdateWithoutMealDailyLogsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMemberMealEntriesInput = {
@@ -4371,6 +4452,7 @@ export type TenantCreateWithoutMemberMealEntriesInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMemberMealEntriesInput = {
@@ -4419,6 +4501,7 @@ export type TenantUncheckedCreateWithoutMemberMealEntriesInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMemberMealEntriesInput = {
@@ -4483,6 +4566,7 @@ export type TenantUpdateWithoutMemberMealEntriesInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMemberMealEntriesInput = {
@@ -4531,6 +4615,7 @@ export type TenantUncheckedUpdateWithoutMemberMealEntriesInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMealOffRequestsInput = {
@@ -4579,6 +4664,7 @@ export type TenantCreateWithoutMealOffRequestsInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMealOffRequestsInput = {
@@ -4627,6 +4713,7 @@ export type TenantUncheckedCreateWithoutMealOffRequestsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMealOffRequestsInput = {
@@ -4691,6 +4778,7 @@ export type TenantUpdateWithoutMealOffRequestsInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMealOffRequestsInput = {
@@ -4739,6 +4827,7 @@ export type TenantUncheckedUpdateWithoutMealOffRequestsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutGuestMealsInput = {
@@ -4787,6 +4876,7 @@ export type TenantCreateWithoutGuestMealsInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutGuestMealsInput = {
@@ -4835,6 +4925,7 @@ export type TenantUncheckedCreateWithoutGuestMealsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutGuestMealsInput = {
@@ -4899,6 +4990,7 @@ export type TenantUpdateWithoutGuestMealsInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutGuestMealsInput = {
@@ -4947,6 +5039,7 @@ export type TenantUncheckedUpdateWithoutGuestMealsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMealPeriodLocksInput = {
@@ -4995,6 +5088,7 @@ export type TenantCreateWithoutMealPeriodLocksInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMealPeriodLocksInput = {
@@ -5043,6 +5137,7 @@ export type TenantUncheckedCreateWithoutMealPeriodLocksInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMealPeriodLocksInput = {
@@ -5107,6 +5202,7 @@ export type TenantUpdateWithoutMealPeriodLocksInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMealPeriodLocksInput = {
@@ -5155,6 +5251,7 @@ export type TenantUncheckedUpdateWithoutMealPeriodLocksInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutExpenseCategoriesInput = {
@@ -5203,6 +5300,7 @@ export type TenantCreateWithoutExpenseCategoriesInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutExpenseCategoriesInput = {
@@ -5251,6 +5349,7 @@ export type TenantUncheckedCreateWithoutExpenseCategoriesInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutExpenseCategoriesInput = {
@@ -5315,6 +5414,7 @@ export type TenantUpdateWithoutExpenseCategoriesInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutExpenseCategoriesInput = {
@@ -5363,6 +5463,7 @@ export type TenantUncheckedUpdateWithoutExpenseCategoriesInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutExpensesInput = {
@@ -5411,6 +5512,7 @@ export type TenantCreateWithoutExpensesInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutExpensesInput = {
@@ -5459,6 +5561,7 @@ export type TenantUncheckedCreateWithoutExpensesInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutExpensesInput = {
@@ -5523,6 +5626,7 @@ export type TenantUpdateWithoutExpensesInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutExpensesInput = {
@@ -5571,6 +5675,7 @@ export type TenantUncheckedUpdateWithoutExpensesInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBazarSchedulesInput = {
@@ -5619,6 +5724,7 @@ export type TenantCreateWithoutBazarSchedulesInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBazarSchedulesInput = {
@@ -5667,6 +5773,7 @@ export type TenantUncheckedCreateWithoutBazarSchedulesInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBazarSchedulesInput = {
@@ -5731,6 +5838,7 @@ export type TenantUpdateWithoutBazarSchedulesInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBazarSchedulesInput = {
@@ -5779,6 +5887,7 @@ export type TenantUncheckedUpdateWithoutBazarSchedulesInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutFinancialCategoriesInput = {
@@ -5827,6 +5936,7 @@ export type TenantCreateWithoutFinancialCategoriesInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutFinancialCategoriesInput = {
@@ -5875,6 +5985,7 @@ export type TenantUncheckedCreateWithoutFinancialCategoriesInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutFinancialCategoriesInput = {
@@ -5939,6 +6050,7 @@ export type TenantUpdateWithoutFinancialCategoriesInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutFinancialCategoriesInput = {
@@ -5987,6 +6099,7 @@ export type TenantUncheckedUpdateWithoutFinancialCategoriesInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMonthlyBillingPeriodsInput = {
@@ -6035,6 +6148,7 @@ export type TenantCreateWithoutMonthlyBillingPeriodsInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMonthlyBillingPeriodsInput = {
@@ -6083,6 +6197,7 @@ export type TenantUncheckedCreateWithoutMonthlyBillingPeriodsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMonthlyBillingPeriodsInput = {
@@ -6147,6 +6262,7 @@ export type TenantUpdateWithoutMonthlyBillingPeriodsInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMonthlyBillingPeriodsInput = {
@@ -6195,6 +6311,7 @@ export type TenantUncheckedUpdateWithoutMonthlyBillingPeriodsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMemberBillsInput = {
@@ -6243,6 +6360,7 @@ export type TenantCreateWithoutMemberBillsInput = {
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMemberBillsInput = {
@@ -6291,6 +6409,7 @@ export type TenantUncheckedCreateWithoutMemberBillsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMemberBillsInput = {
@@ -6355,6 +6474,7 @@ export type TenantUpdateWithoutMemberBillsInput = {
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMemberBillsInput = {
@@ -6403,6 +6523,7 @@ export type TenantUncheckedUpdateWithoutMemberBillsInput = {
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMemberPaymentsInput = {
@@ -6451,6 +6572,7 @@ export type TenantCreateWithoutMemberPaymentsInput = {
   memberBills?: Prisma.MemberBillCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMemberPaymentsInput = {
@@ -6499,6 +6621,7 @@ export type TenantUncheckedCreateWithoutMemberPaymentsInput = {
   memberBills?: Prisma.MemberBillUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMemberPaymentsInput = {
@@ -6563,6 +6686,7 @@ export type TenantUpdateWithoutMemberPaymentsInput = {
   memberBills?: Prisma.MemberBillUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMemberPaymentsInput = {
@@ -6611,6 +6735,7 @@ export type TenantUncheckedUpdateWithoutMemberPaymentsInput = {
   memberBills?: Prisma.MemberBillUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBalanceAdjustmentsInput = {
@@ -6659,6 +6784,7 @@ export type TenantCreateWithoutBalanceAdjustmentsInput = {
   memberBills?: Prisma.MemberBillCreateNestedManyWithoutTenantInput
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBalanceAdjustmentsInput = {
@@ -6707,6 +6833,7 @@ export type TenantUncheckedCreateWithoutBalanceAdjustmentsInput = {
   memberBills?: Prisma.MemberBillUncheckedCreateNestedManyWithoutTenantInput
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBalanceAdjustmentsInput = {
@@ -6771,6 +6898,7 @@ export type TenantUpdateWithoutBalanceAdjustmentsInput = {
   memberBills?: Prisma.MemberBillUpdateManyWithoutTenantNestedInput
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBalanceAdjustmentsInput = {
@@ -6819,6 +6947,7 @@ export type TenantUncheckedUpdateWithoutBalanceAdjustmentsInput = {
   memberBills?: Prisma.MemberBillUncheckedUpdateManyWithoutTenantNestedInput
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMessSettingInput = {
@@ -6867,6 +6996,7 @@ export type TenantCreateWithoutMessSettingInput = {
   memberBills?: Prisma.MemberBillCreateNestedManyWithoutTenantInput
   memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMessSettingInput = {
@@ -6915,6 +7045,7 @@ export type TenantUncheckedCreateWithoutMessSettingInput = {
   memberBills?: Prisma.MemberBillUncheckedCreateNestedManyWithoutTenantInput
   memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMessSettingInput = {
@@ -6979,6 +7110,7 @@ export type TenantUpdateWithoutMessSettingInput = {
   memberBills?: Prisma.MemberBillUpdateManyWithoutTenantNestedInput
   memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMessSettingInput = {
@@ -7027,6 +7159,219 @@ export type TenantUncheckedUpdateWithoutMessSettingInput = {
   memberBills?: Prisma.MemberBillUncheckedUpdateManyWithoutTenantNestedInput
   memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutNoticesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutNoticesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillUncheckedCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutNoticesInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutNoticesInput, Prisma.TenantUncheckedCreateWithoutNoticesInput>
+}
+
+export type TenantUpsertWithoutNoticesInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutNoticesInput, Prisma.TenantUncheckedUpdateWithoutNoticesInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutNoticesInput, Prisma.TenantUncheckedCreateWithoutNoticesInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutNoticesInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutNoticesInput, Prisma.TenantUncheckedUpdateWithoutNoticesInput>
+}
+
+export type TenantUpdateWithoutNoticesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutNoticesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUncheckedUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
 }
 
 
@@ -7059,6 +7404,7 @@ export type TenantCountOutputType = {
   memberBills: number
   memberPayments: number
   balanceAdjustments: number
+  notices: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -7086,6 +7432,7 @@ export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   memberBills?: boolean | TenantCountOutputTypeCountMemberBillsArgs
   memberPayments?: boolean | TenantCountOutputTypeCountMemberPaymentsArgs
   balanceAdjustments?: boolean | TenantCountOutputTypeCountBalanceAdjustmentsArgs
+  notices?: boolean | TenantCountOutputTypeCountNoticesArgs
 }
 
 /**
@@ -7266,6 +7613,13 @@ export type TenantCountOutputTypeCountBalanceAdjustmentsArgs<ExtArgs extends run
   where?: Prisma.BalanceAdjustmentWhereInput
 }
 
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountNoticesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NoticeWhereInput
+}
+
 
 export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -7314,6 +7668,7 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   memberPayments?: boolean | Prisma.Tenant$memberPaymentsArgs<ExtArgs>
   balanceAdjustments?: boolean | Prisma.Tenant$balanceAdjustmentsArgs<ExtArgs>
   messSetting?: boolean | Prisma.Tenant$messSettingArgs<ExtArgs>
+  notices?: boolean | Prisma.Tenant$noticesArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -7410,6 +7765,7 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   memberPayments?: boolean | Prisma.Tenant$memberPaymentsArgs<ExtArgs>
   balanceAdjustments?: boolean | Prisma.Tenant$balanceAdjustmentsArgs<ExtArgs>
   messSetting?: boolean | Prisma.Tenant$messSettingArgs<ExtArgs>
+  notices?: boolean | Prisma.Tenant$noticesArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -7446,6 +7802,7 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     memberPayments: Prisma.$MemberPaymentPayload<ExtArgs>[]
     balanceAdjustments: Prisma.$BalanceAdjustmentPayload<ExtArgs>[]
     messSetting: Prisma.$MessSettingPayload<ExtArgs> | null
+    notices: Prisma.$NoticePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -7888,6 +8245,7 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   memberPayments<T extends Prisma.Tenant$memberPaymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$memberPaymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberPaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   balanceAdjustments<T extends Prisma.Tenant$balanceAdjustmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$balanceAdjustmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BalanceAdjustmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   messSetting<T extends Prisma.Tenant$messSettingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$messSettingArgs<ExtArgs>>): Prisma.Prisma__MessSettingClient<runtime.Types.Result.GetResult<Prisma.$MessSettingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  notices<T extends Prisma.Tenant$noticesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$noticesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NoticePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8977,6 +9335,30 @@ export type Tenant$messSettingArgs<ExtArgs extends runtime.Types.Extensions.Inte
    */
   include?: Prisma.MessSettingInclude<ExtArgs> | null
   where?: Prisma.MessSettingWhereInput
+}
+
+/**
+ * Tenant.notices
+ */
+export type Tenant$noticesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Notice
+   */
+  select?: Prisma.NoticeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Notice
+   */
+  omit?: Prisma.NoticeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NoticeInclude<ExtArgs> | null
+  where?: Prisma.NoticeWhereInput
+  orderBy?: Prisma.NoticeOrderByWithRelationInput | Prisma.NoticeOrderByWithRelationInput[]
+  cursor?: Prisma.NoticeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NoticeScalarFieldEnum | Prisma.NoticeScalarFieldEnum[]
 }
 
 /**

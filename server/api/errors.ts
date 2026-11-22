@@ -62,6 +62,9 @@ export class UnauthorizedError extends AppError {
   }
 }
 
+export const UnauthenticatedError = UnauthorizedError;
+export type UnauthenticatedError = UnauthorizedError;
+
 export class RateLimitError extends AppError {
   constructor(message = 'Too many requests. Please try again later.') {
     super(message, 'RATE_LIMITED', 429);
