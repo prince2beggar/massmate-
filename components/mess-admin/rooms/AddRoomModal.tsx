@@ -101,9 +101,14 @@ export function AddRoomModal({
         }),
       });
 
-      const json = await res.json();
+      const json = await res.json().catch(() => ({}));
       if (!res.ok || !json.success) {
-        throw new Error(json.error?.message || json.message || 'Failed to create room');
+        const errorMsg =
+          json.error?.message ||
+          (typeof json.error === 'string' ? json.error : null) ||
+          json.message ||
+          'রুম তৈরি করতে সমস্যা হয়েছে। রুম নম্বর ইতোমধ্যে বিদ্যমান থাকতে পারে।';
+        throw new Error(errorMsg);
       }
 
       onRoomAdded(json.data);

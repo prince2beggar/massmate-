@@ -15,7 +15,7 @@ export default async function MealsPage({
   const currentMonthStr = getDhakaMonthString();
 
   // Prefetch data on the server
-  const [initialSheet, initialSettings, initialSummary, initialMealOffs, initialGuests, memberList] =
+  const [initialSheet, initialSettings, initialSummary, initialMealOffs, initialGuests, memberList, initialGrid] =
     await Promise.all([
       mealService.getDailyMealSheet(tenantSlug, todayStr).catch(() => null),
       mealService.getMealSettings(tenantSlug).catch(() => null),
@@ -25,6 +25,7 @@ export default async function MealsPage({
       memberService.listMembers(tenantSlug, { status: 'ACTIVE', limit: 100 }).catch(() => ({
         members: [],
       })),
+      mealService.getPeriodMealGrid(tenantSlug).catch(() => null),
     ]);
 
   const members =
@@ -42,6 +43,7 @@ export default async function MealsPage({
       initialSummary={initialSummary}
       initialMealOffRequests={initialMealOffs}
       initialGuestMeals={initialGuests}
+      initialGrid={initialGrid}
       members={members}
     />
   );

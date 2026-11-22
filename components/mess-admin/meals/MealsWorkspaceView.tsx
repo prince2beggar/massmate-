@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import {
   UtensilsCrossed,
   CalendarDays,
+  CalendarRange,
   CalendarOff,
   Users,
   Calculator,
@@ -14,6 +15,7 @@ import { MealOffRequestsView } from './MealOffRequestsView';
 import { GuestMealsView } from './GuestMealsView';
 import { MonthlyMealSummaryView } from './MonthlyMealSummaryView';
 import { MealSettingsView } from './MealSettingsView';
+import { FullPeriodMealGridView } from './FullPeriodMealGridView';
 
 interface MealsWorkspaceViewProps {
   tenantSlug: string;
@@ -22,6 +24,7 @@ interface MealsWorkspaceViewProps {
   initialSummary: any;
   initialMealOffRequests?: any[];
   initialGuestMeals?: any[];
+  initialGrid?: any;
   members: Array<{ id: string; name: string; memberCode?: string | null }>;
 }
 
@@ -32,13 +35,15 @@ export function MealsWorkspaceView({
   initialSummary,
   initialMealOffRequests = [],
   initialGuestMeals = [],
+  initialGrid,
   members,
 }: MealsWorkspaceViewProps) {
   const [activeTab, setActiveTab] = useState<
-    'daily' | 'meal-off' | 'guest' | 'summary' | 'settings'
-  >('daily');
+    'grid' | 'daily' | 'meal-off' | 'guest' | 'summary' | 'settings'
+  >('grid');
 
   // Shared / Prefetched States
+  const [gridData, setGridData] = useState(initialGrid);
   const [sheetData, setSheetData] = useState(initialSheet);
   const [settingsData, setSettingsData] = useState(initialSettings);
   const [summaryData, setSummaryData] = useState(initialSummary);
@@ -46,6 +51,14 @@ export function MealsWorkspaceView({
   const [guestMeals, setGuestMeals] = useState<any[]>(initialGuestMeals);
 
   // Tab Data Fetchers
+  const fetchGrid = async () => {
+    try {
+      const res = await fetch(`/api/v1/mess/${tenantSlug}/meals/period-grid`);
+      const json = await res.json();
+      if (json.success && json.data) setGridData(json.data);
+    } catch {}
+  };
+
   const fetchSheet = async (dateStr?: string) => {
     try {
       const d = dateStr || sheetData?.dateString || new Date().toISOString().split('T')[0];
@@ -89,9 +102,10 @@ export function MealsWorkspaceView({
   };
 
   const handleTabChange = (
-    tab: 'daily' | 'meal-off' | 'guest' | 'summary' | 'settings'
+    tab: 'grid' | 'daily' | 'meal-off' | 'guest' | 'summary' | 'settings'
   ) => {
     setActiveTab(tab);
+    if (tab === 'grid') void fetchGrid();
     if (tab === 'daily') void fetchSheet();
     if (tab === 'meal-off') void fetchMealOffs();
     if (tab === 'guest') void fetchGuestMeals();
@@ -120,6 +134,18 @@ export function MealsWorkspaceView({
       <div className="border-b border-border">
         <div className="flex items-center gap-6 overflow-x-auto pb-px">
           <button
+            onClick={() => handleTabChange('grid')}
+            className={`pb-3 text-sm font-medium border-b-2 transition flex items-center gap-2 whitespace-nowrap ${
+              activeTab === 'grid'
+                ? 'border-primary text-primary font-bold'
+                : 'border-transparent text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <CalendarRange className="w-4 h-4" />
+            <span>মাসিক/কাস্টম মিল শিট (Full Sheet)</span>
+          </button>
+
+          <button
             onClick={() => handleTabChange('daily')}
             className={`pb-3 text-sm font-medium border-b-2 transition flex items-center gap-2 whitespace-nowrap ${
               activeTab === 'daily'
@@ -128,7 +154,7 @@ export function MealsWorkspaceView({
             }`}
           >
             <CalendarDays className="w-4 h-4" />
-            <span>Daily Sheet & Menus</span>
+            <span>দৈনিক মিল এন্ট্রি (Daily Sheet)</span>
           </button>
 
           <button
@@ -185,6 +211,14 @@ export function MealsWorkspaceView({
           </button>
         </div>
       </div>
+
+      {/* TAB 0: FULL PERIOD MEAL MATRIX */}
+      {activeTab === 'grid' && (
+        <FullPeriodMealGridView
+          tenantSlug={tenantSlug}
+          initialData={gridData}
+        />
+      )}
 
       {/* TAB 1: DAILY SHEET */}
       {activeTab === 'daily' && (

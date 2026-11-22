@@ -242,3 +242,6 @@ export const STANDARD_MESS_ROLES = [
   { id: 'role_moderator', slug: 'moderator' as SystemRoleSlug, name: 'Moderator (সমন্বয়ক)', description: 'মেস সমন্বয়ক — নোটিশ ও কমপ্লেইন তদারকি' },
   { id: 'role_owner', slug: 'owner' as SystemRoleSlug, name: 'Mess Owner (মেস ওনার)', description: 'মেস প্রতিষ্ঠাতা ও প্রধান মালিকানা — পূর্ণ নিয়ন্ত্রণ' },
 ];
+
+export const ROLE_TEMPLATES_INFO = SYSTEM_ROLE_DISPLAY_CONFIG;
+

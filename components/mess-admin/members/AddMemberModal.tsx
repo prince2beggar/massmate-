@@ -115,9 +115,14 @@ export function AddMemberModal({
         }),
       });
 
-      const json = await res.json();
+      const json = await res.json().catch(() => ({}));
       if (!res.ok || !json.success) {
-        throw new Error(json.message || json.error?.message || 'Failed to create member');
+        const errorMsg =
+          json.error?.message ||
+          (typeof json.error === 'string' ? json.error : null) ||
+          json.message ||
+          'সদস্য যোগ করতে ব্যর্থ হয়েছে। এই ফোন বা ইমেইল ইতোমধ্যে বিদ্যমান থাকতে পারে।';
+        throw new Error(errorMsg);
       }
 
       onMemberAdded(json.data);
