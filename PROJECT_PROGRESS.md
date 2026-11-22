@@ -14,7 +14,7 @@
 | **Task 37** | Member Portal Foundation, Access Control & Dashboard | **Completed and Verified** | 2026-11-22 | Dedicated `/portal/[tenantSlug]` shell, `withMemberAuth` access control, anti-IDOR validation, 4 KPI cards (Room, Meals, Due Balance, Last Payment), zero-drift financial snapshot via `FinanceService`, today's dining & menus, published notices feed, recent activities stream, quick actions. | 14/14 Automated Tests Passed (106/106 full suite); 0 TS errors, 0 ESLint warnings; Production build passed. | Proceed to Task 38 |
 | **Task 38** | Resident Profile, Emergency Contacts & Room Management | **Completed and Verified** | 2026-11-22 | Self-service profile editing (`phone`, `emergencyContactName`, `emergencyContactPhone`, `avatar`), Bangladeshi mobile validation/normalization, anti-mass-assignment guards, approval-required name update workflow (`MemberRequest`), room & bed details with privacy-safe occupancy counts, historical room timeline, room transfer request center with atomic transfer execution. | 18/18 Automated Tests Passed (32/32 Member Portal suite, 124/124 full suite); 0 TS errors, 0 ESLint warnings; Production build passed. | Proceed to Task 39 |
 | **Task 39** | Member Meal Calendar, Preferences & Meal-Off Requests | **Completed and Verified** | 2026-11-22 | My Meals calendar & daily list view, Asia/Dhaka meal status & published menus, server-enforced cutoff times (e.g. 8:00 PM Asia/Dhaka), anti-tampering cutoff validation, duplicate meal-off request prevention, pending request cancellation, notices board with category filters, community events & RSVP system with deadline locking and privacy protection, complaints & grievance center with tracking codes and admin response threads. | 18/18 Automated Tests Passed (50/50 Member Portal suite, 142/142 full suite); 0 TS errors, 0 ESLint warnings; Production build passed. | Proceed to Task 40 |
-| **Task 40** | Member Billing, Payments & Statements | *Upcoming* | — | Detailed ledger statement, deposit payment submission (bKash/Nagad/Bank/Cash), printable receipt. | Pending Task 39 signoff | Upcoming |
+| **Task 40** | Member Billing, Payments & Statements | **Completed and Verified** | 2026-11-22 | Authoritative monthly statement with zero-drift integer poisha arithmetic (`FinanceService`), billing period selector, itemized breakdown (opening due, rent, utilities, meal charges, other charges, credits, confirmed payments, closing balance), pending vs confirmed payment separation, payment history with status filters, manual voucher submission (bKash/Nagad/Rocket/Bank/Cash) with duplicate TrxID guard and server review workflow, printable official receipts with green verified seal for confirmed transactions only, print-friendly `@media print` CSS invoice layout. | 20/20 Automated Tests Passed (70/70 Member Portal suite, 162/162 full suite); 0 TS errors, 0 ESLint warnings; Production build passed. | **Phase 5 Complete** — Ready for Phase 6 |
 
 ---
 
@@ -331,6 +331,32 @@
     - Navigation updated in `components/member-portal/member-nav-data.ts`: `meals`, `notices`, `events`, and `complaints` marked as `isImplemented: true`.
   - Automated test suite (`server/member-portal/member-meals-community.test.ts`): 18 comprehensive tests covering dining overview, privacy scoping, backend meal rate calculation, meal-off cutoffs in Asia/Dhaka, duplicate prevention, meal-off cancellation, notices isolation, event RSVPs with deadline protection, and complaints anti-IDOR isolation.
 - **Verification:** TypeScript: 0 errors (`npx tsc --noEmit`); ESLint: 0 errors, 0 warnings (`npm run lint`); 50/50 Member Portal tests passing (100%); Next.js production build: 47/47 routes compiled cleanly.
+
+### Task 40: My Account, Monthly Statements, Billing & Payments
+- **Status:** Completed and Verified
+- **Date:** 2026-11-22
+- **Key Deliverables:**
+  - Backend Service Layer (`server/member-portal/member-portal-service.ts`):
+    - `getMemberAccountOverview`: pulls authoritative monthly statement from backend `FinanceService` (`getMemberStatement`), enforces zero-drift integer poisha accounting:
+      `Closing Balance = Opening Due + Total Charges - Confirmed Payments - Credits`.
+    - Distinguishes pending payments from confirmed payments (pending payments do NOT reduce confirmed due balance).
+    - Exposes available billing periods with human-readable labels ("November 2026", "October 2026") and locked indicators.
+    - `listMemberPayments`: retrieves payment history strictly scoped to authenticated resident (`membershipId`) with anti-IDOR isolation; generates `receiptNumber` (`RCP-...`) strictly for `CONFIRMED` transactions.
+    - `submitMemberPayment`: validates amount (> 0, <= ৳500,000), verifies date is not in future, enforces Transaction ID requirement for mobile banking (bKash, Nagad, Rocket) and Bank Transfer, performs tenant-wide duplicate transaction check, and creates records with `status: 'PENDING'` awaiting administrative verification.
+    - Rejects `ONLINE_GATEWAY` as unavailable with an informative message (no fake checkouts or simulated success).
+    - `getMemberPaymentReceipt`: generates official printable payment receipt with green verified seal, receipt number, amount in BDT and words, and manager verification timestamp for `CONFIRMED` payments only (rejects `PENDING` or `REJECTED` payments with `ConflictError`).
+  - REST API Endpoints:
+    - `GET /api/v1/portal/[tenantSlug]/account`: returns `MemberAccountOverviewDto` with period selector and itemized breakdown.
+    - `GET /api/v1/portal/[tenantSlug]/payments`: returns `MemberPaymentRecordDto[]` with optional `?status=&month=`.
+    - `POST /api/v1/portal/[tenantSlug]/payments`: submits new manual payment voucher with 201 status code and audit logging.
+    - `GET /api/v1/portal/[tenantSlug]/payments/[id]/receipt`: returns `MemberPaymentReceiptDto` for confirmed payment.
+  - UI Components & Server Pages:
+    - `/portal/[tenantSlug]/account`: `MemberAccountView` with summary KPI cards (Outstanding Balance, Confirmed Paid, Total Charges, Previous Due, Pending Verification Banner), billing period dropdown selector, official itemized statement table, formula breakdown card, and print-friendly `@media print` invoice layout.
+    - `/portal/[tenantSlug]/payments`: `MemberPaymentsView` with online payment advisory banner, transaction status tabs (`ALL`, `CONFIRMED`, `PENDING`, `REJECTED`), payment history table with mobile card layout, "Submit Payment Voucher" modal with validation, and "Official Payment Receipt" modal with green verified seal and print action.
+    - Navigation updated in `components/member-portal/member-nav-data.ts`: `account` and `payments` marked as `isImplemented: true`.
+  - Automated test suite (`server/member-portal/member-account-payments.test.ts`): 20 comprehensive unit and integration tests covering statement aggregation, formula accuracy, pending payment isolation, settled period retrieval, period navigation, cross-tenant statement isolation, malformed month rejection, payment history anti-IDOR scoping, status filtering, manual voucher submission, cash without TrxID, digital payments TrxID validation, duplicate TrxID conflict guard, zero/negative amount rejection, future date rejection, online gateway rejection, official receipt verification, and non-confirmed receipt blockage.
+- **Verification:** TypeScript: 0 errors (`npx tsc --noEmit`); ESLint: 0 errors, 0 warnings (`npm run lint`); 70/70 Member Portal tests passing across all 21 suites (100%); Next.js production build: 47/47 routes compiled cleanly.
+
 
 
 

@@ -92,8 +92,7 @@ export const MEMBER_NAV_ITEMS: MemberNavItem[] = [
     name: 'My Account & Bills',
     path: 'account',
     icon: Wallet,
-    isImplemented: false,
-    upcomingTask: 'Task 40',
+    isImplemented: true,
     description: 'Monthly statement, rent, utilities, and meal charges breakdown.',
   },
   {
@@ -101,8 +100,7 @@ export const MEMBER_NAV_ITEMS: MemberNavItem[] = [
     name: 'Payments',
     path: 'payments',
     icon: CreditCard,
-    isImplemented: false,
-    upcomingTask: 'Task 40',
+    isImplemented: true,
     description: 'Payment history, submission of vouchers, and receipts.',
   },
 ];

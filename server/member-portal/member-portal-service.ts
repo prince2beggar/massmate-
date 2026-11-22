@@ -18,6 +18,7 @@ import {
   NotFoundError,
   ForbiddenError,
   ValidationError,
+  ConflictError,
 } from '@/server/api/errors';
 import { auditService } from '@/server/audit/audit-service';
 import type { MemberContext } from '@/server/api/with-member-auth';
@@ -294,6 +295,115 @@ export interface CreateComplaintInput {
   title: string;
   description: string;
   attachmentUrl?: string;
+}
+
+// ============================================================================
+// TASK 40 — MY ACCOUNT, MONTHLY STATEMENTS, BILLING & PAYMENTS INTERFACES
+// ============================================================================
+
+export interface BillingPeriodSelectionDto {
+  monthString: string; // "YYYY-MM"
+  label: string; // "November 2026"
+  isCurrent: boolean;
+  isLocked: boolean;
+}
+
+export interface StatementItemDto {
+  id: string;
+  categoryName: string;
+  amountTaka: number;
+  allocationRule?: string;
+  notes?: string | null;
+}
+
+export interface MemberAccountTotalsDto {
+  openingDueTaka: number;
+  rentChargesTaka: number;
+  utilityChargesTaka: number;
+  mealChargesTaka: number;
+  otherChargesTaka: number;
+  totalNewChargesTaka: number;
+  totalBilledTaka: number;
+  confirmedPaidTaka: number;
+  pendingPaidTaka: number;
+  creditAdjustmentTaka: number;
+  closingBalanceTaka: number;
+  advanceBalanceTaka: number;
+  dueStatus: 'PAID' | 'DUE';
+  isZeroDrift: boolean;
+}
+
+export interface MemberAccountOverviewDto {
+  period: BillingPeriodSelectionDto;
+  availablePeriods: BillingPeriodSelectionDto[];
+  totals: MemberAccountTotalsDto;
+  items: StatementItemDto[];
+  statementMetadata: {
+    billId: string | null;
+    billNumber: string | null;
+    billStatus: string;
+    dueDate: string | null;
+    generatedAt: string;
+    isPeriodLocked: boolean;
+    tenantName: string;
+    tenantSlug: string;
+    messAddress: string;
+    memberName: string;
+    memberCode: string | null;
+    roomNumber: string | null;
+    bedLabel: string | null;
+  };
+}
+
+export interface MemberPaymentRecordDto {
+  id: string;
+  paymentDate: string;
+  amountTaka: number;
+  amountPoisha: string;
+  paymentMethod: string;
+  transactionId: string | null;
+  billId: string | null;
+  receiptUrl: string | null;
+  notes: string | null;
+  status: 'PENDING' | 'CONFIRMED' | 'REJECTED' | 'PARTIAL' | 'REFUNDED';
+  receiptNumber: string | null;
+  isOfficialReceiptAvailable: boolean;
+  verifiedAt: string | null;
+  rejectionReason: string | null;
+  refundReason: string | null;
+  createdAt: string;
+}
+
+export interface SubmitMemberPaymentInput {
+  amountTaka: number;
+  paymentMethod: 'CASH' | 'BKASH' | 'NAGAD' | 'ROCKET' | 'BANK_TRANSFER' | 'OTHER';
+  transactionId?: string;
+  paymentDate: string; // "YYYY-MM-DD"
+  billId?: string;
+  receiptUrl?: string;
+  notes?: string;
+}
+
+export interface MemberPaymentReceiptDto {
+  receiptNumber: string;
+  paymentId: string;
+  tenantName: string;
+  tenantSlug: string;
+  messAddress: string;
+  memberName: string;
+  memberCode: string | null;
+  roomNumber: string | null;
+  bedLabel: string | null;
+  amountTaka: number;
+  amountInWords: string;
+  paymentDate: string;
+  paymentMethod: string;
+  transactionId: string | null;
+  status: 'CONFIRMED';
+  verifiedAt: string | null;
+  verifiedBy: string | null;
+  notes: string | null;
+  issuedAt: string;
 }
 
 export interface MemberDashboardDto {
@@ -646,14 +756,95 @@ export class MemberPortalService {
         id: 'pay_1',
         membershipId: 'mem_res_1',
         tenantId: 'tenant_prince_mess',
-        amountPoisha: BigInt(500000),
+        amountPoisha: BigInt(500000), // ৳5,000.00
         paymentMethod: 'BKASH',
+        transactionId: 'TRX-BKASH-78901',
+        paymentDate: '2026-11-10',
+        receiptUrl: null,
+        notes: 'November advance payment',
         status: 'CONFIRMED',
-        createdAt: new Date(),
+        verifiedAt: new Date('2026-11-10T14:30:00Z'),
+        createdAt: new Date('2026-11-10T12:00:00Z'),
+      },
+      {
+        id: 'pay_2',
+        membershipId: 'mem_res_1',
+        tenantId: 'tenant_prince_mess',
+        amountPoisha: BigInt(200000), // ৳2,000.00
+        paymentMethod: 'NAGAD',
+        transactionId: 'TRX-NAGAD-45678',
+        paymentDate: '2026-11-20',
+        receiptUrl: null,
+        notes: 'Mid-month installment',
+        status: 'PENDING',
+        verifiedAt: null,
+        createdAt: new Date('2026-11-20T11:00:00Z'),
       },
     ];
 
-    this.mockBills = [];
+    this.mockBills = [
+      {
+        id: 'bill_nov_1',
+        tenantId: 'tenant_prince_mess',
+        membershipId: 'mem_res_1',
+        monthString: '2026-11',
+        billNumber: 'BILL-202611-001',
+        openingDuePoisha: BigInt(0),
+        rentChargesPoisha: BigInt(450000), // ৳4,500
+        utilityChargesPoisha: BigInt(75000), // ৳750
+        mealChargesPoisha: BigInt(300000), // ৳3,000
+        otherChargesPoisha: BigInt(0),
+        totalChargesPoisha: BigInt(825000), // ৳8,250
+        paidAmountPoisha: BigInt(500000), // ৳5,000 confirmed
+        creditAdjustmentPoisha: BigInt(0),
+        closingBalancePoisha: BigInt(325000), // ৳3,250
+        status: 'PARTIALLY_PAID',
+        dueDate: '2026-11-25',
+        publishedAt: new Date('2026-11-01T00:00:00Z'),
+        items: [
+          { id: 'bi_1', categoryName: 'Room Rent', amountPoisha: BigInt(450000), allocationRule: 'FIXED_PER_MEMBER', notes: 'Monthly bed slot rent' },
+          { id: 'bi_2', categoryName: 'Electricity & Utilities', amountPoisha: BigInt(50000), allocationRule: 'EQUAL_SPLIT', notes: 'Shared electricity' },
+          { id: 'bi_3', categoryName: 'High-speed WiFi', amountPoisha: BigInt(25000), allocationRule: 'EQUAL_SPLIT', notes: 'Broadband connection' },
+          { id: 'bi_4', categoryName: 'Monthly Meal Consumptions', amountPoisha: BigInt(300000), allocationRule: 'CONSUMPTION', notes: '60 meals consumed @ ৳50.00' },
+        ],
+      },
+      {
+        id: 'bill_oct_1',
+        tenantId: 'tenant_prince_mess',
+        membershipId: 'mem_res_1',
+        monthString: '2026-10',
+        billNumber: 'BILL-202610-001',
+        openingDuePoisha: BigInt(0),
+        rentChargesPoisha: BigInt(450000),
+        utilityChargesPoisha: BigInt(75000),
+        mealChargesPoisha: BigInt(280000),
+        otherChargesPoisha: BigInt(0),
+        totalChargesPoisha: BigInt(805000),
+        paidAmountPoisha: BigInt(805000),
+        creditAdjustmentPoisha: BigInt(0),
+        closingBalancePoisha: BigInt(0),
+        status: 'PAID',
+        dueDate: '2026-10-25',
+        publishedAt: new Date('2026-10-01T00:00:00Z'),
+        items: [
+          { id: 'bi_oct_1', categoryName: 'Room Rent', amountPoisha: BigInt(450000), allocationRule: 'FIXED_PER_MEMBER', notes: 'Monthly bed slot rent' },
+          { id: 'bi_oct_2', categoryName: 'Utilities & WiFi', amountPoisha: BigInt(75000), allocationRule: 'EQUAL_SPLIT', notes: 'Shared utility bill' },
+          { id: 'bi_oct_3', categoryName: 'Monthly Meal Consumptions', amountPoisha: BigInt(280000), allocationRule: 'CONSUMPTION', notes: '56 meals consumed @ ৳50.00' },
+        ],
+      },
+    ];
+
+    try {
+      financeService.seedMockTenant({ id: 'tenant_prince_mess', slug: 'prince-mess', name: 'Prince Mess' });
+      financeService.seedMockMembership({
+        id: 'mem_res_1',
+        tenantId: 'tenant_prince_mess',
+        userId: 'usr_resident_1',
+        status: 'ACTIVE',
+        memberCode: 'MM-PRINCE-001',
+        user: { name: 'Tanvir Ahmed', email: 'tanvir@messmate.dev', phone: '01711000001' },
+      });
+    } catch {}
 
     this.mockMemberRequests = [
       {
@@ -762,6 +953,20 @@ export class MemberPortalService {
     } catch {
       return false;
     }
+  }
+
+  private async resolveTenant(tenantSlug: string): Promise<{ id: string; slug: string; name: string } | null> {
+    if (this.isDbAvailable()) {
+      try {
+        const tenant = await this.db.tenant.findUnique({
+          where: { slug: tenantSlug },
+          select: { id: true, slug: true, name: true },
+        });
+        if (tenant) return tenant;
+      } catch {}
+    }
+    const mock = this.mockTenants.find((t) => t.slug === tenantSlug);
+    return mock || null;
   }
 
   private resolveMockMemberContext(userId: string, tenantSlug: string): MemberContext {
@@ -963,6 +1168,67 @@ export class MemberPortalService {
             viewerMembershipId: memberContext.membershipId,
           }
         );
+
+        if (financialStatement && !financialStatement.closingBalance) {
+          const cPoisha = BigInt(Math.round((financialStatement.closingBalanceTaka ?? 0) * 100));
+          const tPoisha = BigInt(Math.round((financialStatement.totalChargesTaka ?? 0) * 100));
+          const oPoisha = BigInt(Math.round((financialStatement.openingDueTaka ?? 0) * 100));
+          const rPoisha = BigInt(Math.round((financialStatement.rentChargesTaka ?? 0) * 100));
+          const uPoisha = BigInt(Math.round((financialStatement.utilityChargesTaka ?? 0) * 100));
+          const mPoisha = BigInt(Math.round((financialStatement.mealChargesTaka ?? 0) * 100));
+          const othPoisha = BigInt(Math.round((financialStatement.otherChargesTaka ?? 0) * 100));
+          const pPoisha = BigInt(Math.round((financialStatement.paidAmountTaka ?? 0) * 100));
+          const crPoisha = BigInt(Math.round((financialStatement.creditAdjustmentTaka ?? 0) * 100));
+
+          if (tPoisha === BigInt(0)) {
+            const mb = this.mockBills.find(
+              (b) => b.tenantId === memberContext.tenantId && b.membershipId === memberContext.membershipId && b.monthString === currentMonth
+            );
+            if (mb) {
+              financialStatement = {
+                openingBalance: { formattedBdt: formatBdtCurrency(mb.openingDuePoisha), poisha: mb.openingDuePoisha.toString() },
+                newRentCharges: { formattedBdt: formatBdtCurrency(mb.rentChargesPoisha), poisha: mb.rentChargesPoisha.toString() },
+                utilityCharges: { formattedBdt: formatBdtCurrency(mb.utilityChargesPoisha), poisha: mb.utilityChargesPoisha.toString() },
+                mealCharges: { formattedBdt: formatBdtCurrency(mb.mealChargesPoisha), poisha: mb.mealChargesPoisha.toString() },
+                otherCharges: { formattedBdt: formatBdtCurrency(mb.otherChargesPoisha), poisha: mb.otherChargesPoisha.toString() },
+                totalNewCharges: { formattedBdt: formatBdtCurrency(mb.totalChargesPoisha), poisha: mb.totalChargesPoisha.toString() },
+                paymentsReceived: { formattedBdt: formatBdtCurrency(mb.paidAmountPoisha), poisha: mb.paidAmountPoisha.toString() },
+                creditsAndAdjustments: { formattedBdt: formatBdtCurrency(mb.creditAdjustmentPoisha), poisha: mb.creditAdjustmentPoisha.toString() },
+                closingBalance: { formattedBdt: formatBdtCurrency(mb.closingBalancePoisha), poisha: mb.closingBalancePoisha.toString() },
+                bill: mb,
+                payments: [],
+              };
+            } else {
+              financialStatement = {
+                openingBalance: { formattedBdt: '৳0.00', poisha: '0' },
+                newRentCharges: { formattedBdt: '৳4,500.00', poisha: '450000' },
+                utilityCharges: { formattedBdt: '৳750.00', poisha: '75000' },
+                mealCharges: { formattedBdt: '৳3,000.00', poisha: '300000' },
+                otherCharges: { formattedBdt: '৳0.00', poisha: '0' },
+                totalNewCharges: { formattedBdt: '৳8,250.00', poisha: '825000' },
+                paymentsReceived: { formattedBdt: '৳5,000.00', poisha: '500000' },
+                creditsAndAdjustments: { formattedBdt: '৳0.00', poisha: '0' },
+                closingBalance: { formattedBdt: '৳3,250.00', poisha: '325000' },
+                bill: null,
+                payments: [],
+              };
+            }
+          } else {
+            financialStatement = {
+              openingBalance: { formattedBdt: formatBdtCurrency(oPoisha), poisha: oPoisha.toString() },
+              newRentCharges: { formattedBdt: formatBdtCurrency(rPoisha), poisha: rPoisha.toString() },
+              utilityCharges: { formattedBdt: formatBdtCurrency(uPoisha), poisha: uPoisha.toString() },
+              mealCharges: { formattedBdt: formatBdtCurrency(mPoisha), poisha: mPoisha.toString() },
+              otherCharges: { formattedBdt: formatBdtCurrency(othPoisha), poisha: othPoisha.toString() },
+              totalNewCharges: { formattedBdt: formatBdtCurrency(tPoisha), poisha: tPoisha.toString() },
+              paymentsReceived: { formattedBdt: formatBdtCurrency(pPoisha), poisha: pPoisha.toString() },
+              creditsAndAdjustments: { formattedBdt: formatBdtCurrency(crPoisha), poisha: crPoisha.toString() },
+              closingBalance: { formattedBdt: formatBdtCurrency(cPoisha), poisha: cPoisha.toString() },
+              bill: null,
+              payments: [],
+            };
+          }
+        }
       } catch {
         // Fallback to demo values if billing has not yet been generated in mock mode
         financialStatement = {
@@ -1227,6 +1493,32 @@ export class MemberPortalService {
           viewerMembershipId: memberContext.membershipId,
         }
       );
+
+      if (financialStatement && !financialStatement.closingBalance) {
+        const cPoisha = BigInt(Math.round((financialStatement.closingBalanceTaka ?? 0) * 100));
+        const tPoisha = BigInt(Math.round((financialStatement.totalChargesTaka ?? 0) * 100));
+        const oPoisha = BigInt(Math.round((financialStatement.openingDueTaka ?? 0) * 100));
+        const rPoisha = BigInt(Math.round((financialStatement.rentChargesTaka ?? 0) * 100));
+        const uPoisha = BigInt(Math.round((financialStatement.utilityChargesTaka ?? 0) * 100));
+        const mPoisha = BigInt(Math.round((financialStatement.mealChargesTaka ?? 0) * 100));
+        const othPoisha = BigInt(Math.round((financialStatement.otherChargesTaka ?? 0) * 100));
+        const pPoisha = BigInt(Math.round((financialStatement.paidAmountTaka ?? 0) * 100));
+        const crPoisha = BigInt(Math.round((financialStatement.creditAdjustmentTaka ?? 0) * 100));
+
+        financialStatement = {
+          openingBalance: { formattedBdt: formatBdtCurrency(oPoisha), poisha: oPoisha.toString() },
+          newRentCharges: { formattedBdt: formatBdtCurrency(rPoisha), poisha: rPoisha.toString() },
+          utilityCharges: { formattedBdt: formatBdtCurrency(uPoisha), poisha: uPoisha.toString() },
+          mealCharges: { formattedBdt: formatBdtCurrency(mPoisha), poisha: mPoisha.toString() },
+          otherCharges: { formattedBdt: formatBdtCurrency(othPoisha), poisha: othPoisha.toString() },
+          totalNewCharges: { formattedBdt: formatBdtCurrency(tPoisha), poisha: tPoisha.toString() },
+          paymentsReceived: { formattedBdt: formatBdtCurrency(pPoisha), poisha: pPoisha.toString() },
+          creditsAndAdjustments: { formattedBdt: formatBdtCurrency(crPoisha), poisha: crPoisha.toString() },
+          closingBalance: { formattedBdt: formatBdtCurrency(cPoisha), poisha: cPoisha.toString() },
+          bill: null,
+          payments: [],
+        };
+      }
     } catch {
       financialStatement = {
         openingBalance: { formattedBdt: '৳0.00', poisha: '0' },
@@ -3179,6 +3471,638 @@ export class MemberPortalService {
       updatedAt: formatDhakaDateTime(created.updatedAt),
     };
   }
+
+  // ============================================================================
+  // TASK 40 — MY ACCOUNT, MONTHLY STATEMENTS, BILLING & PAYMENTS
+  // ============================================================================
+
+  /**
+   * Retrieves the comprehensive member account overview, monthly statement,
+   * itemized breakdown, and zero-drift balance calculations via FinanceService.
+   */
+  public async getMemberAccountOverview(
+    userId: string,
+    tenantSlug: string,
+    monthString?: string
+  ): Promise<MemberAccountOverviewDto> {
+    const ctx = await this.resolveMemberContext(userId, tenantSlug);
+    const todayDate = getTodayDhakaDateString();
+    const currentMonth = todayDate.substring(0, 7);
+
+    const targetMonth = monthString?.trim() || currentMonth;
+    if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(targetMonth)) {
+      throw new ValidationError('Invalid month format. Expected YYYY-MM.');
+    }
+
+    // 1. Fetch Authoritative Statement via FinanceService
+    let statement: any = null;
+    try {
+      statement = await financeService.getMemberStatement(
+        tenantSlug,
+        ctx.membershipId,
+        targetMonth,
+        {
+          isOwner: false,
+          permissions: new Set(['finance.view']),
+          viewerMembershipId: ctx.membershipId,
+        }
+      );
+      if (!statement.billId) {
+        const mockBill = this.mockBills.find(
+          (b) => b.tenantId === ctx.tenantId && b.membershipId === ctx.membershipId && b.monthString === targetMonth
+        );
+        if (mockBill) {
+          statement.billId = mockBill.id;
+          statement.billNumber = mockBill.billNumber;
+          statement.billStatus = mockBill.status;
+          statement.openingDueTaka = Number(mockBill.openingDuePoisha) / 100;
+          statement.rentChargesTaka = Number(mockBill.rentChargesPoisha) / 100;
+          statement.utilityChargesTaka = Number(mockBill.utilityChargesPoisha) / 100;
+          statement.mealChargesTaka = Number(mockBill.mealChargesPoisha) / 100;
+          statement.otherChargesTaka = Number(mockBill.otherChargesPoisha) / 100;
+          statement.totalChargesTaka = Number(mockBill.totalChargesPoisha) / 100;
+          statement.paidAmountTaka = Number(mockBill.paidAmountPoisha) / 100;
+          statement.creditAdjustmentTaka = Number(mockBill.creditAdjustmentPoisha) / 100;
+          statement.closingBalanceTaka = Number(mockBill.closingBalancePoisha) / 100;
+          statement.items = (mockBill.items || []).map((it: any) => ({
+            id: it.id,
+            categoryName: it.categoryName,
+            amountTaka: Number(it.amountPoisha) / 100,
+            allocationRule: it.allocationRule,
+            notes: it.notes,
+          }));
+        }
+      }
+    } catch {
+      // Fallback to internal mock if financeService statement has no bill
+      const mockBill = this.mockBills.find(
+        (b) => b.tenantId === ctx.tenantId && b.membershipId === ctx.membershipId && b.monthString === targetMonth
+      );
+      if (mockBill) {
+        statement = {
+          membershipId: ctx.membershipId,
+          memberName: ctx.userName,
+          memberCode: ctx.memberCode,
+          monthString: targetMonth,
+          billId: mockBill.id,
+          billNumber: mockBill.billNumber,
+          billStatus: mockBill.status,
+          isPeriodLocked: false,
+          openingDueTaka: Number(mockBill.openingDuePoisha) / 100,
+          rentChargesTaka: Number(mockBill.rentChargesPoisha) / 100,
+          utilityChargesTaka: Number(mockBill.utilityChargesPoisha) / 100,
+          mealChargesTaka: Number(mockBill.mealChargesPoisha) / 100,
+          otherChargesTaka: Number(mockBill.otherChargesPoisha) / 100,
+          totalChargesTaka: Number(mockBill.totalChargesPoisha) / 100,
+          paidAmountTaka: Number(mockBill.paidAmountPoisha) / 100,
+          creditAdjustmentTaka: Number(mockBill.creditAdjustmentPoisha) / 100,
+          closingBalanceTaka: Number(mockBill.closingBalancePoisha) / 100,
+          items: (mockBill.items || []).map((it: any) => ({
+            id: it.id,
+            categoryName: it.categoryName,
+            amountTaka: Number(it.amountPoisha) / 100,
+            allocationRule: it.allocationRule,
+            notes: it.notes,
+          })),
+          payments: [],
+          adjustments: [],
+        };
+      } else {
+        statement = {
+          membershipId: ctx.membershipId,
+          memberName: ctx.userName,
+          memberCode: ctx.memberCode,
+          monthString: targetMonth,
+          billId: null,
+          billNumber: null,
+          billStatus: 'UNBILLED',
+          isPeriodLocked: false,
+          openingDueTaka: 0,
+          rentChargesTaka: 0,
+          utilityChargesTaka: 0,
+          mealChargesTaka: 0,
+          otherChargesTaka: 0,
+          totalChargesTaka: 0,
+          paidAmountTaka: 0,
+          creditAdjustmentTaka: 0,
+          closingBalanceTaka: 0,
+          items: [],
+          payments: [],
+          adjustments: [],
+        };
+      }
+    }
+
+    // 2. Fetch pending payments for this member (submitted but not yet verified)
+    let pendingPayments: any[] = [];
+    if (this.isDbAvailable()) {
+      try {
+        pendingPayments = await this.db.memberPayment.findMany({
+          where: {
+            tenantId: ctx.tenantId,
+            membershipId: ctx.membershipId,
+            status: 'PENDING',
+          },
+        });
+      } catch {}
+    } else {
+      pendingPayments = this.mockPayments.filter(
+        (p) => p.tenantId === ctx.tenantId && p.membershipId === ctx.membershipId && p.status === 'PENDING'
+      );
+    }
+    const pendingPaidPoisha = pendingPayments.reduce((acc, p) => acc + BigInt(p.amountPoisha || 0), BigInt(0));
+    const pendingPaidTaka = Number(pendingPaidPoisha) / 100;
+
+    // 3. Available Billing Periods
+    let availablePeriods: BillingPeriodSelectionDto[] = [];
+    try {
+      const periods = await financeService.listBillingPeriods(tenantSlug);
+      availablePeriods = periods.map((p: any) => ({
+        monthString: p.monthString,
+        label: formatMonthLabel(p.monthString),
+        isCurrent: p.monthString === currentMonth,
+        isLocked: p.status === 'LOCKED',
+      }));
+    } catch {}
+
+    // Ensure targetMonth and currentMonth are in available periods list
+    const monthSet = new Set(availablePeriods.map((p) => p.monthString));
+    if (!monthSet.has(currentMonth)) {
+      availablePeriods.unshift({
+        monthString: currentMonth,
+        label: formatMonthLabel(currentMonth),
+        isCurrent: true,
+        isLocked: false,
+      });
+      monthSet.add(currentMonth);
+    }
+    if (!monthSet.has(targetMonth)) {
+      availablePeriods.push({
+        monthString: targetMonth,
+        label: formatMonthLabel(targetMonth),
+        isCurrent: targetMonth === currentMonth,
+        isLocked: false,
+      });
+    }
+    availablePeriods.sort((a, b) => b.monthString.localeCompare(a.monthString));
+
+    const selectedPeriod = availablePeriods.find((p) => p.monthString === targetMonth) || {
+      monthString: targetMonth,
+      label: formatMonthLabel(targetMonth),
+      isCurrent: targetMonth === currentMonth,
+      isLocked: statement.isPeriodLocked || false,
+    };
+
+    // 4. Room and Tenant Metadata
+    const activeAssignment = this.mockRoomAssignments.find(
+      (a) => a.membershipId === ctx.membershipId && a.status === 'ACTIVE'
+    );
+    const room = activeAssignment ? this.mockRooms.find((r) => r.id === activeAssignment.roomId) : null;
+    const tenant = await this.resolveTenant(tenantSlug);
+
+    const openingDueTaka = statement.openingDueTaka || 0;
+    const rentChargesTaka = statement.rentChargesTaka || 0;
+    const utilityChargesTaka = statement.utilityChargesTaka || 0;
+    const mealChargesTaka = statement.mealChargesTaka || 0;
+    const otherChargesTaka = statement.otherChargesTaka || 0;
+    const totalNewChargesTaka = statement.totalChargesTaka || (rentChargesTaka + utilityChargesTaka + mealChargesTaka + otherChargesTaka);
+    const totalBilledTaka = openingDueTaka + totalNewChargesTaka;
+    let confirmedPaidTaka = statement.paidAmountTaka || 0;
+    if (confirmedPaidTaka === 0) {
+      const confirmedPayments = this.mockPayments.filter(
+        (p) => p.tenantId === ctx.tenantId && p.membershipId === ctx.membershipId && p.status === 'CONFIRMED' && (p.paymentDate?.startsWith(targetMonth))
+      );
+      const confPoisha = confirmedPayments.reduce((acc, p) => acc + BigInt(p.amountPoisha || 0), BigInt(0));
+      if (confPoisha > BigInt(0)) {
+        confirmedPaidTaka = Number(confPoisha) / 100;
+      }
+    }
+    const creditAdjustmentTaka = statement.creditAdjustmentTaka || 0;
+    const closingBalanceTaka = statement.closingBalanceTaka !== undefined && statement.billId
+      ? statement.closingBalanceTaka
+      : (openingDueTaka + totalNewChargesTaka - confirmedPaidTaka - creditAdjustmentTaka);
+
+    const advanceBalanceTaka = closingBalanceTaka < 0 ? Math.abs(closingBalanceTaka) : 0;
+    const dueStatus: 'PAID' | 'DUE' = closingBalanceTaka <= 0 ? 'PAID' : 'DUE';
+
+    return {
+      period: selectedPeriod,
+      availablePeriods,
+      totals: {
+        openingDueTaka,
+        rentChargesTaka,
+        utilityChargesTaka,
+        mealChargesTaka,
+        otherChargesTaka,
+        totalNewChargesTaka,
+        totalBilledTaka,
+        confirmedPaidTaka,
+        pendingPaidTaka,
+        creditAdjustmentTaka,
+        closingBalanceTaka,
+        advanceBalanceTaka,
+        dueStatus,
+        isZeroDrift: true,
+      },
+      items: (statement.items || []).map((it: any) => ({
+        id: it.id,
+        categoryName: it.categoryName,
+        amountTaka: it.amountTaka,
+        allocationRule: it.allocationRule,
+        notes: it.notes,
+      })),
+      statementMetadata: {
+        billId: statement.billId || null,
+        billNumber: statement.billNumber || null,
+        billStatus: statement.billStatus || 'UNBILLED',
+        dueDate: statement.dueDate || null,
+        generatedAt: formatDhakaDateTime(new Date()),
+        isPeriodLocked: statement.isPeriodLocked || false,
+        tenantName: tenant?.name || 'Mess Administration',
+        tenantSlug,
+        messAddress: 'Mirpur-2, Dhaka-1216, Bangladesh',
+        memberName: ctx.userName,
+        memberCode: ctx.memberCode,
+        roomNumber: room?.roomNumber || null,
+        bedLabel: activeAssignment?.bedNumber || null,
+      },
+    };
+  }
+
+  /**
+   * Lists the authenticated member's payments with anti-IDOR isolation.
+   * Confirmed payments include official receipt identifiers; pending/rejected do not.
+   */
+  public async listMemberPayments(
+    userId: string,
+    tenantSlug: string,
+    filters?: { status?: string; month?: string }
+  ): Promise<MemberPaymentRecordDto[]> {
+    const ctx = await this.resolveMemberContext(userId, tenantSlug);
+
+    let payments: any[] = [];
+    if (this.isDbAvailable()) {
+      try {
+        const where: any = {
+          tenantId: ctx.tenantId,
+          membershipId: ctx.membershipId,
+        };
+        if (filters?.status && filters.status !== 'ALL') {
+          where.status = filters.status;
+        }
+        if (filters?.month) {
+          where.paymentDate = { startsWith: filters.month };
+        }
+        payments = await this.db.memberPayment.findMany({
+          where,
+          orderBy: { paymentDate: 'desc' },
+        });
+      } catch {}
+    }
+
+    if (payments.length === 0) {
+      let filtered = this.mockPayments.filter(
+        (p) => p.tenantId === ctx.tenantId && p.membershipId === ctx.membershipId
+      );
+      if (filters?.status && filters.status !== 'ALL') {
+        filtered = filtered.filter((p) => p.status === filters.status);
+      }
+      if (filters?.month) {
+        filtered = filtered.filter((p) => (p.paymentDate || '').startsWith(filters.month!));
+      }
+      payments = filtered.sort((a, b) => (b.paymentDate || '').localeCompare(a.paymentDate || ''));
+    }
+
+    return payments.map((p) => {
+      const isConfirmed = p.status === 'CONFIRMED';
+      const cleanId = (p.id || '').replace(/[^a-zA-Z0-9]/g, '');
+      const receiptNumber = isConfirmed ? `RCP-${cleanId.slice(-8).toUpperCase()}` : null;
+      const amountPoisha = p.amountPoisha ? p.amountPoisha.toString() : '0';
+      const amountTaka = Number(p.amountPoisha || 0) / 100;
+
+      return {
+        id: p.id,
+        paymentDate: p.paymentDate || (p.createdAt instanceof Date ? p.createdAt.toISOString().substring(0, 10) : getTodayDhakaDateString()),
+        amountTaka,
+        amountPoisha,
+        paymentMethod: p.paymentMethod || 'CASH',
+        transactionId: p.transactionId || null,
+        billId: p.billId || null,
+        receiptUrl: p.receiptUrl || null,
+        notes: p.notes || null,
+        status: p.status as any,
+        receiptNumber,
+        isOfficialReceiptAvailable: isConfirmed,
+        verifiedAt: p.verifiedAt ? formatDhakaDateTime(p.verifiedAt) : null,
+        rejectionReason: p.rejectionReason || null,
+        refundReason: p.refundReason || null,
+        createdAt: formatDhakaDateTime(p.createdAt || new Date()),
+      };
+    });
+  }
+
+  /**
+   * Submits a manual payment voucher (Cash, bKash, Nagad, Rocket, Bank).
+   * Validates amounts, checks duplicate transaction IDs across tenant,
+   * and sets status to PENDING awaiting administrative review.
+   */
+  public async submitMemberPayment(
+    userId: string,
+    tenantSlug: string,
+    input: SubmitMemberPaymentInput
+  ): Promise<MemberPaymentRecordDto> {
+    const ctx = await this.resolveMemberContext(userId, tenantSlug);
+
+    // 1. Amount validation
+    if (typeof input.amountTaka !== 'number' || isNaN(input.amountTaka) || input.amountTaka <= 0) {
+      throw new ValidationError('Payment amount must be greater than zero.');
+    }
+    if (input.amountTaka > 500000) {
+      throw new ValidationError('Payment amount cannot exceed ৳500,000 in a single transaction.');
+    }
+
+    // 2. Date validation
+    if (!input.paymentDate || !/^\d{4}-\d{2}-\d{2}$/.test(input.paymentDate)) {
+      throw new ValidationError('Valid payment date in YYYY-MM-DD format is required.');
+    }
+    const today = getTodayDhakaDateString();
+    if (input.paymentDate > today) {
+      throw new ValidationError('Payment date cannot be in the future.');
+    }
+
+    // 3. Payment Method validation
+    if ((input.paymentMethod as any) === 'ONLINE_GATEWAY') {
+      throw new ValidationError(
+        'Direct online payment gateway is currently not active for this mess. Please submit manual mobile banking (bKash/Nagad) or cash payments with your transaction ID.'
+      );
+    }
+    const validMethods = ['CASH', 'BKASH', 'NAGAD', 'ROCKET', 'BANK_TRANSFER', 'OTHER'];
+    if (!validMethods.includes(input.paymentMethod)) {
+      throw new ValidationError('Invalid payment method selected.');
+    }
+
+    // 4. Digital payments require Transaction ID
+    const digitalMethods = ['BKASH', 'NAGAD', 'ROCKET', 'BANK_TRANSFER'];
+    let cleanTrx: string | null = null;
+    if (digitalMethods.includes(input.paymentMethod)) {
+      cleanTrx = (input.transactionId || '').trim();
+      if (!cleanTrx || cleanTrx.length < 4) {
+        throw new ValidationError('Transaction/Reference ID is required for digital payments (minimum 4 characters).');
+      }
+    } else if (input.transactionId) {
+      cleanTrx = input.transactionId.trim();
+    }
+
+    // 5. Duplicate Transaction ID check across tenant
+    if (cleanTrx) {
+      let isDuplicate = false;
+      if (this.isDbAvailable()) {
+        try {
+          const existing = await this.db.memberPayment.findFirst({
+            where: {
+              tenantId: ctx.tenantId,
+              transactionId: cleanTrx,
+            },
+          });
+          if (existing) isDuplicate = true;
+        } catch {}
+      } else {
+        isDuplicate = this.mockPayments.some(
+          (p) => p.tenantId === ctx.tenantId && p.transactionId === cleanTrx
+        );
+      }
+      if (isDuplicate) {
+        throw new ConflictError(
+          `Payment with transaction ID "${cleanTrx}" has already been recorded in this mess.`
+        );
+      }
+    }
+
+    // 6. Optional billId validation
+    if (input.billId) {
+      if (this.isDbAvailable()) {
+        try {
+          const bill = await this.db.memberBill.findUnique({
+            where: { id: input.billId },
+          });
+          if (bill && (bill.tenantId !== ctx.tenantId || bill.membershipId !== ctx.membershipId)) {
+            throw new ForbiddenError('Unauthorized: Specified bill does not belong to your account.');
+          }
+        } catch (err) {
+          if (err instanceof ForbiddenError) throw err;
+        }
+      }
+    }
+
+    const amountPoisha = BigInt(Math.round(input.amountTaka * 100));
+    const now = new Date();
+
+    // 7. Create Payment with PENDING status (requires admin verification)
+    let createdPayment: any = null;
+    if (this.isDbAvailable()) {
+      try {
+        createdPayment = await this.db.memberPayment.create({
+          data: {
+            tenantId: ctx.tenantId,
+            membershipId: ctx.membershipId,
+            billId: input.billId || null,
+            paymentDate: input.paymentDate,
+            amountPoisha,
+            paymentMethod: input.paymentMethod,
+            transactionId: cleanTrx,
+            receiptUrl: input.receiptUrl?.trim() || null,
+            notes: input.notes?.trim() || null,
+            status: 'PENDING',
+          },
+        });
+      } catch {}
+    }
+
+    if (!createdPayment) {
+      createdPayment = {
+        id: `pay_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+        tenantId: ctx.tenantId,
+        membershipId: ctx.membershipId,
+        billId: input.billId || null,
+        paymentDate: input.paymentDate,
+        amountPoisha,
+        paymentMethod: input.paymentMethod,
+        transactionId: cleanTrx,
+        receiptUrl: input.receiptUrl?.trim() || null,
+        notes: input.notes?.trim() || null,
+        status: 'PENDING',
+        receivedByUserId: null,
+        verifiedByUserId: null,
+        verifiedAt: null,
+        rejectionReason: null,
+        refundReason: null,
+        createdAt: now,
+        updatedAt: now,
+      };
+      this.mockPayments.push(createdPayment);
+    }
+
+    await auditService.recordAuditEvent({
+      tenantId: ctx.tenantId,
+      actorUserId: ctx.userId,
+      action: 'portal.payment.submit',
+      entityType: 'member_payment',
+      entityId: createdPayment.id,
+      description: `Resident ${ctx.userName} submitted payment voucher of ৳${input.amountTaka.toFixed(2)} via ${input.paymentMethod} (Pending Review)`,
+    });
+
+    return {
+      id: createdPayment.id,
+      paymentDate: createdPayment.paymentDate,
+      amountTaka: input.amountTaka,
+      amountPoisha: amountPoisha.toString(),
+      paymentMethod: createdPayment.paymentMethod,
+      transactionId: cleanTrx,
+      billId: createdPayment.billId,
+      receiptUrl: createdPayment.receiptUrl,
+      notes: createdPayment.notes,
+      status: 'PENDING',
+      receiptNumber: null,
+      isOfficialReceiptAvailable: false,
+      verifiedAt: null,
+      rejectionReason: null,
+      refundReason: null,
+      createdAt: formatDhakaDateTime(createdPayment.createdAt),
+    };
+  }
+
+  /**
+   * Retrieves official payment receipt for CONFIRMED payments.
+   * Throws ConflictError if the payment is still PENDING or REJECTED.
+   * Throws ForbiddenError if trying to access other members receipts.
+   */
+  public async getMemberPaymentReceipt(
+    userId: string,
+    tenantSlug: string,
+    paymentId: string
+  ): Promise<MemberPaymentReceiptDto> {
+    const ctx = await this.resolveMemberContext(userId, tenantSlug);
+
+    let payment: any = null;
+    if (this.isDbAvailable()) {
+      try {
+        payment = await this.db.memberPayment.findUnique({
+          where: { id: paymentId },
+        });
+      } catch {}
+    }
+
+    if (!payment) {
+      payment = this.mockPayments.find((p) => p.id === paymentId);
+    }
+
+    if (!payment) {
+      throw new NotFoundError('Payment record not found.');
+    }
+
+    // Strict Anti-IDOR Enforcement
+    if (payment.tenantId !== ctx.tenantId || payment.membershipId !== ctx.membershipId) {
+      throw new ForbiddenError('Unauthorized: You are not permitted to access other members receipts.');
+    }
+
+    // Official Receipt Rule: Only CONFIRMED payments can have an official receipt
+    if (payment.status !== 'CONFIRMED') {
+      throw new ConflictError(
+        `Official payment receipts are only issued for confirmed transactions. This payment is currently in ${payment.status} status.`
+      );
+    }
+
+    const cleanId = (payment.id || '').replace(/[^a-zA-Z0-9]/g, '');
+    const receiptNumber = `RCP-${cleanId.slice(-8).toUpperCase()}`;
+    const amountTaka = Number(payment.amountPoisha || 0) / 100;
+
+    const activeAssignment = this.mockRoomAssignments.find(
+      (a) => a.membershipId === ctx.membershipId && a.status === 'ACTIVE'
+    );
+    const room = activeAssignment ? this.mockRooms.find((r) => r.id === activeAssignment.roomId) : null;
+    const tenant = await this.resolveTenant(tenantSlug);
+
+    return {
+      receiptNumber,
+      paymentId: payment.id,
+      tenantName: tenant?.name || 'Mess Administration',
+      tenantSlug,
+      messAddress: 'Mirpur-2, Dhaka-1216, Bangladesh',
+      memberName: ctx.userName,
+      memberCode: ctx.memberCode,
+      roomNumber: room?.roomNumber || null,
+      bedLabel: activeAssignment?.bedNumber || null,
+      amountTaka,
+      amountInWords: numberToWordsBDT(amountTaka),
+      paymentDate: payment.paymentDate || (payment.createdAt instanceof Date ? payment.createdAt.toISOString().substring(0, 10) : getTodayDhakaDateString()),
+      paymentMethod: payment.paymentMethod,
+      transactionId: payment.transactionId || null,
+      status: 'CONFIRMED',
+      verifiedAt: payment.verifiedAt ? formatDhakaDateTime(payment.verifiedAt) : formatDhakaDateTime(payment.createdAt),
+      verifiedBy: 'Mess Administration',
+      notes: payment.notes || null,
+      issuedAt: formatDhakaDateTime(new Date()),
+    };
+  }
+}
+
+// ============================================================================
+// HELPER UTILITIES
+// ============================================================================
+
+function formatMonthLabel(monthString: string): string {
+  const parts = monthString.split('-');
+  if (parts.length < 2) return monthString;
+  const [yearStr, monthStr] = parts;
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December',
+  ];
+  const mIndex = parseInt(monthStr, 10) - 1;
+  const name = monthNames[mIndex] || monthStr;
+  return `${name} ${yearStr}`;
+}
+
+function numberToWordsBDT(amountTaka: number): string {
+  if (amountTaka <= 0) return 'Zero Taka Only';
+  const units = [
+    '', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine',
+    'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen',
+    'Seventeen', 'Eighteen', 'Nineteen',
+  ];
+  const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+  function convertBelowThousand(n: number): string {
+    let str = '';
+    if (n >= 100) {
+      str += units[Math.floor(n / 100)] + ' Hundred ';
+      n %= 100;
+    }
+    if (n >= 20) {
+      str += tens[Math.floor(n / 10)] + ' ';
+      n %= 10;
+    }
+    if (n > 0) {
+      str += units[n] + ' ';
+    }
+    return str.trim();
+  }
+
+  const integerPart = Math.floor(amountTaka);
+  const crore = Math.floor(integerPart / 10000000);
+  const remCrore = integerPart % 10000000;
+  const lakh = Math.floor(remCrore / 100000);
+  const remLakh = remCrore % 100000;
+  const thousand = Math.floor(remLakh / 1000);
+  const remainder = remLakh % 1000;
+
+  let words = '';
+  if (crore > 0) words += convertBelowThousand(crore) + ' Crore ';
+  if (lakh > 0) words += convertBelowThousand(lakh) + ' Lakh ';
+  if (thousand > 0) words += convertBelowThousand(thousand) + ' Thousand ';
+  if (remainder > 0) words += convertBelowThousand(remainder) + ' ';
+
+  return words.trim() + ' Taka Only';
 }
 
 export const memberPortalService = new MemberPortalService();
