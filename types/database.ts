@@ -40,6 +40,17 @@ import type {
   Expense as PrismaExpense,
   ExpenseItem as PrismaExpenseItem,
   BazarSchedule as PrismaBazarSchedule,
+  FinancialCategory as PrismaFinancialCategory,
+  MonthlyBillingPeriod as PrismaMonthlyBillingPeriod,
+  MemberBill as PrismaMemberBill,
+  BillItem as PrismaBillItem,
+  MemberPayment as PrismaMemberPayment,
+  BalanceAdjustment as PrismaBalanceAdjustment,
+  AllocationRule,
+  BillingPeriodStatus,
+  BillStatus,
+  MemberPaymentStatus,
+  AdjustmentType,
   RoomStatus,
   BedStatus,
   AssignmentStatus,
@@ -121,6 +132,11 @@ export type {
   GuestMealChargeType,
   ExpenseStatus,
   BazarScheduleStatus,
+  AllocationRule,
+  BillingPeriodStatus,
+  BillStatus,
+  MemberPaymentStatus,
+  AdjustmentType,
 };
 
 // Re-export Base Models
@@ -152,6 +168,12 @@ export type ExpenseCategory = PrismaExpenseCategory;
 export type Expense = PrismaExpense;
 export type ExpenseItem = PrismaExpenseItem;
 export type BazarSchedule = PrismaBazarSchedule;
+export type FinancialCategory = PrismaFinancialCategory;
+export type MonthlyBillingPeriod = PrismaMonthlyBillingPeriod;
+export type MemberBill = PrismaMemberBill;
+export type BillItem = PrismaBillItem;
+export type MemberPayment = PrismaMemberPayment;
+export type BalanceAdjustment = PrismaBalanceAdjustment;
 export type CustomPlanInquiry = PrismaCustomPlanInquiry;
 export type CustomQuotation = PrismaCustomQuotation;
 export type Domain = PrismaDomain;

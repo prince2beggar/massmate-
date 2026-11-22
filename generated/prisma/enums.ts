@@ -406,3 +406,54 @@ export const BazarScheduleStatus = {
 } as const
 
 export type BazarScheduleStatus = (typeof BazarScheduleStatus)[keyof typeof BazarScheduleStatus]
+
+
+export const AllocationRule = {
+  EQUAL_PER_MEMBER: 'EQUAL_PER_MEMBER',
+  PER_ROOM: 'PER_ROOM',
+  FIXED_AMOUNT: 'FIXED_AMOUNT',
+  CUSTOM_PER_MEMBER: 'CUSTOM_PER_MEMBER',
+  CUSTOM_RATIO: 'CUSTOM_RATIO'
+} as const
+
+export type AllocationRule = (typeof AllocationRule)[keyof typeof AllocationRule]
+
+
+export const BillingPeriodStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  LOCKED: 'LOCKED'
+} as const
+
+export type BillingPeriodStatus = (typeof BillingPeriodStatus)[keyof typeof BillingPeriodStatus]
+
+
+export const BillStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  PARTIALLY_PAID: 'PARTIALLY_PAID',
+  PAID: 'PAID',
+  OVERDUE: 'OVERDUE'
+} as const
+
+export type BillStatus = (typeof BillStatus)[keyof typeof BillStatus]
+
+
+export const MemberPaymentStatus = {
+  PENDING: 'PENDING',
+  CONFIRMED: 'CONFIRMED',
+  REJECTED: 'REJECTED',
+  PARTIAL: 'PARTIAL',
+  REFUNDED: 'REFUNDED'
+} as const
+
+export type MemberPaymentStatus = (typeof MemberPaymentStatus)[keyof typeof MemberPaymentStatus]
+
+
+export const AdjustmentType = {
+  CREDIT: 'CREDIT',
+  DEBIT: 'DEBIT',
+  REVERSAL: 'REVERSAL'
+} as const
+
+export type AdjustmentType = (typeof AdjustmentType)[keyof typeof AdjustmentType]

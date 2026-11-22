@@ -187,3 +187,33 @@ export type ExpenseItem = Prisma.ExpenseItemModel
  * 
  */
 export type BazarSchedule = Prisma.BazarScheduleModel
+/**
+ * Model FinancialCategory
+ * 
+ */
+export type FinancialCategory = Prisma.FinancialCategoryModel
+/**
+ * Model MonthlyBillingPeriod
+ * 
+ */
+export type MonthlyBillingPeriod = Prisma.MonthlyBillingPeriodModel
+/**
+ * Model MemberBill
+ * 
+ */
+export type MemberBill = Prisma.MemberBillModel
+/**
+ * Model BillItem
+ * 
+ */
+export type BillItem = Prisma.BillItemModel
+/**
+ * Model MemberPayment
+ * 
+ */
+export type MemberPayment = Prisma.MemberPaymentModel
+/**
+ * Model BalanceAdjustment
+ * 
+ */
+export type BalanceAdjustment = Prisma.BalanceAdjustmentModel

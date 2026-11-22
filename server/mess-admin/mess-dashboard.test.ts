@@ -610,11 +610,14 @@ describe('Task 29–30: Mess Admin Dashboard Foundation & Analytics', () => {
     const paymentAction = quickActions.find((a) => a.id === 'record-payment');
     assert.equal(paymentAction?.isAllowed, false);
 
+    const noticeAction = quickActions.find((a) => a.id === 'publish-notice');
+
     // Implemented actions are flagged isImplemented: true
     assert.equal(bazarAction?.isImplemented, true);
+    assert.equal(paymentAction?.isImplemented, true);
     // Unimplemented actions are flagged isImplemented: false
-    assert.equal(paymentAction?.isImplemented, false);
-    assert.ok(paymentAction?.moduleNote?.includes('Task 34'));
+    assert.equal(noticeAction?.isImplemented, false);
+    assert.ok(noticeAction?.moduleNote?.includes('Task 35') || noticeAction?.moduleNote?.includes('Task 36'));
   });
 
   // ---------------------------------------------------------------------------
@@ -646,8 +649,8 @@ describe('Task 29–30: Mess Admin Dashboard Foundation & Analytics', () => {
     const actualNavIds = MESS_NAV_ITEMS.map((item) => item.id);
     assert.deepEqual(actualNavIds, expectedNavIds);
 
-    // Overview, Members, Rooms, Rental, Meals, and Bazar are implemented
-    const implementedIds = ['overview', 'members', 'rooms', 'rental', 'meals', 'bazar'];
+    // Overview, Members, Rooms, Rental, Meals, Bazar, Finance, and Payments are implemented
+    const implementedIds = ['overview', 'members', 'rooms', 'rental', 'meals', 'bazar', 'finance', 'payments'];
     for (const id of implementedIds) {
       assert.equal(MESS_NAV_ITEMS.find((item) => item.id === id)?.isImplemented, true);
     }

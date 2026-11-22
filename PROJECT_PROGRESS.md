@@ -16,8 +16,8 @@
 | **Task 32** | Room Management & Rental Management | **Completed and Verified** | 2026-11-22 | Room inventory, bed assignments, capacity validation, transfer/move-out workflows, rental listings, booking requests, availability calendar. | 16/16 Automated Tests Passed (41/41 suite); Production build passed. | Proceed to Task 33 |
 | **Task 33** | Meal Management System | **Completed and Verified** | 2026-11-22 | Fixed/flexible meal schedules, daily logs, meal-off cutoffs in Asia/Dhaka, guest meals, zero-drift meal rate calculation, period locking. | 15/15 Automated Tests Passed (56/56 suite); Production build passed. | Proceed to Task 34 |
 | **Task 34** | Bazar and Expense Management | **Completed and Verified** | 2026-11-22 | Configurable expense categories, itemized purchases, server-side poisha calculations, bazar schedule rota, approval workflow with self-approval guards, reversals, and meal rate integration. | 11/11 Automated Tests Passed (67/67 suite); Production build passed. | Proceed to Task 35 |
-| **Task 35** | Finance, Billing and Payment Management | **In Progress** | — | Tenant financial categories, monthly billing generation, member statements, payment recording & verification, period locking. | Pending | Execute Task 35 |
-| **Task 36** | Mess Settings, Roles & Permissions, Audit Logs | **Pending** | — | Settings management, custom RBAC permissions matrix, immutable audit log explorer. | Pending | Awaiting Task 35 |
+| **Task 35** | Finance, Billing and Payment Management | **Completed and Verified** | 2026-11-22 | Tenant financial categories, monthly billing generation with zero-drift integer poisha allocation, rolling opening due, member statements with privacy checks, payment recording & verification with duplicate TrxID guard, period locking. | 11/11 Automated Tests Passed (78/78 suite); Production build passed. | Proceed to Task 36 |
+| **Task 36** | Mess Settings, Roles & Permissions, Audit Logs | **In Progress** | — | Settings management, custom RBAC permissions matrix, immutable audit log explorer. | Pending | Execute Task 36 |
 
 ---
 
@@ -158,4 +158,43 @@
     - Navigation integration: `bazar` marked active (`isImplemented: true`) in sidebar and quick actions.
   - Automated test suite (`server/bazar/bazar-management.test.ts`): 11 comprehensive unit and integration tests covering category seeding, deactivation, exact item math, validation, review decisions, self-approval policy guard, reversals, duty rota completion, meal rate integration, and cross-tenant isolation.
 - **Verification:** TypeScript: 0 errors; ESLint: 0 errors, 0 warnings; 67/67 total regression tests passing (100%); Next.js production build: 47/47 routes compiled cleanly.
+
+### Task 35: Finance, Billing and Payment Management
+- **Status:** Completed and Verified
+- **Date:** 2026-11-22
+- **Key Deliverables:**
+  - Prisma Schema expansion: `FinancialCategory`, `MonthlyBillingPeriod`, `MemberBill`, `BillItem`, `MemberPayment`, `BalanceAdjustment` models with enums (`AllocationRule`, `BillingPeriodStatus`, `BillStatus`, `MemberPaymentStatus`, `AdjustmentType`).
+  - Backend `FinanceService` (`server/finance/finance-service.ts`):
+    - Configurable financial categories with default auto-seeding (`ROOM_RENT`, `ELECTRICITY`, `GAS`, `WATER`, `WIFI`, `CLEANING_BUA`, `MAINTENANCE`, `MEAL_CHARGES`, `GUEST_MEAL_CHARGES`, `CUSTOM`).
+    - Allocation rules: `EQUAL_PER_MEMBER` (with zero-drift integer poisha remainder distribution), `PER_ROOM`, `FIXED_AMOUNT`, `CUSTOM_PER_MEMBER`.
+    - Monthly billing generator: aggregates active residents, dynamically links room rent and meal charges, rolls over previous month's uncollected closing balance into opening due, distributes shared overhead without poisha loss, and creates itemized member bills.
+    - Bill publishing and closing lifecycle (`DRAFT` -> `PUBLISHED` -> `LOCKED`): once locked, period modifications and bill recalculations are strictly rejected.
+    - Member financial statements: calculated dynamically with exact ledger math ($\text{Closing Balance} = \text{Opening Due} + \text{Total Charges} - \text{Confirmed Payments} - \text{Credits}$).
+    - Strict privacy enforcement: residents can only access their own statement under `finance.view`; viewing statements across other members requires `finance.view_all_members` or Owner role.
+    - Payment recording supporting Cash, bKash, Nagad, Rocket, Bank Transfer, with duplicate digital transaction reference (TrxID) conflict prevention.
+    - Two-stage payment verification: review queue with confirmation or rejection (mandatory reason), plus auditable refund/reversal functionality.
+    - Balance adjustments & waivers: credit and debit adjustments with mandatory audit reasons.
+    - Multi-tenant boundary isolation and audit activity logging.
+  - REST API routes (10 endpoints):
+    - `/api/v1/mess/[tenantSlug]/finance/categories` (GET list, POST create)
+    - `/api/v1/mess/[tenantSlug]/finance/categories/[id]` (PATCH update)
+    - `/api/v1/mess/[tenantSlug]/finance/billing` (GET list/overview, POST generate)
+    - `/api/v1/mess/[tenantSlug]/finance/billing/publish` (POST publish)
+    - `/api/v1/mess/[tenantSlug]/finance/billing/close` (POST close/lock)
+    - `/api/v1/mess/[tenantSlug]/finance/statements/[membershipId]` (GET member statement)
+    - `/api/v1/mess/[tenantSlug]/finance/adjustments` (POST balance adjustment)
+    - `/api/v1/mess/[tenantSlug]/payments` (GET list, POST record)
+    - `/api/v1/mess/[tenantSlug]/payments/[id]/verify` (PATCH confirm/reject)
+    - `/api/v1/mess/[tenantSlug]/payments/[id]/refund` (POST refund)
+  - UI components and pages:
+    - `/mess/[tenantSlug]/finance`: Finance Workspace with 3 operational tabs:
+      - Monthly Billing (`FinanceWorkspaceView` with billing overview, period selector, status badge, Generate Bills modal, Publish action, Close/Lock action, member bill breakdown table, and statement modal).
+      - Financial Categories (`FinancialCategoriesView` with category configuration, allocation rules, default amounts, and active toggles).
+      - Adjustments & Waivers (Balance adjustment action with credit/debit options and reason tracking).
+    - `/mess/[tenantSlug]/payments`: Payments Workspace (`PaymentsWorkspaceView` with KPI collection counters, method/status filtering, search, Record Payment modal, Verify Payment modal, and Refund modal).
+    - Modals: `GenerateBillsModal`, `MemberStatementModal` (printable layout with full ledger breakdown), `RecordPaymentModal`, `VerifyPaymentModal`, `RefundPaymentModal`, `BalanceAdjustmentModal`.
+    - Navigation integration: `finance` and `payments` marked active (`isImplemented: true`) in sidebar and quick actions.
+  - Automated test suite (`server/finance/finance-management.test.ts`): 11 comprehensive unit and integration tests covering category configuration, zero-drift remainder distribution, rollover of opening due, period locking protection, privacy boundary on member statements, duplicate TrxID conflict detection, payment verification, refunds, adjustments, and cross-tenant isolation.
+- **Verification:** TypeScript: 0 errors; ESLint: 0 errors, 0 warnings; 78/78 total regression tests passing (100%); Next.js production build: 49/49 routes compiled cleanly.
+
 

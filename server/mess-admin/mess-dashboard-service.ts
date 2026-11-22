@@ -642,8 +642,7 @@ export class MessDashboardService {
         href: `/mess/${slug}/payments?action=record`,
         permission: 'payments.create',
         isAllowed: has('payments.create'),
-        isImplemented: false,
-        moduleNote: 'Payment Gateway & Ledger launches in Task 34',
+        isImplemented: true,
       },
       {
         id: 'update-meal',

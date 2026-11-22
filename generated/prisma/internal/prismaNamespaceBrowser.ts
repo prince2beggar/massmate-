@@ -84,7 +84,13 @@ export const ModelName = {
   ExpenseCategory: 'ExpenseCategory',
   Expense: 'Expense',
   ExpenseItem: 'ExpenseItem',
-  BazarSchedule: 'BazarSchedule'
+  BazarSchedule: 'BazarSchedule',
+  FinancialCategory: 'FinancialCategory',
+  MonthlyBillingPeriod: 'MonthlyBillingPeriod',
+  MemberBill: 'MemberBill',
+  BillItem: 'BillItem',
+  MemberPayment: 'MemberPayment',
+  BalanceAdjustment: 'BalanceAdjustment'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -757,6 +763,121 @@ export const BazarScheduleScalarFieldEnum = {
 } as const
 
 export type BazarScheduleScalarFieldEnum = (typeof BazarScheduleScalarFieldEnum)[keyof typeof BazarScheduleScalarFieldEnum]
+
+
+export const FinancialCategoryScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  code: 'code',
+  description: 'description',
+  allocationRule: 'allocationRule',
+  defaultAmountPoisha: 'defaultAmountPoisha',
+  isActive: 'isActive',
+  isSystem: 'isSystem',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FinancialCategoryScalarFieldEnum = (typeof FinancialCategoryScalarFieldEnum)[keyof typeof FinancialCategoryScalarFieldEnum]
+
+
+export const MonthlyBillingPeriodScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  monthString: 'monthString',
+  status: 'status',
+  totalBilledPoisha: 'totalBilledPoisha',
+  totalCollectedPoisha: 'totalCollectedPoisha',
+  notes: 'notes',
+  publishedAt: 'publishedAt',
+  closedAt: 'closedAt',
+  closedByUserId: 'closedByUserId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MonthlyBillingPeriodScalarFieldEnum = (typeof MonthlyBillingPeriodScalarFieldEnum)[keyof typeof MonthlyBillingPeriodScalarFieldEnum]
+
+
+export const MemberBillScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  billingPeriodId: 'billingPeriodId',
+  membershipId: 'membershipId',
+  monthString: 'monthString',
+  billNumber: 'billNumber',
+  openingDuePoisha: 'openingDuePoisha',
+  rentChargesPoisha: 'rentChargesPoisha',
+  utilityChargesPoisha: 'utilityChargesPoisha',
+  mealChargesPoisha: 'mealChargesPoisha',
+  otherChargesPoisha: 'otherChargesPoisha',
+  totalChargesPoisha: 'totalChargesPoisha',
+  paidAmountPoisha: 'paidAmountPoisha',
+  creditAdjustmentPoisha: 'creditAdjustmentPoisha',
+  closingBalancePoisha: 'closingBalancePoisha',
+  status: 'status',
+  dueDate: 'dueDate',
+  publishedAt: 'publishedAt',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MemberBillScalarFieldEnum = (typeof MemberBillScalarFieldEnum)[keyof typeof MemberBillScalarFieldEnum]
+
+
+export const BillItemScalarFieldEnum = {
+  id: 'id',
+  billId: 'billId',
+  categoryId: 'categoryId',
+  categoryName: 'categoryName',
+  amountPoisha: 'amountPoisha',
+  allocationRule: 'allocationRule',
+  notes: 'notes',
+  createdAt: 'createdAt'
+} as const
+
+export type BillItemScalarFieldEnum = (typeof BillItemScalarFieldEnum)[keyof typeof BillItemScalarFieldEnum]
+
+
+export const MemberPaymentScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  membershipId: 'membershipId',
+  billId: 'billId',
+  paymentDate: 'paymentDate',
+  amountPoisha: 'amountPoisha',
+  paymentMethod: 'paymentMethod',
+  transactionId: 'transactionId',
+  receiptUrl: 'receiptUrl',
+  notes: 'notes',
+  status: 'status',
+  receivedByUserId: 'receivedByUserId',
+  verifiedByUserId: 'verifiedByUserId',
+  verifiedAt: 'verifiedAt',
+  rejectionReason: 'rejectionReason',
+  refundReason: 'refundReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MemberPaymentScalarFieldEnum = (typeof MemberPaymentScalarFieldEnum)[keyof typeof MemberPaymentScalarFieldEnum]
+
+
+export const BalanceAdjustmentScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  membershipId: 'membershipId',
+  billId: 'billId',
+  amountPoisha: 'amountPoisha',
+  type: 'type',
+  reason: 'reason',
+  authorizedByUserId: 'authorizedByUserId',
+  createdAt: 'createdAt'
+} as const
+
+export type BalanceAdjustmentScalarFieldEnum = (typeof BalanceAdjustmentScalarFieldEnum)[keyof typeof BalanceAdjustmentScalarFieldEnum]
 
 
 export const SortOrder = {

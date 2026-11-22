@@ -299,6 +299,42 @@ enum BazarScheduleStatus {
   CANCELLED
 }
 
+enum AllocationRule {
+  EQUAL_PER_MEMBER
+  PER_ROOM
+  FIXED_AMOUNT
+  CUSTOM_PER_MEMBER
+  CUSTOM_RATIO
+}
+
+enum BillingPeriodStatus {
+  DRAFT
+  PUBLISHED
+  LOCKED
+}
+
+enum BillStatus {
+  DRAFT
+  PUBLISHED
+  PARTIALLY_PAID
+  PAID
+  OVERDUE
+}
+
+enum MemberPaymentStatus {
+  PENDING
+  CONFIRMED
+  REJECTED
+  PARTIAL
+  REFUNDED
+}
+
+enum AdjustmentType {
+  CREDIT
+  DEBIT
+  REVERSAL
+}
+
 // -----------------------------------------------------------------------------
 // USER (Platform-wide Identity)
 // -----------------------------------------------------------------------------
@@ -335,6 +371,10 @@ model User {
   recordedGuestMeals      GuestMeal[]           @relation("RecordedGuestMeals")
   lockedMealPeriods       MealPeriodLock[]      @relation("LockedMealPeriods")
   reviewedExpenses        Expense[]             @relation("ReviewedExpenses")
+  closedBillingPeriods    MonthlyBillingPeriod[] @relation("ClosedBillingPeriods")
+  receivedMemberPayments  MemberPayment[]        @relation("ReceivedMemberPayments")
+  verifiedMemberPayments  MemberPayment[]        @relation("VerifiedMemberPayments")
+  authorizedAdjustments   BalanceAdjustment[]    @relation("AuthorizedAdjustments")
 
   @@index([status])
   @@index([platformRole])
@@ -388,6 +428,11 @@ model Tenant {
   expenseCategories ExpenseCategory[]
   expenses       Expense[]
   bazarSchedules BazarSchedule[]
+  financialCategories   FinancialCategory[]
+  monthlyBillingPeriods MonthlyBillingPeriod[]
+  memberBills           MemberBill[]
+  memberPayments        MemberPayment[]
+  balanceAdjustments    BalanceAdjustment[]
 
   @@index([status])
   @@index([verificationStatus])
@@ -555,6 +600,9 @@ model Membership {
   purchasedExpenses Expense[]       @relation("PurchasedExpenses")
   assignedBazarSchedules BazarSchedule[] @relation("AssignedBazarSchedules")
   completedBazarSchedules BazarSchedule[] @relation("CompletedBazarSchedules")
+  memberBills             MemberBill[]
+  memberPayments          MemberPayment[]
+  balanceAdjustments      BalanceAdjustment[]
 
   @@unique([userId, tenantId])
   @@index([tenantId])
@@ -1287,5 +1335,165 @@ model BazarSchedule {
   @@index([assignedMembershipId])
   @@index([status])
   @@map("bazar_schedules")
+}
+
+// -----------------------------------------------------------------------------
+// FINANCE, BILLING & PAYMENT MANAGEMENT (Task 35)
+// -----------------------------------------------------------------------------
+
+model FinancialCategory {
+  id                  String         @id @default(cuid())
+  tenantId            String         @map("tenant_id")
+  name                String
+  code                String
+  description         String?
+  allocationRule      AllocationRule @default(EQUAL_PER_MEMBER) @map("allocation_rule")
+  defaultAmountPoisha BigInt?        @map("default_amount_poisha")
+  isActive            Boolean        @default(true) @map("is_active")
+  isSystem            Boolean        @default(false) @map("is_system")
+  createdAt           DateTime       @default(now()) @map("created_at")
+  updatedAt           DateTime       @updatedAt @map("updated_at")
+
+  tenant    Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  billItems BillItem[]
+
+  @@unique([tenantId, code])
+  @@index([tenantId])
+  @@index([isActive])
+  @@map("financial_categories")
+}
+
+model MonthlyBillingPeriod {
+  id                   String              @id @default(cuid())
+  tenantId             String              @map("tenant_id")
+  monthString          String              @map("month_string") // "YYYY-MM"
+  status               BillingPeriodStatus @default(DRAFT)
+  totalBilledPoisha    BigInt              @default(0) @map("total_billed_poisha")
+  totalCollectedPoisha BigInt              @default(0) @map("total_collected_poisha")
+  notes                String?
+  publishedAt          DateTime?           @map("published_at")
+  closedAt             DateTime?           @map("closed_at")
+  closedByUserId       String?             @map("closed_by_user_id")
+  createdAt            DateTime            @default(now()) @map("created_at")
+  updatedAt            DateTime            @updatedAt @map("updated_at")
+
+  tenant       Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  closedByUser User?        @relation("ClosedBillingPeriods", fields: [closedByUserId], references: [id], onDelete: SetNull)
+  memberBills  MemberBill[]
+
+  @@unique([tenantId, monthString])
+  @@index([tenantId])
+  @@index([monthString])
+  @@map("monthly_billing_periods")
+}
+
+model MemberBill {
+  id                     String     @id @default(cuid())
+  tenantId               String     @map("tenant_id")
+  billingPeriodId        String     @map("billing_period_id")
+  membershipId           String     @map("membership_id")
+  monthString            String     @map("month_string") // "YYYY-MM"
+  billNumber             String     @map("bill_number")
+  openingDuePoisha       BigInt     @default(0) @map("opening_due_poisha")
+  rentChargesPoisha      BigInt     @default(0) @map("rent_charges_poisha")
+  utilityChargesPoisha   BigInt     @default(0) @map("utility_charges_poisha")
+  mealChargesPoisha      BigInt     @default(0) @map("meal_charges_poisha")
+  otherChargesPoisha     BigInt     @default(0) @map("other_charges_poisha")
+  totalChargesPoisha     BigInt     @default(0) @map("total_charges_poisha")
+  paidAmountPoisha       BigInt     @default(0) @map("paid_amount_poisha")
+  creditAdjustmentPoisha BigInt     @default(0) @map("credit_adjustment_poisha")
+  closingBalancePoisha   BigInt     @default(0) @map("closing_balance_poisha")
+  status                 BillStatus @default(DRAFT)
+  dueDate                String?    @map("due_date")
+  publishedAt            DateTime?  @map("published_at")
+  notes                  String?
+  createdAt              DateTime   @default(now()) @map("created_at")
+  updatedAt              DateTime   @updatedAt @map("updated_at")
+
+  tenant        Tenant              @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  billingPeriod MonthlyBillingPeriod @relation(fields: [billingPeriodId], references: [id], onDelete: Cascade)
+  membership    Membership          @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  items         BillItem[]
+  payments      MemberPayment[]
+  adjustments   BalanceAdjustment[]
+
+  @@unique([tenantId, billingPeriodId, membershipId])
+  @@index([tenantId])
+  @@index([membershipId])
+  @@index([status])
+  @@map("member_bills")
+}
+
+model BillItem {
+  id             String         @id @default(cuid())
+  billId         String         @map("bill_id")
+  categoryId     String?        @map("category_id")
+  categoryName   String         @map("category_name")
+  amountPoisha   BigInt         @map("amount_poisha")
+  allocationRule AllocationRule @default(EQUAL_PER_MEMBER) @map("allocation_rule")
+  notes          String?
+  createdAt      DateTime       @default(now()) @map("created_at")
+
+  bill     MemberBill         @relation(fields: [billId], references: [id], onDelete: Cascade)
+  category FinancialCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  @@index([billId])
+  @@map("bill_items")
+}
+
+model MemberPayment {
+  id               String              @id @default(cuid())
+  tenantId         String              @map("tenant_id")
+  membershipId     String              @map("membership_id")
+  billId           String?             @map("bill_id")
+  paymentDate      String              @map("payment_date") // "YYYY-MM-DD"
+  amountPoisha     BigInt              @map("amount_poisha")
+  paymentMethod    PaymentMethod       @default(CASH) @map("payment_method")
+  transactionId    String?             @map("transaction_id")
+  receiptUrl       String?             @map("receipt_url")
+  notes            String?
+  status           MemberPaymentStatus @default(PENDING)
+  receivedByUserId String?             @map("received_by_user_id")
+  verifiedByUserId String?             @map("verified_by_user_id")
+  verifiedAt       DateTime?           @map("verified_at")
+  rejectionReason  String?             @map("rejection_reason")
+  refundReason     String?             @map("refund_reason")
+  createdAt        DateTime            @default(now()) @map("created_at")
+  updatedAt        DateTime            @updatedAt @map("updated_at")
+
+  tenant         Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  membership     Membership  @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  bill           MemberBill? @relation(fields: [billId], references: [id], onDelete: SetNull)
+  receivedByUser User?       @relation("ReceivedMemberPayments", fields: [receivedByUserId], references: [id], onDelete: SetNull)
+  verifiedByUser User?       @relation("VerifiedMemberPayments", fields: [verifiedByUserId], references: [id], onDelete: SetNull)
+
+  @@index([tenantId])
+  @@index([membershipId])
+  @@index([billId])
+  @@index([status])
+  @@index([transactionId])
+  @@map("member_payments")
+}
+
+model BalanceAdjustment {
+  id                 String         @id @default(cuid())
+  tenantId           String         @map("tenant_id")
+  membershipId       String         @map("membership_id")
+  billId             String?        @map("bill_id")
+  amountPoisha       BigInt         @map("amount_poisha")
+  type               AdjustmentType @default(CREDIT)
+  reason             String
+  authorizedByUserId String?        @map("authorized_by_user_id")
+  createdAt          DateTime       @default(now()) @map("created_at")
+
+  tenant           Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  membership       Membership  @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  bill             MemberBill? @relation(fields: [billId], references: [id], onDelete: SetNull)
+  authorizedByUser User?       @relation("AuthorizedAdjustments", fields: [authorizedByUserId], references: [id], onDelete: SetNull)
+
+  @@index([tenantId])
+  @@index([membershipId])
+  @@index([billId])
+  @@map("balance_adjustments")
 }
 
