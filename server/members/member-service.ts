@@ -44,6 +44,8 @@ export interface UpdateMemberInput {
   name?: string;
   phone?: string;
   email?: string | null;
+  roleId?: string;
+  assignedRoles?: string[];
   memberCode?: string | null;
   emergencyContactName?: string | null;
   emergencyContactPhone?: string | null;
@@ -592,6 +594,43 @@ export class MemberService {
     if (input.notes !== undefined)
       membershipUpdates.notes = input.notes ? input.notes.trim() : null;
 
+    if (input.roleId) {
+      let role = await this.db.role.findFirst({
+        where: { id: input.roleId, tenantId },
+      });
+      if (!role) {
+        role = await this.db.role.findFirst({
+          where: { slug: input.roleId, tenantId },
+        });
+      }
+      if (!role) {
+        const seeded = await ensureTenantRoles(tenantId, this.db);
+        role = (seeded.find((r) => r.id === input.roleId || r.slug === input.roleId) || seeded[0]) as any;
+      }
+
+      if (role) {
+        if (membership.role.slug === 'owner' && role.slug !== 'owner') {
+          const activeOwnerCount = await this.db.membership.count({
+            where: {
+              tenantId,
+              status: 'ACTIVE',
+              role: { slug: 'owner' },
+            },
+          });
+          if (activeOwnerCount <= 1) {
+            throw new ForbiddenError(
+              'Cannot demote the last active Owner of this mess. Promote another Owner first.'
+            );
+          }
+        }
+        membershipUpdates.roleId = role.id;
+      }
+    }
+
+    if (input.assignedRoles) {
+      membershipUpdates.assignedRoles = input.assignedRoles;
+    }
+
     const updated = await this.db.membership.update({
       where: { id: memberId },
       data: membershipUpdates,
@@ -613,11 +652,15 @@ export class MemberService {
         name: membership.user.name,
         phone: membership.user.phone,
         memberCode: (membership as any).memberCode,
+        roleId: membership.roleId,
+        assignedRoles: (membership as any).assignedRoles,
       },
       afterData: {
         name: updated.user.name,
         phone: updated.user.phone,
         memberCode: (updated as any).memberCode,
+        roleId: updated.roleId,
+        assignedRoles: (updated as any).assignedRoles,
       },
     });
 
@@ -633,6 +676,7 @@ export class MemberService {
       roleId: updated.roleId,
       roleName: updated.role.name,
       roleSlug: updated.role.slug,
+      assignedRoles: (updated as any).assignedRoles || [updated.role.slug],
       memberCode: (updated as any).memberCode || null,
       emergencyContactName: (updated as any).emergencyContactName || null,
       emergencyContactPhone: (updated as any).emergencyContactPhone || null,
@@ -752,7 +796,8 @@ export class MemberService {
     tenantId: string,
     memberId: string,
     newRoleId: string,
-    actor: { userId: string }
+    actor: { userId: string },
+    assignedRoles?: string[]
   ): Promise<MemberDto> {
     if (!tenantId || !memberId || !newRoleId) {
       throw new ValidationError('tenantId, memberId, and newRoleId are required');
@@ -767,10 +812,21 @@ export class MemberService {
       throw new NotFoundError(`Member '${memberId}' does not exist in this mess.`);
     }
 
-    // Role must belong to this tenant
-    const newRole = await this.db.role.findFirst({
+    // Role must belong to this tenant or match standard roles
+    let newRole = await this.db.role.findFirst({
       where: { id: newRoleId, tenantId },
     });
+
+    if (!newRole) {
+      newRole = await this.db.role.findFirst({
+        where: { slug: newRoleId, tenantId },
+      });
+    }
+
+    if (!newRole) {
+      const seeded = await ensureTenantRoles(tenantId, this.db);
+      newRole = (seeded.find((r) => r.id === newRoleId || r.slug === newRoleId) || seeded[0]) as any;
+    }
 
     if (!newRole) {
       throw new NotFoundError('Target role does not belong to this mess.');
@@ -792,9 +848,14 @@ export class MemberService {
       }
     }
 
+    const updateData: any = { roleId: newRole.id };
+    if (assignedRoles) {
+      updateData.assignedRoles = assignedRoles;
+    }
+
     const updated = await this.db.membership.update({
       where: { id: memberId },
-      data: { roleId: newRoleId },
+      data: updateData,
       include: { user: true, role: true },
     });
 
@@ -806,7 +867,7 @@ export class MemberService {
       entityId: memberId,
       description: `Reassigned role for "${updated.user.name}" from ${membership.role.name} to ${newRole.name}`,
       beforeData: { roleId: membership.roleId, roleName: membership.role.name },
-      afterData: { roleId: newRoleId, roleName: newRole.name },
+      afterData: { roleId: newRole.id, roleName: newRole.name },
     });
 
     return {
@@ -821,6 +882,7 @@ export class MemberService {
       roleId: updated.roleId,
       roleName: updated.role.name,
       roleSlug: updated.role.slug,
+      assignedRoles: (updated as any).assignedRoles || [updated.role.slug],
       memberCode: (updated as any).memberCode || null,
       emergencyContactName: (updated as any).emergencyContactName || null,
       emergencyContactPhone: (updated as any).emergencyContactPhone || null,
@@ -831,6 +893,56 @@ export class MemberService {
       createdAt: updated.createdAt.toISOString(),
       updatedAt: updated.updatedAt.toISOString(),
     };
+  }
+
+  /**
+   * Safely deletes or removes a member from the tenant.
+   */
+  async deleteMember(
+    tenantId: string,
+    memberId: string,
+    actor: { userId: string }
+  ): Promise<{ success: boolean }> {
+    if (!tenantId || !memberId) {
+      throw new ValidationError('tenantId and memberId are required');
+    }
+
+    const membership = await this.db.membership.findFirst({
+      where: { id: memberId, tenantId },
+      include: { user: true, role: true },
+    });
+
+    if (!membership) {
+      throw new NotFoundError(`Member '${memberId}' does not exist in this mess.`);
+    }
+
+    if (membership.role?.slug === 'owner') {
+      const activeOwnerCount = await this.db.membership.count({
+        where: { tenantId, status: 'ACTIVE', role: { slug: 'owner' } },
+      });
+      if (activeOwnerCount <= 1) {
+        throw new ForbiddenError('Cannot remove the last active Owner of this mess.');
+      }
+    }
+
+    await this.db.membership.delete({ where: { id: memberId } });
+
+    await auditService.recordAuditEvent({
+      tenantId,
+      actorUserId: actor.userId,
+      action: 'member.delete',
+      entityType: 'membership',
+      entityId: memberId,
+      description: `Removed member "${membership.user.name}" from mess`,
+      beforeData: {
+        name: membership.user.name,
+        phone: membership.user.phone,
+        memberCode: (membership as any).memberCode,
+        roleId: membership.roleId,
+      },
+    });
+
+    return { success: true };
   }
 }
 

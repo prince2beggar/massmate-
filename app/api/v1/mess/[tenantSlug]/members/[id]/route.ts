@@ -39,7 +39,27 @@ export const PATCH = withTenantAuth(
 
     return NextResponse.json({
       success: true,
+      message: 'Member updated successfully',
       data: updated,
+    });
+  }
+);
+
+export const DELETE = withTenantAuth(
+  { permission: 'members.manage_status' },
+  async (req, { tenantContext, params }) => {
+    const memberId = String(params.id);
+
+    const result = await memberService.deleteMember(
+      tenantContext.tenantId,
+      memberId,
+      { userId: tenantContext.userId }
+    );
+
+    return NextResponse.json({
+      success: true,
+      message: 'Member removed successfully',
+      data: result,
     });
   }
 );

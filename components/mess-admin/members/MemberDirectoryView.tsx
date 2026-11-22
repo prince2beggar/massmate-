@@ -31,6 +31,7 @@ import type { MemberDto } from '@/server/members/member-service';
 import { AddMemberModal } from './AddMemberModal';
 import { EditMemberModal } from './EditMemberModal';
 import { ChangeStatusModal } from './ChangeStatusModal';
+import { QuickRoleModal } from './QuickRoleModal';
 
 interface MemberDirectoryViewProps {
   tenantSlug: string;
@@ -75,6 +76,7 @@ export function MemberDirectoryView({
   // Modals state
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [editingMember, setEditingMember] = useState<MemberDto | null>(null);
+  const [quickRoleMember, setQuickRoleMember] = useState<MemberDto | null>(null);
   const [statusTargetMember, setStatusTargetMember] = useState<MemberDto | null>(null);
 
   // Active dropdown action menu
@@ -178,42 +180,42 @@ export function MemberDirectoryView({
         rolesToRender.push({
           slug,
           label: 'মেস ওনার (Owner)',
-          color: 'bg-rose-50 text-rose-700 border-rose-200',
+          color: 'bg-rose-50 text-rose-700 border-rose-200 group-hover:border-rose-300',
           icon: 'crown',
         });
       } else if (slug === 'admin') {
         rolesToRender.push({
           slug,
           label: 'সহ-এডমিন (Admin)',
-          color: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+          color: 'bg-indigo-50 text-indigo-700 border-indigo-200 group-hover:border-indigo-300',
           icon: 'shield',
         });
       } else if (slug === 'meal-manager') {
         rolesToRender.push({
           slug,
           label: 'মিলের দায়িত্ব (Meal)',
-          color: 'bg-amber-50 text-amber-700 border-amber-200',
+          color: 'bg-amber-50 text-amber-700 border-amber-200 group-hover:border-amber-300',
           icon: 'meal',
         });
       } else if (slug === 'accountant') {
         rolesToRender.push({
           slug,
           label: 'হিসাবের দায়িত্ব (Finance)',
-          color: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+          color: 'bg-emerald-50 text-emerald-700 border-emerald-200 group-hover:border-emerald-300',
           icon: 'finance',
         });
       } else if (slug === 'moderator') {
         rolesToRender.push({
           slug,
           label: 'সমন্বয়ক (Moderator)',
-          color: 'bg-purple-50 text-purple-700 border-purple-200',
+          color: 'bg-purple-50 text-purple-700 border-purple-200 group-hover:border-purple-300',
           icon: 'mod',
         });
       } else if (slug === 'member') {
         rolesToRender.push({
           slug,
           label: 'সাধারণ সদস্য (Member)',
-          color: 'bg-blue-50 text-blue-700 border-blue-200',
+          color: 'bg-blue-50 text-blue-700 border-blue-200 group-hover:border-blue-300',
           icon: 'user',
         });
       }
@@ -223,28 +225,39 @@ export function MemberDirectoryView({
       rolesToRender.push({
         slug: 'member',
         label: member.roleName || 'Member',
-        color: 'bg-slate-100 text-slate-700 border-slate-200',
+        color: 'bg-slate-100 text-slate-700 border-slate-200 group-hover:border-slate-300',
         icon: 'user',
       });
     }
 
     return (
-      <div className="flex flex-wrap items-center gap-1">
-        {rolesToRender.map((r, i) => (
-          <span
-            key={i}
-            className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-semibold border ${r.color}`}
-          >
-            {r.icon === 'crown' && <Crown className="h-3 w-3 shrink-0" />}
-            {r.icon === 'shield' && <Shield className="h-3 w-3 shrink-0" />}
-            {r.icon === 'meal' && <Utensils className="h-3 w-3 shrink-0" />}
-            {r.icon === 'finance' && <Coins className="h-3 w-3 shrink-0" />}
-            {r.icon === 'mod' && <ShieldCheck className="h-3 w-3 shrink-0" />}
-            {r.icon === 'user' && <User className="h-3 w-3 shrink-0" />}
-            <span>{r.label}</span>
-          </span>
-        ))}
-      </div>
+      <button
+        type="button"
+        onClick={() => setQuickRoleMember(member)}
+        className="group flex flex-wrap items-center gap-1.5 p-1 -m-1 rounded-xl text-left hover:bg-slate-100/90 transition-all border border-transparent hover:border-slate-200/60"
+        title="রোল ও দায়িত্ব পরিবর্তন করতে ক্লিক করুন (Click to change role)"
+      >
+        <div className="flex flex-wrap items-center gap-1">
+          {rolesToRender.map((r, i) => (
+            <span
+              key={i}
+              className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-semibold border ${r.color} transition-colors`}
+            >
+              {r.icon === 'crown' && <Crown className="h-3 w-3 shrink-0" />}
+              {r.icon === 'shield' && <Shield className="h-3 w-3 shrink-0" />}
+              {r.icon === 'meal' && <Utensils className="h-3 w-3 shrink-0" />}
+              {r.icon === 'finance' && <Coins className="h-3 w-3 shrink-0" />}
+              {r.icon === 'mod' && <ShieldCheck className="h-3 w-3 shrink-0" />}
+              {r.icon === 'user' && <User className="h-3 w-3 shrink-0" />}
+              <span>{r.label}</span>
+            </span>
+          ))}
+        </div>
+        <span className="inline-flex items-center gap-0.5 text-[10px] text-slate-400 group-hover:text-emerald-700 opacity-60 group-hover:opacity-100 transition-all">
+          <Edit className="h-3 w-3" />
+          <span className="hidden sm:inline">এডিট</span>
+        </span>
+      </button>
     );
   };
 
@@ -609,10 +622,32 @@ export function MemberDirectoryView({
       <EditMemberModal
         tenantSlug={tenantSlug}
         member={editingMember}
+        roles={roles}
         isOpen={!!editingMember}
         onClose={() => setEditingMember(null)}
         onMemberUpdated={(updated) => {
-          fetchMembers(currentPage);
+          setData((prev) => ({
+            ...prev,
+            members: prev.members.map((m) =>
+              m.id === updated.id ? updated : m
+            ),
+          }));
+        }}
+      />
+
+      <QuickRoleModal
+        tenantSlug={tenantSlug}
+        member={quickRoleMember}
+        roles={roles}
+        isOpen={!!quickRoleMember}
+        onClose={() => setQuickRoleMember(null)}
+        onRoleUpdated={(updated) => {
+          setData((prev) => ({
+            ...prev,
+            members: prev.members.map((m) =>
+              m.id === updated.id ? updated : m
+            ),
+          }));
         }}
       />
 

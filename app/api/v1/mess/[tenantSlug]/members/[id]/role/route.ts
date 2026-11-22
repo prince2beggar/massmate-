@@ -12,11 +12,13 @@ export const PATCH = withTenantAuth(
       tenantContext.tenantId,
       memberId,
       body.roleId,
-      { userId: tenantContext.userId }
+      { userId: tenantContext.userId },
+      body.assignedRoles
     );
 
     return NextResponse.json({
       success: true,
+      message: 'Member role updated successfully',
       data: updated,
     });
   }
