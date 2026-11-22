@@ -7,6 +7,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { HeroProductPreview } from '@/components/home/HeroProductPreview';
+import { openAuthModal } from '@/components/auth/AuthModal';
 
 export function HeroSection() {
   const { locale, t } = useLanguage();
@@ -74,10 +75,11 @@ export function HeroSection() {
             {/* Primary & Secondary CTAs */}
             <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 pt-1">
               <Button
-                href="#get-started"
+                type="button"
+                onClick={() => openAuthModal('trial')}
                 variant="primary"
                 size="lg"
-                className="group w-full sm:w-auto hover:-translate-y-0.5"
+                className="group w-full sm:w-auto hover:-translate-y-0.5 cursor-pointer"
               >
                 <span>{t.hero.primaryCta}</span>
                 <ArrowRight

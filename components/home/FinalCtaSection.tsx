@@ -6,6 +6,7 @@ import { ArrowRight, Building2, ShieldCheck, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
+import { openAuthModal } from '@/components/auth/AuthModal';
 
 export function FinalCtaSection() {
   const pathname = usePathname();
@@ -86,13 +87,11 @@ export function FinalCtaSection() {
           {/* Primary & Secondary Actions */}
           <div className="mt-9 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 sm:gap-4">
             <Button
-              href={primaryHref}
+              type="button"
+              onClick={() => openAuthModal('trial')}
               variant="white"
               size="lg"
-              className="w-full sm:w-auto"
-              onClick={(e) =>
-                handleSmoothAnchor(e, 'contact', 'home-contact-full-name')
-              }
+              className="w-full sm:w-auto cursor-pointer"
             >
               <span>{t.finalCta.primaryCta}</span>
               <ArrowRight

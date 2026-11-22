@@ -18,6 +18,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/Button';
+import { openAuthModal } from '@/components/auth/AuthModal';
 
 interface SubscriptionPlansGridProps {
   onRequestCustomPricing?: () => void;
@@ -94,10 +95,11 @@ export function SubscriptionPlansGrid({
 
           <div className="mt-8 pt-5 border-t border-slate-100">
             <Button
-              href="#get-started"
+              type="button"
+              onClick={() => openAuthModal('trial')}
               variant="primary"
               size="lg"
-              className="w-full"
+              className="w-full cursor-pointer"
             >
               <span>
                 {locale === 'en'

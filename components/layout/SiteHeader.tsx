@@ -14,15 +14,7 @@ import {
 } from '@/lib/navigation';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
+import { AuthModal, openAuthModal } from '@/components/auth/AuthModal';
 import { cn } from '@/lib/utils';
 
 export function SiteHeader() {
@@ -33,7 +25,6 @@ export function SiteHeader() {
   const activeSection = useActiveSection(isHomePage);
 
   const [openForPath, setOpenForPath] = useState<string | null>(null);
-  const [loginInfoOpen, setLoginInfoOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const mobileOpen = openForPath === pathname;
 
@@ -174,11 +165,16 @@ export function SiteHeader() {
               type="button"
               variant="ghost"
               size="sm"
-              onClick={() => setLoginInfoOpen(true)}
+              onClick={() => openAuthModal('login')}
             >
               {t.nav.login}
             </Button>
-            <Button href={getStartedHref} variant="primary" size="sm">
+            <Button
+              type="button"
+              onClick={() => openAuthModal('trial')}
+              variant="primary"
+              size="sm"
+            >
               <span>{t.nav.getStarted}</span>
               <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
             </Button>
@@ -265,17 +261,20 @@ export function SiteHeader() {
                     className="w-full"
                     onClick={() => {
                       closeMobileMenu();
-                      setLoginInfoOpen(true);
+                      openAuthModal('login');
                     }}
                   >
                     {t.nav.login}
                   </Button>
                   <Button
-                    href={getStartedHref}
+                    type="button"
                     variant="primary"
                     size="md"
                     className="w-full"
-                    onClick={closeMobileMenu}
+                    onClick={() => {
+                      closeMobileMenu();
+                      openAuthModal('trial');
+                    }}
                   >
                     {t.nav.getStarted}
                   </Button>
@@ -286,45 +285,8 @@ export function SiteHeader() {
         )}
       </AnimatePresence>
 
-      {/* Non-auth Login Preview Dialog */}
-      <Dialog open={loginInfoOpen} onOpenChange={setLoginInfoOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <div className="mb-1 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#EEF2FF] text-[#324CDD]">
-              <Lock className="h-5 w-5" aria-hidden="true" />
-            </div>
-            <DialogTitle>
-              {locale === 'bn'
-                ? 'মেম্বার ও ম্যানেজার লগইন শীঘ্রই আসছে'
-                : 'Member & Manager Workspace Login'}
-            </DialogTitle>
-            <DialogDescription>
-              {locale === 'bn'
-                ? 'এই পাবলিক ওয়েবসাইটে এখনো অথেনটিকেশন যুক্ত করা হয়নি। প্রারম্ভিক অ্যাক্সেস বা ডেমো বুকিংয়ের জন্য আমাদের টিমের সাথে যোগাযোগ করুন।'
-                : 'Workspace authentication and resident portals are planned for an upcoming release. Request early onboarding access or explore our public features below.'}
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <DialogClose
-              render={
-                <Button variant="outline">
-                  {locale === 'bn' ? 'বন্ধ করুন' : 'Close'}
-                </Button>
-              }
-            />
-            <Button
-              href="/contact"
-              variant="primary"
-              onClick={() => setLoginInfoOpen(false)}
-            >
-              <span>
-                {locale === 'bn' ? 'আর্লি অ্যাক্সেস নিন' : 'Request Early Access'}
-              </span>
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      {/* Real Interactive Auth Modal */}
+      <AuthModal />
     </>
   );
 }
