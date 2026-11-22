@@ -14,6 +14,8 @@ import {
 } from '@/server/api/errors';
 import type { MembershipStatus, UserStatus } from '@/types/database';
 
+import { ensureTenantRoles } from '@/server/rbac/role-templates';
+
 export interface MemberListOptions {
   search?: string;
   status?: string; // 'ALL' | MembershipStatus
@@ -29,6 +31,7 @@ export interface CreateMemberInput {
   phone: string;
   email?: string | null;
   roleId: string;
+  assignedRoles?: string[];
   status?: MembershipStatus;
   memberCode?: string | null;
   joinedAt?: string | Date | null;
@@ -59,6 +62,7 @@ export interface MemberDto {
   roleId: string;
   roleName: string;
   roleSlug: string;
+  assignedRoles?: string[];
   memberCode: string | null;
   emergencyContactName: string | null;
   emergencyContactPhone: string | null;
@@ -222,8 +226,9 @@ export class MemberService {
       profileImage: m.user?.profileImage || null,
       status: m.status,
       roleId: m.roleId,
-      roleName: m.role?.name || 'Member',
+      roleName: m.role?.name || 'General Member (সাধারণ সদস্য)',
       roleSlug: m.role?.slug || 'member',
+      assignedRoles: (m as any).assignedRoles || [m.role?.slug || 'member'],
       memberCode: m.memberCode || null,
       emergencyContactName: m.emergencyContactName || null,
       emergencyContactPhone: m.emergencyContactPhone || null,
@@ -320,8 +325,9 @@ export class MemberService {
       profileImage: membership.user?.profileImage || null,
       status: membership.status,
       roleId: membership.roleId,
-      roleName: membership.role?.name || 'Member',
+      roleName: membership.role?.name || 'General Member (সাধারণ সদস্য)',
       roleSlug: membership.role?.slug || 'member',
+      assignedRoles: (membership as any).assignedRoles || [membership.role?.slug || 'member'],
       memberCode: (membership as any).memberCode || null,
       emergencyContactName: (membership as any).emergencyContactName || null,
       emergencyContactPhone: (membership as any).emergencyContactPhone || null,
@@ -381,13 +387,27 @@ export class MemberService {
       throw new ValidationError('Role assignment is required');
     }
 
-    // 1. Verify Role belongs to this Tenant
-    const role = await this.db.role.findFirst({
+    // 1. Verify Role belongs to this Tenant, or find/seed standard role
+    let role = await this.db.role.findFirst({
       where: {
         id: input.roleId,
         tenantId,
       },
     });
+
+    if (!role) {
+      role = await this.db.role.findFirst({
+        where: {
+          slug: input.roleId,
+          tenantId,
+        },
+      });
+    }
+
+    if (!role) {
+      const seeded = await ensureTenantRoles(tenantId, this.db);
+      role = (seeded.find((r) => r.id === input.roleId || r.slug === input.roleId) || seeded[0]) as any;
+    }
 
     if (!role) {
       throw new NotFoundError('Selected role does not belong to this mess.');
@@ -401,8 +421,10 @@ export class MemberService {
     });
 
     if (!user) {
+      const newUserId = `usr_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
       user = await this.db.user.create({
         data: {
+          id: newUserId,
           name,
           phone,
           email,
@@ -437,9 +459,15 @@ export class MemberService {
     const joinedAt = input.joinedAt ? new Date(input.joinedAt) : new Date();
     const invitedAt = initialStatus === 'PENDING' ? new Date() : null;
 
+    // Combine primary and secondary assigned roles
+    const assignedRoles = Array.from(
+      new Set([role.slug, ...(input.assignedRoles || [])])
+    );
+
     // 5. Create Membership record
     const membership = await this.db.membership.create({
       data: {
+        id: `mem_${user.id}_${Date.now()}`,
         userId: user.id,
         tenantId,
         roleId: role.id,
@@ -448,33 +476,39 @@ export class MemberService {
         emergencyContactName: input.emergencyContactName?.trim() || null,
         emergencyContactPhone: input.emergencyContactPhone?.trim() || null,
         notes: input.notes?.trim() || null,
+        assignedRoles,
         joinedAt: initialStatus === 'ACTIVE' ? joinedAt : null,
         invitedAt,
-      },
+      } as any,
       include: {
         user: true,
         role: true,
       },
     });
 
-    // 6. Record Audit Event
-    await auditService.recordAuditEvent({
-      tenantId,
-      actorUserId: actor.userId,
-      action: initialStatus === 'PENDING' ? 'member.invite' : 'member.create',
-      entityType: 'membership',
-      entityId: membership.id,
-      description: `Added new resident "${name}" as ${role.name} (${initialStatus})`,
-      afterData: {
-        memberId: membership.id,
-        userId: user.id,
-        name,
-        phone,
-        status: initialStatus,
-        roleId: role.id,
-        memberCode,
-      },
-    });
+    // 6. Record Audit Event (non-blocking)
+    try {
+      await auditService.recordAuditEvent({
+        tenantId,
+        actorUserId: actor.userId,
+        action: initialStatus === 'PENDING' ? 'member.invite' : 'member.create',
+        entityType: 'membership',
+        entityId: membership.id,
+        description: `Added new resident "${name}" as ${role.name} (${initialStatus})`,
+        afterData: {
+          memberId: membership.id,
+          userId: user.id,
+          name,
+          phone,
+          status: initialStatus,
+          roleId: role.id,
+          assignedRoles,
+          memberCode,
+        },
+      });
+    } catch {
+      // non-blocking audit failure
+    }
 
     return {
       id: membership.id,
@@ -488,6 +522,7 @@ export class MemberService {
       roleId: role.id,
       roleName: role.name,
       roleSlug: role.slug,
+      assignedRoles,
       memberCode,
       emergencyContactName: (membership as any).emergencyContactName || null,
       emergencyContactPhone: (membership as any).emergencyContactPhone || null,

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/server/db/prisma';
+import { ensureTenantRoles } from '@/server/rbac/role-templates';
 
 export async function POST(req: Request) {
   try {
@@ -115,27 +116,17 @@ export async function POST(req: Request) {
         tenant = { id: tenantId, name: messName, slug: cleanSlug, status: 'ACTIVE' };
       }
 
-      // Create Owner Role & Membership
-      const roleId = `role_owner_${tenant.id}`;
-      try {
-        const role = await prisma.role.create({
-          data: {
-            id: roleId,
-            tenantId: tenant.id,
-            slug: 'owner',
-            name: 'Mess Owner',
-            isSystem: true,
-            status: 'ACTIVE',
-            permissions: ['*'],
-          } as any,
-        });
+      // Seed all 6 standard roles and attach Owner membership
+      const tenantRoles = await ensureTenantRoles(tenant.id);
+      const ownerRole = tenantRoles.find((r) => r.slug === 'owner') || { id: `role_owner_${tenant.id}` };
 
+      try {
         await prisma.membership.create({
           data: {
             id: `mem_${user.id}_${tenant.id}`,
             tenantId: tenant.id,
             userId: user.id,
-            roleId: role.id,
+            roleId: ownerRole.id,
             status: 'ACTIVE',
             memberCode: 'MGR-001',
             joinedAt: new Date(),

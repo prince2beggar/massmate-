@@ -212,3 +212,112 @@ export function isSystemRoleSlug(slug: string): slug is SystemRoleSlug {
 export function getSystemRoleTemplate(slug: SystemRoleSlug): SystemRoleTemplateDefinition | undefined {
   return SYSTEM_ROLE_TEMPLATES.find((t) => t.slug === slug);
 }
+
+export const SYSTEM_ROLE_DISPLAY_CONFIG: Record<
+  SystemRoleSlug,
+  { name: string; badgeColor: string; description: string; responsibilities: string }
+> = {
+  member: {
+    name: 'General Member (সাধারণ সদস্য)',
+    badgeColor: 'bg-blue-50 text-blue-700 border-blue-200',
+    description: 'সাধারণ বাসিন্দা — নিজের মিল, ব্যক্তিগত বিল ও নোটিশ দেখতে পারেন',
+    responsibilities: 'মেসের নিয়মিত বাসিন্দা হিসেবে বসবাস ও নিয়মিত খাবার সুবিধা',
+  },
+  'meal-manager': {
+    name: 'Meal Manager (মিল ম্যানেজার)',
+    badgeColor: 'bg-amber-50 text-amber-700 border-amber-200',
+    description: 'মিলের দায়িত্ব — দৈনিক মিল এন্ট্রি, গণনা, বন্ধের রিকোয়েস্ট ও রান্না তদারকি',
+    responsibilities: 'দৈনিক সকাল, দুপুর ও রাতের মিল গণনা এবং রান্নার শিডিউল রক্ষণাবেক্ষণ',
+  },
+  accountant: {
+    name: 'Finance & Accountant (হিসাবরক্ষক)',
+    badgeColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    description: 'হিসাবের দায়িত্ব — বাজার খরচ, মাসিক বিলিং, পেমেন্ট ভেরিফাই ও বাজেট হিসাব',
+    responsibilities: 'মাসিক মেস ভাড়া, ইউটিলিটি বিলিং ও বাজেট অডিট ব্যবস্থাপনা',
+  },
+  admin: {
+    name: 'Co-Admin / Manager (সহ-এডমিন)',
+    badgeColor: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+    description: 'সহ-এডমিন — মেসের সার্বিক পরিচালনা (মেসে ১+ এডমিন নিয়োগ সম্ভব)',
+    responsibilities: 'ওনারের পাশাপাশি মেস পরিচালনা ও অন্যান্য সদস্যদের তদারকি',
+  },
+  moderator: {
+    name: 'Moderator (সমন্বয়ক)',
+    badgeColor: 'bg-purple-50 text-purple-700 border-purple-200',
+    description: 'মেস সমন্বয়ক — নোটিশ প্রকাশ, ইভেন্ট পরিচালনা ও কমপ্লেইন সমাধান',
+    responsibilities: 'সাধারণ নোটিশ, জরুরি মেস মিটিং ও ইভেন্ট সমন্বয়',
+  },
+  owner: {
+    name: 'Mess Owner (মেস ওনার)',
+    badgeColor: 'bg-rose-50 text-rose-700 border-rose-200',
+    description: 'মেস প্রতিষ্ঠাতা ও প্রধান মালিকানা — এডমিনের সমান পূর্ণ নিয়ন্ত্রণ',
+    responsibilities: 'মেসের সর্বোচ্চ প্রশাসনিক ও চুক্তিভিত্তিক মূল স্বত্বাধিকারী',
+  },
+};
+
+/**
+ * Ensures all 6 standard system roles exist for the given tenant.
+ * Guarantees that any mess immediately has General Member, Meal Manager, Accountant, Co-Admin, etc.
+ */
+export async function ensureTenantRoles(
+  tenantId: string,
+  client?: any
+): Promise<Array<{ id: string; name: string; slug: string; description?: string }>> {
+  // Dynamically import prisma to prevent circular dependencies
+  const { prisma: defaultPrisma } = await import('@/server/db/prisma');
+  const db = client || defaultPrisma;
+
+  let existingRoles: any[] = [];
+  try {
+    existingRoles = await db.role.findMany({
+      where: { tenantId, status: 'ACTIVE' },
+    });
+  } catch {
+    existingRoles = [];
+  }
+
+  const existingSlugs = new Set(existingRoles.map((r: any) => r.slug));
+  const resultRoles = [...existingRoles];
+
+  for (const tpl of SYSTEM_ROLE_TEMPLATES) {
+    if (!existingSlugs.has(tpl.slug)) {
+      const config = SYSTEM_ROLE_DISPLAY_CONFIG[tpl.slug];
+      const roleName = config?.name || tpl.name;
+      const roleId = `role_${tpl.slug.replace(/-/g, '_')}_${tenantId}`;
+      try {
+        const created = await db.role.create({
+          data: {
+            id: roleId,
+            tenantId,
+            name: roleName,
+            slug: tpl.slug,
+            description: tpl.description,
+            isSystem: true,
+            status: 'ACTIVE',
+            permissions: tpl.permissionKeys,
+          } as any,
+        });
+        resultRoles.push(created);
+      } catch {
+        resultRoles.push({
+          id: roleId,
+          tenantId,
+          name: roleName,
+          slug: tpl.slug,
+          description: tpl.description,
+          isSystem: true,
+          status: 'ACTIVE',
+          permissions: tpl.permissionKeys,
+        });
+      }
+    }
+  }
+
+  // Desired display order: General Member first (index 0), then Meal Manager, Accountant, Admin, Moderator, Owner
+  const order = ['member', 'meal-manager', 'accountant', 'admin', 'moderator', 'owner'];
+  return resultRoles.sort((a, b) => {
+    const idxA = order.indexOf(a.slug);
+    const idxB = order.indexOf(b.slug);
+    return (idxA === -1 ? 99 : idxA) - (idxB === -1 ? 99 : idxB);
+  });
+}

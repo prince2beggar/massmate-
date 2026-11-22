@@ -1,18 +1,23 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   X,
   UserPlus,
   Phone,
   Mail,
   Shield,
+  ShieldCheck,
   Tag,
   AlertCircle,
   Copy,
   Check,
   Calendar,
   HeartHandshake,
+  Utensils,
+  Coins,
+  Crown,
+  User,
 } from 'lucide-react';
 import type { MemberDto } from '@/server/members/member-service';
 
@@ -34,7 +39,12 @@ export function AddMemberModal({
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const [roleId, setRoleId] = useState(roles[0]?.id || '');
+  
+  // Default to General Member if present, else first available role
+  const defaultRole = roles.find((r) => r.slug === 'member') || roles[0];
+  const [roleId, setRoleId] = useState(defaultRole?.id || '');
+  const [additionalRoles, setAdditionalRoles] = useState<string[]>([]);
+
   const [status, setStatus] = useState<'ACTIVE' | 'PENDING'>('ACTIVE');
   const [memberCode, setMemberCode] = useState('');
   const [joinedAt, setJoinedAt] = useState(
@@ -48,6 +58,13 @@ export function AddMemberModal({
   const [error, setError] = useState<string | null>(null);
   const [invitedMember, setInvitedMember] = useState<MemberDto | null>(null);
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!roleId && roles.length > 0) {
+      const def = roles.find((r) => r.slug === 'member') || roles[0];
+      if (def) setRoleId(def.id);
+    }
+  }, [roles, roleId]);
 
   if (!isOpen) return null;
 
@@ -66,10 +83,16 @@ export function AddMemberModal({
       setLoading(true);
       setError(null);
 
-      const targetRoleId = roleId || roles[0]?.id;
+      const targetRoleId = roleId || roles.find((r) => r.slug === 'member')?.id || roles[0]?.id;
       if (!targetRoleId) {
         throw new Error('Please select a valid role.');
       }
+
+      const selectedRole = roles.find((r) => r.id === targetRoleId);
+      const combinedRoles = Array.from(new Set([
+        selectedRole?.slug || 'member',
+        ...additionalRoles,
+      ]));
 
       const res = await fetch(`/api/v1/mess/${tenantSlug}/members`, {
         method: 'POST',
@@ -79,6 +102,7 @@ export function AddMemberModal({
           phone: phone.trim(),
           email: email.trim() || null,
           roleId: targetRoleId,
+          assignedRoles: combinedRoles,
           status,
           memberCode: memberCode.trim() || null,
           joinedAt: status === 'ACTIVE' ? joinedAt : null,
@@ -90,7 +114,7 @@ export function AddMemberModal({
 
       const json = await res.json();
       if (!res.ok || !json.success) {
-        throw new Error(json.error?.message || 'Failed to create member');
+        throw new Error(json.error?.message || json.message || 'Failed to create member');
       }
 
       onMemberAdded(json.data);
@@ -101,7 +125,7 @@ export function AddMemberModal({
         onClose();
       }
     } catch (err: any) {
-      setError(err.message || 'Something went wrong');
+      setError(err.message || 'Failed to create member. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -290,8 +314,9 @@ export function AddMemberModal({
             {/* Role & Status */}
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div className="space-y-1">
-                <label className="text-xs font-semibold text-slate-700">
-                  Assigned Role <span className="text-rose-500">*</span>
+                <label className="text-xs font-semibold text-slate-700 flex items-center justify-between">
+                  <span>Assigned Role / মূল ভূমিকা <span className="text-rose-500">*</span></span>
+                  <span className="text-[10px] text-slate-400 font-normal">ডিফল্ট: সাধারণ সদস্য</span>
                 </label>
                 <div className="relative">
                   <Shield className="absolute left-3 top-2.5 h-3.5 w-3.5 text-slate-400" />
@@ -323,6 +348,88 @@ export function AddMemberModal({
                   <option value="ACTIVE">Active (Direct Onboarding)</option>
                   <option value="PENDING">Pending (Invitation Link)</option>
                 </select>
+              </div>
+            </div>
+
+            {/* Multiple Roles / Additional Responsibilities Section (1+ roles) */}
+            <div className="rounded-xl border border-indigo-100 bg-indigo-50/50 p-3.5 space-y-2.5">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                  <ShieldCheck className="h-4 w-4 text-[#324CDD]" />
+                  <span>অতিরিক্ত দায়িত্ব / ভূমিকা (১+ রোল যুক্ত করতে টিক দিন)</span>
+                </span>
+                <span className="text-[10px] text-indigo-700 font-semibold bg-indigo-100/70 px-2 py-0.5 rounded-full">
+                  Multi-Role Support
+                </span>
+              </div>
+              <p className="text-[11px] text-slate-500 leading-relaxed">
+                একজন মেম্বারকে সাধারণ সদস্যের পাশাপাশি মিল ম্যানেজার বা হিসাবরক্ষক হিসেবেও নিয়োগ দিতে পারেন। যাকে যে দায়িত্ব দেওয়া হবে, সে সিস্টেমের ঠিক ততটুকু এক্সেস পাবে:
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                <label className={`flex items-start gap-2.5 p-2.5 rounded-xl border text-xs cursor-pointer transition-all ${additionalRoles.includes('meal-manager') ? 'bg-amber-50 border-amber-300 text-amber-900 font-semibold shadow-xs' : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300'}`}>
+                  <input
+                    type="checkbox"
+                    checked={additionalRoles.includes('meal-manager')}
+                    onChange={(e) => {
+                      if (e.target.checked) setAdditionalRoles([...additionalRoles, 'meal-manager']);
+                      else setAdditionalRoles(additionalRoles.filter((r) => r !== 'meal-manager'));
+                    }}
+                    className="mt-0.5 rounded text-[#324CDD]"
+                  />
+                  <div>
+                    <span className="font-semibold text-slate-800">🍲 মিল ম্যানেজার (Meal Manager)</span>
+                    <span className="text-[10px] text-slate-500 font-normal block">মিলের হিসাব, দৈনিক মিল এন্ট্রি ও বন্ধের রিকোয়েস্ট</span>
+                  </div>
+                </label>
+
+                <label className={`flex items-start gap-2.5 p-2.5 rounded-xl border text-xs cursor-pointer transition-all ${additionalRoles.includes('accountant') ? 'bg-emerald-50 border-emerald-300 text-emerald-900 font-semibold shadow-xs' : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300'}`}>
+                  <input
+                    type="checkbox"
+                    checked={additionalRoles.includes('accountant')}
+                    onChange={(e) => {
+                      if (e.target.checked) setAdditionalRoles([...additionalRoles, 'accountant']);
+                      else setAdditionalRoles(additionalRoles.filter((r) => r !== 'accountant'));
+                    }}
+                    className="mt-0.5 rounded text-[#324CDD]"
+                  />
+                  <div>
+                    <span className="font-semibold text-slate-800">💰 হিসাবরক্ষক (Finance Manager)</span>
+                    <span className="text-[10px] text-slate-500 font-normal block">বাজার খরচ, মাসিক বিলিং, পেমেন্ট ও বাজেট হিসাব</span>
+                  </div>
+                </label>
+
+                <label className={`flex items-start gap-2.5 p-2.5 rounded-xl border text-xs cursor-pointer transition-all ${additionalRoles.includes('admin') ? 'bg-indigo-50 border-indigo-300 text-indigo-900 font-semibold shadow-xs' : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300'}`}>
+                  <input
+                    type="checkbox"
+                    checked={additionalRoles.includes('admin')}
+                    onChange={(e) => {
+                      if (e.target.checked) setAdditionalRoles([...additionalRoles, 'admin']);
+                      else setAdditionalRoles(additionalRoles.filter((r) => r !== 'admin'));
+                    }}
+                    className="mt-0.5 rounded text-[#324CDD]"
+                  />
+                  <div>
+                    <span className="font-semibold text-slate-800">🛡️ সহ-এডমিন (Co-Admin)</span>
+                    <span className="text-[10px] text-slate-500 font-normal block">পূর্ণ এডমিন সুবিধা (মেসে ১+ এডমিন নিয়োগ সম্ভব)</span>
+                  </div>
+                </label>
+
+                <label className={`flex items-start gap-2.5 p-2.5 rounded-xl border text-xs cursor-pointer transition-all ${additionalRoles.includes('moderator') ? 'bg-purple-50 border-purple-300 text-purple-900 font-semibold shadow-xs' : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300'}`}>
+                  <input
+                    type="checkbox"
+                    checked={additionalRoles.includes('moderator')}
+                    onChange={(e) => {
+                      if (e.target.checked) setAdditionalRoles([...additionalRoles, 'moderator']);
+                      else setAdditionalRoles(additionalRoles.filter((r) => r !== 'moderator'));
+                    }}
+                    className="mt-0.5 rounded text-[#324CDD]"
+                  />
+                  <div>
+                    <span className="font-semibold text-slate-800">📢 সমন্বয়ক (Moderator)</span>
+                    <span className="text-[10px] text-slate-500 font-normal block">নোটিশ প্রকাশ, মেস মিটিং ও কমপ্লেইন তদারকি</span>
+                  </div>
+                </label>
               </div>
             </div>
 

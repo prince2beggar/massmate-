@@ -16,11 +16,16 @@ import {
   Edit,
   Eye,
   Shield,
+  ShieldCheck,
   Phone,
   Mail,
   ChevronLeft,
   ChevronRight,
   RefreshCw,
+  Crown,
+  Utensils,
+  Coins,
+  User,
 } from 'lucide-react';
 import type { MemberDto } from '@/server/members/member-service';
 import { AddMemberModal } from './AddMemberModal';
@@ -159,6 +164,88 @@ export function MemberDirectoryView({
           </span>
         );
     }
+  };
+
+  const renderRoleBadges = (member: MemberDto) => {
+    const rolesToRender: Array<{ slug: string; label: string; color: string; icon: string }> = [];
+    const assigned =
+      member.assignedRoles && member.assignedRoles.length > 0
+        ? member.assignedRoles
+        : [member.roleSlug || 'member'];
+
+    for (const slug of assigned) {
+      if (slug === 'owner') {
+        rolesToRender.push({
+          slug,
+          label: 'মেস ওনার (Owner)',
+          color: 'bg-rose-50 text-rose-700 border-rose-200',
+          icon: 'crown',
+        });
+      } else if (slug === 'admin') {
+        rolesToRender.push({
+          slug,
+          label: 'সহ-এডমিন (Admin)',
+          color: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+          icon: 'shield',
+        });
+      } else if (slug === 'meal-manager') {
+        rolesToRender.push({
+          slug,
+          label: 'মিলের দায়িত্ব (Meal)',
+          color: 'bg-amber-50 text-amber-700 border-amber-200',
+          icon: 'meal',
+        });
+      } else if (slug === 'accountant') {
+        rolesToRender.push({
+          slug,
+          label: 'হিসাবের দায়িত্ব (Finance)',
+          color: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+          icon: 'finance',
+        });
+      } else if (slug === 'moderator') {
+        rolesToRender.push({
+          slug,
+          label: 'সমন্বয়ক (Moderator)',
+          color: 'bg-purple-50 text-purple-700 border-purple-200',
+          icon: 'mod',
+        });
+      } else if (slug === 'member') {
+        rolesToRender.push({
+          slug,
+          label: 'সাধারণ সদস্য (Member)',
+          color: 'bg-blue-50 text-blue-700 border-blue-200',
+          icon: 'user',
+        });
+      }
+    }
+
+    if (rolesToRender.length === 0) {
+      rolesToRender.push({
+        slug: 'member',
+        label: member.roleName || 'Member',
+        color: 'bg-slate-100 text-slate-700 border-slate-200',
+        icon: 'user',
+      });
+    }
+
+    return (
+      <div className="flex flex-wrap items-center gap-1">
+        {rolesToRender.map((r, i) => (
+          <span
+            key={i}
+            className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-semibold border ${r.color}`}
+          >
+            {r.icon === 'crown' && <Crown className="h-3 w-3 shrink-0" />}
+            {r.icon === 'shield' && <Shield className="h-3 w-3 shrink-0" />}
+            {r.icon === 'meal' && <Utensils className="h-3 w-3 shrink-0" />}
+            {r.icon === 'finance' && <Coins className="h-3 w-3 shrink-0" />}
+            {r.icon === 'mod' && <ShieldCheck className="h-3 w-3 shrink-0" />}
+            {r.icon === 'user' && <User className="h-3 w-3 shrink-0" />}
+            <span>{r.label}</span>
+          </span>
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -385,10 +472,7 @@ export function MemberDirectoryView({
 
                       {/* Role */}
                       <td className="px-4 py-3.5">
-                        <span className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-700 border border-slate-200">
-                          <Shield className="h-3 w-3 text-slate-400" />
-                          <span>{member.roleName}</span>
-                        </span>
+                        {renderRoleBadges(member)}
                       </td>
 
                       {/* Member Code */}

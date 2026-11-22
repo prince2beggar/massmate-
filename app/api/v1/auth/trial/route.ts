@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/server/db/prisma';
+import { ensureTenantRoles } from '@/server/rbac/role-templates';
 
 export async function POST(req: Request) {
   try {
@@ -96,25 +97,9 @@ export async function POST(req: Request) {
       };
     }
 
-    // 3. Create Owner Role for this tenant
-    const roleId = `role_owner_${tenant.id}`;
-    let role = null;
-    try {
-      role = await prisma.role.create({
-        data: {
-          id: roleId,
-          tenantId: tenant.id,
-          slug: 'owner',
-          name: 'Mess Owner',
-          description: 'Owner and primary administrator of this mess',
-          isSystem: true,
-          status: 'ACTIVE',
-          permissions: ['*'],
-        } as any,
-      });
-    } catch {
-      role = { id: roleId, slug: 'owner', name: 'Mess Owner', tenantId: tenant.id, permissions: ['*'] };
-    }
+    // 3. Ensure all standard roles (Member, Meal Manager, Accountant, Admin, Owner) are seeded
+    const tenantRoles = await ensureTenantRoles(tenant.id);
+    const ownerRole = tenantRoles.find((r) => r.slug === 'owner') || { id: `role_owner_${tenant.id}` };
 
     // 4. Create Owner Membership
     const membershipId = `mem_${user.id}_${tenant.id}`;
@@ -124,7 +109,7 @@ export async function POST(req: Request) {
           id: membershipId,
           tenantId: tenant.id,
           userId: user.id,
-          roleId: role.id,
+          roleId: ownerRole.id,
           status: 'ACTIVE',
           memberCode: 'MGR-001',
           joinedAt: new Date(),

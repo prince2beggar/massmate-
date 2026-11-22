@@ -443,6 +443,36 @@ export function createMockPrismaClient(): any {
     return {
       async findMany(args?: any) {
         const { where, skip = 0, take = 100, include, orderBy } = args || {};
+
+        // Auto-seed all 6 standard roles for tenant if role model is queried
+        if (modelName === 'role' && where?.tenantId) {
+          const tId = where.tenantId;
+          const standardRoles = [
+            { slug: 'member', name: 'General Member (সাধারণ সদস্য)', desc: 'Standard resident with view access to personal meals and bills' },
+            { slug: 'meal-manager', name: 'Meal Manager (মিল ম্যানেজার)', desc: 'Dining manager for meal count, entry, and off requests' },
+            { slug: 'accountant', name: 'Finance & Accountant (হিসাবরক্ষক)', desc: 'Finance manager for bazar expenses, bills, and payments' },
+            { slug: 'admin', name: 'Co-Admin / Manager (সহ-এডমিন)', desc: 'Operational manager alongside mess owner (1+ admins allowed)' },
+            { slug: 'moderator', name: 'Moderator (সমন্বয়ক)', desc: 'Community coordinator for notices, events, and complaints' },
+            { slug: 'owner', name: 'Mess Owner (মেস ওনার)', desc: 'Owner with full administrative and legal control' },
+          ];
+          for (const s of standardRoles) {
+            if (!store.some((r) => r.tenantId === tId && r.slug === s.slug)) {
+              store.push({
+                id: `role_${s.slug.replace(/-/g, '_')}_${tId}`,
+                tenantId: tId,
+                slug: s.slug,
+                name: s.name,
+                description: s.desc,
+                isSystem: true,
+                status: 'ACTIVE',
+                permissions: ['*'],
+                createdAt: new Date(),
+                updatedAt: new Date(),
+              });
+            }
+          }
+        }
+
         let filtered = store.filter((item) => matchCondition(item, where));
         if (orderBy && typeof orderBy === 'object') {
           const sortKey = Object.keys(orderBy)[0];
