@@ -392,6 +392,9 @@ model User {
   recordedVisitors        Visitor[]              @relation("RecordedVisitors")
   checkedInVisitors       Visitor[]              @relation("CheckedInVisitors")
   checkedOutVisitors      Visitor[]              @relation("CheckedOutVisitors")
+  createdPolls            Poll[]                 @relation("CreatedPolls")
+  pollVotes               PollVote[]             @relation("UserPollVotes")
+  memberSuggestions       MemberSuggestion[]     @relation("UserSuggestions")
 
   @@index([status])
   @@index([platformRole])
@@ -465,6 +468,9 @@ model Tenant {
   workOrders            WorkOrder[]
   operationalTasks      OperationalTask[]
   visitors              Visitor[]
+  polls                 Poll[]
+  pollVotes             PollVote[]
+  memberSuggestions     MemberSuggestion[]
 
   @@index([status])
   @@index([verificationStatus])
@@ -640,6 +646,8 @@ model Membership {
   complaints              Complaint[]
   notifications           TenantNotification[]
   hostedVisitors          Visitor[]
+  pollVotes               PollVote[]
+  memberSuggestions       MemberSuggestion[]
 
   @@unique([userId, tenantId])
   @@index([tenantId])
@@ -2016,6 +2024,102 @@ model Visitor {
   @@index([tenantId, actualCheckIn])
   @@map("visitors")
 }
+
+// -----------------------------------------------------------------------------
+// COMMUNITY POLLING, VOTING & SUGGESTIONS (Task 45)
+// -----------------------------------------------------------------------------
+
+model Poll {
+  id                String       @id @default(cuid())
+  referenceNumber   String       @unique @map("reference_number")
+  tenantId          String       @map("tenant_id")
+  title             String
+  description       String?
+  pollType          String       @default("GENERAL_FEEDBACK") @map("poll_type") // GENERAL_FEEDBACK, MEAL_PREFERENCE, EVENT_PREFERENCE, FACILITY_DECISION, COMMUNITY_SUGGESTION, OTHER
+  status            String       @default("DRAFT") // DRAFT, PUBLISHED, CLOSED, CANCELLED
+  votingMode        String       @default("IDENTIFIED") @map("voting_mode") // IDENTIFIED, ANONYMOUS
+  selectionType     String       @default("SINGLE_CHOICE") @map("selection_type") // SINGLE_CHOICE, MULTIPLE_CHOICE
+  maxSelections     Int          @default(1) @map("max_selections")
+  resultsVisibility String       @default("ALWAYS") @map("results_visibility") // ALWAYS, AFTER_VOTE, AFTER_CLOSE, STAFF_ONLY
+  startDate         DateTime?    @map("start_date")
+  endDate           DateTime?    @map("end_date")
+  createdById       String?      @map("created_by_id")
+  publishedAt       DateTime?    @map("published_at")
+  closedAt          DateTime?    @map("closed_at")
+  isFeatured        Boolean      @default(false) @map("is_featured")
+  createdAt         DateTime     @default(now()) @map("created_at")
+  updatedAt         DateTime     @updatedAt @map("updated_at")
+
+  tenant            Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  creator           User?        @relation("CreatedPolls", fields: [createdById], references: [id], onDelete: SetNull)
+  options           PollOption[]
+  votes             PollVote[]
+
+  @@index([tenantId, status])
+  @@index([tenantId, createdAt])
+  @@map("polls")
+}
+
+model PollOption {
+  id         String     @id @default(cuid())
+  pollId     String     @map("poll_id")
+  text       String
+  orderIndex Int        @default(0) @map("order_index")
+  voteCount  Int        @default(0) @map("vote_count")
+
+  poll       Poll       @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  votes      PollVote[]
+
+  @@index([pollId, orderIndex])
+  @@map("poll_options")
+}
+
+model PollVote {
+  id           String      @id @default(cuid())
+  tenantId     String      @map("tenant_id")
+  pollId       String      @map("poll_id")
+  optionId     String      @map("option_id")
+  userId       String      @map("user_id")
+  membershipId String?     @map("membership_id")
+  createdAt    DateTime    @default(now()) @map("created_at")
+
+  tenant       Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  poll         Poll        @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  option       PollOption  @relation(fields: [optionId], references: [id], onDelete: Cascade)
+  user         User        @relation("UserPollVotes", fields: [userId], references: [id], onDelete: Cascade)
+  membership   Membership? @relation(fields: [membershipId], references: [id], onDelete: SetNull)
+
+  @@unique([pollId, userId, optionId])
+  @@index([tenantId, pollId])
+  @@index([pollId, userId])
+  @@map("poll_votes")
+}
+
+model MemberSuggestion {
+  id              String       @id @default(cuid())
+  referenceNumber String       @unique @map("reference_number")
+  tenantId        String       @map("tenant_id")
+  userId          String       @map("user_id")
+  membershipId    String?      @map("membership_id")
+  title           String
+  description     String
+  category        String       @default("GENERAL") // MEAL, FACILITY, EVENT, CLEANLINESS, GENERAL
+  isAnonymous     Boolean      @default(false) @map("is_anonymous")
+  status          String       @default("SUBMITTED") // SUBMITTED, UNDER_REVIEW, APPROVED_FOR_POLL, RESOLVED, DECLINED
+  adminNotes      String?      @map("admin_notes")
+  isPublished     Boolean      @default(false) @map("is_published")
+  createdAt       DateTime     @default(now()) @map("created_at")
+  updatedAt       DateTime     @updatedAt @map("updated_at")
+
+  tenant          Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user            User         @relation("UserSuggestions", fields: [userId], references: [id], onDelete: Cascade)
+  membership      Membership?  @relation(fields: [membershipId], references: [id], onDelete: SetNull)
+
+  @@index([tenantId, status])
+  @@index([tenantId, userId])
+  @@map("member_suggestions")
+}
+
 
 
 

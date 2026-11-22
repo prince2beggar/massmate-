@@ -15,7 +15,7 @@
 | **Task 42** | Inventory, Assets & Stock Management | **Completed and Verified** | 2026-11-22 | Full multi-tenant inventory & asset management with double-entry stock movements (`StockMovement`), minimum stock threshold alerts, reusable asset room tracking, consumption tracking, damaged/loss write-offs, poisha unit valuation (`BigInt`), and 4-tab executive workspace (`/mess/[tenantSlug]/inventory`). | 16/16 Automated Tests Passed (321/321 full suite); 0 TS errors, 0 ESLint warnings; Production build passed. | Proceed to Task 43 |
 | **Task 43** | Maintenance, Work Orders & Task Management | **Completed and Verified** | 2026-11-22 | Work order ticketing with lifecycle transitions (`DRAFT`, `OPEN`, `ASSIGNED`, `IN_PROGRESS`, `WAITING_FOR_PARTS`, `COMPLETED`, `VERIFIED`, `CANCELLED`), room/asset cross-tenant validation, complaint-to-work-order conversion, staff assignment with automated alerts, operational task checklists, recurring task management, inventory linkage with zero negative stock, and member privacy bounds (`/mess/[tenantSlug]/maintenance`). | 17/17 Automated Tests Passed (338/338 full suite); 0 TS errors, 0 ESLint warnings; Production build passed. | Proceed to Task 44 |
 | **Task 44** | Visitor, Guest & Entry Management | **Completed and Verified** | 2026-11-22 | Tenant-isolated visitor tracking with executive gate dashboard, member pre-registration, self-approval prevention, staff review (Approve/Reject with reasons), check-in/check-out lifecycle with server timestamps in `Asia/Dhaka`, duplicate check-in prevention, checkout before check-in rejection, walk-in registration with host arrival alerts, member privacy & contact number redaction, cancellation workflow, and dual interfaces for Admin (`/mess/[tenantSlug]/visitors`) and Member Portal (`/portal/[tenantSlug]/visitors`). | 22/22 Automated Tests Passed (360/360 full test suite); 0 TS errors, 0 ESLint warnings; Next.js production build cleanly compiled (47/47 routes). | Proceed to Task 45 |
-| **Task 45** | Community Polling, Voting & Decision Making | **Not Started** | — | — | — | Next in sequence |
+| **Task 45** | Community Polling, Voting & Decision Making | **Completed and Verified** | 2026-11-22 | Full multi-tenant community polling module for Mess Admin (`/mess/[tenantSlug]/polls`) and Member Portal (`/portal/[tenantSlug]/polls`). Supports single-choice and multiple-choice voting, identified and secret-ballot (anonymous) modes, results visibility controls (`ALWAYS`, `AFTER_VOTE`, `AFTER_CLOSE`, `STAFF_ONLY`), duplicate voting prevention, active voting window enforcement, poll lifecycle (`DRAFT`, `PUBLISHED`, `CLOSED`, `CANCELLED`), member community suggestion submission and staff review with internal notes, and Task 41 notification integration. | 21/21 Automated Tests Passed (381/381 full test suite); 0 TypeScript errors, 0 ESLint warnings; Next.js production build cleanly compiled (47/47 routes). | **Phase 6 Complete** — Ready for Final Acceptance Review |
 
 ---
 
@@ -496,6 +496,42 @@
   - Automated Tests (`server/visitors/visitor-management.test.ts`):
     - 22 test scenarios across 8 suites covering tenant isolation, suspended mess protection, member pre-registration, active membership validation, self-approval prevention, staff review (approval and rejection with reason), duplicate check-in prevention, check-in blocking on rejected/cancelled requests, checkout before check-in rejection, server-generated timestamps in `Asia/Dhaka`, member privacy bounds & IDOR protection, phone number redaction, walk-in registration with host alert, cancellation lifecycle rules, dashboard metrics, and search/date/purpose filters.
 - **Verification:** TypeScript: 0 errors (`npx tsc --noEmit`); Automated tests: 22/22 Task 44 tests passing (360/360 full test suite); ESLint: 0 errors, 0 warnings; Next.js production build: clean compilation (47/47 routes).
+
+### Task 45 — Community Polling, Voting & Member Participation (Completed)
+- **Status:** Completed and Verified
+- **Scope & Implementation Details:**
+  - Prisma Schema (`prisma/schema.prisma`):
+    - `Poll`: Model supporting multi-tenant community polling, reference numbering (`POLL-<YYMM>-<XXX>`), poll categories (`GENERAL_FEEDBACK`, `MEAL_PREFERENCE`, `EVENT_PREFERENCE`, `FACILITY_DECISION`, `COMMUNITY_SUGGESTION`, `OTHER`), lifecycle states (`DRAFT`, `PUBLISHED`, `CLOSED`, `CANCELLED`), voting modes (`IDENTIFIED`, `ANONYMOUS`), selection modes (`SINGLE_CHOICE`, `MULTIPLE_CHOICE`), max selections limit, results visibility rules (`ALWAYS`, `AFTER_VOTE`, `AFTER_CLOSE`, `STAFF_ONLY`), and voting windows with `Asia/Dhaka` timezone.
+    - `PollOption`: Option model tracking option text, ordering index, and vote counts.
+    - `PollVote`: Individual vote ledger enforcing unique votes via `@@unique([pollId, userId, optionId])` and relational links to `Tenant`, `Poll`, `PollOption`, `User`, and `Membership`.
+    - `MemberSuggestion`: Community suggestion proposal model with status lifecycle (`SUBMITTED`, `UNDER_REVIEW`, `APPROVED_FOR_POLL`, `RESOLVED`, `DECLINED`), author attribution, anonymous display preferences, and staff-only `adminNotes`.
+  - Backend Service (`server/polls/poll-service.ts`):
+    - `getPollDashboard`: Executive metrics (active polls, closed polls, draft polls, total community votes cast all-time, pending member suggestions count, recent live polls, and recent suggestions).
+    - `listPolls` & `getPollById`: Multi-tenant filtering by status, category, and search. Enforces privacy visibility rules (`AFTER_CLOSE`, `AFTER_VOTE`, `STAFF_ONLY`) by locking vote counts and percentages for ordinary members until configured conditions are met, while zero-vote polls render safely (0%) without arithmetic errors.
+    - `createPoll` & `updatePoll`: Validates title, at least 2 distinct non-empty options, and closing date after start date. Restricts option modifications after voting commences with `ConflictError`.
+    - `publishPoll`, `closePoll`, `cancelPoll`: Full lifecycle transitions with Task 41 notification broadcast alerts.
+    - `castVote`: Atomically records votes, validates active membership, blocks duplicate voting with `ConflictError`, enforces voting window deadlines, validates option IDs against targeted poll, and enforces multiple-choice selection boundaries.
+    - `submitSuggestion`, `listSuggestions`, `reviewSuggestion`: Community proposal workflow keeping unpublished suggestions and internal admin notes strictly private until moderated.
+  - REST API Routes (9 endpoints):
+    - `/api/v1/mess/[tenantSlug]/polls` (GET list, POST create)
+    - `/api/v1/mess/[tenantSlug]/polls/dashboard` (GET executive KPIs)
+    - `/api/v1/mess/[tenantSlug]/polls/[id]` (GET detail, PATCH update/publish/close/cancel)
+    - `/api/v1/mess/[tenantSlug]/polls/suggestions` (GET list suggestions)
+    - `/api/v1/mess/[tenantSlug]/polls/suggestions/[id]` (PATCH review suggestion)
+    - `/api/v1/portal/[tenantSlug]/polls` (GET active polls for resident)
+    - `/api/v1/portal/[tenantSlug]/polls/[id]` (GET poll details & results if unlocked)
+    - `/api/v1/portal/[tenantSlug]/polls/[id]/vote` (POST cast single/multi-choice vote)
+    - `/api/v1/portal/[tenantSlug]/suggestions` (GET resident suggestions, POST submit proposal)
+  - UI Components & Server Pages:
+    - `MessPollManagementView` (`components/polls/MessPollManagementView.tsx`): 3-tab governance interface (Active Polls, All Polls & History, Community Suggestions) with KPI cards, Create Poll Modal (title, type, mode, selection, visibility, dates, dynamic options list), and Suggestion Review Modal.
+    - `/mess/[tenantSlug]/polls/page.tsx`: Server page with tenant metadata and dynamic slug integration.
+    - `PortalCommunityView` (`components/member-portal/PortalCommunityView.tsx`): 2-tab resident community center with interactive radio/checkbox voting, immediate confirmation badges, result bar charts, and Submit Proposal modal.
+    - `/portal/[tenantSlug]/polls/page.tsx`: Server page with member session authentication.
+    - Navigation updated in `components/member-portal/member-nav-data.ts`.
+  - Automated Tests (`server/polls/poll-management.test.ts`):
+    - 21 test scenarios across 8 suites covering tenant isolation, suspended mess protection, draft poll creation, option validation, start/end date validation, publishing/closing lifecycle, active membership voting eligibility, duplicate voting prevention, voting outside active window rejection, closed/cancelled poll voting rejection, multiple-choice selection limits, cross-poll option rejection, option modification restrictions after voting commences, `AFTER_CLOSE` privacy visibility locking, zero-vote render safety, anonymous voting voter identity protection, suggestion submission, moderation privacy, staff review with admin notes, and dashboard metrics.
+- **Verification:** TypeScript: 0 errors (`npx tsc --noEmit`); Automated tests: 21/21 Task 45 tests passing (381/381 full test suite); ESLint: 0 errors, 0 warnings; Next.js production build: clean compilation (47/47 routes).
+
 
 
 

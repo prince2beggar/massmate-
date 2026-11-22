@@ -106,7 +106,11 @@ export const ModelName = {
   WorkOrder: 'WorkOrder',
   WorkOrderStatusHistory: 'WorkOrderStatusHistory',
   OperationalTask: 'OperationalTask',
-  Visitor: 'Visitor'
+  Visitor: 'Visitor',
+  Poll: 'Poll',
+  PollOption: 'PollOption',
+  PollVote: 'PollVote',
+  MemberSuggestion: 'MemberSuggestion'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1240,6 +1244,75 @@ export const VisitorScalarFieldEnum = {
 } as const
 
 export type VisitorScalarFieldEnum = (typeof VisitorScalarFieldEnum)[keyof typeof VisitorScalarFieldEnum]
+
+
+export const PollScalarFieldEnum = {
+  id: 'id',
+  referenceNumber: 'referenceNumber',
+  tenantId: 'tenantId',
+  title: 'title',
+  description: 'description',
+  pollType: 'pollType',
+  status: 'status',
+  votingMode: 'votingMode',
+  selectionType: 'selectionType',
+  maxSelections: 'maxSelections',
+  resultsVisibility: 'resultsVisibility',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  createdById: 'createdById',
+  publishedAt: 'publishedAt',
+  closedAt: 'closedAt',
+  isFeatured: 'isFeatured',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PollScalarFieldEnum = (typeof PollScalarFieldEnum)[keyof typeof PollScalarFieldEnum]
+
+
+export const PollOptionScalarFieldEnum = {
+  id: 'id',
+  pollId: 'pollId',
+  text: 'text',
+  orderIndex: 'orderIndex',
+  voteCount: 'voteCount'
+} as const
+
+export type PollOptionScalarFieldEnum = (typeof PollOptionScalarFieldEnum)[keyof typeof PollOptionScalarFieldEnum]
+
+
+export const PollVoteScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  pollId: 'pollId',
+  optionId: 'optionId',
+  userId: 'userId',
+  membershipId: 'membershipId',
+  createdAt: 'createdAt'
+} as const
+
+export type PollVoteScalarFieldEnum = (typeof PollVoteScalarFieldEnum)[keyof typeof PollVoteScalarFieldEnum]
+
+
+export const MemberSuggestionScalarFieldEnum = {
+  id: 'id',
+  referenceNumber: 'referenceNumber',
+  tenantId: 'tenantId',
+  userId: 'userId',
+  membershipId: 'membershipId',
+  title: 'title',
+  description: 'description',
+  category: 'category',
+  isAnonymous: 'isAnonymous',
+  status: 'status',
+  adminNotes: 'adminNotes',
+  isPublished: 'isPublished',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MemberSuggestionScalarFieldEnum = (typeof MemberSuggestionScalarFieldEnum)[keyof typeof MemberSuggestionScalarFieldEnum]
 
 
 export const SortOrder = {

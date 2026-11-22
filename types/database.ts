@@ -62,6 +62,10 @@ import type {
   WorkOrderStatusHistory as PrismaWorkOrderStatusHistory,
   OperationalTask as PrismaOperationalTask,
   Visitor as PrismaVisitor,
+  Poll as PrismaPoll,
+  PollOption as PrismaPollOption,
+  PollVote as PrismaPollVote,
+  MemberSuggestion as PrismaMemberSuggestion,
   AllocationRule,
   BillingPeriodStatus,
   BillStatus,
@@ -212,6 +216,10 @@ export type WorkOrder = PrismaWorkOrder;
 export type WorkOrderStatusHistory = PrismaWorkOrderStatusHistory;
 export type OperationalTask = PrismaOperationalTask;
 export type Visitor = PrismaVisitor;
+export type Poll = PrismaPoll;
+export type PollOption = PrismaPollOption;
+export type PollVote = PrismaPollVote;
+export type MemberSuggestion = PrismaMemberSuggestion;
 
 // -----------------------------------------------------------------------------
 // COMPOSITE & RELATIONAL TYPES

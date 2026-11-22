@@ -277,6 +277,9 @@ export type UserWhereInput = {
   recordedVisitors?: Prisma.VisitorListRelationFilter
   checkedInVisitors?: Prisma.VisitorListRelationFilter
   checkedOutVisitors?: Prisma.VisitorListRelationFilter
+  createdPolls?: Prisma.PollListRelationFilter
+  pollVotes?: Prisma.PollVoteListRelationFilter
+  memberSuggestions?: Prisma.MemberSuggestionListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -331,6 +334,9 @@ export type UserOrderByWithRelationInput = {
   recordedVisitors?: Prisma.VisitorOrderByRelationAggregateInput
   checkedInVisitors?: Prisma.VisitorOrderByRelationAggregateInput
   checkedOutVisitors?: Prisma.VisitorOrderByRelationAggregateInput
+  createdPolls?: Prisma.PollOrderByRelationAggregateInput
+  pollVotes?: Prisma.PollVoteOrderByRelationAggregateInput
+  memberSuggestions?: Prisma.MemberSuggestionOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -388,6 +394,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   recordedVisitors?: Prisma.VisitorListRelationFilter
   checkedInVisitors?: Prisma.VisitorListRelationFilter
   checkedOutVisitors?: Prisma.VisitorListRelationFilter
+  createdPolls?: Prisma.PollListRelationFilter
+  pollVotes?: Prisma.PollVoteListRelationFilter
+  memberSuggestions?: Prisma.MemberSuggestionListRelationFilter
 }, "id" | "email" | "phone">
 
 export type UserOrderByWithAggregationInput = {
@@ -478,6 +487,9 @@ export type UserCreateInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -532,6 +544,9 @@ export type UserUncheckedCreateInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -586,6 +601,9 @@ export type UserUpdateInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -640,6 +658,9 @@ export type UserUncheckedUpdateInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -1380,6 +1401,50 @@ export type UserUpdateOneWithoutCheckedOutVisitorsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCheckedOutVisitorsInput, Prisma.UserUpdateWithoutCheckedOutVisitorsInput>, Prisma.UserUncheckedUpdateWithoutCheckedOutVisitorsInput>
 }
 
+export type UserCreateNestedOneWithoutCreatedPollsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedPollsInput, Prisma.UserUncheckedCreateWithoutCreatedPollsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedPollsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutCreatedPollsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedPollsInput, Prisma.UserUncheckedCreateWithoutCreatedPollsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedPollsInput
+  upsert?: Prisma.UserUpsertWithoutCreatedPollsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedPollsInput, Prisma.UserUpdateWithoutCreatedPollsInput>, Prisma.UserUncheckedUpdateWithoutCreatedPollsInput>
+}
+
+export type UserCreateNestedOneWithoutPollVotesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPollVotesInput, Prisma.UserUncheckedCreateWithoutPollVotesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPollVotesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPollVotesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPollVotesInput, Prisma.UserUncheckedCreateWithoutPollVotesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPollVotesInput
+  upsert?: Prisma.UserUpsertWithoutPollVotesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPollVotesInput, Prisma.UserUpdateWithoutPollVotesInput>, Prisma.UserUncheckedUpdateWithoutPollVotesInput>
+}
+
+export type UserCreateNestedOneWithoutMemberSuggestionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMemberSuggestionsInput, Prisma.UserUncheckedCreateWithoutMemberSuggestionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMemberSuggestionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutMemberSuggestionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMemberSuggestionsInput, Prisma.UserUncheckedCreateWithoutMemberSuggestionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMemberSuggestionsInput
+  upsert?: Prisma.UserUpsertWithoutMemberSuggestionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMemberSuggestionsInput, Prisma.UserUpdateWithoutMemberSuggestionsInput>, Prisma.UserUncheckedUpdateWithoutMemberSuggestionsInput>
+}
+
 export type UserCreateWithoutReviewedVerificationsInput = {
   id?: string
   name: string
@@ -1431,6 +1496,9 @@ export type UserCreateWithoutReviewedVerificationsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewedVerificationsInput = {
@@ -1484,6 +1552,9 @@ export type UserUncheckedCreateWithoutReviewedVerificationsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewedVerificationsInput = {
@@ -1553,6 +1624,9 @@ export type UserUpdateWithoutReviewedVerificationsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedVerificationsInput = {
@@ -1606,6 +1680,9 @@ export type UserUncheckedUpdateWithoutReviewedVerificationsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMembershipsInput = {
@@ -1659,6 +1736,9 @@ export type UserCreateWithoutMembershipsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMembershipsInput = {
@@ -1712,6 +1792,9 @@ export type UserUncheckedCreateWithoutMembershipsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -1781,6 +1864,9 @@ export type UserUpdateWithoutMembershipsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMembershipsInput = {
@@ -1834,6 +1920,9 @@ export type UserUncheckedUpdateWithoutMembershipsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -1887,6 +1976,9 @@ export type UserCreateWithoutAuditLogsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -1940,6 +2032,9 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -2009,6 +2104,9 @@ export type UserUpdateWithoutAuditLogsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -2062,6 +2160,9 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutApprovedSubscriptionsInput = {
@@ -2115,6 +2216,9 @@ export type UserCreateWithoutApprovedSubscriptionsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutApprovedSubscriptionsInput = {
@@ -2168,6 +2272,9 @@ export type UserUncheckedCreateWithoutApprovedSubscriptionsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutApprovedSubscriptionsInput = {
@@ -2237,6 +2344,9 @@ export type UserUpdateWithoutApprovedSubscriptionsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedSubscriptionsInput = {
@@ -2290,6 +2400,9 @@ export type UserUncheckedUpdateWithoutApprovedSubscriptionsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutConfirmedInvoicesInput = {
@@ -2343,6 +2456,9 @@ export type UserCreateWithoutConfirmedInvoicesInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutConfirmedInvoicesInput = {
@@ -2396,6 +2512,9 @@ export type UserUncheckedCreateWithoutConfirmedInvoicesInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutConfirmedInvoicesInput = {
@@ -2465,6 +2584,9 @@ export type UserUpdateWithoutConfirmedInvoicesInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConfirmedInvoicesInput = {
@@ -2518,6 +2640,9 @@ export type UserUncheckedUpdateWithoutConfirmedInvoicesInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAssignedInquiriesInput = {
@@ -2571,6 +2696,9 @@ export type UserCreateWithoutAssignedInquiriesInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAssignedInquiriesInput = {
@@ -2624,6 +2752,9 @@ export type UserUncheckedCreateWithoutAssignedInquiriesInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAssignedInquiriesInput = {
@@ -2693,6 +2824,9 @@ export type UserUpdateWithoutAssignedInquiriesInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedInquiriesInput = {
@@ -2746,6 +2880,9 @@ export type UserUncheckedUpdateWithoutAssignedInquiriesInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPreparedQuotationsInput = {
@@ -2799,6 +2936,9 @@ export type UserCreateWithoutPreparedQuotationsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPreparedQuotationsInput = {
@@ -2852,6 +2992,9 @@ export type UserUncheckedCreateWithoutPreparedQuotationsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPreparedQuotationsInput = {
@@ -2910,6 +3053,9 @@ export type UserCreateWithoutApprovedQuotationsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutApprovedQuotationsInput = {
@@ -2963,6 +3109,9 @@ export type UserUncheckedCreateWithoutApprovedQuotationsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutApprovedQuotationsInput = {
@@ -3032,6 +3181,9 @@ export type UserUpdateWithoutPreparedQuotationsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPreparedQuotationsInput = {
@@ -3085,6 +3237,9 @@ export type UserUncheckedUpdateWithoutPreparedQuotationsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutApprovedQuotationsInput = {
@@ -3149,6 +3304,9 @@ export type UserUpdateWithoutApprovedQuotationsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedQuotationsInput = {
@@ -3202,6 +3360,9 @@ export type UserUncheckedUpdateWithoutApprovedQuotationsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutRequestedTicketsInput = {
@@ -3255,6 +3416,9 @@ export type UserCreateWithoutRequestedTicketsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRequestedTicketsInput = {
@@ -3308,6 +3472,9 @@ export type UserUncheckedCreateWithoutRequestedTicketsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRequestedTicketsInput = {
@@ -3366,6 +3533,9 @@ export type UserCreateWithoutAssignedTicketsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAssignedTicketsInput = {
@@ -3419,6 +3589,9 @@ export type UserUncheckedCreateWithoutAssignedTicketsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAssignedTicketsInput = {
@@ -3488,6 +3661,9 @@ export type UserUpdateWithoutRequestedTicketsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequestedTicketsInput = {
@@ -3541,6 +3717,9 @@ export type UserUncheckedUpdateWithoutRequestedTicketsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutAssignedTicketsInput = {
@@ -3605,6 +3784,9 @@ export type UserUpdateWithoutAssignedTicketsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedTicketsInput = {
@@ -3658,6 +3840,9 @@ export type UserUncheckedUpdateWithoutAssignedTicketsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTicketMessagesInput = {
@@ -3711,6 +3896,9 @@ export type UserCreateWithoutTicketMessagesInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTicketMessagesInput = {
@@ -3764,6 +3952,9 @@ export type UserUncheckedCreateWithoutTicketMessagesInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTicketMessagesInput = {
@@ -3833,6 +4024,9 @@ export type UserUpdateWithoutTicketMessagesInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTicketMessagesInput = {
@@ -3886,6 +4080,9 @@ export type UserUncheckedUpdateWithoutTicketMessagesInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -3939,6 +4136,9 @@ export type UserCreateWithoutNotificationsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -3992,6 +4192,9 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -4061,6 +4264,9 @@ export type UserUpdateWithoutNotificationsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -4114,6 +4320,9 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAssignedRoomAssignmentsInput = {
@@ -4167,6 +4376,9 @@ export type UserCreateWithoutAssignedRoomAssignmentsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAssignedRoomAssignmentsInput = {
@@ -4220,6 +4432,9 @@ export type UserUncheckedCreateWithoutAssignedRoomAssignmentsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAssignedRoomAssignmentsInput = {
@@ -4289,6 +4504,9 @@ export type UserUpdateWithoutAssignedRoomAssignmentsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput = {
@@ -4342,6 +4560,9 @@ export type UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReviewedBookingsInput = {
@@ -4395,6 +4616,9 @@ export type UserCreateWithoutReviewedBookingsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewedBookingsInput = {
@@ -4448,6 +4672,9 @@ export type UserUncheckedCreateWithoutReviewedBookingsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewedBookingsInput = {
@@ -4517,6 +4744,9 @@ export type UserUpdateWithoutReviewedBookingsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedBookingsInput = {
@@ -4570,6 +4800,9 @@ export type UserUncheckedUpdateWithoutReviewedBookingsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReviewedMealOffRequestsInput = {
@@ -4623,6 +4856,9 @@ export type UserCreateWithoutReviewedMealOffRequestsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewedMealOffRequestsInput = {
@@ -4676,6 +4912,9 @@ export type UserUncheckedCreateWithoutReviewedMealOffRequestsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewedMealOffRequestsInput = {
@@ -4745,6 +4984,9 @@ export type UserUpdateWithoutReviewedMealOffRequestsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedMealOffRequestsInput = {
@@ -4798,6 +5040,9 @@ export type UserUncheckedUpdateWithoutReviewedMealOffRequestsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutRecordedGuestMealsInput = {
@@ -4851,6 +5096,9 @@ export type UserCreateWithoutRecordedGuestMealsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRecordedGuestMealsInput = {
@@ -4904,6 +5152,9 @@ export type UserUncheckedCreateWithoutRecordedGuestMealsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRecordedGuestMealsInput = {
@@ -4973,6 +5224,9 @@ export type UserUpdateWithoutRecordedGuestMealsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRecordedGuestMealsInput = {
@@ -5026,6 +5280,9 @@ export type UserUncheckedUpdateWithoutRecordedGuestMealsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutLockedMealPeriodsInput = {
@@ -5079,6 +5336,9 @@ export type UserCreateWithoutLockedMealPeriodsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutLockedMealPeriodsInput = {
@@ -5132,6 +5392,9 @@ export type UserUncheckedCreateWithoutLockedMealPeriodsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutLockedMealPeriodsInput = {
@@ -5201,6 +5464,9 @@ export type UserUpdateWithoutLockedMealPeriodsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLockedMealPeriodsInput = {
@@ -5254,6 +5520,9 @@ export type UserUncheckedUpdateWithoutLockedMealPeriodsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReviewedExpensesInput = {
@@ -5307,6 +5576,9 @@ export type UserCreateWithoutReviewedExpensesInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewedExpensesInput = {
@@ -5360,6 +5632,9 @@ export type UserUncheckedCreateWithoutReviewedExpensesInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewedExpensesInput = {
@@ -5429,6 +5704,9 @@ export type UserUpdateWithoutReviewedExpensesInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedExpensesInput = {
@@ -5482,6 +5760,9 @@ export type UserUncheckedUpdateWithoutReviewedExpensesInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutClosedBillingPeriodsInput = {
@@ -5535,6 +5816,9 @@ export type UserCreateWithoutClosedBillingPeriodsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutClosedBillingPeriodsInput = {
@@ -5588,6 +5872,9 @@ export type UserUncheckedCreateWithoutClosedBillingPeriodsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutClosedBillingPeriodsInput = {
@@ -5657,6 +5944,9 @@ export type UserUpdateWithoutClosedBillingPeriodsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutClosedBillingPeriodsInput = {
@@ -5710,6 +6000,9 @@ export type UserUncheckedUpdateWithoutClosedBillingPeriodsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReceivedMemberPaymentsInput = {
@@ -5763,6 +6056,9 @@ export type UserCreateWithoutReceivedMemberPaymentsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReceivedMemberPaymentsInput = {
@@ -5816,6 +6112,9 @@ export type UserUncheckedCreateWithoutReceivedMemberPaymentsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReceivedMemberPaymentsInput = {
@@ -5874,6 +6173,9 @@ export type UserCreateWithoutVerifiedMemberPaymentsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutVerifiedMemberPaymentsInput = {
@@ -5927,6 +6229,9 @@ export type UserUncheckedCreateWithoutVerifiedMemberPaymentsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutVerifiedMemberPaymentsInput = {
@@ -5996,6 +6301,9 @@ export type UserUpdateWithoutReceivedMemberPaymentsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReceivedMemberPaymentsInput = {
@@ -6049,6 +6357,9 @@ export type UserUncheckedUpdateWithoutReceivedMemberPaymentsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutVerifiedMemberPaymentsInput = {
@@ -6113,6 +6424,9 @@ export type UserUpdateWithoutVerifiedMemberPaymentsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVerifiedMemberPaymentsInput = {
@@ -6166,6 +6480,9 @@ export type UserUncheckedUpdateWithoutVerifiedMemberPaymentsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAuthorizedAdjustmentsInput = {
@@ -6219,6 +6536,9 @@ export type UserCreateWithoutAuthorizedAdjustmentsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAuthorizedAdjustmentsInput = {
@@ -6272,6 +6592,9 @@ export type UserUncheckedCreateWithoutAuthorizedAdjustmentsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAuthorizedAdjustmentsInput = {
@@ -6341,6 +6664,9 @@ export type UserUpdateWithoutAuthorizedAdjustmentsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuthorizedAdjustmentsInput = {
@@ -6394,6 +6720,9 @@ export type UserUncheckedUpdateWithoutAuthorizedAdjustmentsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAuthoredNoticesInput = {
@@ -6447,6 +6776,9 @@ export type UserCreateWithoutAuthoredNoticesInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAuthoredNoticesInput = {
@@ -6500,6 +6832,9 @@ export type UserUncheckedCreateWithoutAuthoredNoticesInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAuthoredNoticesInput = {
@@ -6569,6 +6904,9 @@ export type UserUpdateWithoutAuthoredNoticesInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuthoredNoticesInput = {
@@ -6622,6 +6960,9 @@ export type UserUncheckedUpdateWithoutAuthoredNoticesInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReviewedMemberRequestsInput = {
@@ -6675,6 +7016,9 @@ export type UserCreateWithoutReviewedMemberRequestsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewedMemberRequestsInput = {
@@ -6728,6 +7072,9 @@ export type UserUncheckedCreateWithoutReviewedMemberRequestsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewedMemberRequestsInput = {
@@ -6797,6 +7144,9 @@ export type UserUpdateWithoutReviewedMemberRequestsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedMemberRequestsInput = {
@@ -6850,6 +7200,9 @@ export type UserUncheckedUpdateWithoutReviewedMemberRequestsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReviewedComplaintsInput = {
@@ -6903,6 +7256,9 @@ export type UserCreateWithoutReviewedComplaintsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewedComplaintsInput = {
@@ -6956,6 +7312,9 @@ export type UserUncheckedCreateWithoutReviewedComplaintsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewedComplaintsInput = {
@@ -7025,6 +7384,9 @@ export type UserUpdateWithoutReviewedComplaintsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedComplaintsInput = {
@@ -7078,6 +7440,9 @@ export type UserUncheckedUpdateWithoutReviewedComplaintsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTenantNotificationsInput = {
@@ -7131,6 +7496,9 @@ export type UserCreateWithoutTenantNotificationsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTenantNotificationsInput = {
@@ -7184,6 +7552,9 @@ export type UserUncheckedCreateWithoutTenantNotificationsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTenantNotificationsInput = {
@@ -7253,6 +7624,9 @@ export type UserUpdateWithoutTenantNotificationsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTenantNotificationsInput = {
@@ -7306,6 +7680,9 @@ export type UserUncheckedUpdateWithoutTenantNotificationsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotificationPreferencesInput = {
@@ -7359,6 +7736,9 @@ export type UserCreateWithoutNotificationPreferencesInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationPreferencesInput = {
@@ -7412,6 +7792,9 @@ export type UserUncheckedCreateWithoutNotificationPreferencesInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationPreferencesInput = {
@@ -7481,6 +7864,9 @@ export type UserUpdateWithoutNotificationPreferencesInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationPreferencesInput = {
@@ -7534,6 +7920,9 @@ export type UserUncheckedUpdateWithoutNotificationPreferencesInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCreatedScheduledRemindersInput = {
@@ -7587,6 +7976,9 @@ export type UserCreateWithoutCreatedScheduledRemindersInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedScheduledRemindersInput = {
@@ -7640,6 +8032,9 @@ export type UserUncheckedCreateWithoutCreatedScheduledRemindersInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedScheduledRemindersInput = {
@@ -7709,6 +8104,9 @@ export type UserUpdateWithoutCreatedScheduledRemindersInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedScheduledRemindersInput = {
@@ -7762,6 +8160,9 @@ export type UserUncheckedUpdateWithoutCreatedScheduledRemindersInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCreatedStockMovementsInput = {
@@ -7815,6 +8216,9 @@ export type UserCreateWithoutCreatedStockMovementsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedStockMovementsInput = {
@@ -7868,6 +8272,9 @@ export type UserUncheckedCreateWithoutCreatedStockMovementsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedStockMovementsInput = {
@@ -7937,6 +8344,9 @@ export type UserUpdateWithoutCreatedStockMovementsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedStockMovementsInput = {
@@ -7990,6 +8400,9 @@ export type UserUncheckedUpdateWithoutCreatedStockMovementsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAssignedWorkOrdersInput = {
@@ -8043,6 +8456,9 @@ export type UserCreateWithoutAssignedWorkOrdersInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAssignedWorkOrdersInput = {
@@ -8096,6 +8512,9 @@ export type UserUncheckedCreateWithoutAssignedWorkOrdersInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAssignedWorkOrdersInput = {
@@ -8154,6 +8573,9 @@ export type UserCreateWithoutCreatedWorkOrdersInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedWorkOrdersInput = {
@@ -8207,6 +8629,9 @@ export type UserUncheckedCreateWithoutCreatedWorkOrdersInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedWorkOrdersInput = {
@@ -8265,6 +8690,9 @@ export type UserCreateWithoutClosedWorkOrdersInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutClosedWorkOrdersInput = {
@@ -8318,6 +8746,9 @@ export type UserUncheckedCreateWithoutClosedWorkOrdersInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutClosedWorkOrdersInput = {
@@ -8387,6 +8818,9 @@ export type UserUpdateWithoutAssignedWorkOrdersInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedWorkOrdersInput = {
@@ -8440,6 +8874,9 @@ export type UserUncheckedUpdateWithoutAssignedWorkOrdersInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutCreatedWorkOrdersInput = {
@@ -8504,6 +8941,9 @@ export type UserUpdateWithoutCreatedWorkOrdersInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedWorkOrdersInput = {
@@ -8557,6 +8997,9 @@ export type UserUncheckedUpdateWithoutCreatedWorkOrdersInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutClosedWorkOrdersInput = {
@@ -8621,6 +9064,9 @@ export type UserUpdateWithoutClosedWorkOrdersInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutClosedWorkOrdersInput = {
@@ -8674,6 +9120,9 @@ export type UserUncheckedUpdateWithoutClosedWorkOrdersInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutWorkOrderStatusChangesInput = {
@@ -8727,6 +9176,9 @@ export type UserCreateWithoutWorkOrderStatusChangesInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWorkOrderStatusChangesInput = {
@@ -8780,6 +9232,9 @@ export type UserUncheckedCreateWithoutWorkOrderStatusChangesInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWorkOrderStatusChangesInput = {
@@ -8849,6 +9304,9 @@ export type UserUpdateWithoutWorkOrderStatusChangesInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkOrderStatusChangesInput = {
@@ -8902,6 +9360,9 @@ export type UserUncheckedUpdateWithoutWorkOrderStatusChangesInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAssignedOperationalTasksInput = {
@@ -8955,6 +9416,9 @@ export type UserCreateWithoutAssignedOperationalTasksInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAssignedOperationalTasksInput = {
@@ -9008,6 +9472,9 @@ export type UserUncheckedCreateWithoutAssignedOperationalTasksInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAssignedOperationalTasksInput = {
@@ -9066,6 +9533,9 @@ export type UserCreateWithoutCreatedOperationalTasksInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedOperationalTasksInput = {
@@ -9119,6 +9589,9 @@ export type UserUncheckedCreateWithoutCreatedOperationalTasksInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedOperationalTasksInput = {
@@ -9188,6 +9661,9 @@ export type UserUpdateWithoutAssignedOperationalTasksInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedOperationalTasksInput = {
@@ -9241,6 +9717,9 @@ export type UserUncheckedUpdateWithoutAssignedOperationalTasksInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutCreatedOperationalTasksInput = {
@@ -9305,6 +9784,9 @@ export type UserUpdateWithoutCreatedOperationalTasksInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedOperationalTasksInput = {
@@ -9358,6 +9840,9 @@ export type UserUncheckedUpdateWithoutCreatedOperationalTasksInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutHostedVisitorsInput = {
@@ -9411,6 +9896,9 @@ export type UserCreateWithoutHostedVisitorsInput = {
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutHostedVisitorsInput = {
@@ -9464,6 +9952,9 @@ export type UserUncheckedCreateWithoutHostedVisitorsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutHostedVisitorsInput = {
@@ -9522,6 +10013,9 @@ export type UserCreateWithoutRecordedVisitorsInput = {
   hostedVisitors?: Prisma.VisitorCreateNestedManyWithoutHostUserInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRecordedVisitorsInput = {
@@ -9575,6 +10069,9 @@ export type UserUncheckedCreateWithoutRecordedVisitorsInput = {
   hostedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutHostUserInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRecordedVisitorsInput = {
@@ -9633,6 +10130,9 @@ export type UserCreateWithoutCheckedInVisitorsInput = {
   hostedVisitors?: Prisma.VisitorCreateNestedManyWithoutHostUserInput
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCheckedInVisitorsInput = {
@@ -9686,6 +10186,9 @@ export type UserUncheckedCreateWithoutCheckedInVisitorsInput = {
   hostedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutHostUserInput
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCheckedInVisitorsInput = {
@@ -9744,6 +10247,9 @@ export type UserCreateWithoutCheckedOutVisitorsInput = {
   hostedVisitors?: Prisma.VisitorCreateNestedManyWithoutHostUserInput
   recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCheckedOutVisitorsInput = {
@@ -9797,6 +10303,9 @@ export type UserUncheckedCreateWithoutCheckedOutVisitorsInput = {
   hostedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutHostUserInput
   recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
   checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCheckedOutVisitorsInput = {
@@ -9866,6 +10375,9 @@ export type UserUpdateWithoutHostedVisitorsInput = {
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutHostedVisitorsInput = {
@@ -9919,6 +10431,9 @@ export type UserUncheckedUpdateWithoutHostedVisitorsInput = {
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutRecordedVisitorsInput = {
@@ -9983,6 +10498,9 @@ export type UserUpdateWithoutRecordedVisitorsInput = {
   hostedVisitors?: Prisma.VisitorUpdateManyWithoutHostUserNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRecordedVisitorsInput = {
@@ -10036,6 +10554,9 @@ export type UserUncheckedUpdateWithoutRecordedVisitorsInput = {
   hostedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutHostUserNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutCheckedInVisitorsInput = {
@@ -10100,6 +10621,9 @@ export type UserUpdateWithoutCheckedInVisitorsInput = {
   hostedVisitors?: Prisma.VisitorUpdateManyWithoutHostUserNestedInput
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCheckedInVisitorsInput = {
@@ -10153,6 +10677,9 @@ export type UserUncheckedUpdateWithoutCheckedInVisitorsInput = {
   hostedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutHostUserNestedInput
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUpsertWithoutCheckedOutVisitorsInput = {
@@ -10217,6 +10744,9 @@ export type UserUpdateWithoutCheckedOutVisitorsInput = {
   hostedVisitors?: Prisma.VisitorUpdateManyWithoutHostUserNestedInput
   recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCheckedOutVisitorsInput = {
@@ -10270,6 +10800,729 @@ export type UserUncheckedUpdateWithoutCheckedOutVisitorsInput = {
   hostedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutHostUserNestedInput
   recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
   checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCreatedPollsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
+  assignedWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutAssignedUserInput
+  createdWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutCreatorInput
+  closedWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutCloserInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryCreateNestedManyWithoutChangedByInput
+  assignedOperationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutAssignedUserInput
+  createdOperationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutCreatorInput
+  hostedVisitors?: Prisma.VisitorCreateNestedManyWithoutHostUserInput
+  recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
+  checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
+  checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCreatedPollsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
+  assignedWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutAssignedUserInput
+  createdWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatorInput
+  closedWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCloserInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutAssignedUserInput
+  createdOperationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutCreatorInput
+  hostedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutHostUserInput
+  recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
+  checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
+  checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutCreatedPollsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedPollsInput, Prisma.UserUncheckedCreateWithoutCreatedPollsInput>
+}
+
+export type UserUpsertWithoutCreatedPollsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedPollsInput, Prisma.UserUncheckedUpdateWithoutCreatedPollsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedPollsInput, Prisma.UserUncheckedCreateWithoutCreatedPollsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedPollsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedPollsInput, Prisma.UserUncheckedUpdateWithoutCreatedPollsInput>
+}
+
+export type UserUpdateWithoutCreatedPollsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
+  assignedWorkOrders?: Prisma.WorkOrderUpdateManyWithoutAssignedUserNestedInput
+  createdWorkOrders?: Prisma.WorkOrderUpdateManyWithoutCreatorNestedInput
+  closedWorkOrders?: Prisma.WorkOrderUpdateManyWithoutCloserNestedInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUpdateManyWithoutChangedByNestedInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUpdateManyWithoutAssignedUserNestedInput
+  createdOperationalTasks?: Prisma.OperationalTaskUpdateManyWithoutCreatorNestedInput
+  hostedVisitors?: Prisma.VisitorUpdateManyWithoutHostUserNestedInput
+  recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
+  checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
+  checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedPollsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
+  assignedWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutAssignedUserNestedInput
+  createdWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatorNestedInput
+  closedWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutCloserNestedInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutAssignedUserNestedInput
+  createdOperationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  hostedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutHostUserNestedInput
+  recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
+  checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
+  checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPollVotesInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
+  assignedWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutAssignedUserInput
+  createdWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutCreatorInput
+  closedWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutCloserInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryCreateNestedManyWithoutChangedByInput
+  assignedOperationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutAssignedUserInput
+  createdOperationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutCreatorInput
+  hostedVisitors?: Prisma.VisitorCreateNestedManyWithoutHostUserInput
+  recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
+  checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
+  checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPollVotesInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
+  assignedWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutAssignedUserInput
+  createdWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatorInput
+  closedWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCloserInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutAssignedUserInput
+  createdOperationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutCreatorInput
+  hostedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutHostUserInput
+  recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
+  checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
+  checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPollVotesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPollVotesInput, Prisma.UserUncheckedCreateWithoutPollVotesInput>
+}
+
+export type UserUpsertWithoutPollVotesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPollVotesInput, Prisma.UserUncheckedUpdateWithoutPollVotesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPollVotesInput, Prisma.UserUncheckedCreateWithoutPollVotesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPollVotesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPollVotesInput, Prisma.UserUncheckedUpdateWithoutPollVotesInput>
+}
+
+export type UserUpdateWithoutPollVotesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
+  assignedWorkOrders?: Prisma.WorkOrderUpdateManyWithoutAssignedUserNestedInput
+  createdWorkOrders?: Prisma.WorkOrderUpdateManyWithoutCreatorNestedInput
+  closedWorkOrders?: Prisma.WorkOrderUpdateManyWithoutCloserNestedInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUpdateManyWithoutChangedByNestedInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUpdateManyWithoutAssignedUserNestedInput
+  createdOperationalTasks?: Prisma.OperationalTaskUpdateManyWithoutCreatorNestedInput
+  hostedVisitors?: Prisma.VisitorUpdateManyWithoutHostUserNestedInput
+  recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
+  checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
+  checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPollVotesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
+  assignedWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutAssignedUserNestedInput
+  createdWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatorNestedInput
+  closedWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutCloserNestedInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutAssignedUserNestedInput
+  createdOperationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  hostedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutHostUserNestedInput
+  recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
+  checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
+  checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutMemberSuggestionsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementCreateNestedManyWithoutCreatorInput
+  assignedWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutAssignedUserInput
+  createdWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutCreatorInput
+  closedWorkOrders?: Prisma.WorkOrderCreateNestedManyWithoutCloserInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryCreateNestedManyWithoutChangedByInput
+  assignedOperationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutAssignedUserInput
+  createdOperationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutCreatorInput
+  hostedVisitors?: Prisma.VisitorCreateNestedManyWithoutHostUserInput
+  recordedVisitors?: Prisma.VisitorCreateNestedManyWithoutRecorderInput
+  checkedInVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckInStaffInput
+  checkedOutVisitors?: Prisma.VisitorCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutMemberSuggestionsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+  createdStockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutCreatorInput
+  assignedWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutAssignedUserInput
+  createdWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCreatorInput
+  closedWorkOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutCloserInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUncheckedCreateNestedManyWithoutChangedByInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutAssignedUserInput
+  createdOperationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutCreatorInput
+  hostedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutHostUserInput
+  recordedVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutRecorderInput
+  checkedInVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckInStaffInput
+  checkedOutVisitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutCheckOutStaffInput
+  createdPolls?: Prisma.PollUncheckedCreateNestedManyWithoutCreatorInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutMemberSuggestionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMemberSuggestionsInput, Prisma.UserUncheckedCreateWithoutMemberSuggestionsInput>
+}
+
+export type UserUpsertWithoutMemberSuggestionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMemberSuggestionsInput, Prisma.UserUncheckedUpdateWithoutMemberSuggestionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMemberSuggestionsInput, Prisma.UserUncheckedCreateWithoutMemberSuggestionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMemberSuggestionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMemberSuggestionsInput, Prisma.UserUncheckedUpdateWithoutMemberSuggestionsInput>
+}
+
+export type UserUpdateWithoutMemberSuggestionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUpdateManyWithoutCreatorNestedInput
+  assignedWorkOrders?: Prisma.WorkOrderUpdateManyWithoutAssignedUserNestedInput
+  createdWorkOrders?: Prisma.WorkOrderUpdateManyWithoutCreatorNestedInput
+  closedWorkOrders?: Prisma.WorkOrderUpdateManyWithoutCloserNestedInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUpdateManyWithoutChangedByNestedInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUpdateManyWithoutAssignedUserNestedInput
+  createdOperationalTasks?: Prisma.OperationalTaskUpdateManyWithoutCreatorNestedInput
+  hostedVisitors?: Prisma.VisitorUpdateManyWithoutHostUserNestedInput
+  recordedVisitors?: Prisma.VisitorUpdateManyWithoutRecorderNestedInput
+  checkedInVisitors?: Prisma.VisitorUpdateManyWithoutCheckInStaffNestedInput
+  checkedOutVisitors?: Prisma.VisitorUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMemberSuggestionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+  createdStockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutCreatorNestedInput
+  assignedWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutAssignedUserNestedInput
+  createdWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutCreatorNestedInput
+  closedWorkOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutCloserNestedInput
+  workOrderStatusChanges?: Prisma.WorkOrderStatusHistoryUncheckedUpdateManyWithoutChangedByNestedInput
+  assignedOperationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutAssignedUserNestedInput
+  createdOperationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutCreatorNestedInput
+  hostedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutHostUserNestedInput
+  recordedVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutRecorderNestedInput
+  checkedInVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckInStaffNestedInput
+  checkedOutVisitors?: Prisma.VisitorUncheckedUpdateManyWithoutCheckOutStaffNestedInput
+  createdPolls?: Prisma.PollUncheckedUpdateManyWithoutCreatorNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -10317,6 +11570,9 @@ export type UserCountOutputType = {
   recordedVisitors: number
   checkedInVisitors: number
   checkedOutVisitors: number
+  createdPolls: number
+  pollVotes: number
+  memberSuggestions: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -10359,6 +11615,9 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   recordedVisitors?: boolean | UserCountOutputTypeCountRecordedVisitorsArgs
   checkedInVisitors?: boolean | UserCountOutputTypeCountCheckedInVisitorsArgs
   checkedOutVisitors?: boolean | UserCountOutputTypeCountCheckedOutVisitorsArgs
+  createdPolls?: boolean | UserCountOutputTypeCountCreatedPollsArgs
+  pollVotes?: boolean | UserCountOutputTypeCountPollVotesArgs
+  memberSuggestions?: boolean | UserCountOutputTypeCountMemberSuggestionsArgs
 }
 
 /**
@@ -10644,6 +11903,27 @@ export type UserCountOutputTypeCountCheckedOutVisitorsArgs<ExtArgs extends runti
   where?: Prisma.VisitorWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedPollsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PollWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPollVotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PollVoteWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMemberSuggestionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MemberSuggestionWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -10697,6 +11977,9 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   recordedVisitors?: boolean | Prisma.User$recordedVisitorsArgs<ExtArgs>
   checkedInVisitors?: boolean | Prisma.User$checkedInVisitorsArgs<ExtArgs>
   checkedOutVisitors?: boolean | Prisma.User$checkedOutVisitorsArgs<ExtArgs>
+  createdPolls?: boolean | Prisma.User$createdPollsArgs<ExtArgs>
+  pollVotes?: boolean | Prisma.User$pollVotesArgs<ExtArgs>
+  memberSuggestions?: boolean | Prisma.User$memberSuggestionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -10786,6 +12069,9 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   recordedVisitors?: boolean | Prisma.User$recordedVisitorsArgs<ExtArgs>
   checkedInVisitors?: boolean | Prisma.User$checkedInVisitorsArgs<ExtArgs>
   checkedOutVisitors?: boolean | Prisma.User$checkedOutVisitorsArgs<ExtArgs>
+  createdPolls?: boolean | Prisma.User$createdPollsArgs<ExtArgs>
+  pollVotes?: boolean | Prisma.User$pollVotesArgs<ExtArgs>
+  memberSuggestions?: boolean | Prisma.User$memberSuggestionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -10833,6 +12119,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     recordedVisitors: Prisma.$VisitorPayload<ExtArgs>[]
     checkedInVisitors: Prisma.$VisitorPayload<ExtArgs>[]
     checkedOutVisitors: Prisma.$VisitorPayload<ExtArgs>[]
+    createdPolls: Prisma.$PollPayload<ExtArgs>[]
+    pollVotes: Prisma.$PollVotePayload<ExtArgs>[]
+    memberSuggestions: Prisma.$MemberSuggestionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -11280,6 +12569,9 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   recordedVisitors<T extends Prisma.User$recordedVisitorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$recordedVisitorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VisitorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   checkedInVisitors<T extends Prisma.User$checkedInVisitorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$checkedInVisitorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VisitorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   checkedOutVisitors<T extends Prisma.User$checkedOutVisitorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$checkedOutVisitorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VisitorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdPolls<T extends Prisma.User$createdPollsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdPollsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PollPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pollVotes<T extends Prisma.User$pollVotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pollVotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PollVotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  memberSuggestions<T extends Prisma.User$memberSuggestionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$memberSuggestionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberSuggestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12647,6 +13939,78 @@ export type User$checkedOutVisitorsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.VisitorScalarFieldEnum | Prisma.VisitorScalarFieldEnum[]
+}
+
+/**
+ * User.createdPolls
+ */
+export type User$createdPollsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Poll
+   */
+  select?: Prisma.PollSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Poll
+   */
+  omit?: Prisma.PollOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PollInclude<ExtArgs> | null
+  where?: Prisma.PollWhereInput
+  orderBy?: Prisma.PollOrderByWithRelationInput | Prisma.PollOrderByWithRelationInput[]
+  cursor?: Prisma.PollWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PollScalarFieldEnum | Prisma.PollScalarFieldEnum[]
+}
+
+/**
+ * User.pollVotes
+ */
+export type User$pollVotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PollVote
+   */
+  select?: Prisma.PollVoteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PollVote
+   */
+  omit?: Prisma.PollVoteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PollVoteInclude<ExtArgs> | null
+  where?: Prisma.PollVoteWhereInput
+  orderBy?: Prisma.PollVoteOrderByWithRelationInput | Prisma.PollVoteOrderByWithRelationInput[]
+  cursor?: Prisma.PollVoteWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PollVoteScalarFieldEnum | Prisma.PollVoteScalarFieldEnum[]
+}
+
+/**
+ * User.memberSuggestions
+ */
+export type User$memberSuggestionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MemberSuggestion
+   */
+  select?: Prisma.MemberSuggestionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MemberSuggestion
+   */
+  omit?: Prisma.MemberSuggestionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberSuggestionInclude<ExtArgs> | null
+  where?: Prisma.MemberSuggestionWhereInput
+  orderBy?: Prisma.MemberSuggestionOrderByWithRelationInput | Prisma.MemberSuggestionOrderByWithRelationInput[]
+  cursor?: Prisma.MemberSuggestionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MemberSuggestionScalarFieldEnum | Prisma.MemberSuggestionScalarFieldEnum[]
 }
 
 /**

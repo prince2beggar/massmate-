@@ -328,6 +328,9 @@ export type TenantWhereInput = {
   workOrders?: Prisma.WorkOrderListRelationFilter
   operationalTasks?: Prisma.OperationalTaskListRelationFilter
   visitors?: Prisma.VisitorListRelationFilter
+  polls?: Prisma.PollListRelationFilter
+  pollVotes?: Prisma.PollVoteListRelationFilter
+  memberSuggestions?: Prisma.MemberSuggestionListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
@@ -391,6 +394,9 @@ export type TenantOrderByWithRelationInput = {
   workOrders?: Prisma.WorkOrderOrderByRelationAggregateInput
   operationalTasks?: Prisma.OperationalTaskOrderByRelationAggregateInput
   visitors?: Prisma.VisitorOrderByRelationAggregateInput
+  polls?: Prisma.PollOrderByRelationAggregateInput
+  pollVotes?: Prisma.PollVoteOrderByRelationAggregateInput
+  memberSuggestions?: Prisma.MemberSuggestionOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -457,6 +463,9 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   workOrders?: Prisma.WorkOrderListRelationFilter
   operationalTasks?: Prisma.OperationalTaskListRelationFilter
   visitors?: Prisma.VisitorListRelationFilter
+  polls?: Prisma.PollListRelationFilter
+  pollVotes?: Prisma.PollVoteListRelationFilter
+  memberSuggestions?: Prisma.MemberSuggestionListRelationFilter
 }, "id" | "slug">
 
 export type TenantOrderByWithAggregationInput = {
@@ -568,6 +577,9 @@ export type TenantCreateInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
@@ -631,6 +643,9 @@ export type TenantUncheckedCreateInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
@@ -694,6 +709,9 @@ export type TenantUpdateInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
@@ -757,6 +775,9 @@ export type TenantUncheckedUpdateInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
@@ -1499,6 +1520,48 @@ export type TenantUpdateOneRequiredWithoutVisitorsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutVisitorsInput, Prisma.TenantUpdateWithoutVisitorsInput>, Prisma.TenantUncheckedUpdateWithoutVisitorsInput>
 }
 
+export type TenantCreateNestedOneWithoutPollsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutPollsInput, Prisma.TenantUncheckedCreateWithoutPollsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutPollsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutPollsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutPollsInput, Prisma.TenantUncheckedCreateWithoutPollsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutPollsInput
+  upsert?: Prisma.TenantUpsertWithoutPollsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutPollsInput, Prisma.TenantUpdateWithoutPollsInput>, Prisma.TenantUncheckedUpdateWithoutPollsInput>
+}
+
+export type TenantCreateNestedOneWithoutPollVotesInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutPollVotesInput, Prisma.TenantUncheckedCreateWithoutPollVotesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutPollVotesInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutPollVotesNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutPollVotesInput, Prisma.TenantUncheckedCreateWithoutPollVotesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutPollVotesInput
+  upsert?: Prisma.TenantUpsertWithoutPollVotesInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutPollVotesInput, Prisma.TenantUpdateWithoutPollVotesInput>, Prisma.TenantUncheckedUpdateWithoutPollVotesInput>
+}
+
+export type TenantCreateNestedOneWithoutMemberSuggestionsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutMemberSuggestionsInput, Prisma.TenantUncheckedCreateWithoutMemberSuggestionsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutMemberSuggestionsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutMemberSuggestionsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutMemberSuggestionsInput, Prisma.TenantUncheckedCreateWithoutMemberSuggestionsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutMemberSuggestionsInput
+  upsert?: Prisma.TenantUpsertWithoutMemberSuggestionsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutMemberSuggestionsInput, Prisma.TenantUpdateWithoutMemberSuggestionsInput>, Prisma.TenantUncheckedUpdateWithoutMemberSuggestionsInput>
+}
+
 export type TenantCreateWithoutVerificationInput = {
   id?: string
   name: string
@@ -1559,6 +1622,9 @@ export type TenantCreateWithoutVerificationInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutVerificationInput = {
@@ -1621,6 +1687,9 @@ export type TenantUncheckedCreateWithoutVerificationInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutVerificationInput = {
@@ -1699,6 +1768,9 @@ export type TenantUpdateWithoutVerificationInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutVerificationInput = {
@@ -1761,6 +1833,9 @@ export type TenantUncheckedUpdateWithoutVerificationInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRolesInput = {
@@ -1823,6 +1898,9 @@ export type TenantCreateWithoutRolesInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRolesInput = {
@@ -1885,6 +1963,9 @@ export type TenantUncheckedCreateWithoutRolesInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRolesInput = {
@@ -1963,6 +2044,9 @@ export type TenantUpdateWithoutRolesInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRolesInput = {
@@ -2025,6 +2109,9 @@ export type TenantUncheckedUpdateWithoutRolesInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMembershipsInput = {
@@ -2087,6 +2174,9 @@ export type TenantCreateWithoutMembershipsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMembershipsInput = {
@@ -2149,6 +2239,9 @@ export type TenantUncheckedCreateWithoutMembershipsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMembershipsInput = {
@@ -2227,6 +2320,9 @@ export type TenantUpdateWithoutMembershipsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMembershipsInput = {
@@ -2289,6 +2385,9 @@ export type TenantUncheckedUpdateWithoutMembershipsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAuditLogsInput = {
@@ -2351,6 +2450,9 @@ export type TenantCreateWithoutAuditLogsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAuditLogsInput = {
@@ -2413,6 +2515,9 @@ export type TenantUncheckedCreateWithoutAuditLogsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAuditLogsInput = {
@@ -2491,6 +2596,9 @@ export type TenantUpdateWithoutAuditLogsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAuditLogsInput = {
@@ -2553,6 +2661,9 @@ export type TenantUncheckedUpdateWithoutAuditLogsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSubscriptionInput = {
@@ -2615,6 +2726,9 @@ export type TenantCreateWithoutSubscriptionInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSubscriptionInput = {
@@ -2677,6 +2791,9 @@ export type TenantUncheckedCreateWithoutSubscriptionInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSubscriptionInput = {
@@ -2755,6 +2872,9 @@ export type TenantUpdateWithoutSubscriptionInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSubscriptionInput = {
@@ -2817,6 +2937,9 @@ export type TenantUncheckedUpdateWithoutSubscriptionInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInvoicesInput = {
@@ -2879,6 +3002,9 @@ export type TenantCreateWithoutInvoicesInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInvoicesInput = {
@@ -2941,6 +3067,9 @@ export type TenantUncheckedCreateWithoutInvoicesInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInvoicesInput = {
@@ -3019,6 +3148,9 @@ export type TenantUpdateWithoutInvoicesInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInvoicesInput = {
@@ -3081,6 +3213,9 @@ export type TenantUncheckedUpdateWithoutInvoicesInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDomainsInput = {
@@ -3143,6 +3278,9 @@ export type TenantCreateWithoutDomainsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDomainsInput = {
@@ -3205,6 +3343,9 @@ export type TenantUncheckedCreateWithoutDomainsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDomainsInput = {
@@ -3283,6 +3424,9 @@ export type TenantUpdateWithoutDomainsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDomainsInput = {
@@ -3345,6 +3489,9 @@ export type TenantUncheckedUpdateWithoutDomainsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSupportTicketsInput = {
@@ -3407,6 +3554,9 @@ export type TenantCreateWithoutSupportTicketsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSupportTicketsInput = {
@@ -3469,6 +3619,9 @@ export type TenantUncheckedCreateWithoutSupportTicketsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSupportTicketsInput = {
@@ -3547,6 +3700,9 @@ export type TenantUpdateWithoutSupportTicketsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSupportTicketsInput = {
@@ -3609,6 +3765,9 @@ export type TenantUncheckedUpdateWithoutSupportTicketsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRoomsInput = {
@@ -3671,6 +3830,9 @@ export type TenantCreateWithoutRoomsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRoomsInput = {
@@ -3733,6 +3895,9 @@ export type TenantUncheckedCreateWithoutRoomsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRoomsInput = {
@@ -3811,6 +3976,9 @@ export type TenantUpdateWithoutRoomsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRoomsInput = {
@@ -3873,6 +4041,9 @@ export type TenantUncheckedUpdateWithoutRoomsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBedsInput = {
@@ -3935,6 +4106,9 @@ export type TenantCreateWithoutBedsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBedsInput = {
@@ -3997,6 +4171,9 @@ export type TenantUncheckedCreateWithoutBedsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBedsInput = {
@@ -4075,6 +4252,9 @@ export type TenantUpdateWithoutBedsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBedsInput = {
@@ -4137,6 +4317,9 @@ export type TenantUncheckedUpdateWithoutBedsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRoomAssignmentsInput = {
@@ -4199,6 +4382,9 @@ export type TenantCreateWithoutRoomAssignmentsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRoomAssignmentsInput = {
@@ -4261,6 +4447,9 @@ export type TenantUncheckedCreateWithoutRoomAssignmentsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRoomAssignmentsInput = {
@@ -4339,6 +4528,9 @@ export type TenantUpdateWithoutRoomAssignmentsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRoomAssignmentsInput = {
@@ -4401,6 +4593,9 @@ export type TenantUncheckedUpdateWithoutRoomAssignmentsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRentalListingsInput = {
@@ -4463,6 +4658,9 @@ export type TenantCreateWithoutRentalListingsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRentalListingsInput = {
@@ -4525,6 +4723,9 @@ export type TenantUncheckedCreateWithoutRentalListingsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRentalListingsInput = {
@@ -4603,6 +4804,9 @@ export type TenantUpdateWithoutRentalListingsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRentalListingsInput = {
@@ -4665,6 +4869,9 @@ export type TenantUncheckedUpdateWithoutRentalListingsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBookingRequestsInput = {
@@ -4727,6 +4934,9 @@ export type TenantCreateWithoutBookingRequestsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBookingRequestsInput = {
@@ -4789,6 +4999,9 @@ export type TenantUncheckedCreateWithoutBookingRequestsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBookingRequestsInput = {
@@ -4867,6 +5080,9 @@ export type TenantUpdateWithoutBookingRequestsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBookingRequestsInput = {
@@ -4929,6 +5145,9 @@ export type TenantUncheckedUpdateWithoutBookingRequestsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMealSettingInput = {
@@ -4991,6 +5210,9 @@ export type TenantCreateWithoutMealSettingInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMealSettingInput = {
@@ -5053,6 +5275,9 @@ export type TenantUncheckedCreateWithoutMealSettingInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMealSettingInput = {
@@ -5131,6 +5356,9 @@ export type TenantUpdateWithoutMealSettingInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMealSettingInput = {
@@ -5193,6 +5421,9 @@ export type TenantUncheckedUpdateWithoutMealSettingInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMealDailyLogsInput = {
@@ -5255,6 +5486,9 @@ export type TenantCreateWithoutMealDailyLogsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMealDailyLogsInput = {
@@ -5317,6 +5551,9 @@ export type TenantUncheckedCreateWithoutMealDailyLogsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMealDailyLogsInput = {
@@ -5395,6 +5632,9 @@ export type TenantUpdateWithoutMealDailyLogsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMealDailyLogsInput = {
@@ -5457,6 +5697,9 @@ export type TenantUncheckedUpdateWithoutMealDailyLogsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMemberMealEntriesInput = {
@@ -5519,6 +5762,9 @@ export type TenantCreateWithoutMemberMealEntriesInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMemberMealEntriesInput = {
@@ -5581,6 +5827,9 @@ export type TenantUncheckedCreateWithoutMemberMealEntriesInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMemberMealEntriesInput = {
@@ -5659,6 +5908,9 @@ export type TenantUpdateWithoutMemberMealEntriesInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMemberMealEntriesInput = {
@@ -5721,6 +5973,9 @@ export type TenantUncheckedUpdateWithoutMemberMealEntriesInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMealOffRequestsInput = {
@@ -5783,6 +6038,9 @@ export type TenantCreateWithoutMealOffRequestsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMealOffRequestsInput = {
@@ -5845,6 +6103,9 @@ export type TenantUncheckedCreateWithoutMealOffRequestsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMealOffRequestsInput = {
@@ -5923,6 +6184,9 @@ export type TenantUpdateWithoutMealOffRequestsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMealOffRequestsInput = {
@@ -5985,6 +6249,9 @@ export type TenantUncheckedUpdateWithoutMealOffRequestsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutGuestMealsInput = {
@@ -6047,6 +6314,9 @@ export type TenantCreateWithoutGuestMealsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutGuestMealsInput = {
@@ -6109,6 +6379,9 @@ export type TenantUncheckedCreateWithoutGuestMealsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutGuestMealsInput = {
@@ -6187,6 +6460,9 @@ export type TenantUpdateWithoutGuestMealsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutGuestMealsInput = {
@@ -6249,6 +6525,9 @@ export type TenantUncheckedUpdateWithoutGuestMealsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMealPeriodLocksInput = {
@@ -6311,6 +6590,9 @@ export type TenantCreateWithoutMealPeriodLocksInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMealPeriodLocksInput = {
@@ -6373,6 +6655,9 @@ export type TenantUncheckedCreateWithoutMealPeriodLocksInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMealPeriodLocksInput = {
@@ -6451,6 +6736,9 @@ export type TenantUpdateWithoutMealPeriodLocksInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMealPeriodLocksInput = {
@@ -6513,6 +6801,9 @@ export type TenantUncheckedUpdateWithoutMealPeriodLocksInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutExpenseCategoriesInput = {
@@ -6575,6 +6866,9 @@ export type TenantCreateWithoutExpenseCategoriesInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutExpenseCategoriesInput = {
@@ -6637,6 +6931,9 @@ export type TenantUncheckedCreateWithoutExpenseCategoriesInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutExpenseCategoriesInput = {
@@ -6715,6 +7012,9 @@ export type TenantUpdateWithoutExpenseCategoriesInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutExpenseCategoriesInput = {
@@ -6777,6 +7077,9 @@ export type TenantUncheckedUpdateWithoutExpenseCategoriesInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutExpensesInput = {
@@ -6839,6 +7142,9 @@ export type TenantCreateWithoutExpensesInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutExpensesInput = {
@@ -6901,6 +7207,9 @@ export type TenantUncheckedCreateWithoutExpensesInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutExpensesInput = {
@@ -6979,6 +7288,9 @@ export type TenantUpdateWithoutExpensesInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutExpensesInput = {
@@ -7041,6 +7353,9 @@ export type TenantUncheckedUpdateWithoutExpensesInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBazarSchedulesInput = {
@@ -7103,6 +7418,9 @@ export type TenantCreateWithoutBazarSchedulesInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBazarSchedulesInput = {
@@ -7165,6 +7483,9 @@ export type TenantUncheckedCreateWithoutBazarSchedulesInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBazarSchedulesInput = {
@@ -7243,6 +7564,9 @@ export type TenantUpdateWithoutBazarSchedulesInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBazarSchedulesInput = {
@@ -7305,6 +7629,9 @@ export type TenantUncheckedUpdateWithoutBazarSchedulesInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutFinancialCategoriesInput = {
@@ -7367,6 +7694,9 @@ export type TenantCreateWithoutFinancialCategoriesInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutFinancialCategoriesInput = {
@@ -7429,6 +7759,9 @@ export type TenantUncheckedCreateWithoutFinancialCategoriesInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutFinancialCategoriesInput = {
@@ -7507,6 +7840,9 @@ export type TenantUpdateWithoutFinancialCategoriesInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutFinancialCategoriesInput = {
@@ -7569,6 +7905,9 @@ export type TenantUncheckedUpdateWithoutFinancialCategoriesInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMonthlyBillingPeriodsInput = {
@@ -7631,6 +7970,9 @@ export type TenantCreateWithoutMonthlyBillingPeriodsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMonthlyBillingPeriodsInput = {
@@ -7693,6 +8035,9 @@ export type TenantUncheckedCreateWithoutMonthlyBillingPeriodsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMonthlyBillingPeriodsInput = {
@@ -7771,6 +8116,9 @@ export type TenantUpdateWithoutMonthlyBillingPeriodsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMonthlyBillingPeriodsInput = {
@@ -7833,6 +8181,9 @@ export type TenantUncheckedUpdateWithoutMonthlyBillingPeriodsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMemberBillsInput = {
@@ -7895,6 +8246,9 @@ export type TenantCreateWithoutMemberBillsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMemberBillsInput = {
@@ -7957,6 +8311,9 @@ export type TenantUncheckedCreateWithoutMemberBillsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMemberBillsInput = {
@@ -8035,6 +8392,9 @@ export type TenantUpdateWithoutMemberBillsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMemberBillsInput = {
@@ -8097,6 +8457,9 @@ export type TenantUncheckedUpdateWithoutMemberBillsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMemberPaymentsInput = {
@@ -8159,6 +8522,9 @@ export type TenantCreateWithoutMemberPaymentsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMemberPaymentsInput = {
@@ -8221,6 +8587,9 @@ export type TenantUncheckedCreateWithoutMemberPaymentsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMemberPaymentsInput = {
@@ -8299,6 +8668,9 @@ export type TenantUpdateWithoutMemberPaymentsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMemberPaymentsInput = {
@@ -8361,6 +8733,9 @@ export type TenantUncheckedUpdateWithoutMemberPaymentsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBalanceAdjustmentsInput = {
@@ -8423,6 +8798,9 @@ export type TenantCreateWithoutBalanceAdjustmentsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBalanceAdjustmentsInput = {
@@ -8485,6 +8863,9 @@ export type TenantUncheckedCreateWithoutBalanceAdjustmentsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBalanceAdjustmentsInput = {
@@ -8563,6 +8944,9 @@ export type TenantUpdateWithoutBalanceAdjustmentsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBalanceAdjustmentsInput = {
@@ -8625,6 +9009,9 @@ export type TenantUncheckedUpdateWithoutBalanceAdjustmentsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMessSettingInput = {
@@ -8687,6 +9074,9 @@ export type TenantCreateWithoutMessSettingInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMessSettingInput = {
@@ -8749,6 +9139,9 @@ export type TenantUncheckedCreateWithoutMessSettingInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMessSettingInput = {
@@ -8827,6 +9220,9 @@ export type TenantUpdateWithoutMessSettingInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMessSettingInput = {
@@ -8889,6 +9285,9 @@ export type TenantUncheckedUpdateWithoutMessSettingInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutNoticesInput = {
@@ -8951,6 +9350,9 @@ export type TenantCreateWithoutNoticesInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutNoticesInput = {
@@ -9013,6 +9415,9 @@ export type TenantUncheckedCreateWithoutNoticesInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutNoticesInput = {
@@ -9091,6 +9496,9 @@ export type TenantUpdateWithoutNoticesInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutNoticesInput = {
@@ -9153,6 +9561,9 @@ export type TenantUncheckedUpdateWithoutNoticesInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMemberRequestsInput = {
@@ -9215,6 +9626,9 @@ export type TenantCreateWithoutMemberRequestsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMemberRequestsInput = {
@@ -9277,6 +9691,9 @@ export type TenantUncheckedCreateWithoutMemberRequestsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMemberRequestsInput = {
@@ -9355,6 +9772,9 @@ export type TenantUpdateWithoutMemberRequestsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMemberRequestsInput = {
@@ -9417,6 +9837,9 @@ export type TenantUncheckedUpdateWithoutMemberRequestsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMessEventsInput = {
@@ -9479,6 +9902,9 @@ export type TenantCreateWithoutMessEventsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMessEventsInput = {
@@ -9541,6 +9967,9 @@ export type TenantUncheckedCreateWithoutMessEventsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMessEventsInput = {
@@ -9619,6 +10048,9 @@ export type TenantUpdateWithoutMessEventsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMessEventsInput = {
@@ -9681,6 +10113,9 @@ export type TenantUncheckedUpdateWithoutMessEventsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutEventRsvpsInput = {
@@ -9743,6 +10178,9 @@ export type TenantCreateWithoutEventRsvpsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutEventRsvpsInput = {
@@ -9805,6 +10243,9 @@ export type TenantUncheckedCreateWithoutEventRsvpsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutEventRsvpsInput = {
@@ -9883,6 +10324,9 @@ export type TenantUpdateWithoutEventRsvpsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutEventRsvpsInput = {
@@ -9945,6 +10389,9 @@ export type TenantUncheckedUpdateWithoutEventRsvpsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutComplaintsInput = {
@@ -10007,6 +10454,9 @@ export type TenantCreateWithoutComplaintsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutComplaintsInput = {
@@ -10069,6 +10519,9 @@ export type TenantUncheckedCreateWithoutComplaintsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutComplaintsInput = {
@@ -10147,6 +10600,9 @@ export type TenantUpdateWithoutComplaintsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutComplaintsInput = {
@@ -10209,6 +10665,9 @@ export type TenantUncheckedUpdateWithoutComplaintsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutTenantNotificationsInput = {
@@ -10271,6 +10730,9 @@ export type TenantCreateWithoutTenantNotificationsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutTenantNotificationsInput = {
@@ -10333,6 +10795,9 @@ export type TenantUncheckedCreateWithoutTenantNotificationsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutTenantNotificationsInput = {
@@ -10411,6 +10876,9 @@ export type TenantUpdateWithoutTenantNotificationsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutTenantNotificationsInput = {
@@ -10473,6 +10941,9 @@ export type TenantUncheckedUpdateWithoutTenantNotificationsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutNotificationPreferencesInput = {
@@ -10535,6 +11006,9 @@ export type TenantCreateWithoutNotificationPreferencesInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutNotificationPreferencesInput = {
@@ -10597,6 +11071,9 @@ export type TenantUncheckedCreateWithoutNotificationPreferencesInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutNotificationPreferencesInput = {
@@ -10675,6 +11152,9 @@ export type TenantUpdateWithoutNotificationPreferencesInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutNotificationPreferencesInput = {
@@ -10737,6 +11217,9 @@ export type TenantUncheckedUpdateWithoutNotificationPreferencesInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutScheduledRemindersInput = {
@@ -10799,6 +11282,9 @@ export type TenantCreateWithoutScheduledRemindersInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutScheduledRemindersInput = {
@@ -10861,6 +11347,9 @@ export type TenantUncheckedCreateWithoutScheduledRemindersInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutScheduledRemindersInput = {
@@ -10939,6 +11428,9 @@ export type TenantUpdateWithoutScheduledRemindersInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutScheduledRemindersInput = {
@@ -11001,6 +11493,9 @@ export type TenantUncheckedUpdateWithoutScheduledRemindersInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutNotificationDeliveryLogsInput = {
@@ -11063,6 +11558,9 @@ export type TenantCreateWithoutNotificationDeliveryLogsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutNotificationDeliveryLogsInput = {
@@ -11125,6 +11623,9 @@ export type TenantUncheckedCreateWithoutNotificationDeliveryLogsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutNotificationDeliveryLogsInput = {
@@ -11203,6 +11704,9 @@ export type TenantUpdateWithoutNotificationDeliveryLogsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutNotificationDeliveryLogsInput = {
@@ -11265,6 +11769,9 @@ export type TenantUncheckedUpdateWithoutNotificationDeliveryLogsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInventoryItemsInput = {
@@ -11327,6 +11834,9 @@ export type TenantCreateWithoutInventoryItemsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInventoryItemsInput = {
@@ -11389,6 +11899,9 @@ export type TenantUncheckedCreateWithoutInventoryItemsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInventoryItemsInput = {
@@ -11467,6 +11980,9 @@ export type TenantUpdateWithoutInventoryItemsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInventoryItemsInput = {
@@ -11529,6 +12045,9 @@ export type TenantUncheckedUpdateWithoutInventoryItemsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutStockMovementsInput = {
@@ -11591,6 +12110,9 @@ export type TenantCreateWithoutStockMovementsInput = {
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutStockMovementsInput = {
@@ -11653,6 +12175,9 @@ export type TenantUncheckedCreateWithoutStockMovementsInput = {
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutStockMovementsInput = {
@@ -11731,6 +12256,9 @@ export type TenantUpdateWithoutStockMovementsInput = {
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutStockMovementsInput = {
@@ -11793,6 +12321,9 @@ export type TenantUncheckedUpdateWithoutStockMovementsInput = {
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutWorkOrdersInput = {
@@ -11855,6 +12386,9 @@ export type TenantCreateWithoutWorkOrdersInput = {
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutWorkOrdersInput = {
@@ -11917,6 +12451,9 @@ export type TenantUncheckedCreateWithoutWorkOrdersInput = {
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutWorkOrdersInput = {
@@ -11995,6 +12532,9 @@ export type TenantUpdateWithoutWorkOrdersInput = {
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutWorkOrdersInput = {
@@ -12057,6 +12597,9 @@ export type TenantUncheckedUpdateWithoutWorkOrdersInput = {
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutOperationalTasksInput = {
@@ -12119,6 +12662,9 @@ export type TenantCreateWithoutOperationalTasksInput = {
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutOperationalTasksInput = {
@@ -12181,6 +12727,9 @@ export type TenantUncheckedCreateWithoutOperationalTasksInput = {
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutOperationalTasksInput = {
@@ -12259,6 +12808,9 @@ export type TenantUpdateWithoutOperationalTasksInput = {
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutOperationalTasksInput = {
@@ -12321,6 +12873,9 @@ export type TenantUncheckedUpdateWithoutOperationalTasksInput = {
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutVisitorsInput = {
@@ -12383,6 +12938,9 @@ export type TenantCreateWithoutVisitorsInput = {
   stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
   workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutVisitorsInput = {
@@ -12445,6 +13003,9 @@ export type TenantUncheckedCreateWithoutVisitorsInput = {
   stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
   workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
   operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutVisitorsInput = {
@@ -12523,6 +13084,9 @@ export type TenantUpdateWithoutVisitorsInput = {
   stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
   workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutVisitorsInput = {
@@ -12585,6 +13149,837 @@ export type TenantUncheckedUpdateWithoutVisitorsInput = {
   stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
   workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
   operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutPollsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
+  inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
+  stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
+  visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutPollsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillUncheckedCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
+  inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
+  stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
+  visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutPollsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutPollsInput, Prisma.TenantUncheckedCreateWithoutPollsInput>
+}
+
+export type TenantUpsertWithoutPollsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutPollsInput, Prisma.TenantUncheckedUpdateWithoutPollsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutPollsInput, Prisma.TenantUncheckedCreateWithoutPollsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutPollsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutPollsInput, Prisma.TenantUncheckedUpdateWithoutPollsInput>
+}
+
+export type TenantUpdateWithoutPollsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
+  inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
+  stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
+  visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutPollsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUncheckedUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
+  inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
+  stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
+  visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutPollVotesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
+  inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
+  stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
+  visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutPollVotesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillUncheckedCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
+  inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
+  stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
+  visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutPollVotesInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutPollVotesInput, Prisma.TenantUncheckedCreateWithoutPollVotesInput>
+}
+
+export type TenantUpsertWithoutPollVotesInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutPollVotesInput, Prisma.TenantUncheckedUpdateWithoutPollVotesInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutPollVotesInput, Prisma.TenantUncheckedCreateWithoutPollVotesInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutPollVotesInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutPollVotesInput, Prisma.TenantUncheckedUpdateWithoutPollVotesInput>
+}
+
+export type TenantUpdateWithoutPollVotesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
+  inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
+  stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
+  visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutPollVotesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUncheckedUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
+  inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
+  stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
+  visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  memberSuggestions?: Prisma.MemberSuggestionUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutMemberSuggestionsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
+  inventoryItems?: Prisma.InventoryItemCreateNestedManyWithoutTenantInput
+  stockMovements?: Prisma.StockMovementCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskCreateNestedManyWithoutTenantInput
+  visitors?: Prisma.VisitorCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutMemberSuggestionsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillUncheckedCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
+  inventoryItems?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutTenantInput
+  stockMovements?: Prisma.StockMovementUncheckedCreateNestedManyWithoutTenantInput
+  workOrders?: Prisma.WorkOrderUncheckedCreateNestedManyWithoutTenantInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedCreateNestedManyWithoutTenantInput
+  visitors?: Prisma.VisitorUncheckedCreateNestedManyWithoutTenantInput
+  polls?: Prisma.PollUncheckedCreateNestedManyWithoutTenantInput
+  pollVotes?: Prisma.PollVoteUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutMemberSuggestionsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutMemberSuggestionsInput, Prisma.TenantUncheckedCreateWithoutMemberSuggestionsInput>
+}
+
+export type TenantUpsertWithoutMemberSuggestionsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutMemberSuggestionsInput, Prisma.TenantUncheckedUpdateWithoutMemberSuggestionsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutMemberSuggestionsInput, Prisma.TenantUncheckedCreateWithoutMemberSuggestionsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutMemberSuggestionsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutMemberSuggestionsInput, Prisma.TenantUncheckedUpdateWithoutMemberSuggestionsInput>
+}
+
+export type TenantUpdateWithoutMemberSuggestionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
+  inventoryItems?: Prisma.InventoryItemUpdateManyWithoutTenantNestedInput
+  stockMovements?: Prisma.StockMovementUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUpdateManyWithoutTenantNestedInput
+  visitors?: Prisma.VisitorUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutMemberSuggestionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUncheckedUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
+  inventoryItems?: Prisma.InventoryItemUncheckedUpdateManyWithoutTenantNestedInput
+  stockMovements?: Prisma.StockMovementUncheckedUpdateManyWithoutTenantNestedInput
+  workOrders?: Prisma.WorkOrderUncheckedUpdateManyWithoutTenantNestedInput
+  operationalTasks?: Prisma.OperationalTaskUncheckedUpdateManyWithoutTenantNestedInput
+  visitors?: Prisma.VisitorUncheckedUpdateManyWithoutTenantNestedInput
+  polls?: Prisma.PollUncheckedUpdateManyWithoutTenantNestedInput
+  pollVotes?: Prisma.PollVoteUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 
@@ -12631,6 +14026,9 @@ export type TenantCountOutputType = {
   workOrders: number
   operationalTasks: number
   visitors: number
+  polls: number
+  pollVotes: number
+  memberSuggestions: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -12672,6 +14070,9 @@ export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   workOrders?: boolean | TenantCountOutputTypeCountWorkOrdersArgs
   operationalTasks?: boolean | TenantCountOutputTypeCountOperationalTasksArgs
   visitors?: boolean | TenantCountOutputTypeCountVisitorsArgs
+  polls?: boolean | TenantCountOutputTypeCountPollsArgs
+  pollVotes?: boolean | TenantCountOutputTypeCountPollVotesArgs
+  memberSuggestions?: boolean | TenantCountOutputTypeCountMemberSuggestionsArgs
 }
 
 /**
@@ -12950,6 +14351,27 @@ export type TenantCountOutputTypeCountVisitorsArgs<ExtArgs extends runtime.Types
   where?: Prisma.VisitorWhereInput
 }
 
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountPollsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PollWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountPollVotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PollVoteWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountMemberSuggestionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MemberSuggestionWhereInput
+}
+
 
 export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -13012,6 +14434,9 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   workOrders?: boolean | Prisma.Tenant$workOrdersArgs<ExtArgs>
   operationalTasks?: boolean | Prisma.Tenant$operationalTasksArgs<ExtArgs>
   visitors?: boolean | Prisma.Tenant$visitorsArgs<ExtArgs>
+  polls?: boolean | Prisma.Tenant$pollsArgs<ExtArgs>
+  pollVotes?: boolean | Prisma.Tenant$pollVotesArgs<ExtArgs>
+  memberSuggestions?: boolean | Prisma.Tenant$memberSuggestionsArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -13122,6 +14547,9 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   workOrders?: boolean | Prisma.Tenant$workOrdersArgs<ExtArgs>
   operationalTasks?: boolean | Prisma.Tenant$operationalTasksArgs<ExtArgs>
   visitors?: boolean | Prisma.Tenant$visitorsArgs<ExtArgs>
+  polls?: boolean | Prisma.Tenant$pollsArgs<ExtArgs>
+  pollVotes?: boolean | Prisma.Tenant$pollVotesArgs<ExtArgs>
+  memberSuggestions?: boolean | Prisma.Tenant$memberSuggestionsArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -13172,6 +14600,9 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     workOrders: Prisma.$WorkOrderPayload<ExtArgs>[]
     operationalTasks: Prisma.$OperationalTaskPayload<ExtArgs>[]
     visitors: Prisma.$VisitorPayload<ExtArgs>[]
+    polls: Prisma.$PollPayload<ExtArgs>[]
+    pollVotes: Prisma.$PollVotePayload<ExtArgs>[]
+    memberSuggestions: Prisma.$MemberSuggestionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -13628,6 +15059,9 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   workOrders<T extends Prisma.Tenant$workOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$workOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   operationalTasks<T extends Prisma.Tenant$operationalTasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$operationalTasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OperationalTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   visitors<T extends Prisma.Tenant$visitorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$visitorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VisitorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  polls<T extends Prisma.Tenant$pollsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$pollsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PollPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  pollVotes<T extends Prisma.Tenant$pollVotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$pollVotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PollVotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  memberSuggestions<T extends Prisma.Tenant$memberSuggestionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$memberSuggestionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberSuggestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15053,6 +16487,78 @@ export type Tenant$visitorsArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.VisitorScalarFieldEnum | Prisma.VisitorScalarFieldEnum[]
+}
+
+/**
+ * Tenant.polls
+ */
+export type Tenant$pollsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Poll
+   */
+  select?: Prisma.PollSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Poll
+   */
+  omit?: Prisma.PollOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PollInclude<ExtArgs> | null
+  where?: Prisma.PollWhereInput
+  orderBy?: Prisma.PollOrderByWithRelationInput | Prisma.PollOrderByWithRelationInput[]
+  cursor?: Prisma.PollWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PollScalarFieldEnum | Prisma.PollScalarFieldEnum[]
+}
+
+/**
+ * Tenant.pollVotes
+ */
+export type Tenant$pollVotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PollVote
+   */
+  select?: Prisma.PollVoteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PollVote
+   */
+  omit?: Prisma.PollVoteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PollVoteInclude<ExtArgs> | null
+  where?: Prisma.PollVoteWhereInput
+  orderBy?: Prisma.PollVoteOrderByWithRelationInput | Prisma.PollVoteOrderByWithRelationInput[]
+  cursor?: Prisma.PollVoteWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PollVoteScalarFieldEnum | Prisma.PollVoteScalarFieldEnum[]
+}
+
+/**
+ * Tenant.memberSuggestions
+ */
+export type Tenant$memberSuggestionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MemberSuggestion
+   */
+  select?: Prisma.MemberSuggestionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MemberSuggestion
+   */
+  omit?: Prisma.MemberSuggestionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberSuggestionInclude<ExtArgs> | null
+  where?: Prisma.MemberSuggestionWhereInput
+  orderBy?: Prisma.MemberSuggestionOrderByWithRelationInput | Prisma.MemberSuggestionOrderByWithRelationInput[]
+  cursor?: Prisma.MemberSuggestionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MemberSuggestionScalarFieldEnum | Prisma.MemberSuggestionScalarFieldEnum[]
 }
 
 /**
