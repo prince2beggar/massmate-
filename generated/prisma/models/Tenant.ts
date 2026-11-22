@@ -319,6 +319,10 @@ export type TenantWhereInput = {
   messEvents?: Prisma.MessEventListRelationFilter
   eventRsvps?: Prisma.EventRsvpListRelationFilter
   complaints?: Prisma.ComplaintListRelationFilter
+  tenantNotifications?: Prisma.TenantNotificationListRelationFilter
+  notificationPreferences?: Prisma.NotificationPreferenceListRelationFilter
+  scheduledReminders?: Prisma.ScheduledReminderListRelationFilter
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogListRelationFilter
 }
 
 export type TenantOrderByWithRelationInput = {
@@ -373,6 +377,10 @@ export type TenantOrderByWithRelationInput = {
   messEvents?: Prisma.MessEventOrderByRelationAggregateInput
   eventRsvps?: Prisma.EventRsvpOrderByRelationAggregateInput
   complaints?: Prisma.ComplaintOrderByRelationAggregateInput
+  tenantNotifications?: Prisma.TenantNotificationOrderByRelationAggregateInput
+  notificationPreferences?: Prisma.NotificationPreferenceOrderByRelationAggregateInput
+  scheduledReminders?: Prisma.ScheduledReminderOrderByRelationAggregateInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogOrderByRelationAggregateInput
 }
 
 export type TenantWhereUniqueInput = Prisma.AtLeast<{
@@ -430,6 +438,10 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   messEvents?: Prisma.MessEventListRelationFilter
   eventRsvps?: Prisma.EventRsvpListRelationFilter
   complaints?: Prisma.ComplaintListRelationFilter
+  tenantNotifications?: Prisma.TenantNotificationListRelationFilter
+  notificationPreferences?: Prisma.NotificationPreferenceListRelationFilter
+  scheduledReminders?: Prisma.ScheduledReminderListRelationFilter
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogListRelationFilter
 }, "id" | "slug">
 
 export type TenantOrderByWithAggregationInput = {
@@ -532,6 +544,10 @@ export type TenantCreateInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateInput = {
@@ -586,6 +602,10 @@ export type TenantUncheckedCreateInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUpdateInput = {
@@ -640,6 +660,10 @@ export type TenantUpdateInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateInput = {
@@ -694,6 +718,10 @@ export type TenantUncheckedUpdateInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateManyInput = {
@@ -1310,6 +1338,62 @@ export type TenantUpdateOneRequiredWithoutComplaintsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutComplaintsInput, Prisma.TenantUpdateWithoutComplaintsInput>, Prisma.TenantUncheckedUpdateWithoutComplaintsInput>
 }
 
+export type TenantCreateNestedOneWithoutTenantNotificationsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutTenantNotificationsInput, Prisma.TenantUncheckedCreateWithoutTenantNotificationsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutTenantNotificationsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutTenantNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutTenantNotificationsInput, Prisma.TenantUncheckedCreateWithoutTenantNotificationsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutTenantNotificationsInput
+  upsert?: Prisma.TenantUpsertWithoutTenantNotificationsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutTenantNotificationsInput, Prisma.TenantUpdateWithoutTenantNotificationsInput>, Prisma.TenantUncheckedUpdateWithoutTenantNotificationsInput>
+}
+
+export type TenantCreateNestedOneWithoutNotificationPreferencesInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutNotificationPreferencesInput, Prisma.TenantUncheckedCreateWithoutNotificationPreferencesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutNotificationPreferencesInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutNotificationPreferencesNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutNotificationPreferencesInput, Prisma.TenantUncheckedCreateWithoutNotificationPreferencesInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutNotificationPreferencesInput
+  upsert?: Prisma.TenantUpsertWithoutNotificationPreferencesInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutNotificationPreferencesInput, Prisma.TenantUpdateWithoutNotificationPreferencesInput>, Prisma.TenantUncheckedUpdateWithoutNotificationPreferencesInput>
+}
+
+export type TenantCreateNestedOneWithoutScheduledRemindersInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutScheduledRemindersInput, Prisma.TenantUncheckedCreateWithoutScheduledRemindersInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutScheduledRemindersInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutScheduledRemindersNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutScheduledRemindersInput, Prisma.TenantUncheckedCreateWithoutScheduledRemindersInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutScheduledRemindersInput
+  upsert?: Prisma.TenantUpsertWithoutScheduledRemindersInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutScheduledRemindersInput, Prisma.TenantUpdateWithoutScheduledRemindersInput>, Prisma.TenantUncheckedUpdateWithoutScheduledRemindersInput>
+}
+
+export type TenantCreateNestedOneWithoutNotificationDeliveryLogsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutNotificationDeliveryLogsInput, Prisma.TenantUncheckedCreateWithoutNotificationDeliveryLogsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutNotificationDeliveryLogsInput
+  connect?: Prisma.TenantWhereUniqueInput
+}
+
+export type TenantUpdateOneRequiredWithoutNotificationDeliveryLogsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutNotificationDeliveryLogsInput, Prisma.TenantUncheckedCreateWithoutNotificationDeliveryLogsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutNotificationDeliveryLogsInput
+  upsert?: Prisma.TenantUpsertWithoutNotificationDeliveryLogsInput
+  connect?: Prisma.TenantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutNotificationDeliveryLogsInput, Prisma.TenantUpdateWithoutNotificationDeliveryLogsInput>, Prisma.TenantUncheckedUpdateWithoutNotificationDeliveryLogsInput>
+}
+
 export type TenantCreateWithoutVerificationInput = {
   id?: string
   name: string
@@ -1361,6 +1445,10 @@ export type TenantCreateWithoutVerificationInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutVerificationInput = {
@@ -1414,6 +1502,10 @@ export type TenantUncheckedCreateWithoutVerificationInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutVerificationInput = {
@@ -1483,6 +1575,10 @@ export type TenantUpdateWithoutVerificationInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutVerificationInput = {
@@ -1536,6 +1632,10 @@ export type TenantUncheckedUpdateWithoutVerificationInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRolesInput = {
@@ -1589,6 +1689,10 @@ export type TenantCreateWithoutRolesInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRolesInput = {
@@ -1642,6 +1746,10 @@ export type TenantUncheckedCreateWithoutRolesInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRolesInput = {
@@ -1711,6 +1819,10 @@ export type TenantUpdateWithoutRolesInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRolesInput = {
@@ -1764,6 +1876,10 @@ export type TenantUncheckedUpdateWithoutRolesInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMembershipsInput = {
@@ -1817,6 +1933,10 @@ export type TenantCreateWithoutMembershipsInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMembershipsInput = {
@@ -1870,6 +1990,10 @@ export type TenantUncheckedCreateWithoutMembershipsInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMembershipsInput = {
@@ -1939,6 +2063,10 @@ export type TenantUpdateWithoutMembershipsInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMembershipsInput = {
@@ -1992,6 +2120,10 @@ export type TenantUncheckedUpdateWithoutMembershipsInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutAuditLogsInput = {
@@ -2045,6 +2177,10 @@ export type TenantCreateWithoutAuditLogsInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutAuditLogsInput = {
@@ -2098,6 +2234,10 @@ export type TenantUncheckedCreateWithoutAuditLogsInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutAuditLogsInput = {
@@ -2167,6 +2307,10 @@ export type TenantUpdateWithoutAuditLogsInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutAuditLogsInput = {
@@ -2220,6 +2364,10 @@ export type TenantUncheckedUpdateWithoutAuditLogsInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSubscriptionInput = {
@@ -2273,6 +2421,10 @@ export type TenantCreateWithoutSubscriptionInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSubscriptionInput = {
@@ -2326,6 +2478,10 @@ export type TenantUncheckedCreateWithoutSubscriptionInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSubscriptionInput = {
@@ -2395,6 +2551,10 @@ export type TenantUpdateWithoutSubscriptionInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSubscriptionInput = {
@@ -2448,6 +2608,10 @@ export type TenantUncheckedUpdateWithoutSubscriptionInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutInvoicesInput = {
@@ -2501,6 +2665,10 @@ export type TenantCreateWithoutInvoicesInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutInvoicesInput = {
@@ -2554,6 +2722,10 @@ export type TenantUncheckedCreateWithoutInvoicesInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutInvoicesInput = {
@@ -2623,6 +2795,10 @@ export type TenantUpdateWithoutInvoicesInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutInvoicesInput = {
@@ -2676,6 +2852,10 @@ export type TenantUncheckedUpdateWithoutInvoicesInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutDomainsInput = {
@@ -2729,6 +2909,10 @@ export type TenantCreateWithoutDomainsInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutDomainsInput = {
@@ -2782,6 +2966,10 @@ export type TenantUncheckedCreateWithoutDomainsInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutDomainsInput = {
@@ -2851,6 +3039,10 @@ export type TenantUpdateWithoutDomainsInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutDomainsInput = {
@@ -2904,6 +3096,10 @@ export type TenantUncheckedUpdateWithoutDomainsInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutSupportTicketsInput = {
@@ -2957,6 +3153,10 @@ export type TenantCreateWithoutSupportTicketsInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutSupportTicketsInput = {
@@ -3010,6 +3210,10 @@ export type TenantUncheckedCreateWithoutSupportTicketsInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutSupportTicketsInput = {
@@ -3079,6 +3283,10 @@ export type TenantUpdateWithoutSupportTicketsInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutSupportTicketsInput = {
@@ -3132,6 +3340,10 @@ export type TenantUncheckedUpdateWithoutSupportTicketsInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRoomsInput = {
@@ -3185,6 +3397,10 @@ export type TenantCreateWithoutRoomsInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRoomsInput = {
@@ -3238,6 +3454,10 @@ export type TenantUncheckedCreateWithoutRoomsInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRoomsInput = {
@@ -3307,6 +3527,10 @@ export type TenantUpdateWithoutRoomsInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRoomsInput = {
@@ -3360,6 +3584,10 @@ export type TenantUncheckedUpdateWithoutRoomsInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBedsInput = {
@@ -3413,6 +3641,10 @@ export type TenantCreateWithoutBedsInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBedsInput = {
@@ -3466,6 +3698,10 @@ export type TenantUncheckedCreateWithoutBedsInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBedsInput = {
@@ -3535,6 +3771,10 @@ export type TenantUpdateWithoutBedsInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBedsInput = {
@@ -3588,6 +3828,10 @@ export type TenantUncheckedUpdateWithoutBedsInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRoomAssignmentsInput = {
@@ -3641,6 +3885,10 @@ export type TenantCreateWithoutRoomAssignmentsInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRoomAssignmentsInput = {
@@ -3694,6 +3942,10 @@ export type TenantUncheckedCreateWithoutRoomAssignmentsInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRoomAssignmentsInput = {
@@ -3763,6 +4015,10 @@ export type TenantUpdateWithoutRoomAssignmentsInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRoomAssignmentsInput = {
@@ -3816,6 +4072,10 @@ export type TenantUncheckedUpdateWithoutRoomAssignmentsInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutRentalListingsInput = {
@@ -3869,6 +4129,10 @@ export type TenantCreateWithoutRentalListingsInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutRentalListingsInput = {
@@ -3922,6 +4186,10 @@ export type TenantUncheckedCreateWithoutRentalListingsInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutRentalListingsInput = {
@@ -3991,6 +4259,10 @@ export type TenantUpdateWithoutRentalListingsInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutRentalListingsInput = {
@@ -4044,6 +4316,10 @@ export type TenantUncheckedUpdateWithoutRentalListingsInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBookingRequestsInput = {
@@ -4097,6 +4373,10 @@ export type TenantCreateWithoutBookingRequestsInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBookingRequestsInput = {
@@ -4150,6 +4430,10 @@ export type TenantUncheckedCreateWithoutBookingRequestsInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBookingRequestsInput = {
@@ -4219,6 +4503,10 @@ export type TenantUpdateWithoutBookingRequestsInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBookingRequestsInput = {
@@ -4272,6 +4560,10 @@ export type TenantUncheckedUpdateWithoutBookingRequestsInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMealSettingInput = {
@@ -4325,6 +4617,10 @@ export type TenantCreateWithoutMealSettingInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMealSettingInput = {
@@ -4378,6 +4674,10 @@ export type TenantUncheckedCreateWithoutMealSettingInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMealSettingInput = {
@@ -4447,6 +4747,10 @@ export type TenantUpdateWithoutMealSettingInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMealSettingInput = {
@@ -4500,6 +4804,10 @@ export type TenantUncheckedUpdateWithoutMealSettingInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMealDailyLogsInput = {
@@ -4553,6 +4861,10 @@ export type TenantCreateWithoutMealDailyLogsInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMealDailyLogsInput = {
@@ -4606,6 +4918,10 @@ export type TenantUncheckedCreateWithoutMealDailyLogsInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMealDailyLogsInput = {
@@ -4675,6 +4991,10 @@ export type TenantUpdateWithoutMealDailyLogsInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMealDailyLogsInput = {
@@ -4728,6 +5048,10 @@ export type TenantUncheckedUpdateWithoutMealDailyLogsInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMemberMealEntriesInput = {
@@ -4781,6 +5105,10 @@ export type TenantCreateWithoutMemberMealEntriesInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMemberMealEntriesInput = {
@@ -4834,6 +5162,10 @@ export type TenantUncheckedCreateWithoutMemberMealEntriesInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMemberMealEntriesInput = {
@@ -4903,6 +5235,10 @@ export type TenantUpdateWithoutMemberMealEntriesInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMemberMealEntriesInput = {
@@ -4956,6 +5292,10 @@ export type TenantUncheckedUpdateWithoutMemberMealEntriesInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMealOffRequestsInput = {
@@ -5009,6 +5349,10 @@ export type TenantCreateWithoutMealOffRequestsInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMealOffRequestsInput = {
@@ -5062,6 +5406,10 @@ export type TenantUncheckedCreateWithoutMealOffRequestsInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMealOffRequestsInput = {
@@ -5131,6 +5479,10 @@ export type TenantUpdateWithoutMealOffRequestsInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMealOffRequestsInput = {
@@ -5184,6 +5536,10 @@ export type TenantUncheckedUpdateWithoutMealOffRequestsInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutGuestMealsInput = {
@@ -5237,6 +5593,10 @@ export type TenantCreateWithoutGuestMealsInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutGuestMealsInput = {
@@ -5290,6 +5650,10 @@ export type TenantUncheckedCreateWithoutGuestMealsInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutGuestMealsInput = {
@@ -5359,6 +5723,10 @@ export type TenantUpdateWithoutGuestMealsInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutGuestMealsInput = {
@@ -5412,6 +5780,10 @@ export type TenantUncheckedUpdateWithoutGuestMealsInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMealPeriodLocksInput = {
@@ -5465,6 +5837,10 @@ export type TenantCreateWithoutMealPeriodLocksInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMealPeriodLocksInput = {
@@ -5518,6 +5894,10 @@ export type TenantUncheckedCreateWithoutMealPeriodLocksInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMealPeriodLocksInput = {
@@ -5587,6 +5967,10 @@ export type TenantUpdateWithoutMealPeriodLocksInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMealPeriodLocksInput = {
@@ -5640,6 +6024,10 @@ export type TenantUncheckedUpdateWithoutMealPeriodLocksInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutExpenseCategoriesInput = {
@@ -5693,6 +6081,10 @@ export type TenantCreateWithoutExpenseCategoriesInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutExpenseCategoriesInput = {
@@ -5746,6 +6138,10 @@ export type TenantUncheckedCreateWithoutExpenseCategoriesInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutExpenseCategoriesInput = {
@@ -5815,6 +6211,10 @@ export type TenantUpdateWithoutExpenseCategoriesInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutExpenseCategoriesInput = {
@@ -5868,6 +6268,10 @@ export type TenantUncheckedUpdateWithoutExpenseCategoriesInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutExpensesInput = {
@@ -5921,6 +6325,10 @@ export type TenantCreateWithoutExpensesInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutExpensesInput = {
@@ -5974,6 +6382,10 @@ export type TenantUncheckedCreateWithoutExpensesInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutExpensesInput = {
@@ -6043,6 +6455,10 @@ export type TenantUpdateWithoutExpensesInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutExpensesInput = {
@@ -6096,6 +6512,10 @@ export type TenantUncheckedUpdateWithoutExpensesInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBazarSchedulesInput = {
@@ -6149,6 +6569,10 @@ export type TenantCreateWithoutBazarSchedulesInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBazarSchedulesInput = {
@@ -6202,6 +6626,10 @@ export type TenantUncheckedCreateWithoutBazarSchedulesInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBazarSchedulesInput = {
@@ -6271,6 +6699,10 @@ export type TenantUpdateWithoutBazarSchedulesInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBazarSchedulesInput = {
@@ -6324,6 +6756,10 @@ export type TenantUncheckedUpdateWithoutBazarSchedulesInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutFinancialCategoriesInput = {
@@ -6377,6 +6813,10 @@ export type TenantCreateWithoutFinancialCategoriesInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutFinancialCategoriesInput = {
@@ -6430,6 +6870,10 @@ export type TenantUncheckedCreateWithoutFinancialCategoriesInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutFinancialCategoriesInput = {
@@ -6499,6 +6943,10 @@ export type TenantUpdateWithoutFinancialCategoriesInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutFinancialCategoriesInput = {
@@ -6552,6 +7000,10 @@ export type TenantUncheckedUpdateWithoutFinancialCategoriesInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMonthlyBillingPeriodsInput = {
@@ -6605,6 +7057,10 @@ export type TenantCreateWithoutMonthlyBillingPeriodsInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMonthlyBillingPeriodsInput = {
@@ -6658,6 +7114,10 @@ export type TenantUncheckedCreateWithoutMonthlyBillingPeriodsInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMonthlyBillingPeriodsInput = {
@@ -6727,6 +7187,10 @@ export type TenantUpdateWithoutMonthlyBillingPeriodsInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMonthlyBillingPeriodsInput = {
@@ -6780,6 +7244,10 @@ export type TenantUncheckedUpdateWithoutMonthlyBillingPeriodsInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMemberBillsInput = {
@@ -6833,6 +7301,10 @@ export type TenantCreateWithoutMemberBillsInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMemberBillsInput = {
@@ -6886,6 +7358,10 @@ export type TenantUncheckedCreateWithoutMemberBillsInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMemberBillsInput = {
@@ -6955,6 +7431,10 @@ export type TenantUpdateWithoutMemberBillsInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMemberBillsInput = {
@@ -7008,6 +7488,10 @@ export type TenantUncheckedUpdateWithoutMemberBillsInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMemberPaymentsInput = {
@@ -7061,6 +7545,10 @@ export type TenantCreateWithoutMemberPaymentsInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMemberPaymentsInput = {
@@ -7114,6 +7602,10 @@ export type TenantUncheckedCreateWithoutMemberPaymentsInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMemberPaymentsInput = {
@@ -7183,6 +7675,10 @@ export type TenantUpdateWithoutMemberPaymentsInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMemberPaymentsInput = {
@@ -7236,6 +7732,10 @@ export type TenantUncheckedUpdateWithoutMemberPaymentsInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutBalanceAdjustmentsInput = {
@@ -7289,6 +7789,10 @@ export type TenantCreateWithoutBalanceAdjustmentsInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutBalanceAdjustmentsInput = {
@@ -7342,6 +7846,10 @@ export type TenantUncheckedCreateWithoutBalanceAdjustmentsInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutBalanceAdjustmentsInput = {
@@ -7411,6 +7919,10 @@ export type TenantUpdateWithoutBalanceAdjustmentsInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutBalanceAdjustmentsInput = {
@@ -7464,6 +7976,10 @@ export type TenantUncheckedUpdateWithoutBalanceAdjustmentsInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMessSettingInput = {
@@ -7517,6 +8033,10 @@ export type TenantCreateWithoutMessSettingInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMessSettingInput = {
@@ -7570,6 +8090,10 @@ export type TenantUncheckedCreateWithoutMessSettingInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMessSettingInput = {
@@ -7639,6 +8163,10 @@ export type TenantUpdateWithoutMessSettingInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMessSettingInput = {
@@ -7692,6 +8220,10 @@ export type TenantUncheckedUpdateWithoutMessSettingInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutNoticesInput = {
@@ -7745,6 +8277,10 @@ export type TenantCreateWithoutNoticesInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutNoticesInput = {
@@ -7798,6 +8334,10 @@ export type TenantUncheckedCreateWithoutNoticesInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutNoticesInput = {
@@ -7867,6 +8407,10 @@ export type TenantUpdateWithoutNoticesInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutNoticesInput = {
@@ -7920,6 +8464,10 @@ export type TenantUncheckedUpdateWithoutNoticesInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMemberRequestsInput = {
@@ -7973,6 +8521,10 @@ export type TenantCreateWithoutMemberRequestsInput = {
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMemberRequestsInput = {
@@ -8026,6 +8578,10 @@ export type TenantUncheckedCreateWithoutMemberRequestsInput = {
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMemberRequestsInput = {
@@ -8095,6 +8651,10 @@ export type TenantUpdateWithoutMemberRequestsInput = {
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMemberRequestsInput = {
@@ -8148,6 +8708,10 @@ export type TenantUncheckedUpdateWithoutMemberRequestsInput = {
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutMessEventsInput = {
@@ -8201,6 +8765,10 @@ export type TenantCreateWithoutMessEventsInput = {
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutMessEventsInput = {
@@ -8254,6 +8822,10 @@ export type TenantUncheckedCreateWithoutMessEventsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutMessEventsInput = {
@@ -8323,6 +8895,10 @@ export type TenantUpdateWithoutMessEventsInput = {
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutMessEventsInput = {
@@ -8376,6 +8952,10 @@ export type TenantUncheckedUpdateWithoutMessEventsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutEventRsvpsInput = {
@@ -8429,6 +9009,10 @@ export type TenantCreateWithoutEventRsvpsInput = {
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutTenantInput
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutEventRsvpsInput = {
@@ -8482,6 +9066,10 @@ export type TenantUncheckedCreateWithoutEventRsvpsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutTenantInput
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutEventRsvpsInput = {
@@ -8551,6 +9139,10 @@ export type TenantUpdateWithoutEventRsvpsInput = {
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutTenantNestedInput
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutEventRsvpsInput = {
@@ -8604,6 +9196,10 @@ export type TenantUncheckedUpdateWithoutEventRsvpsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutTenantNestedInput
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantCreateWithoutComplaintsInput = {
@@ -8657,6 +9253,10 @@ export type TenantCreateWithoutComplaintsInput = {
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutTenantInput
   messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
 }
 
 export type TenantUncheckedCreateWithoutComplaintsInput = {
@@ -8710,6 +9310,10 @@ export type TenantUncheckedCreateWithoutComplaintsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutTenantInput
   messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
 }
 
 export type TenantCreateOrConnectWithoutComplaintsInput = {
@@ -8779,6 +9383,10 @@ export type TenantUpdateWithoutComplaintsInput = {
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutTenantNestedInput
   messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
 }
 
 export type TenantUncheckedUpdateWithoutComplaintsInput = {
@@ -8832,6 +9440,986 @@ export type TenantUncheckedUpdateWithoutComplaintsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutTenantNestedInput
   messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutTenantNotificationsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutTenantNotificationsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillUncheckedCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutTenantNotificationsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutTenantNotificationsInput, Prisma.TenantUncheckedCreateWithoutTenantNotificationsInput>
+}
+
+export type TenantUpsertWithoutTenantNotificationsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutTenantNotificationsInput, Prisma.TenantUncheckedUpdateWithoutTenantNotificationsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutTenantNotificationsInput, Prisma.TenantUncheckedCreateWithoutTenantNotificationsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutTenantNotificationsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutTenantNotificationsInput, Prisma.TenantUncheckedUpdateWithoutTenantNotificationsInput>
+}
+
+export type TenantUpdateWithoutTenantNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutTenantNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUncheckedUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutNotificationPreferencesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutNotificationPreferencesInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillUncheckedCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutNotificationPreferencesInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutNotificationPreferencesInput, Prisma.TenantUncheckedCreateWithoutNotificationPreferencesInput>
+}
+
+export type TenantUpsertWithoutNotificationPreferencesInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutNotificationPreferencesInput, Prisma.TenantUncheckedUpdateWithoutNotificationPreferencesInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutNotificationPreferencesInput, Prisma.TenantUncheckedCreateWithoutNotificationPreferencesInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutNotificationPreferencesInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutNotificationPreferencesInput, Prisma.TenantUncheckedUpdateWithoutNotificationPreferencesInput>
+}
+
+export type TenantUpdateWithoutNotificationPreferencesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutNotificationPreferencesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUncheckedUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutScheduledRemindersInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutScheduledRemindersInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillUncheckedCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutScheduledRemindersInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutScheduledRemindersInput, Prisma.TenantUncheckedCreateWithoutScheduledRemindersInput>
+}
+
+export type TenantUpsertWithoutScheduledRemindersInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutScheduledRemindersInput, Prisma.TenantUncheckedUpdateWithoutScheduledRemindersInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutScheduledRemindersInput, Prisma.TenantUncheckedCreateWithoutScheduledRemindersInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutScheduledRemindersInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutScheduledRemindersInput, Prisma.TenantUncheckedUpdateWithoutScheduledRemindersInput>
+}
+
+export type TenantUpdateWithoutScheduledRemindersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutScheduledRemindersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUncheckedUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  notificationDeliveryLogs?: Prisma.NotificationDeliveryLogUncheckedUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantCreateWithoutNotificationDeliveryLogsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutTenantInput
+}
+
+export type TenantUncheckedCreateWithoutNotificationDeliveryLogsInput = {
+  id?: string
+  name: string
+  slug: string
+  description?: string | null
+  logo?: string | null
+  coverImage?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  country?: string
+  timezone?: string
+  tenantType?: $Enums.TenantType
+  status?: $Enums.TenantStatus
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutTenantInput
+  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutTenantInput
+  verification?: Prisma.TenantVerificationUncheckedCreateNestedOneWithoutTenantInput
+  subscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutTenantInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutTenantInput
+  domains?: Prisma.DomainUncheckedCreateNestedManyWithoutTenantInput
+  supportTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutTenantInput
+  rooms?: Prisma.RoomUncheckedCreateNestedManyWithoutTenantInput
+  beds?: Prisma.BedUncheckedCreateNestedManyWithoutTenantInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutTenantInput
+  rentalListings?: Prisma.RentalListingUncheckedCreateNestedManyWithoutTenantInput
+  bookingRequests?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutTenantInput
+  mealSetting?: Prisma.MealSettingUncheckedCreateNestedOneWithoutTenantInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedCreateNestedManyWithoutTenantInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutTenantInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutTenantInput
+  guestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutTenantInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutTenantInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedCreateNestedManyWithoutTenantInput
+  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutTenantInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedCreateNestedManyWithoutTenantInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedCreateNestedManyWithoutTenantInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutTenantInput
+  memberBills?: Prisma.MemberBillUncheckedCreateNestedManyWithoutTenantInput
+  memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutTenantInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutTenantInput
+  messSetting?: Prisma.MessSettingUncheckedCreateNestedOneWithoutTenantInput
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutTenantInput
+  memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutTenantInput
+  messEvents?: Prisma.MessEventUncheckedCreateNestedManyWithoutTenantInput
+  eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutTenantInput
+  complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutTenantInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutTenantInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutTenantInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutTenantInput
+}
+
+export type TenantCreateOrConnectWithoutNotificationDeliveryLogsInput = {
+  where: Prisma.TenantWhereUniqueInput
+  create: Prisma.XOR<Prisma.TenantCreateWithoutNotificationDeliveryLogsInput, Prisma.TenantUncheckedCreateWithoutNotificationDeliveryLogsInput>
+}
+
+export type TenantUpsertWithoutNotificationDeliveryLogsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutNotificationDeliveryLogsInput, Prisma.TenantUncheckedUpdateWithoutNotificationDeliveryLogsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutNotificationDeliveryLogsInput, Prisma.TenantUncheckedCreateWithoutNotificationDeliveryLogsInput>
+  where?: Prisma.TenantWhereInput
+}
+
+export type TenantUpdateToOneWithWhereWithoutNotificationDeliveryLogsInput = {
+  where?: Prisma.TenantWhereInput
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutNotificationDeliveryLogsInput, Prisma.TenantUncheckedUpdateWithoutNotificationDeliveryLogsInput>
+}
+
+export type TenantUpdateWithoutNotificationDeliveryLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutTenantNestedInput
+}
+
+export type TenantUncheckedUpdateWithoutNotificationDeliveryLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  timezone?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantType?: Prisma.EnumTenantTypeFieldUpdateOperationsInput | $Enums.TenantType
+  status?: Prisma.EnumTenantStatusFieldUpdateOperationsInput | $Enums.TenantStatus
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutTenantNestedInput
+  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutTenantNestedInput
+  verification?: Prisma.TenantVerificationUncheckedUpdateOneWithoutTenantNestedInput
+  subscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutTenantNestedInput
+  invoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutTenantNestedInput
+  domains?: Prisma.DomainUncheckedUpdateManyWithoutTenantNestedInput
+  supportTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutTenantNestedInput
+  rooms?: Prisma.RoomUncheckedUpdateManyWithoutTenantNestedInput
+  beds?: Prisma.BedUncheckedUpdateManyWithoutTenantNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutTenantNestedInput
+  rentalListings?: Prisma.RentalListingUncheckedUpdateManyWithoutTenantNestedInput
+  bookingRequests?: Prisma.BookingRequestUncheckedUpdateManyWithoutTenantNestedInput
+  mealSetting?: Prisma.MealSettingUncheckedUpdateOneWithoutTenantNestedInput
+  mealDailyLogs?: Prisma.MealDailyLogUncheckedUpdateManyWithoutTenantNestedInput
+  memberMealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutTenantNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutTenantNestedInput
+  guestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutTenantNestedInput
+  mealPeriodLocks?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutTenantNestedInput
+  expenseCategories?: Prisma.ExpenseCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutTenantNestedInput
+  bazarSchedules?: Prisma.BazarScheduleUncheckedUpdateManyWithoutTenantNestedInput
+  financialCategories?: Prisma.FinancialCategoryUncheckedUpdateManyWithoutTenantNestedInput
+  monthlyBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutTenantNestedInput
+  memberBills?: Prisma.MemberBillUncheckedUpdateManyWithoutTenantNestedInput
+  memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutTenantNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutTenantNestedInput
+  messSetting?: Prisma.MessSettingUncheckedUpdateOneWithoutTenantNestedInput
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutTenantNestedInput
+  memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutTenantNestedInput
+  messEvents?: Prisma.MessEventUncheckedUpdateManyWithoutTenantNestedInput
+  eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutTenantNestedInput
+  complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutTenantNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutTenantNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutTenantNestedInput
+  scheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutTenantNestedInput
 }
 
 
@@ -8869,6 +10457,10 @@ export type TenantCountOutputType = {
   messEvents: number
   eventRsvps: number
   complaints: number
+  tenantNotifications: number
+  notificationPreferences: number
+  scheduledReminders: number
+  notificationDeliveryLogs: number
 }
 
 export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -8901,6 +10493,10 @@ export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   messEvents?: boolean | TenantCountOutputTypeCountMessEventsArgs
   eventRsvps?: boolean | TenantCountOutputTypeCountEventRsvpsArgs
   complaints?: boolean | TenantCountOutputTypeCountComplaintsArgs
+  tenantNotifications?: boolean | TenantCountOutputTypeCountTenantNotificationsArgs
+  notificationPreferences?: boolean | TenantCountOutputTypeCountNotificationPreferencesArgs
+  scheduledReminders?: boolean | TenantCountOutputTypeCountScheduledRemindersArgs
+  notificationDeliveryLogs?: boolean | TenantCountOutputTypeCountNotificationDeliveryLogsArgs
 }
 
 /**
@@ -9116,6 +10712,34 @@ export type TenantCountOutputTypeCountComplaintsArgs<ExtArgs extends runtime.Typ
   where?: Prisma.ComplaintWhereInput
 }
 
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountTenantNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TenantNotificationWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountNotificationPreferencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationPreferenceWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountScheduledRemindersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ScheduledReminderWhereInput
+}
+
+/**
+ * TenantCountOutputType without action
+ */
+export type TenantCountOutputTypeCountNotificationDeliveryLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationDeliveryLogWhereInput
+}
+
 
 export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -9169,6 +10793,10 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   messEvents?: boolean | Prisma.Tenant$messEventsArgs<ExtArgs>
   eventRsvps?: boolean | Prisma.Tenant$eventRsvpsArgs<ExtArgs>
   complaints?: boolean | Prisma.Tenant$complaintsArgs<ExtArgs>
+  tenantNotifications?: boolean | Prisma.Tenant$tenantNotificationsArgs<ExtArgs>
+  notificationPreferences?: boolean | Prisma.Tenant$notificationPreferencesArgs<ExtArgs>
+  scheduledReminders?: boolean | Prisma.Tenant$scheduledRemindersArgs<ExtArgs>
+  notificationDeliveryLogs?: boolean | Prisma.Tenant$notificationDeliveryLogsArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tenant"]>
 
@@ -9270,6 +10898,10 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   messEvents?: boolean | Prisma.Tenant$messEventsArgs<ExtArgs>
   eventRsvps?: boolean | Prisma.Tenant$eventRsvpsArgs<ExtArgs>
   complaints?: boolean | Prisma.Tenant$complaintsArgs<ExtArgs>
+  tenantNotifications?: boolean | Prisma.Tenant$tenantNotificationsArgs<ExtArgs>
+  notificationPreferences?: boolean | Prisma.Tenant$notificationPreferencesArgs<ExtArgs>
+  scheduledReminders?: boolean | Prisma.Tenant$scheduledRemindersArgs<ExtArgs>
+  notificationDeliveryLogs?: boolean | Prisma.Tenant$notificationDeliveryLogsArgs<ExtArgs>
   _count?: boolean | Prisma.TenantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TenantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -9311,6 +10943,10 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     messEvents: Prisma.$MessEventPayload<ExtArgs>[]
     eventRsvps: Prisma.$EventRsvpPayload<ExtArgs>[]
     complaints: Prisma.$ComplaintPayload<ExtArgs>[]
+    tenantNotifications: Prisma.$TenantNotificationPayload<ExtArgs>[]
+    notificationPreferences: Prisma.$NotificationPreferencePayload<ExtArgs>[]
+    scheduledReminders: Prisma.$ScheduledReminderPayload<ExtArgs>[]
+    notificationDeliveryLogs: Prisma.$NotificationDeliveryLogPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -9758,6 +11394,10 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   messEvents<T extends Prisma.Tenant$messEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$messEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   eventRsvps<T extends Prisma.Tenant$eventRsvpsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$eventRsvpsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventRsvpPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   complaints<T extends Prisma.Tenant$complaintsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$complaintsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComplaintPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tenantNotifications<T extends Prisma.Tenant$tenantNotificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$tenantNotificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TenantNotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notificationPreferences<T extends Prisma.Tenant$notificationPreferencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$notificationPreferencesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  scheduledReminders<T extends Prisma.Tenant$scheduledRemindersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$scheduledRemindersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ScheduledReminderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notificationDeliveryLogs<T extends Prisma.Tenant$notificationDeliveryLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$notificationDeliveryLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationDeliveryLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10967,6 +12607,102 @@ export type Tenant$complaintsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.ComplaintScalarFieldEnum | Prisma.ComplaintScalarFieldEnum[]
+}
+
+/**
+ * Tenant.tenantNotifications
+ */
+export type Tenant$tenantNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TenantNotification
+   */
+  select?: Prisma.TenantNotificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TenantNotification
+   */
+  omit?: Prisma.TenantNotificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TenantNotificationInclude<ExtArgs> | null
+  where?: Prisma.TenantNotificationWhereInput
+  orderBy?: Prisma.TenantNotificationOrderByWithRelationInput | Prisma.TenantNotificationOrderByWithRelationInput[]
+  cursor?: Prisma.TenantNotificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TenantNotificationScalarFieldEnum | Prisma.TenantNotificationScalarFieldEnum[]
+}
+
+/**
+ * Tenant.notificationPreferences
+ */
+export type Tenant$notificationPreferencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NotificationPreference
+   */
+  select?: Prisma.NotificationPreferenceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NotificationPreference
+   */
+  omit?: Prisma.NotificationPreferenceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationPreferenceInclude<ExtArgs> | null
+  where?: Prisma.NotificationPreferenceWhereInput
+  orderBy?: Prisma.NotificationPreferenceOrderByWithRelationInput | Prisma.NotificationPreferenceOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationPreferenceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationPreferenceScalarFieldEnum | Prisma.NotificationPreferenceScalarFieldEnum[]
+}
+
+/**
+ * Tenant.scheduledReminders
+ */
+export type Tenant$scheduledRemindersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ScheduledReminder
+   */
+  select?: Prisma.ScheduledReminderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ScheduledReminder
+   */
+  omit?: Prisma.ScheduledReminderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ScheduledReminderInclude<ExtArgs> | null
+  where?: Prisma.ScheduledReminderWhereInput
+  orderBy?: Prisma.ScheduledReminderOrderByWithRelationInput | Prisma.ScheduledReminderOrderByWithRelationInput[]
+  cursor?: Prisma.ScheduledReminderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ScheduledReminderScalarFieldEnum | Prisma.ScheduledReminderScalarFieldEnum[]
+}
+
+/**
+ * Tenant.notificationDeliveryLogs
+ */
+export type Tenant$notificationDeliveryLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NotificationDeliveryLog
+   */
+  select?: Prisma.NotificationDeliveryLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NotificationDeliveryLog
+   */
+  omit?: Prisma.NotificationDeliveryLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationDeliveryLogInclude<ExtArgs> | null
+  where?: Prisma.NotificationDeliveryLogWhereInput
+  orderBy?: Prisma.NotificationDeliveryLogOrderByWithRelationInput | Prisma.NotificationDeliveryLogOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationDeliveryLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationDeliveryLogScalarFieldEnum | Prisma.NotificationDeliveryLogScalarFieldEnum[]
 }
 
 /**

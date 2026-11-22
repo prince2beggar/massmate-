@@ -270,6 +270,7 @@ export type MembershipWhereInput = {
   memberRequests?: Prisma.MemberRequestListRelationFilter
   eventRsvps?: Prisma.EventRsvpListRelationFilter
   complaints?: Prisma.ComplaintListRelationFilter
+  notifications?: Prisma.TenantNotificationListRelationFilter
 }
 
 export type MembershipOrderByWithRelationInput = {
@@ -303,6 +304,7 @@ export type MembershipOrderByWithRelationInput = {
   memberRequests?: Prisma.MemberRequestOrderByRelationAggregateInput
   eventRsvps?: Prisma.EventRsvpOrderByRelationAggregateInput
   complaints?: Prisma.ComplaintOrderByRelationAggregateInput
+  notifications?: Prisma.TenantNotificationOrderByRelationAggregateInput
 }
 
 export type MembershipWhereUniqueInput = Prisma.AtLeast<{
@@ -340,6 +342,7 @@ export type MembershipWhereUniqueInput = Prisma.AtLeast<{
   memberRequests?: Prisma.MemberRequestListRelationFilter
   eventRsvps?: Prisma.EventRsvpListRelationFilter
   complaints?: Prisma.ComplaintListRelationFilter
+  notifications?: Prisma.TenantNotificationListRelationFilter
 }, "id" | "userId_tenantId">
 
 export type MembershipOrderByWithAggregationInput = {
@@ -410,6 +413,7 @@ export type MembershipCreateInput = {
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateInput = {
@@ -440,6 +444,7 @@ export type MembershipUncheckedCreateInput = {
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUpdateInput = {
@@ -470,6 +475,7 @@ export type MembershipUpdateInput = {
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateInput = {
@@ -500,6 +506,7 @@ export type MembershipUncheckedUpdateInput = {
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipCreateManyInput = {
@@ -940,6 +947,22 @@ export type MembershipUpdateOneRequiredWithoutComplaintsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MembershipUpdateToOneWithWhereWithoutComplaintsInput, Prisma.MembershipUpdateWithoutComplaintsInput>, Prisma.MembershipUncheckedUpdateWithoutComplaintsInput>
 }
 
+export type MembershipCreateNestedOneWithoutNotificationsInput = {
+  create?: Prisma.XOR<Prisma.MembershipCreateWithoutNotificationsInput, Prisma.MembershipUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.MembershipCreateOrConnectWithoutNotificationsInput
+  connect?: Prisma.MembershipWhereUniqueInput
+}
+
+export type MembershipUpdateOneWithoutNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.MembershipCreateWithoutNotificationsInput, Prisma.MembershipUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.MembershipCreateOrConnectWithoutNotificationsInput
+  upsert?: Prisma.MembershipUpsertWithoutNotificationsInput
+  disconnect?: Prisma.MembershipWhereInput | boolean
+  delete?: Prisma.MembershipWhereInput | boolean
+  connect?: Prisma.MembershipWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MembershipUpdateToOneWithWhereWithoutNotificationsInput, Prisma.MembershipUpdateWithoutNotificationsInput>, Prisma.MembershipUncheckedUpdateWithoutNotificationsInput>
+}
+
 export type MembershipCreateWithoutUserInput = {
   id?: string
   status?: $Enums.MembershipStatus
@@ -967,6 +990,7 @@ export type MembershipCreateWithoutUserInput = {
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutUserInput = {
@@ -996,6 +1020,7 @@ export type MembershipUncheckedCreateWithoutUserInput = {
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutUserInput = {
@@ -1071,6 +1096,7 @@ export type MembershipCreateWithoutTenantInput = {
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutTenantInput = {
@@ -1100,6 +1126,7 @@ export type MembershipUncheckedCreateWithoutTenantInput = {
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutTenantInput = {
@@ -1155,6 +1182,7 @@ export type MembershipCreateWithoutRoleInput = {
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutRoleInput = {
@@ -1183,6 +1211,7 @@ export type MembershipUncheckedCreateWithoutRoleInput = {
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutRoleInput = {
@@ -1238,6 +1267,7 @@ export type MembershipCreateWithoutRoomAssignmentsInput = {
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutRoomAssignmentsInput = {
@@ -1267,6 +1297,7 @@ export type MembershipUncheckedCreateWithoutRoomAssignmentsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutRoomAssignmentsInput = {
@@ -1312,6 +1343,7 @@ export type MembershipUpdateWithoutRoomAssignmentsInput = {
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutRoomAssignmentsInput = {
@@ -1341,6 +1373,7 @@ export type MembershipUncheckedUpdateWithoutRoomAssignmentsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipCreateWithoutMealEntriesInput = {
@@ -1370,6 +1403,7 @@ export type MembershipCreateWithoutMealEntriesInput = {
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutMealEntriesInput = {
@@ -1399,6 +1433,7 @@ export type MembershipUncheckedCreateWithoutMealEntriesInput = {
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutMealEntriesInput = {
@@ -1444,6 +1479,7 @@ export type MembershipUpdateWithoutMealEntriesInput = {
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutMealEntriesInput = {
@@ -1473,6 +1509,7 @@ export type MembershipUncheckedUpdateWithoutMealEntriesInput = {
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipCreateWithoutMealOffRequestsInput = {
@@ -1502,6 +1539,7 @@ export type MembershipCreateWithoutMealOffRequestsInput = {
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutMealOffRequestsInput = {
@@ -1531,6 +1569,7 @@ export type MembershipUncheckedCreateWithoutMealOffRequestsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutMealOffRequestsInput = {
@@ -1576,6 +1615,7 @@ export type MembershipUpdateWithoutMealOffRequestsInput = {
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutMealOffRequestsInput = {
@@ -1605,6 +1645,7 @@ export type MembershipUncheckedUpdateWithoutMealOffRequestsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipCreateWithoutHostedGuestMealsInput = {
@@ -1634,6 +1675,7 @@ export type MembershipCreateWithoutHostedGuestMealsInput = {
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutHostedGuestMealsInput = {
@@ -1663,6 +1705,7 @@ export type MembershipUncheckedCreateWithoutHostedGuestMealsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutHostedGuestMealsInput = {
@@ -1708,6 +1751,7 @@ export type MembershipUpdateWithoutHostedGuestMealsInput = {
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutHostedGuestMealsInput = {
@@ -1737,6 +1781,7 @@ export type MembershipUncheckedUpdateWithoutHostedGuestMealsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipCreateWithoutPurchasedExpensesInput = {
@@ -1766,6 +1811,7 @@ export type MembershipCreateWithoutPurchasedExpensesInput = {
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutPurchasedExpensesInput = {
@@ -1795,6 +1841,7 @@ export type MembershipUncheckedCreateWithoutPurchasedExpensesInput = {
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutPurchasedExpensesInput = {
@@ -1840,6 +1887,7 @@ export type MembershipUpdateWithoutPurchasedExpensesInput = {
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutPurchasedExpensesInput = {
@@ -1869,6 +1917,7 @@ export type MembershipUncheckedUpdateWithoutPurchasedExpensesInput = {
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipCreateWithoutAssignedBazarSchedulesInput = {
@@ -1898,6 +1947,7 @@ export type MembershipCreateWithoutAssignedBazarSchedulesInput = {
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutAssignedBazarSchedulesInput = {
@@ -1927,6 +1977,7 @@ export type MembershipUncheckedCreateWithoutAssignedBazarSchedulesInput = {
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutAssignedBazarSchedulesInput = {
@@ -1961,6 +2012,7 @@ export type MembershipCreateWithoutCompletedBazarSchedulesInput = {
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutCompletedBazarSchedulesInput = {
@@ -1990,6 +2042,7 @@ export type MembershipUncheckedCreateWithoutCompletedBazarSchedulesInput = {
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutCompletedBazarSchedulesInput = {
@@ -2035,6 +2088,7 @@ export type MembershipUpdateWithoutAssignedBazarSchedulesInput = {
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutAssignedBazarSchedulesInput = {
@@ -2064,6 +2118,7 @@ export type MembershipUncheckedUpdateWithoutAssignedBazarSchedulesInput = {
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUpsertWithoutCompletedBazarSchedulesInput = {
@@ -2104,6 +2159,7 @@ export type MembershipUpdateWithoutCompletedBazarSchedulesInput = {
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutCompletedBazarSchedulesInput = {
@@ -2133,6 +2189,7 @@ export type MembershipUncheckedUpdateWithoutCompletedBazarSchedulesInput = {
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipCreateWithoutMemberBillsInput = {
@@ -2162,6 +2219,7 @@ export type MembershipCreateWithoutMemberBillsInput = {
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutMemberBillsInput = {
@@ -2191,6 +2249,7 @@ export type MembershipUncheckedCreateWithoutMemberBillsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutMemberBillsInput = {
@@ -2236,6 +2295,7 @@ export type MembershipUpdateWithoutMemberBillsInput = {
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutMemberBillsInput = {
@@ -2265,6 +2325,7 @@ export type MembershipUncheckedUpdateWithoutMemberBillsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipCreateWithoutMemberPaymentsInput = {
@@ -2294,6 +2355,7 @@ export type MembershipCreateWithoutMemberPaymentsInput = {
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutMemberPaymentsInput = {
@@ -2323,6 +2385,7 @@ export type MembershipUncheckedCreateWithoutMemberPaymentsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutMemberPaymentsInput = {
@@ -2368,6 +2431,7 @@ export type MembershipUpdateWithoutMemberPaymentsInput = {
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutMemberPaymentsInput = {
@@ -2397,6 +2461,7 @@ export type MembershipUncheckedUpdateWithoutMemberPaymentsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipCreateWithoutBalanceAdjustmentsInput = {
@@ -2426,6 +2491,7 @@ export type MembershipCreateWithoutBalanceAdjustmentsInput = {
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutBalanceAdjustmentsInput = {
@@ -2455,6 +2521,7 @@ export type MembershipUncheckedCreateWithoutBalanceAdjustmentsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutBalanceAdjustmentsInput = {
@@ -2500,6 +2567,7 @@ export type MembershipUpdateWithoutBalanceAdjustmentsInput = {
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutBalanceAdjustmentsInput = {
@@ -2529,6 +2597,7 @@ export type MembershipUncheckedUpdateWithoutBalanceAdjustmentsInput = {
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipCreateWithoutMemberRequestsInput = {
@@ -2558,6 +2627,7 @@ export type MembershipCreateWithoutMemberRequestsInput = {
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutMemberRequestsInput = {
@@ -2587,6 +2657,7 @@ export type MembershipUncheckedCreateWithoutMemberRequestsInput = {
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutMemberRequestsInput = {
@@ -2632,6 +2703,7 @@ export type MembershipUpdateWithoutMemberRequestsInput = {
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutMemberRequestsInput = {
@@ -2661,6 +2733,7 @@ export type MembershipUncheckedUpdateWithoutMemberRequestsInput = {
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipCreateWithoutEventRsvpsInput = {
@@ -2690,6 +2763,7 @@ export type MembershipCreateWithoutEventRsvpsInput = {
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutMembershipInput
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutEventRsvpsInput = {
@@ -2719,6 +2793,7 @@ export type MembershipUncheckedCreateWithoutEventRsvpsInput = {
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutMembershipInput
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutMembershipInput
   complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutEventRsvpsInput = {
@@ -2764,6 +2839,7 @@ export type MembershipUpdateWithoutEventRsvpsInput = {
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutMembershipNestedInput
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutEventRsvpsInput = {
@@ -2793,6 +2869,7 @@ export type MembershipUncheckedUpdateWithoutEventRsvpsInput = {
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutMembershipNestedInput
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipCreateWithoutComplaintsInput = {
@@ -2822,6 +2899,7 @@ export type MembershipCreateWithoutComplaintsInput = {
   balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutMembershipInput
   memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipUncheckedCreateWithoutComplaintsInput = {
@@ -2851,6 +2929,7 @@ export type MembershipUncheckedCreateWithoutComplaintsInput = {
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutMembershipInput
   memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutMembershipInput
   eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutMembershipInput
+  notifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutMembershipInput
 }
 
 export type MembershipCreateOrConnectWithoutComplaintsInput = {
@@ -2896,6 +2975,7 @@ export type MembershipUpdateWithoutComplaintsInput = {
   balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutMembershipNestedInput
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutComplaintsInput = {
@@ -2925,6 +3005,143 @@ export type MembershipUncheckedUpdateWithoutComplaintsInput = {
   balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutMembershipNestedInput
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutMembershipNestedInput
+}
+
+export type MembershipCreateWithoutNotificationsInput = {
+  id?: string
+  status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
+  joinedAt?: Date | string | null
+  invitedAt?: Date | string | null
+  leftAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutMembershipsInput
+  tenant: Prisma.TenantCreateNestedOneWithoutMembershipsInput
+  role: Prisma.RoleCreateNestedOneWithoutMembershipsInput
+  roomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutMembershipInput
+  mealEntries?: Prisma.MemberMealEntryCreateNestedManyWithoutMembershipInput
+  mealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutMembershipInput
+  hostedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutHostMembershipInput
+  purchasedExpenses?: Prisma.ExpenseCreateNestedManyWithoutPurchaserMembershipInput
+  assignedBazarSchedules?: Prisma.BazarScheduleCreateNestedManyWithoutAssignedMemberInput
+  completedBazarSchedules?: Prisma.BazarScheduleCreateNestedManyWithoutActualPurchaserInput
+  memberBills?: Prisma.MemberBillCreateNestedManyWithoutMembershipInput
+  memberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutMembershipInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutMembershipInput
+  memberRequests?: Prisma.MemberRequestCreateNestedManyWithoutMembershipInput
+  eventRsvps?: Prisma.EventRsvpCreateNestedManyWithoutMembershipInput
+  complaints?: Prisma.ComplaintCreateNestedManyWithoutMembershipInput
+}
+
+export type MembershipUncheckedCreateWithoutNotificationsInput = {
+  id?: string
+  userId: string
+  tenantId: string
+  roleId: string
+  status?: $Enums.MembershipStatus
+  memberCode?: string | null
+  emergencyContactName?: string | null
+  emergencyContactPhone?: string | null
+  notes?: string | null
+  joinedAt?: Date | string | null
+  invitedAt?: Date | string | null
+  leftAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  roomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutMembershipInput
+  mealEntries?: Prisma.MemberMealEntryUncheckedCreateNestedManyWithoutMembershipInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutMembershipInput
+  hostedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutHostMembershipInput
+  purchasedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutPurchaserMembershipInput
+  assignedBazarSchedules?: Prisma.BazarScheduleUncheckedCreateNestedManyWithoutAssignedMemberInput
+  completedBazarSchedules?: Prisma.BazarScheduleUncheckedCreateNestedManyWithoutActualPurchaserInput
+  memberBills?: Prisma.MemberBillUncheckedCreateNestedManyWithoutMembershipInput
+  memberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutMembershipInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutMembershipInput
+  memberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutMembershipInput
+  eventRsvps?: Prisma.EventRsvpUncheckedCreateNestedManyWithoutMembershipInput
+  complaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutMembershipInput
+}
+
+export type MembershipCreateOrConnectWithoutNotificationsInput = {
+  where: Prisma.MembershipWhereUniqueInput
+  create: Prisma.XOR<Prisma.MembershipCreateWithoutNotificationsInput, Prisma.MembershipUncheckedCreateWithoutNotificationsInput>
+}
+
+export type MembershipUpsertWithoutNotificationsInput = {
+  update: Prisma.XOR<Prisma.MembershipUpdateWithoutNotificationsInput, Prisma.MembershipUncheckedUpdateWithoutNotificationsInput>
+  create: Prisma.XOR<Prisma.MembershipCreateWithoutNotificationsInput, Prisma.MembershipUncheckedCreateWithoutNotificationsInput>
+  where?: Prisma.MembershipWhereInput
+}
+
+export type MembershipUpdateToOneWithWhereWithoutNotificationsInput = {
+  where?: Prisma.MembershipWhereInput
+  data: Prisma.XOR<Prisma.MembershipUpdateWithoutNotificationsInput, Prisma.MembershipUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type MembershipUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutMembershipsNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutMembershipsNestedInput
+  role?: Prisma.RoleUpdateOneRequiredWithoutMembershipsNestedInput
+  roomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutMembershipNestedInput
+  mealEntries?: Prisma.MemberMealEntryUpdateManyWithoutMembershipNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutMembershipNestedInput
+  hostedGuestMeals?: Prisma.GuestMealUpdateManyWithoutHostMembershipNestedInput
+  purchasedExpenses?: Prisma.ExpenseUpdateManyWithoutPurchaserMembershipNestedInput
+  assignedBazarSchedules?: Prisma.BazarScheduleUpdateManyWithoutAssignedMemberNestedInput
+  completedBazarSchedules?: Prisma.BazarScheduleUpdateManyWithoutActualPurchaserNestedInput
+  memberBills?: Prisma.MemberBillUpdateManyWithoutMembershipNestedInput
+  memberPayments?: Prisma.MemberPaymentUpdateManyWithoutMembershipNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutMembershipNestedInput
+  memberRequests?: Prisma.MemberRequestUpdateManyWithoutMembershipNestedInput
+  eventRsvps?: Prisma.EventRsvpUpdateManyWithoutMembershipNestedInput
+  complaints?: Prisma.ComplaintUpdateManyWithoutMembershipNestedInput
+}
+
+export type MembershipUncheckedUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  tenantId?: Prisma.StringFieldUpdateOperationsInput | string
+  roleId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMembershipStatusFieldUpdateOperationsInput | $Enums.MembershipStatus
+  memberCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emergencyContactPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joinedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  invitedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leftAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  roomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutMembershipNestedInput
+  mealEntries?: Prisma.MemberMealEntryUncheckedUpdateManyWithoutMembershipNestedInput
+  mealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutMembershipNestedInput
+  hostedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutHostMembershipNestedInput
+  purchasedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutPurchaserMembershipNestedInput
+  assignedBazarSchedules?: Prisma.BazarScheduleUncheckedUpdateManyWithoutAssignedMemberNestedInput
+  completedBazarSchedules?: Prisma.BazarScheduleUncheckedUpdateManyWithoutActualPurchaserNestedInput
+  memberBills?: Prisma.MemberBillUncheckedUpdateManyWithoutMembershipNestedInput
+  memberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutMembershipNestedInput
+  balanceAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutMembershipNestedInput
+  memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutMembershipNestedInput
+  eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutMembershipNestedInput
+  complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipCreateManyUserInput = {
@@ -2970,6 +3187,7 @@ export type MembershipUpdateWithoutUserInput = {
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutUserInput = {
@@ -2999,6 +3217,7 @@ export type MembershipUncheckedUpdateWithoutUserInput = {
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateManyWithoutUserInput = {
@@ -3060,6 +3279,7 @@ export type MembershipUpdateWithoutTenantInput = {
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutTenantInput = {
@@ -3089,6 +3309,7 @@ export type MembershipUncheckedUpdateWithoutTenantInput = {
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateManyWithoutTenantInput = {
@@ -3149,6 +3370,7 @@ export type MembershipUpdateWithoutRoleInput = {
   memberRequests?: Prisma.MemberRequestUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateWithoutRoleInput = {
@@ -3177,6 +3399,7 @@ export type MembershipUncheckedUpdateWithoutRoleInput = {
   memberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutMembershipNestedInput
   eventRsvps?: Prisma.EventRsvpUncheckedUpdateManyWithoutMembershipNestedInput
   complaints?: Prisma.ComplaintUncheckedUpdateManyWithoutMembershipNestedInput
+  notifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutMembershipNestedInput
 }
 
 export type MembershipUncheckedUpdateManyWithoutRoleInput = {
@@ -3213,6 +3436,7 @@ export type MembershipCountOutputType = {
   memberRequests: number
   eventRsvps: number
   complaints: number
+  notifications: number
 }
 
 export type MembershipCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3229,6 +3453,7 @@ export type MembershipCountOutputTypeSelect<ExtArgs extends runtime.Types.Extens
   memberRequests?: boolean | MembershipCountOutputTypeCountMemberRequestsArgs
   eventRsvps?: boolean | MembershipCountOutputTypeCountEventRsvpsArgs
   complaints?: boolean | MembershipCountOutputTypeCountComplaintsArgs
+  notifications?: boolean | MembershipCountOutputTypeCountNotificationsArgs
 }
 
 /**
@@ -3332,6 +3557,13 @@ export type MembershipCountOutputTypeCountComplaintsArgs<ExtArgs extends runtime
   where?: Prisma.ComplaintWhereInput
 }
 
+/**
+ * MembershipCountOutputType without action
+ */
+export type MembershipCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TenantNotificationWhereInput
+}
+
 
 export type MembershipSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3364,6 +3596,7 @@ export type MembershipSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   memberRequests?: boolean | Prisma.Membership$memberRequestsArgs<ExtArgs>
   eventRsvps?: boolean | Prisma.Membership$eventRsvpsArgs<ExtArgs>
   complaints?: boolean | Prisma.Membership$complaintsArgs<ExtArgs>
+  notifications?: boolean | Prisma.Membership$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.MembershipCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["membership"]>
 
@@ -3442,6 +3675,7 @@ export type MembershipInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   memberRequests?: boolean | Prisma.Membership$memberRequestsArgs<ExtArgs>
   eventRsvps?: boolean | Prisma.Membership$eventRsvpsArgs<ExtArgs>
   complaints?: boolean | Prisma.Membership$complaintsArgs<ExtArgs>
+  notifications?: boolean | Prisma.Membership$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.MembershipCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MembershipIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3474,6 +3708,7 @@ export type $MembershipPayload<ExtArgs extends runtime.Types.Extensions.Internal
     memberRequests: Prisma.$MemberRequestPayload<ExtArgs>[]
     eventRsvps: Prisma.$EventRsvpPayload<ExtArgs>[]
     complaints: Prisma.$ComplaintPayload<ExtArgs>[]
+    notifications: Prisma.$TenantNotificationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3900,6 +4135,7 @@ export interface Prisma__MembershipClient<T, Null = never, ExtArgs extends runti
   memberRequests<T extends Prisma.Membership$memberRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Membership$memberRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   eventRsvps<T extends Prisma.Membership$eventRsvpsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Membership$eventRsvpsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventRsvpPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   complaints<T extends Prisma.Membership$complaintsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Membership$complaintsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComplaintPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.Membership$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Membership$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TenantNotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4653,6 +4889,30 @@ export type Membership$complaintsArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.ComplaintScalarFieldEnum | Prisma.ComplaintScalarFieldEnum[]
+}
+
+/**
+ * Membership.notifications
+ */
+export type Membership$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TenantNotification
+   */
+  select?: Prisma.TenantNotificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TenantNotification
+   */
+  omit?: Prisma.TenantNotificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TenantNotificationInclude<ExtArgs> | null
+  where?: Prisma.TenantNotificationWhereInput
+  orderBy?: Prisma.TenantNotificationOrderByWithRelationInput | Prisma.TenantNotificationOrderByWithRelationInput[]
+  cursor?: Prisma.TenantNotificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TenantNotificationScalarFieldEnum | Prisma.TenantNotificationScalarFieldEnum[]
 }
 
 /**

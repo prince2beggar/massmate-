@@ -52,6 +52,10 @@ import type {
   MessEvent as PrismaMessEvent,
   EventRsvp as PrismaEventRsvp,
   Complaint as PrismaComplaint,
+  TenantNotification as PrismaTenantNotification,
+  NotificationPreference as PrismaNotificationPreference,
+  ScheduledReminder as PrismaScheduledReminder,
+  NotificationDeliveryLog as PrismaNotificationDeliveryLog,
   AllocationRule,
   BillingPeriodStatus,
   BillStatus,
@@ -192,6 +196,10 @@ export type Domain = PrismaDomain;
 export type SupportTicket = PrismaSupportTicket;
 export type SupportTicketMessage = PrismaSupportTicketMessage;
 export type PlatformNotification = PrismaPlatformNotification;
+export type TenantNotification = PrismaTenantNotification;
+export type NotificationPreference = PrismaNotificationPreference;
+export type ScheduledReminder = PrismaScheduledReminder;
+export type NotificationDeliveryLog = PrismaNotificationDeliveryLog;
 
 // -----------------------------------------------------------------------------
 // COMPOSITE & RELATIONAL TYPES

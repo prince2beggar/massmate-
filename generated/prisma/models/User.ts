@@ -263,6 +263,9 @@ export type UserWhereInput = {
   authoredNotices?: Prisma.NoticeListRelationFilter
   reviewedMemberRequests?: Prisma.MemberRequestListRelationFilter
   reviewedComplaints?: Prisma.ComplaintListRelationFilter
+  tenantNotifications?: Prisma.TenantNotificationListRelationFilter
+  notificationPreferences?: Prisma.NotificationPreferenceListRelationFilter
+  createdScheduledReminders?: Prisma.ScheduledReminderListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -303,6 +306,9 @@ export type UserOrderByWithRelationInput = {
   authoredNotices?: Prisma.NoticeOrderByRelationAggregateInput
   reviewedMemberRequests?: Prisma.MemberRequestOrderByRelationAggregateInput
   reviewedComplaints?: Prisma.ComplaintOrderByRelationAggregateInput
+  tenantNotifications?: Prisma.TenantNotificationOrderByRelationAggregateInput
+  notificationPreferences?: Prisma.NotificationPreferenceOrderByRelationAggregateInput
+  createdScheduledReminders?: Prisma.ScheduledReminderOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -346,6 +352,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   authoredNotices?: Prisma.NoticeListRelationFilter
   reviewedMemberRequests?: Prisma.MemberRequestListRelationFilter
   reviewedComplaints?: Prisma.ComplaintListRelationFilter
+  tenantNotifications?: Prisma.TenantNotificationListRelationFilter
+  notificationPreferences?: Prisma.NotificationPreferenceListRelationFilter
+  createdScheduledReminders?: Prisma.ScheduledReminderListRelationFilter
 }, "id" | "email" | "phone">
 
 export type UserOrderByWithAggregationInput = {
@@ -422,6 +431,9 @@ export type UserCreateInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -462,6 +474,9 @@ export type UserUncheckedCreateInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUpdateInput = {
@@ -502,6 +517,9 @@ export type UserUpdateInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -542,6 +560,9 @@ export type UserUncheckedUpdateInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -1062,6 +1083,50 @@ export type UserUpdateOneWithoutReviewedComplaintsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewedComplaintsInput, Prisma.UserUpdateWithoutReviewedComplaintsInput>, Prisma.UserUncheckedUpdateWithoutReviewedComplaintsInput>
 }
 
+export type UserCreateNestedOneWithoutTenantNotificationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTenantNotificationsInput, Prisma.UserUncheckedCreateWithoutTenantNotificationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTenantNotificationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTenantNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTenantNotificationsInput, Prisma.UserUncheckedCreateWithoutTenantNotificationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTenantNotificationsInput
+  upsert?: Prisma.UserUpsertWithoutTenantNotificationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTenantNotificationsInput, Prisma.UserUpdateWithoutTenantNotificationsInput>, Prisma.UserUncheckedUpdateWithoutTenantNotificationsInput>
+}
+
+export type UserCreateNestedOneWithoutNotificationPreferencesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNotificationPreferencesInput, Prisma.UserUncheckedCreateWithoutNotificationPreferencesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotificationPreferencesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutNotificationPreferencesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNotificationPreferencesInput, Prisma.UserUncheckedCreateWithoutNotificationPreferencesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNotificationPreferencesInput
+  upsert?: Prisma.UserUpsertWithoutNotificationPreferencesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotificationPreferencesInput, Prisma.UserUpdateWithoutNotificationPreferencesInput>, Prisma.UserUncheckedUpdateWithoutNotificationPreferencesInput>
+}
+
+export type UserCreateNestedOneWithoutCreatedScheduledRemindersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedScheduledRemindersInput, Prisma.UserUncheckedCreateWithoutCreatedScheduledRemindersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedScheduledRemindersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutCreatedScheduledRemindersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedScheduledRemindersInput, Prisma.UserUncheckedCreateWithoutCreatedScheduledRemindersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedScheduledRemindersInput
+  upsert?: Prisma.UserUpsertWithoutCreatedScheduledRemindersInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedScheduledRemindersInput, Prisma.UserUpdateWithoutCreatedScheduledRemindersInput>, Prisma.UserUncheckedUpdateWithoutCreatedScheduledRemindersInput>
+}
+
 export type UserCreateWithoutReviewedVerificationsInput = {
   id?: string
   name: string
@@ -1099,6 +1164,9 @@ export type UserCreateWithoutReviewedVerificationsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutReviewedVerificationsInput = {
@@ -1138,6 +1206,9 @@ export type UserUncheckedCreateWithoutReviewedVerificationsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutReviewedVerificationsInput = {
@@ -1193,6 +1264,9 @@ export type UserUpdateWithoutReviewedVerificationsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedVerificationsInput = {
@@ -1232,6 +1306,9 @@ export type UserUncheckedUpdateWithoutReviewedVerificationsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutMembershipsInput = {
@@ -1271,6 +1348,9 @@ export type UserCreateWithoutMembershipsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutMembershipsInput = {
@@ -1310,6 +1390,9 @@ export type UserUncheckedCreateWithoutMembershipsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -1365,6 +1448,9 @@ export type UserUpdateWithoutMembershipsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMembershipsInput = {
@@ -1404,6 +1490,9 @@ export type UserUncheckedUpdateWithoutMembershipsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -1443,6 +1532,9 @@ export type UserCreateWithoutAuditLogsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -1482,6 +1574,9 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -1537,6 +1632,9 @@ export type UserUpdateWithoutAuditLogsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -1576,6 +1674,9 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutApprovedSubscriptionsInput = {
@@ -1615,6 +1716,9 @@ export type UserCreateWithoutApprovedSubscriptionsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutApprovedSubscriptionsInput = {
@@ -1654,6 +1758,9 @@ export type UserUncheckedCreateWithoutApprovedSubscriptionsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutApprovedSubscriptionsInput = {
@@ -1709,6 +1816,9 @@ export type UserUpdateWithoutApprovedSubscriptionsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedSubscriptionsInput = {
@@ -1748,6 +1858,9 @@ export type UserUncheckedUpdateWithoutApprovedSubscriptionsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutConfirmedInvoicesInput = {
@@ -1787,6 +1900,9 @@ export type UserCreateWithoutConfirmedInvoicesInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutConfirmedInvoicesInput = {
@@ -1826,6 +1942,9 @@ export type UserUncheckedCreateWithoutConfirmedInvoicesInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutConfirmedInvoicesInput = {
@@ -1881,6 +2000,9 @@ export type UserUpdateWithoutConfirmedInvoicesInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConfirmedInvoicesInput = {
@@ -1920,6 +2042,9 @@ export type UserUncheckedUpdateWithoutConfirmedInvoicesInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutAssignedInquiriesInput = {
@@ -1959,6 +2084,9 @@ export type UserCreateWithoutAssignedInquiriesInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutAssignedInquiriesInput = {
@@ -1998,6 +2126,9 @@ export type UserUncheckedCreateWithoutAssignedInquiriesInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutAssignedInquiriesInput = {
@@ -2053,6 +2184,9 @@ export type UserUpdateWithoutAssignedInquiriesInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedInquiriesInput = {
@@ -2092,6 +2226,9 @@ export type UserUncheckedUpdateWithoutAssignedInquiriesInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutPreparedQuotationsInput = {
@@ -2131,6 +2268,9 @@ export type UserCreateWithoutPreparedQuotationsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutPreparedQuotationsInput = {
@@ -2170,6 +2310,9 @@ export type UserUncheckedCreateWithoutPreparedQuotationsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutPreparedQuotationsInput = {
@@ -2214,6 +2357,9 @@ export type UserCreateWithoutApprovedQuotationsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutApprovedQuotationsInput = {
@@ -2253,6 +2399,9 @@ export type UserUncheckedCreateWithoutApprovedQuotationsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutApprovedQuotationsInput = {
@@ -2308,6 +2457,9 @@ export type UserUpdateWithoutPreparedQuotationsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPreparedQuotationsInput = {
@@ -2347,6 +2499,9 @@ export type UserUncheckedUpdateWithoutPreparedQuotationsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUpsertWithoutApprovedQuotationsInput = {
@@ -2397,6 +2552,9 @@ export type UserUpdateWithoutApprovedQuotationsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedQuotationsInput = {
@@ -2436,6 +2594,9 @@ export type UserUncheckedUpdateWithoutApprovedQuotationsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutRequestedTicketsInput = {
@@ -2475,6 +2636,9 @@ export type UserCreateWithoutRequestedTicketsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutRequestedTicketsInput = {
@@ -2514,6 +2678,9 @@ export type UserUncheckedCreateWithoutRequestedTicketsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutRequestedTicketsInput = {
@@ -2558,6 +2725,9 @@ export type UserCreateWithoutAssignedTicketsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutAssignedTicketsInput = {
@@ -2597,6 +2767,9 @@ export type UserUncheckedCreateWithoutAssignedTicketsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutAssignedTicketsInput = {
@@ -2652,6 +2825,9 @@ export type UserUpdateWithoutRequestedTicketsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequestedTicketsInput = {
@@ -2691,6 +2867,9 @@ export type UserUncheckedUpdateWithoutRequestedTicketsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUpsertWithoutAssignedTicketsInput = {
@@ -2741,6 +2920,9 @@ export type UserUpdateWithoutAssignedTicketsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedTicketsInput = {
@@ -2780,6 +2962,9 @@ export type UserUncheckedUpdateWithoutAssignedTicketsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutTicketMessagesInput = {
@@ -2819,6 +3004,9 @@ export type UserCreateWithoutTicketMessagesInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutTicketMessagesInput = {
@@ -2858,6 +3046,9 @@ export type UserUncheckedCreateWithoutTicketMessagesInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutTicketMessagesInput = {
@@ -2913,6 +3104,9 @@ export type UserUpdateWithoutTicketMessagesInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTicketMessagesInput = {
@@ -2952,6 +3146,9 @@ export type UserUncheckedUpdateWithoutTicketMessagesInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -2991,6 +3188,9 @@ export type UserCreateWithoutNotificationsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -3030,6 +3230,9 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -3085,6 +3288,9 @@ export type UserUpdateWithoutNotificationsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -3124,6 +3330,9 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutAssignedRoomAssignmentsInput = {
@@ -3163,6 +3372,9 @@ export type UserCreateWithoutAssignedRoomAssignmentsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutAssignedRoomAssignmentsInput = {
@@ -3202,6 +3414,9 @@ export type UserUncheckedCreateWithoutAssignedRoomAssignmentsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutAssignedRoomAssignmentsInput = {
@@ -3257,6 +3472,9 @@ export type UserUpdateWithoutAssignedRoomAssignmentsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput = {
@@ -3296,6 +3514,9 @@ export type UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutReviewedBookingsInput = {
@@ -3335,6 +3556,9 @@ export type UserCreateWithoutReviewedBookingsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutReviewedBookingsInput = {
@@ -3374,6 +3598,9 @@ export type UserUncheckedCreateWithoutReviewedBookingsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutReviewedBookingsInput = {
@@ -3429,6 +3656,9 @@ export type UserUpdateWithoutReviewedBookingsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedBookingsInput = {
@@ -3468,6 +3698,9 @@ export type UserUncheckedUpdateWithoutReviewedBookingsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutReviewedMealOffRequestsInput = {
@@ -3507,6 +3740,9 @@ export type UserCreateWithoutReviewedMealOffRequestsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutReviewedMealOffRequestsInput = {
@@ -3546,6 +3782,9 @@ export type UserUncheckedCreateWithoutReviewedMealOffRequestsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutReviewedMealOffRequestsInput = {
@@ -3601,6 +3840,9 @@ export type UserUpdateWithoutReviewedMealOffRequestsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedMealOffRequestsInput = {
@@ -3640,6 +3882,9 @@ export type UserUncheckedUpdateWithoutReviewedMealOffRequestsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutRecordedGuestMealsInput = {
@@ -3679,6 +3924,9 @@ export type UserCreateWithoutRecordedGuestMealsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutRecordedGuestMealsInput = {
@@ -3718,6 +3966,9 @@ export type UserUncheckedCreateWithoutRecordedGuestMealsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutRecordedGuestMealsInput = {
@@ -3773,6 +4024,9 @@ export type UserUpdateWithoutRecordedGuestMealsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRecordedGuestMealsInput = {
@@ -3812,6 +4066,9 @@ export type UserUncheckedUpdateWithoutRecordedGuestMealsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutLockedMealPeriodsInput = {
@@ -3851,6 +4108,9 @@ export type UserCreateWithoutLockedMealPeriodsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutLockedMealPeriodsInput = {
@@ -3890,6 +4150,9 @@ export type UserUncheckedCreateWithoutLockedMealPeriodsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutLockedMealPeriodsInput = {
@@ -3945,6 +4208,9 @@ export type UserUpdateWithoutLockedMealPeriodsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLockedMealPeriodsInput = {
@@ -3984,6 +4250,9 @@ export type UserUncheckedUpdateWithoutLockedMealPeriodsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutReviewedExpensesInput = {
@@ -4023,6 +4292,9 @@ export type UserCreateWithoutReviewedExpensesInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutReviewedExpensesInput = {
@@ -4062,6 +4334,9 @@ export type UserUncheckedCreateWithoutReviewedExpensesInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutReviewedExpensesInput = {
@@ -4117,6 +4392,9 @@ export type UserUpdateWithoutReviewedExpensesInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedExpensesInput = {
@@ -4156,6 +4434,9 @@ export type UserUncheckedUpdateWithoutReviewedExpensesInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutClosedBillingPeriodsInput = {
@@ -4195,6 +4476,9 @@ export type UserCreateWithoutClosedBillingPeriodsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutClosedBillingPeriodsInput = {
@@ -4234,6 +4518,9 @@ export type UserUncheckedCreateWithoutClosedBillingPeriodsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutClosedBillingPeriodsInput = {
@@ -4289,6 +4576,9 @@ export type UserUpdateWithoutClosedBillingPeriodsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutClosedBillingPeriodsInput = {
@@ -4328,6 +4618,9 @@ export type UserUncheckedUpdateWithoutClosedBillingPeriodsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutReceivedMemberPaymentsInput = {
@@ -4367,6 +4660,9 @@ export type UserCreateWithoutReceivedMemberPaymentsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutReceivedMemberPaymentsInput = {
@@ -4406,6 +4702,9 @@ export type UserUncheckedCreateWithoutReceivedMemberPaymentsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutReceivedMemberPaymentsInput = {
@@ -4450,6 +4749,9 @@ export type UserCreateWithoutVerifiedMemberPaymentsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutVerifiedMemberPaymentsInput = {
@@ -4489,6 +4791,9 @@ export type UserUncheckedCreateWithoutVerifiedMemberPaymentsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutVerifiedMemberPaymentsInput = {
@@ -4544,6 +4849,9 @@ export type UserUpdateWithoutReceivedMemberPaymentsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReceivedMemberPaymentsInput = {
@@ -4583,6 +4891,9 @@ export type UserUncheckedUpdateWithoutReceivedMemberPaymentsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUpsertWithoutVerifiedMemberPaymentsInput = {
@@ -4633,6 +4944,9 @@ export type UserUpdateWithoutVerifiedMemberPaymentsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVerifiedMemberPaymentsInput = {
@@ -4672,6 +4986,9 @@ export type UserUncheckedUpdateWithoutVerifiedMemberPaymentsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutAuthorizedAdjustmentsInput = {
@@ -4711,6 +5028,9 @@ export type UserCreateWithoutAuthorizedAdjustmentsInput = {
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutAuthorizedAdjustmentsInput = {
@@ -4750,6 +5070,9 @@ export type UserUncheckedCreateWithoutAuthorizedAdjustmentsInput = {
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutAuthorizedAdjustmentsInput = {
@@ -4805,6 +5128,9 @@ export type UserUpdateWithoutAuthorizedAdjustmentsInput = {
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuthorizedAdjustmentsInput = {
@@ -4844,6 +5170,9 @@ export type UserUncheckedUpdateWithoutAuthorizedAdjustmentsInput = {
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutAuthoredNoticesInput = {
@@ -4883,6 +5212,9 @@ export type UserCreateWithoutAuthoredNoticesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutAuthoredNoticesInput = {
@@ -4922,6 +5254,9 @@ export type UserUncheckedCreateWithoutAuthoredNoticesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutAuthoredNoticesInput = {
@@ -4977,6 +5312,9 @@ export type UserUpdateWithoutAuthoredNoticesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuthoredNoticesInput = {
@@ -5016,6 +5354,9 @@ export type UserUncheckedUpdateWithoutAuthoredNoticesInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutReviewedMemberRequestsInput = {
@@ -5055,6 +5396,9 @@ export type UserCreateWithoutReviewedMemberRequestsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutReviewedMemberRequestsInput = {
@@ -5094,6 +5438,9 @@ export type UserUncheckedCreateWithoutReviewedMemberRequestsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutReviewedMemberRequestsInput = {
@@ -5149,6 +5496,9 @@ export type UserUpdateWithoutReviewedMemberRequestsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedMemberRequestsInput = {
@@ -5188,6 +5538,9 @@ export type UserUncheckedUpdateWithoutReviewedMemberRequestsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutReviewedComplaintsInput = {
@@ -5227,6 +5580,9 @@ export type UserCreateWithoutReviewedComplaintsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutReviewedComplaintsInput = {
@@ -5266,6 +5622,9 @@ export type UserUncheckedCreateWithoutReviewedComplaintsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
   authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutReviewedComplaintsInput = {
@@ -5321,6 +5680,9 @@ export type UserUpdateWithoutReviewedComplaintsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedComplaintsInput = {
@@ -5360,6 +5722,561 @@ export type UserUncheckedUpdateWithoutReviewedComplaintsInput = {
   authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
   authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
   reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+}
+
+export type UserCreateWithoutTenantNotificationsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+}
+
+export type UserUncheckedCreateWithoutTenantNotificationsInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+}
+
+export type UserCreateOrConnectWithoutTenantNotificationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTenantNotificationsInput, Prisma.UserUncheckedCreateWithoutTenantNotificationsInput>
+}
+
+export type UserUpsertWithoutTenantNotificationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTenantNotificationsInput, Prisma.UserUncheckedUpdateWithoutTenantNotificationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTenantNotificationsInput, Prisma.UserUncheckedCreateWithoutTenantNotificationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTenantNotificationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTenantNotificationsInput, Prisma.UserUncheckedUpdateWithoutTenantNotificationsInput>
+}
+
+export type UserUpdateWithoutTenantNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTenantNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+}
+
+export type UserCreateWithoutNotificationPreferencesInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderCreateNestedManyWithoutCreatorInput
+}
+
+export type UserUncheckedCreateWithoutNotificationPreferencesInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedCreateNestedManyWithoutCreatorInput
+}
+
+export type UserCreateOrConnectWithoutNotificationPreferencesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutNotificationPreferencesInput, Prisma.UserUncheckedCreateWithoutNotificationPreferencesInput>
+}
+
+export type UserUpsertWithoutNotificationPreferencesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutNotificationPreferencesInput, Prisma.UserUncheckedUpdateWithoutNotificationPreferencesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutNotificationPreferencesInput, Prisma.UserUncheckedCreateWithoutNotificationPreferencesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutNotificationPreferencesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutNotificationPreferencesInput, Prisma.UserUncheckedUpdateWithoutNotificationPreferencesInput>
+}
+
+export type UserUpdateWithoutNotificationPreferencesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUpdateManyWithoutCreatorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutNotificationPreferencesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  createdScheduledReminders?: Prisma.ScheduledReminderUncheckedUpdateManyWithoutCreatorNestedInput
+}
+
+export type UserCreateWithoutCreatedScheduledRemindersInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCreatedScheduledRemindersInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedCreateNestedManyWithoutClosedByUserInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutReceivedByUserInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedCreateNestedManyWithoutVerifiedByUserInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedCreateNestedManyWithoutAuthorizedByUserInput
+  authoredNotices?: Prisma.NoticeUncheckedCreateNestedManyWithoutAuthorUserInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedCreateNestedManyWithoutReviewerInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedCreateNestedManyWithoutReviewerInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedCreateNestedManyWithoutUserInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutCreatedScheduledRemindersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedScheduledRemindersInput, Prisma.UserUncheckedCreateWithoutCreatedScheduledRemindersInput>
+}
+
+export type UserUpsertWithoutCreatedScheduledRemindersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedScheduledRemindersInput, Prisma.UserUncheckedUpdateWithoutCreatedScheduledRemindersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedScheduledRemindersInput, Prisma.UserUncheckedCreateWithoutCreatedScheduledRemindersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedScheduledRemindersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedScheduledRemindersInput, Prisma.UserUncheckedUpdateWithoutCreatedScheduledRemindersInput>
+}
+
+export type UserUpdateWithoutCreatedScheduledRemindersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedScheduledRemindersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
+  closedBillingPeriods?: Prisma.MonthlyBillingPeriodUncheckedUpdateManyWithoutClosedByUserNestedInput
+  receivedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutReceivedByUserNestedInput
+  verifiedMemberPayments?: Prisma.MemberPaymentUncheckedUpdateManyWithoutVerifiedByUserNestedInput
+  authorizedAdjustments?: Prisma.BalanceAdjustmentUncheckedUpdateManyWithoutAuthorizedByUserNestedInput
+  authoredNotices?: Prisma.NoticeUncheckedUpdateManyWithoutAuthorUserNestedInput
+  reviewedMemberRequests?: Prisma.MemberRequestUncheckedUpdateManyWithoutReviewerNestedInput
+  reviewedComplaints?: Prisma.ComplaintUncheckedUpdateManyWithoutReviewerNestedInput
+  tenantNotifications?: Prisma.TenantNotificationUncheckedUpdateManyWithoutUserNestedInput
+  notificationPreferences?: Prisma.NotificationPreferenceUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -5393,6 +6310,9 @@ export type UserCountOutputType = {
   authoredNotices: number
   reviewedMemberRequests: number
   reviewedComplaints: number
+  tenantNotifications: number
+  notificationPreferences: number
+  createdScheduledReminders: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5421,6 +6341,9 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   authoredNotices?: boolean | UserCountOutputTypeCountAuthoredNoticesArgs
   reviewedMemberRequests?: boolean | UserCountOutputTypeCountReviewedMemberRequestsArgs
   reviewedComplaints?: boolean | UserCountOutputTypeCountReviewedComplaintsArgs
+  tenantNotifications?: boolean | UserCountOutputTypeCountTenantNotificationsArgs
+  notificationPreferences?: boolean | UserCountOutputTypeCountNotificationPreferencesArgs
+  createdScheduledReminders?: boolean | UserCountOutputTypeCountCreatedScheduledRemindersArgs
 }
 
 /**
@@ -5608,6 +6531,27 @@ export type UserCountOutputTypeCountReviewedComplaintsArgs<ExtArgs extends runti
   where?: Prisma.ComplaintWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTenantNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TenantNotificationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountNotificationPreferencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationPreferenceWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedScheduledRemindersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ScheduledReminderWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -5647,6 +6591,9 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   authoredNotices?: boolean | Prisma.User$authoredNoticesArgs<ExtArgs>
   reviewedMemberRequests?: boolean | Prisma.User$reviewedMemberRequestsArgs<ExtArgs>
   reviewedComplaints?: boolean | Prisma.User$reviewedComplaintsArgs<ExtArgs>
+  tenantNotifications?: boolean | Prisma.User$tenantNotificationsArgs<ExtArgs>
+  notificationPreferences?: boolean | Prisma.User$notificationPreferencesArgs<ExtArgs>
+  createdScheduledReminders?: boolean | Prisma.User$createdScheduledRemindersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -5722,6 +6669,9 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   authoredNotices?: boolean | Prisma.User$authoredNoticesArgs<ExtArgs>
   reviewedMemberRequests?: boolean | Prisma.User$reviewedMemberRequestsArgs<ExtArgs>
   reviewedComplaints?: boolean | Prisma.User$reviewedComplaintsArgs<ExtArgs>
+  tenantNotifications?: boolean | Prisma.User$tenantNotificationsArgs<ExtArgs>
+  notificationPreferences?: boolean | Prisma.User$notificationPreferencesArgs<ExtArgs>
+  createdScheduledReminders?: boolean | Prisma.User$createdScheduledRemindersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -5755,6 +6705,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     authoredNotices: Prisma.$NoticePayload<ExtArgs>[]
     reviewedMemberRequests: Prisma.$MemberRequestPayload<ExtArgs>[]
     reviewedComplaints: Prisma.$ComplaintPayload<ExtArgs>[]
+    tenantNotifications: Prisma.$TenantNotificationPayload<ExtArgs>[]
+    notificationPreferences: Prisma.$NotificationPreferencePayload<ExtArgs>[]
+    createdScheduledReminders: Prisma.$ScheduledReminderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -6188,6 +7141,9 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   authoredNotices<T extends Prisma.User$authoredNoticesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$authoredNoticesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NoticePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reviewedMemberRequests<T extends Prisma.User$reviewedMemberRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedMemberRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MemberRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reviewedComplaints<T extends Prisma.User$reviewedComplaintsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedComplaintsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComplaintPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tenantNotifications<T extends Prisma.User$tenantNotificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tenantNotificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TenantNotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notificationPreferences<T extends Prisma.User$notificationPreferencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationPreferencesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPreferencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdScheduledReminders<T extends Prisma.User$createdScheduledRemindersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdScheduledRemindersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ScheduledReminderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7219,6 +8175,78 @@ export type User$reviewedComplaintsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.ComplaintScalarFieldEnum | Prisma.ComplaintScalarFieldEnum[]
+}
+
+/**
+ * User.tenantNotifications
+ */
+export type User$tenantNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TenantNotification
+   */
+  select?: Prisma.TenantNotificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TenantNotification
+   */
+  omit?: Prisma.TenantNotificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TenantNotificationInclude<ExtArgs> | null
+  where?: Prisma.TenantNotificationWhereInput
+  orderBy?: Prisma.TenantNotificationOrderByWithRelationInput | Prisma.TenantNotificationOrderByWithRelationInput[]
+  cursor?: Prisma.TenantNotificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TenantNotificationScalarFieldEnum | Prisma.TenantNotificationScalarFieldEnum[]
+}
+
+/**
+ * User.notificationPreferences
+ */
+export type User$notificationPreferencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NotificationPreference
+   */
+  select?: Prisma.NotificationPreferenceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NotificationPreference
+   */
+  omit?: Prisma.NotificationPreferenceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationPreferenceInclude<ExtArgs> | null
+  where?: Prisma.NotificationPreferenceWhereInput
+  orderBy?: Prisma.NotificationPreferenceOrderByWithRelationInput | Prisma.NotificationPreferenceOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationPreferenceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationPreferenceScalarFieldEnum | Prisma.NotificationPreferenceScalarFieldEnum[]
+}
+
+/**
+ * User.createdScheduledReminders
+ */
+export type User$createdScheduledRemindersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ScheduledReminder
+   */
+  select?: Prisma.ScheduledReminderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ScheduledReminder
+   */
+  omit?: Prisma.ScheduledReminderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ScheduledReminderInclude<ExtArgs> | null
+  where?: Prisma.ScheduledReminderWhereInput
+  orderBy?: Prisma.ScheduledReminderOrderByWithRelationInput | Prisma.ScheduledReminderOrderByWithRelationInput[]
+  cursor?: Prisma.ScheduledReminderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ScheduledReminderScalarFieldEnum | Prisma.ScheduledReminderScalarFieldEnum[]
 }
 
 /**

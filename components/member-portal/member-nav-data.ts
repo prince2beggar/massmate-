@@ -9,6 +9,7 @@ import {
   AlertCircle,
   Wallet,
   CreditCard,
+  Bell,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -102,5 +103,13 @@ export const MEMBER_NAV_ITEMS: MemberNavItem[] = [
     icon: CreditCard,
     isImplemented: true,
     description: 'Payment history, submission of vouchers, and receipts.',
+  },
+  {
+    id: 'notifications',
+    name: 'Notifications',
+    path: 'notifications',
+    icon: Bell,
+    isImplemented: true,
+    description: 'Personal notifications, meal reminders, and delivery settings.',
   },
 ];

@@ -96,7 +96,11 @@ export const ModelName = {
   MemberRequest: 'MemberRequest',
   MessEvent: 'MessEvent',
   EventRsvp: 'EventRsvp',
-  Complaint: 'Complaint'
+  Complaint: 'Complaint',
+  TenantNotification: 'TenantNotification',
+  NotificationPreference: 'NotificationPreference',
+  ScheduledReminder: 'ScheduledReminder',
+  NotificationDeliveryLog: 'NotificationDeliveryLog'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1007,6 +1011,84 @@ export const ComplaintScalarFieldEnum = {
 } as const
 
 export type ComplaintScalarFieldEnum = (typeof ComplaintScalarFieldEnum)[keyof typeof ComplaintScalarFieldEnum]
+
+
+export const TenantNotificationScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  userId: 'userId',
+  membershipId: 'membershipId',
+  category: 'category',
+  title: 'title',
+  message: 'message',
+  link: 'link',
+  eventReference: 'eventReference',
+  isRead: 'isRead',
+  readAt: 'readAt',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TenantNotificationScalarFieldEnum = (typeof TenantNotificationScalarFieldEnum)[keyof typeof TenantNotificationScalarFieldEnum]
+
+
+export const NotificationPreferenceScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  userId: 'userId',
+  inAppEnabled: 'inAppEnabled',
+  emailEnabled: 'emailEnabled',
+  smsEnabled: 'smsEnabled',
+  mealsEnabled: 'mealsEnabled',
+  billingEnabled: 'billingEnabled',
+  complaintsEnabled: 'complaintsEnabled',
+  eventsEnabled: 'eventsEnabled',
+  noticesEnabled: 'noticesEnabled',
+  remindersEnabled: 'remindersEnabled',
+  quietHoursEnabled: 'quietHoursEnabled',
+  quietHoursStart: 'quietHoursStart',
+  quietHoursEnd: 'quietHoursEnd',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type NotificationPreferenceScalarFieldEnum = (typeof NotificationPreferenceScalarFieldEnum)[keyof typeof NotificationPreferenceScalarFieldEnum]
+
+
+export const ScheduledReminderScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  reminderType: 'reminderType',
+  title: 'title',
+  message: 'message',
+  targetAudience: 'targetAudience',
+  scheduleTime: 'scheduleTime',
+  isActive: 'isActive',
+  createdById: 'createdById',
+  lastRunAt: 'lastRunAt',
+  nextRunAt: 'nextRunAt',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ScheduledReminderScalarFieldEnum = (typeof ScheduledReminderScalarFieldEnum)[keyof typeof ScheduledReminderScalarFieldEnum]
+
+
+export const NotificationDeliveryLogScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  notificationId: 'notificationId',
+  channel: 'channel',
+  recipient: 'recipient',
+  status: 'status',
+  errorMessage: 'errorMessage',
+  attemptCount: 'attemptCount',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificationDeliveryLogScalarFieldEnum = (typeof NotificationDeliveryLogScalarFieldEnum)[keyof typeof NotificationDeliveryLogScalarFieldEnum]
 
 
 export const SortOrder = {

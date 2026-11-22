@@ -271,3 +271,23 @@ export type EventRsvp = Prisma.EventRsvpModel
  * 
  */
 export type Complaint = Prisma.ComplaintModel
+/**
+ * Model TenantNotification
+ * 
+ */
+export type TenantNotification = Prisma.TenantNotificationModel
+/**
+ * Model NotificationPreference
+ * 
+ */
+export type NotificationPreference = Prisma.NotificationPreferenceModel
+/**
+ * Model ScheduledReminder
+ * 
+ */
+export type ScheduledReminder = Prisma.ScheduledReminderModel
+/**
+ * Model NotificationDeliveryLog
+ * 
+ */
+export type NotificationDeliveryLog = Prisma.NotificationDeliveryLogModel

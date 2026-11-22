@@ -442,7 +442,11 @@ export const ModelName = {
   MemberRequest: 'MemberRequest',
   MessEvent: 'MessEvent',
   EventRsvp: 'EventRsvp',
-  Complaint: 'Complaint'
+  Complaint: 'Complaint',
+  TenantNotification: 'TenantNotification',
+  NotificationPreference: 'NotificationPreference',
+  ScheduledReminder: 'ScheduledReminder',
+  NotificationDeliveryLog: 'NotificationDeliveryLog'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -458,7 +462,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "tenant" | "tenantVerification" | "role" | "roleTemplate" | "permission" | "rolePermission" | "roleTemplatePermission" | "membership" | "auditLog" | "plan" | "subscription" | "subscriptionInvoice" | "customPlanInquiry" | "customQuotation" | "domain" | "supportTicket" | "supportTicketMessage" | "platformNotification" | "room" | "bed" | "roomAssignment" | "rentalListing" | "bookingRequest" | "mealSetting" | "mealDailyLog" | "memberMealEntry" | "mealOffRequest" | "guestMeal" | "mealPeriodLock" | "expenseCategory" | "expense" | "expenseItem" | "bazarSchedule" | "financialCategory" | "monthlyBillingPeriod" | "memberBill" | "billItem" | "memberPayment" | "balanceAdjustment" | "messSetting" | "notice" | "memberRequest" | "messEvent" | "eventRsvp" | "complaint"
+    modelProps: "user" | "tenant" | "tenantVerification" | "role" | "roleTemplate" | "permission" | "rolePermission" | "roleTemplatePermission" | "membership" | "auditLog" | "plan" | "subscription" | "subscriptionInvoice" | "customPlanInquiry" | "customQuotation" | "domain" | "supportTicket" | "supportTicketMessage" | "platformNotification" | "room" | "bed" | "roomAssignment" | "rentalListing" | "bookingRequest" | "mealSetting" | "mealDailyLog" | "memberMealEntry" | "mealOffRequest" | "guestMeal" | "mealPeriodLock" | "expenseCategory" | "expense" | "expenseItem" | "bazarSchedule" | "financialCategory" | "monthlyBillingPeriod" | "memberBill" | "billItem" | "memberPayment" | "balanceAdjustment" | "messSetting" | "notice" | "memberRequest" | "messEvent" | "eventRsvp" | "complaint" | "tenantNotification" | "notificationPreference" | "scheduledReminder" | "notificationDeliveryLog"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -3866,6 +3870,302 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    TenantNotification: {
+      payload: Prisma.$TenantNotificationPayload<ExtArgs>
+      fields: Prisma.TenantNotificationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TenantNotificationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantNotificationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TenantNotificationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantNotificationPayload>
+        }
+        findFirst: {
+          args: Prisma.TenantNotificationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantNotificationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TenantNotificationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantNotificationPayload>
+        }
+        findMany: {
+          args: Prisma.TenantNotificationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantNotificationPayload>[]
+        }
+        create: {
+          args: Prisma.TenantNotificationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantNotificationPayload>
+        }
+        createMany: {
+          args: Prisma.TenantNotificationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TenantNotificationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantNotificationPayload>[]
+        }
+        delete: {
+          args: Prisma.TenantNotificationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantNotificationPayload>
+        }
+        update: {
+          args: Prisma.TenantNotificationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantNotificationPayload>
+        }
+        deleteMany: {
+          args: Prisma.TenantNotificationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TenantNotificationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TenantNotificationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantNotificationPayload>[]
+        }
+        upsert: {
+          args: Prisma.TenantNotificationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TenantNotificationPayload>
+        }
+        aggregate: {
+          args: Prisma.TenantNotificationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTenantNotification>
+        }
+        groupBy: {
+          args: Prisma.TenantNotificationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TenantNotificationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TenantNotificationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TenantNotificationCountAggregateOutputType> | number
+        }
+      }
+    }
+    NotificationPreference: {
+      payload: Prisma.$NotificationPreferencePayload<ExtArgs>
+      fields: Prisma.NotificationPreferenceFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.NotificationPreferenceFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPreferencePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.NotificationPreferenceFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+        }
+        findFirst: {
+          args: Prisma.NotificationPreferenceFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPreferencePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.NotificationPreferenceFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+        }
+        findMany: {
+          args: Prisma.NotificationPreferenceFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>[]
+        }
+        create: {
+          args: Prisma.NotificationPreferenceCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+        }
+        createMany: {
+          args: Prisma.NotificationPreferenceCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.NotificationPreferenceCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>[]
+        }
+        delete: {
+          args: Prisma.NotificationPreferenceDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+        }
+        update: {
+          args: Prisma.NotificationPreferenceUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+        }
+        deleteMany: {
+          args: Prisma.NotificationPreferenceDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.NotificationPreferenceUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.NotificationPreferenceUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>[]
+        }
+        upsert: {
+          args: Prisma.NotificationPreferenceUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationPreferencePayload>
+        }
+        aggregate: {
+          args: Prisma.NotificationPreferenceAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateNotificationPreference>
+        }
+        groupBy: {
+          args: Prisma.NotificationPreferenceGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NotificationPreferenceGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.NotificationPreferenceCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NotificationPreferenceCountAggregateOutputType> | number
+        }
+      }
+    }
+    ScheduledReminder: {
+      payload: Prisma.$ScheduledReminderPayload<ExtArgs>
+      fields: Prisma.ScheduledReminderFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ScheduledReminderFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScheduledReminderPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ScheduledReminderFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScheduledReminderPayload>
+        }
+        findFirst: {
+          args: Prisma.ScheduledReminderFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScheduledReminderPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ScheduledReminderFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScheduledReminderPayload>
+        }
+        findMany: {
+          args: Prisma.ScheduledReminderFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScheduledReminderPayload>[]
+        }
+        create: {
+          args: Prisma.ScheduledReminderCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScheduledReminderPayload>
+        }
+        createMany: {
+          args: Prisma.ScheduledReminderCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ScheduledReminderCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScheduledReminderPayload>[]
+        }
+        delete: {
+          args: Prisma.ScheduledReminderDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScheduledReminderPayload>
+        }
+        update: {
+          args: Prisma.ScheduledReminderUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScheduledReminderPayload>
+        }
+        deleteMany: {
+          args: Prisma.ScheduledReminderDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ScheduledReminderUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ScheduledReminderUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScheduledReminderPayload>[]
+        }
+        upsert: {
+          args: Prisma.ScheduledReminderUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScheduledReminderPayload>
+        }
+        aggregate: {
+          args: Prisma.ScheduledReminderAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateScheduledReminder>
+        }
+        groupBy: {
+          args: Prisma.ScheduledReminderGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ScheduledReminderGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ScheduledReminderCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ScheduledReminderCountAggregateOutputType> | number
+        }
+      }
+    }
+    NotificationDeliveryLog: {
+      payload: Prisma.$NotificationDeliveryLogPayload<ExtArgs>
+      fields: Prisma.NotificationDeliveryLogFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.NotificationDeliveryLogFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationDeliveryLogPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.NotificationDeliveryLogFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationDeliveryLogPayload>
+        }
+        findFirst: {
+          args: Prisma.NotificationDeliveryLogFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationDeliveryLogPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.NotificationDeliveryLogFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationDeliveryLogPayload>
+        }
+        findMany: {
+          args: Prisma.NotificationDeliveryLogFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationDeliveryLogPayload>[]
+        }
+        create: {
+          args: Prisma.NotificationDeliveryLogCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationDeliveryLogPayload>
+        }
+        createMany: {
+          args: Prisma.NotificationDeliveryLogCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.NotificationDeliveryLogCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationDeliveryLogPayload>[]
+        }
+        delete: {
+          args: Prisma.NotificationDeliveryLogDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationDeliveryLogPayload>
+        }
+        update: {
+          args: Prisma.NotificationDeliveryLogUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationDeliveryLogPayload>
+        }
+        deleteMany: {
+          args: Prisma.NotificationDeliveryLogDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.NotificationDeliveryLogUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.NotificationDeliveryLogUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationDeliveryLogPayload>[]
+        }
+        upsert: {
+          args: Prisma.NotificationDeliveryLogUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificationDeliveryLogPayload>
+        }
+        aggregate: {
+          args: Prisma.NotificationDeliveryLogAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateNotificationDeliveryLog>
+        }
+        groupBy: {
+          args: Prisma.NotificationDeliveryLogGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NotificationDeliveryLogGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.NotificationDeliveryLogCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NotificationDeliveryLogCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -4797,6 +5097,84 @@ export const ComplaintScalarFieldEnum = {
 } as const
 
 export type ComplaintScalarFieldEnum = (typeof ComplaintScalarFieldEnum)[keyof typeof ComplaintScalarFieldEnum]
+
+
+export const TenantNotificationScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  userId: 'userId',
+  membershipId: 'membershipId',
+  category: 'category',
+  title: 'title',
+  message: 'message',
+  link: 'link',
+  eventReference: 'eventReference',
+  isRead: 'isRead',
+  readAt: 'readAt',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TenantNotificationScalarFieldEnum = (typeof TenantNotificationScalarFieldEnum)[keyof typeof TenantNotificationScalarFieldEnum]
+
+
+export const NotificationPreferenceScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  userId: 'userId',
+  inAppEnabled: 'inAppEnabled',
+  emailEnabled: 'emailEnabled',
+  smsEnabled: 'smsEnabled',
+  mealsEnabled: 'mealsEnabled',
+  billingEnabled: 'billingEnabled',
+  complaintsEnabled: 'complaintsEnabled',
+  eventsEnabled: 'eventsEnabled',
+  noticesEnabled: 'noticesEnabled',
+  remindersEnabled: 'remindersEnabled',
+  quietHoursEnabled: 'quietHoursEnabled',
+  quietHoursStart: 'quietHoursStart',
+  quietHoursEnd: 'quietHoursEnd',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type NotificationPreferenceScalarFieldEnum = (typeof NotificationPreferenceScalarFieldEnum)[keyof typeof NotificationPreferenceScalarFieldEnum]
+
+
+export const ScheduledReminderScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  reminderType: 'reminderType',
+  title: 'title',
+  message: 'message',
+  targetAudience: 'targetAudience',
+  scheduleTime: 'scheduleTime',
+  isActive: 'isActive',
+  createdById: 'createdById',
+  lastRunAt: 'lastRunAt',
+  nextRunAt: 'nextRunAt',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ScheduledReminderScalarFieldEnum = (typeof ScheduledReminderScalarFieldEnum)[keyof typeof ScheduledReminderScalarFieldEnum]
+
+
+export const NotificationDeliveryLogScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  notificationId: 'notificationId',
+  channel: 'channel',
+  recipient: 'recipient',
+  status: 'status',
+  errorMessage: 'errorMessage',
+  attemptCount: 'attemptCount',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificationDeliveryLogScalarFieldEnum = (typeof NotificationDeliveryLogScalarFieldEnum)[keyof typeof NotificationDeliveryLogScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -5756,6 +6134,10 @@ export type GlobalOmitConfig = {
   messEvent?: Prisma.MessEventOmit
   eventRsvp?: Prisma.EventRsvpOmit
   complaint?: Prisma.ComplaintOmit
+  tenantNotification?: Prisma.TenantNotificationOmit
+  notificationPreference?: Prisma.NotificationPreferenceOmit
+  scheduledReminder?: Prisma.ScheduledReminderOmit
+  notificationDeliveryLog?: Prisma.NotificationDeliveryLogOmit
 }
 
 /* Types for Logging */

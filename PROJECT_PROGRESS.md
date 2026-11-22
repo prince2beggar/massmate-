@@ -2,8 +2,20 @@
 
 > **Project:** Multi-tenant Mess Management SaaS  
 > **Repository:** `D:\messmate`  
-> **Active Phase:** Phase 5 — Member Portal & Resident Self-Service (Tasks 37–40)  
+> **Active Phase:** Phase 6 — Advanced Operations & Community Features (Tasks 41–45)  
 > **Last Updated:** 2026-11-22  
+
+---
+
+## Phase 6 Roadmap Status (Advanced Operations & Community Features)
+
+| Task | Task Name | Status | Completion Date | Main Deliverables | Test Results | Next Step |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Task 41** | Notification Center, Delivery Preferences & Reminders | **Completed and Verified** | 2026-11-22 | Central in-app notification center for Mess Admin (`/mess/[tenantSlug]/notifications`) and Member Portal (`/portal/[tenantSlug]/notifications`), live header `NotificationBell` with unread badge and dropdown panel, anti-IDOR multi-tenant data isolation, single and bulk mark-all-as-read, idempotency duplicate event prevention (`eventReference`), resilient failure isolation, category-level subscriptions, quiet hours in `Asia/Dhaka`, channel authenticity reporting (In-App active, Email/SMS unconfigured), staff scheduled reminders (`ScheduledReminder`) with `Asia/Dhaka` timing and pause/resume/delete management. | 17/17 Automated Tests Passed (179/179 full test suite); 0 TypeScript errors, 0 ESLint warnings; Next.js production build cleanly compiled. | Proceed to Task 42 |
+| **Task 42** | Inventory, Assets & Stock Management | **Not Started** | — | — | — | Next in sequence |
+| **Task 43** | Community Polling, Voting & Decision Making | **Not Started** | — | — | — | Pending Task 42 |
+| **Task 44** | Visitor & Guest Tracking Management | **Not Started** | — | — | — | Pending Task 43 |
+| **Task 45** | Advanced Operational Reporting & Business Analytics | **Not Started** | — | — | — | Pending Task 44 |
 
 ---
 
@@ -356,6 +368,43 @@
     - Navigation updated in `components/member-portal/member-nav-data.ts`: `account` and `payments` marked as `isImplemented: true`.
   - Automated test suite (`server/member-portal/member-account-payments.test.ts`): 20 comprehensive unit and integration tests covering statement aggregation, formula accuracy, pending payment isolation, settled period retrieval, period navigation, cross-tenant statement isolation, malformed month rejection, payment history anti-IDOR scoping, status filtering, manual voucher submission, cash without TrxID, digital payments TrxID validation, duplicate TrxID conflict guard, zero/negative amount rejection, future date rejection, online gateway rejection, official receipt verification, and non-confirmed receipt blockage.
 - **Verification:** TypeScript: 0 errors (`npx tsc --noEmit`); ESLint: 0 errors, 0 warnings (`npm run lint`); 70/70 Member Portal tests passing across all 21 suites (100%); Next.js production build: 47/47 routes compiled cleanly.
+
+### Task 41: Notification Center, Delivery Preferences & Reminders
+- **Status:** Completed and Verified
+- **Date:** 2026-11-22
+- **Key Deliverables:**
+  - Prisma Schema expansion:
+    - `TenantNotification`: Multi-tenant user notification model with `category`, `title`, `message`, `link`, `eventReference` (for idempotency), `isRead`, `readAt`, and compound indexes `[tenantId, userId, isRead]`.
+    - `NotificationPreference`: User delivery preferences with channel toggles, category opt-outs, and quiet hours (`quietHoursStart`, `quietHoursEnd` in `Asia/Dhaka`).
+    - `ScheduledReminder`: Staff automated scheduled operational reminders (`reminderType`, `targetAudience`, `scheduleTime` in `Asia/Dhaka`, `isActive`, `createdById`).
+    - `NotificationDeliveryLog`: Delivery log recording channels (`IN_APP`, `EMAIL`, `SMS`), statuses (`DELIVERED`, `FAILED`, `SKIPPED`), attempt counts, and error messages.
+  - Backend `TenantNotificationService` (`server/notifications/tenant-notification-service.ts`):
+    - Full tenant data isolation and user ownership enforcement.
+    - Idempotency guard via `eventReference`: duplicate event triggers safely return existing notification without duplicating database records.
+    - Resilient failure isolation: notification creation failure never crashes or rolls back the caller's business transaction.
+    - Category-level preference enforcement: opted-out categories are safely skipped and logged as `SKIPPED`, while mandatory operational notices (e.g. `BILLING`) bypass preference suppression.
+    - Channel authenticity reporting: clearly identifies In-App as active, while accurately marking unconfigured channels (Email/SMS) as `configured: false` with validation blocking spoofed enablement.
+    - Automated staff scheduled reminders: supports creating, listing, pausing/resuming, and deleting operational reminders with `Asia/Dhaka` timing.
+    - Broadcast notifications: dispatches alerts across all active members of a mess.
+  - REST API Routes (8 endpoints):
+    - `/api/v1/mess/[tenantSlug]/notifications` (GET list, PATCH mark-all-read)
+    - `/api/v1/mess/[tenantSlug]/notifications/[id]/read` (PATCH mark-one-read)
+    - `/api/v1/mess/[tenantSlug]/notifications/preferences` (GET preferences, PUT update)
+    - `/api/v1/mess/[tenantSlug]/notifications/reminders` (GET list, POST create)
+    - `/api/v1/mess/[tenantSlug]/notifications/reminders/[id]` (PATCH toggle, DELETE remove)
+    - `/api/v1/portal/[tenantSlug]/notifications` (GET member list, PATCH mark-all-read)
+    - `/api/v1/portal/[tenantSlug]/notifications/[id]/read` (PATCH mark-one-read)
+    - `/api/v1/portal/[tenantSlug]/notifications/preferences` (GET preferences, PUT update)
+  - UI Components & Server Pages:
+    - `NotificationBell` (`components/notifications/NotificationBell.tsx`): Interactive bell widget with unread badge, click-outside popover, latest 5 alerts, inline mark-read, mark-all-read, and link to full notification center.
+    - Embedded in both `MessHeader` (Mess Admin) and `MemberPortalNavbar` (Member Portal).
+    - `/mess/[tenantSlug]/notifications`: `MessNotificationCenterView` with category filters, unread-only toggle, quick mark-all-read, formatted `Asia/Dhaka` timestamps, and action links.
+    - `/mess/[tenantSlug]/notifications/preferences`: `MessNotificationSettingsView` with 2 tabs: Delivery Channels & Quiet Hours (Asia/Dhaka), and Staff Scheduled Reminders with modal for new reminder creation, pause/resume, and deletion.
+    - `/portal/[tenantSlug]/notifications`: `PortalNotificationCenterView` with resident notifications, category filtering, unread toggle, and personal preferences modal.
+    - Navigation updated in `components/member-portal/member-nav-data.ts`.
+  - Automated test suite (`server/notifications/tenant-notification.test.ts`): 17 comprehensive unit/integration test scenarios covering tenant isolation, cross-tenant protection, IDOR prevention, unread counts, mark-one-read, mark-all-read, idempotency duplicate prevention, failure resilience, channel authenticity, category preferences, quiet hours validation, staff scheduled reminders with `Asia/Dhaka`, pause/resume/delete lifecycle, broadcast delivery, and pagination.
+- **Verification:** TypeScript: 0 errors (`npx tsc --noEmit`); ESLint: 0 errors, 0 warnings (`npm run lint`); 17/17 Task 41 tests passing (179/179 full test suite); Next.js production build: 47/47 routes cleanly compiled.
+
 
 
 

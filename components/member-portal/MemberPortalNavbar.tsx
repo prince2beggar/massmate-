@@ -11,6 +11,7 @@ import {
   Building,
   CheckCircle,
 } from 'lucide-react';
+import { NotificationBell } from '@/components/notifications/NotificationBell';
 
 interface MemberPortalNavbarProps {
   tenantSlug: string;
@@ -83,6 +84,9 @@ export function MemberPortalNavbar({
           <CheckCircle className="h-3 w-3" />
           {memberStatus}
         </span>
+
+        {/* In-App Live Notification Bell (Task 41) */}
+        <NotificationBell tenantSlug={tenantSlug} portalMode={true} />
 
         {/* Member Profile Badge */}
         <div className="flex items-center gap-2 pl-2 border-l border-border/60">

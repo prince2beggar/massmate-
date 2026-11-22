@@ -378,6 +378,9 @@ model User {
   authoredNotices         Notice[]               @relation("AuthoredNotices")
   reviewedMemberRequests  MemberRequest[]        @relation("ReviewedMemberRequests")
   reviewedComplaints      Complaint[]            @relation("ReviewedComplaints")
+  tenantNotifications     TenantNotification[]   @relation("UserTenantNotifications")
+  notificationPreferences NotificationPreference[] @relation("UserNotificationPreferences")
+  createdScheduledReminders ScheduledReminder[] @relation("CreatedScheduledReminders")
 
   @@index([status])
   @@index([platformRole])
@@ -442,6 +445,10 @@ model Tenant {
   messEvents            MessEvent[]
   eventRsvps            EventRsvp[]
   complaints            Complaint[]
+  tenantNotifications   TenantNotification[]
+  notificationPreferences NotificationPreference[]
+  scheduledReminders    ScheduledReminder[]
+  notificationDeliveryLogs NotificationDeliveryLog[]
 
   @@index([status])
   @@index([verificationStatus])
@@ -615,6 +622,7 @@ model Membership {
   memberRequests          MemberRequest[]
   eventRsvps              EventRsvp[]
   complaints              Complaint[]
+  notifications           TenantNotification[]
 
   @@unique([userId, tenantId])
   @@index([tenantId])
@@ -1682,6 +1690,106 @@ model Complaint {
   @@index([status])
   @@map("complaints")
 }
+
+// -----------------------------------------------------------------------------
+// NOTIFICATIONS & REMINDERS (Task 41)
+// -----------------------------------------------------------------------------
+
+model TenantNotification {
+  id              String                  @id @default(cuid())
+  tenantId        String                  @map("tenant_id")
+  userId          String                  @map("user_id")
+  membershipId    String?                 @map("membership_id")
+  category        String                  @default("GENERAL") // GENERAL, MEAL_UPDATE, MEAL_REQUEST, PAYMENT, BILLING, COMPLAINT, ROOM_REQUEST, EVENT, VISITOR, MAINTENANCE, INVENTORY, POLL
+  title           String
+  message         String
+  link            String?
+  eventReference  String?                 @map("event_reference")
+  isRead          Boolean                 @default(false) @map("is_read")
+  readAt          DateTime?               @map("read_at")
+  metadata        Json?
+  createdAt       DateTime                @default(now()) @map("created_at")
+  updatedAt       DateTime                @updatedAt @map("updated_at")
+
+  tenant          Tenant                  @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user            User                    @relation("UserTenantNotifications", fields: [userId], references: [id], onDelete: Cascade)
+  membership      Membership?             @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  deliveryLogs    NotificationDeliveryLog[]
+
+  @@index([tenantId, userId, isRead])
+  @@index([tenantId, userId, createdAt])
+  @@index([tenantId, eventReference])
+  @@map("tenant_notifications")
+}
+
+model NotificationPreference {
+  id                 String   @id @default(cuid())
+  tenantId           String   @map("tenant_id")
+  userId             String   @map("user_id")
+  inAppEnabled       Boolean  @default(true) @map("in_app_enabled")
+  emailEnabled       Boolean  @default(false) @map("email_enabled")
+  smsEnabled         Boolean  @default(false) @map("sms_enabled")
+  mealsEnabled       Boolean  @default(true) @map("meals_enabled")
+  billingEnabled     Boolean  @default(true) @map("billing_enabled")
+  complaintsEnabled  Boolean  @default(true) @map("complaints_enabled")
+  eventsEnabled      Boolean  @default(true) @map("events_enabled")
+  noticesEnabled     Boolean  @default(true) @map("notices_enabled")
+  remindersEnabled   Boolean  @default(true) @map("reminders_enabled")
+  quietHoursEnabled  Boolean  @default(false) @map("quiet_hours_enabled")
+  quietHoursStart    String?  @default("22:00") @map("quiet_hours_start")
+  quietHoursEnd      String?  @default("07:00") @map("quiet_hours_end")
+  createdAt          DateTime @default(now()) @map("created_at")
+  updatedAt          DateTime @updatedAt @map("updated_at")
+
+  tenant             Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user               User     @relation("UserNotificationPreferences", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, userId])
+  @@index([tenantId])
+  @@map("notification_preferences")
+}
+
+model ScheduledReminder {
+  id             String    @id @default(cuid())
+  tenantId       String    @map("tenant_id")
+  reminderType   String    @map("reminder_type") // UPCOMING_PAYMENT, OUTSTANDING_BALANCE, MEAL_CUTOFF, EVENT_REMINDER, POLL_CLOSING, MAINTENANCE_DUE
+  title          String
+  message        String
+  targetAudience String    @default("ALL_MEMBERS") @map("target_audience") // ALL_MEMBERS, ACTIVE_MEMBERS, UNPAID_MEMBERS
+  scheduleTime   String    @default("09:00") @map("schedule_time") // HH:mm in Asia/Dhaka
+  isActive       Boolean   @default(true) @map("is_active")
+  createdById    String?   @map("created_by_id")
+  lastRunAt      DateTime? @map("last_run_at")
+  nextRunAt      DateTime? @map("next_run_at")
+  metadata       Json?
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  tenant         Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  creator        User?     @relation("CreatedScheduledReminders", fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@index([tenantId, isActive])
+  @@map("scheduled_reminders")
+}
+
+model NotificationDeliveryLog {
+  id             String              @id @default(cuid())
+  tenantId       String              @map("tenant_id")
+  notificationId String?             @map("notification_id")
+  channel        String              // IN_APP, EMAIL, SMS
+  recipient      String              // userId or email or phone
+  status         String              @default("DELIVERED") // DELIVERED, FAILED, SKIPPED, PENDING
+  errorMessage   String?             @map("error_message")
+  attemptCount   Int                 @default(1) @map("attempt_count")
+  createdAt      DateTime            @default(now()) @map("created_at")
+
+  tenant         Tenant              @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  notification   TenantNotification? @relation(fields: [notificationId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId, channel, status])
+  @@map("notification_delivery_logs")
+}
+
 
 
 

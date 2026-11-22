@@ -19,6 +19,7 @@ import {
 import type { TenantContext } from '@/server/tenant/tenant-context';
 import type { AccessibleMess } from '@/server/mess-admin/mess-session';
 import { MESS_NAV_ITEMS } from './mess-nav-data';
+import { NotificationBell } from '@/components/notifications/NotificationBell';
 
 interface MessHeaderProps {
   tenantSlug: string;
@@ -205,15 +206,8 @@ export function MessHeader({
             <HelpCircle className="h-4 w-4" />
           </Link>
 
-          {/* Notifications Icon */}
-          <button
-            type="button"
-            className="relative flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors"
-            title="Notifications"
-          >
-            <Bell className="h-4 w-4" />
-            <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-emerald-600" />
-          </button>
+          {/* Live Notification Bell with Dropdown (Task 41) */}
+          <NotificationBell tenantSlug={tenantSlug} />
 
           {/* Profile Dropdown */}
           <div className="relative" ref={profileRef}>
