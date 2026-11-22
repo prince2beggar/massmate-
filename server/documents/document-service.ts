@@ -452,7 +452,7 @@ export class DocumentService {
           });
         }
         return;
-      } catch {}
+      } catch { }
     }
 
     const doc = this.mockDocuments.find((d) => d.id === documentId);
@@ -486,8 +486,8 @@ export class DocumentService {
     const tags = Array.isArray(doc.tags)
       ? doc.tags
       : typeof doc.tags === 'string'
-      ? JSON.parse(doc.tags)
-      : [];
+        ? JSON.parse(doc.tags)
+        : [];
 
     const categoryName =
       doc.category?.name ||
@@ -1387,11 +1387,11 @@ export class DocumentService {
 
     const docs = this.isDbConfigured()
       ? await this.db.messDocument.findMany({
-          where: { tenantId: tenant.id, isArchived: false, expiryDate: { not: null } },
-        })
+        where: { tenantId: tenant.id, isArchived: false, expiryDate: { not: null } },
+      })
       : this.mockDocuments.filter(
-          (d) => d.tenantId === tenant.id && !d.isArchived && d.expiryDate
-        );
+        (d) => d.tenantId === tenant.id && !d.isArchived && d.expiryDate
+      );
 
     for (const d of docs) {
       const status = this.calculateExpiryStatus(d.expiryDate);
@@ -1438,11 +1438,11 @@ export class DocumentService {
 
     const docs = this.isDbConfigured()
       ? await this.db.messDocument.findMany({
-          where: { tenantId: tenant.id, isArchived: false, expiryDate: { not: null } },
-        })
+        where: { tenantId: tenant.id, isArchived: false, expiryDate: { not: null } },
+      })
       : this.mockDocuments.filter(
-          (d) => d.tenantId === tenant.id && !d.isArchived && d.expiryDate
-        );
+        (d) => d.tenantId === tenant.id && !d.isArchived && d.expiryDate
+      );
 
     for (const d of docs) {
       const status = this.calculateExpiryStatus(d.expiryDate);
