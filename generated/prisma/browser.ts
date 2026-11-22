@@ -167,3 +167,23 @@ export type GuestMeal = Prisma.GuestMealModel
  * 
  */
 export type MealPeriodLock = Prisma.MealPeriodLockModel
+/**
+ * Model ExpenseCategory
+ * 
+ */
+export type ExpenseCategory = Prisma.ExpenseCategoryModel
+/**
+ * Model Expense
+ * 
+ */
+export type Expense = Prisma.ExpenseModel
+/**
+ * Model ExpenseItem
+ * 
+ */
+export type ExpenseItem = Prisma.ExpenseItemModel
+/**
+ * Model BazarSchedule
+ * 
+ */
+export type BazarSchedule = Prisma.BazarScheduleModel

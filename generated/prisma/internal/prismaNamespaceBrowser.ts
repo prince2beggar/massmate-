@@ -80,7 +80,11 @@ export const ModelName = {
   MemberMealEntry: 'MemberMealEntry',
   MealOffRequest: 'MealOffRequest',
   GuestMeal: 'GuestMeal',
-  MealPeriodLock: 'MealPeriodLock'
+  MealPeriodLock: 'MealPeriodLock',
+  ExpenseCategory: 'ExpenseCategory',
+  Expense: 'Expense',
+  ExpenseItem: 'ExpenseItem',
+  BazarSchedule: 'BazarSchedule'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -676,6 +680,83 @@ export const MealPeriodLockScalarFieldEnum = {
 } as const
 
 export type MealPeriodLockScalarFieldEnum = (typeof MealPeriodLockScalarFieldEnum)[keyof typeof MealPeriodLockScalarFieldEnum]
+
+
+export const ExpenseCategoryScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  name: 'name',
+  code: 'code',
+  description: 'description',
+  isMealEligible: 'isMealEligible',
+  isActive: 'isActive',
+  isSystem: 'isSystem',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ExpenseCategoryScalarFieldEnum = (typeof ExpenseCategoryScalarFieldEnum)[keyof typeof ExpenseCategoryScalarFieldEnum]
+
+
+export const ExpenseScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  categoryId: 'categoryId',
+  purchaserMembershipId: 'purchaserMembershipId',
+  purchaseDate: 'purchaseDate',
+  dateString: 'dateString',
+  description: 'description',
+  vendor: 'vendor',
+  paymentMethod: 'paymentMethod',
+  totalAmountPoisha: 'totalAmountPoisha',
+  totalAmount: 'totalAmount',
+  receiptUrl: 'receiptUrl',
+  receiptFileName: 'receiptFileName',
+  receiptMimeType: 'receiptMimeType',
+  notes: 'notes',
+  status: 'status',
+  reviewedByUserId: 'reviewedByUserId',
+  reviewedAt: 'reviewedAt',
+  rejectionReason: 'rejectionReason',
+  isMealEligible: 'isMealEligible',
+  bazarScheduleId: 'bazarScheduleId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ExpenseScalarFieldEnum = (typeof ExpenseScalarFieldEnum)[keyof typeof ExpenseScalarFieldEnum]
+
+
+export const ExpenseItemScalarFieldEnum = {
+  id: 'id',
+  expenseId: 'expenseId',
+  itemName: 'itemName',
+  quantity: 'quantity',
+  unit: 'unit',
+  unitPricePoisha: 'unitPricePoisha',
+  unitPrice: 'unitPrice',
+  lineTotalPoisha: 'lineTotalPoisha',
+  lineTotal: 'lineTotal',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ExpenseItemScalarFieldEnum = (typeof ExpenseItemScalarFieldEnum)[keyof typeof ExpenseItemScalarFieldEnum]
+
+
+export const BazarScheduleScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  dateString: 'dateString',
+  assignedMembershipId: 'assignedMembershipId',
+  actualPurchaserMembershipId: 'actualPurchaserMembershipId',
+  status: 'status',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BazarScheduleScalarFieldEnum = (typeof BazarScheduleScalarFieldEnum)[keyof typeof BazarScheduleScalarFieldEnum]
 
 
 export const SortOrder = {

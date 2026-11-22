@@ -15,8 +15,8 @@
 | **Task 31** | Member Management System | **Completed and Verified** | 2026-11-22 | Member directory, onboarding/invite flow, profile views, lifecycle/status changes, audit trails, tenant isolation. | 12/12 Automated Tests Passed; Production build passed. | Proceed to Task 32 |
 | **Task 32** | Room Management & Rental Management | **Completed and Verified** | 2026-11-22 | Room inventory, bed assignments, capacity validation, transfer/move-out workflows, rental listings, booking requests, availability calendar. | 16/16 Automated Tests Passed (41/41 suite); Production build passed. | Proceed to Task 33 |
 | **Task 33** | Meal Management System | **Completed and Verified** | 2026-11-22 | Fixed/flexible meal schedules, daily logs, meal-off cutoffs in Asia/Dhaka, guest meals, zero-drift meal rate calculation, period locking. | 15/15 Automated Tests Passed (56/56 suite); Production build passed. | Proceed to Task 34 |
-| **Task 34** | Bazar and Expense Management | **In Progress** | — | Expense categories, itemized bazar purchases, receipt attachments, review/approval workflow. | Pending | Execute Task 34 |
-| **Task 35** | Finance, Billing and Payment Management | **Pending** | — | Monthly charges, member statements, payment recording & verification, period locking. | Pending | Awaiting Task 34 |
+| **Task 34** | Bazar and Expense Management | **Completed and Verified** | 2026-11-22 | Configurable expense categories, itemized purchases, server-side poisha calculations, bazar schedule rota, approval workflow with self-approval guards, reversals, and meal rate integration. | 11/11 Automated Tests Passed (67/67 suite); Production build passed. | Proceed to Task 35 |
+| **Task 35** | Finance, Billing and Payment Management | **In Progress** | — | Tenant financial categories, monthly billing generation, member statements, payment recording & verification, period locking. | Pending | Execute Task 35 |
 | **Task 36** | Mess Settings, Roles & Permissions, Audit Logs | **Pending** | — | Settings management, custom RBAC permissions matrix, immutable audit log explorer. | Pending | Awaiting Task 35 |
 
 ---
@@ -126,3 +126,36 @@
     - Navigation integration: `meals` marked active (`isImplemented: true`) in sidebar and quick actions.
   - Automated test suite (`server/meals/meal-management.test.ts`): 15 comprehensive unit and integration tests covering all requirements, edge cases, invariants, and multi-tenant isolation.
 - **Verification:** TypeScript: 0 errors; ESLint: 0 errors, 0 warnings; 56/56 total regression tests passing (100%); Next.js production build: 47/47 routes compiled cleanly.
+
+### Task 34: Bazar and Expense Management
+- **Status:** Completed and Verified
+- **Date:** 2026-11-22
+- **Key Deliverables:**
+  - Prisma Schema expansion: `ExpenseCategory`, `Expense`, `ExpenseItem`, `BazarSchedule` models with enums (`ExpenseStatus`: `PENDING`, `APPROVED`, `REJECTED`, `REVERSED`; `BazarScheduleStatus`: `SCHEDULED`, `COMPLETED`, `CANCELLED`, `SWAPPED`).
+  - Backend `ExpenseService` (`server/bazar/expense-service.ts`):
+    - Configurable expense categories with default auto-seeding (`BAZAR`, `COOK`, `GAS`, `WATER`, `ELECTRICITY`, `WIFI`, `MAINTENANCE`, `TRANSPORT`, `OTHER`).
+    - Soft deactivation of categories to prevent broken historical expenditure links.
+    - Strict server-side integer poisha arithmetic: never trusts client totals; validates positive quantities and unit prices.
+    - Self-approval governance guard: blocks purchasers from approving their own submitted expenses.
+    - Mandatory explanation note for rejections and reversals.
+    - Bazar duty rota (`BazarSchedule`) with status lifecycle and linking to recorded purchases.
+    - Meal module integration: `getApprovedEligibleMealExpenses()` feeds approved meal-eligible grocery costs directly into the meal rate formula while strictly excluding general overhead and pending/rejected items.
+  - REST API routes (8 endpoints):
+    - `/api/v1/mess/[tenantSlug]/expenses/categories` (GET list, POST create)
+    - `/api/v1/mess/[tenantSlug]/expenses/categories/[id]` (PATCH update / toggle active)
+    - `/api/v1/mess/[tenantSlug]/expenses` (GET list, POST create)
+    - `/api/v1/mess/[tenantSlug]/expenses/[id]` (GET detail)
+    - `/api/v1/mess/[tenantSlug]/expenses/[id]/review` (PATCH approve/reject)
+    - `/api/v1/mess/[tenantSlug]/expenses/[id]/reverse` (POST reverse)
+    - `/api/v1/mess/[tenantSlug]/expenses/schedules` (GET list, POST create)
+    - `/api/v1/mess/[tenantSlug]/expenses/schedules/[id]` (PATCH status)
+  - UI components and pages:
+    - `/mess/[tenantSlug]/bazar`: Bazar Workspace with 3 operational tabs:
+      - Purchases & Expenses (`ExpensesListView` with KPI summary cards, multi-facet filtering by month, category, purchaser, and status, and itemized table).
+      - Bazar Duty Rota (`BazarScheduleView` with upcoming duties, completion toggles, and direct purchase linking).
+      - Expense Categories (`CategoriesView` with category creation, meal-eligibility toggles, and deactivation).
+    - Modals: `RecordExpenseModal` (itemized dynamic rows, live total preview, optional receipt voucher link), `ReviewExpenseModal` (audit inspection, approval vs. rejection reason), `ReverseExpenseModal` (traceable reversal reason), `ExpenseDetailsModal` (read-only audit view), `AssignBazarModal` (duty scheduling).
+    - Navigation integration: `bazar` marked active (`isImplemented: true`) in sidebar and quick actions.
+  - Automated test suite (`server/bazar/bazar-management.test.ts`): 11 comprehensive unit and integration tests covering category seeding, deactivation, exact item math, validation, review decisions, self-approval policy guard, reversals, duty rota completion, meal rate integration, and cross-tenant isolation.
+- **Verification:** TypeScript: 0 errors; ESLint: 0 errors, 0 warnings; 67/67 total regression tests passing (100%); Next.js production build: 47/47 routes compiled cleanly.
+

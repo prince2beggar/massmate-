@@ -283,6 +283,22 @@ enum GuestMealChargeType {
   AT_ACTUAL_MEAL_RATE
 }
 
+enum ExpenseStatus {
+  DRAFT
+  PENDING_REVIEW
+  APPROVED
+  REJECTED
+  REVERSED
+}
+
+enum BazarScheduleStatus {
+  SCHEDULED
+  COMPLETED
+  SWAPPED
+  SKIPPED
+  CANCELLED
+}
+
 // -----------------------------------------------------------------------------
 // USER (Platform-wide Identity)
 // -----------------------------------------------------------------------------
@@ -318,6 +334,7 @@ model User {
   reviewedMealOffRequests MealOffRequest[]      @relation("ReviewedMealOffRequests")
   recordedGuestMeals      GuestMeal[]           @relation("RecordedGuestMeals")
   lockedMealPeriods       MealPeriodLock[]      @relation("LockedMealPeriods")
+  reviewedExpenses        Expense[]             @relation("ReviewedExpenses")
 
   @@index([status])
   @@index([platformRole])
@@ -368,6 +385,9 @@ model Tenant {
   mealOffRequests MealOffRequest[]
   guestMeals     GuestMeal[]
   mealPeriodLocks MealPeriodLock[]
+  expenseCategories ExpenseCategory[]
+  expenses       Expense[]
+  bazarSchedules BazarSchedule[]
 
   @@index([status])
   @@index([verificationStatus])
@@ -532,6 +552,9 @@ model Membership {
   mealEntries     MemberMealEntry[]
   mealOffRequests MealOffRequest[]
   hostedGuestMeals GuestMeal[]
+  purchasedExpenses Expense[]       @relation("PurchasedExpenses")
+  assignedBazarSchedules BazarSchedule[] @relation("AssignedBazarSchedules")
+  completedBazarSchedules BazarSchedule[] @relation("CompletedBazarSchedules")
 
   @@unique([userId, tenantId])
   @@index([tenantId])
@@ -1156,5 +1179,113 @@ model MealPeriodLock {
   @@index([tenantId])
   @@index([monthString])
   @@map("meal_period_locks")
+}
+
+// -----------------------------------------------------------------------------
+// BAZAR & EXPENSE MANAGEMENT (Task 34)
+// -----------------------------------------------------------------------------
+
+model ExpenseCategory {
+  id             String    @id @default(cuid())
+  tenantId       String    @map("tenant_id")
+  name           String
+  code           String
+  description    String?
+  isMealEligible Boolean   @default(false) @map("is_meal_eligible")
+  isActive       Boolean   @default(true) @map("is_active")
+  isSystem       Boolean   @default(false) @map("is_system")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  tenant   Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  expenses Expense[]
+
+  @@unique([tenantId, code])
+  @@index([tenantId])
+  @@index([isActive])
+  @@map("expense_categories")
+}
+
+model Expense {
+  id                    String        @id @default(cuid())
+  tenantId              String        @map("tenant_id")
+  categoryId            String        @map("category_id")
+  purchaserMembershipId String        @map("purchaser_membership_id")
+  purchaseDate          DateTime      @map("purchase_date")
+  dateString            String        @map("date_string") // "YYYY-MM-DD"
+  description           String
+  vendor                String?
+  paymentMethod         PaymentMethod @default(CASH) @map("payment_method")
+  totalAmountPoisha     BigInt        @map("total_amount_poisha")
+  totalAmount           Decimal       @db.Decimal(10, 2) @map("total_amount")
+  receiptUrl            String?       @map("receipt_url")
+  receiptFileName       String?       @map("receipt_file_name")
+  receiptMimeType       String?       @map("receipt_mime_type")
+  notes                 String?
+  status                ExpenseStatus @default(PENDING_REVIEW)
+  reviewedByUserId      String?       @map("reviewed_by_user_id")
+  reviewedAt            DateTime?     @map("reviewed_at")
+  rejectionReason       String?       @map("rejection_reason")
+  isMealEligible        Boolean       @default(false) @map("is_meal_eligible")
+  bazarScheduleId       String?       @map("bazar_schedule_id")
+  createdAt             DateTime      @default(now()) @map("created_at")
+  updatedAt             DateTime      @updatedAt @map("updated_at")
+
+  tenant              Tenant           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  category            ExpenseCategory  @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  purchaserMembership Membership       @relation("PurchasedExpenses", fields: [purchaserMembershipId], references: [id], onDelete: Restrict)
+  reviewedByUser      User?            @relation("ReviewedExpenses", fields: [reviewedByUserId], references: [id], onDelete: SetNull)
+  bazarSchedule       BazarSchedule?   @relation(fields: [bazarScheduleId], references: [id], onDelete: SetNull)
+  items               ExpenseItem[]
+
+  @@index([tenantId])
+  @@index([categoryId])
+  @@index([purchaserMembershipId])
+  @@index([dateString])
+  @@index([status])
+  @@index([isMealEligible])
+  @@map("expenses")
+}
+
+model ExpenseItem {
+  id              String   @id @default(cuid())
+  expenseId       String   @map("expense_id")
+  itemName        String   @map("item_name")
+  quantity        Decimal  @db.Decimal(10, 2)
+  unit            String   @default("kg")
+  unitPricePoisha BigInt   @map("unit_price_poisha")
+  unitPrice       Decimal  @db.Decimal(10, 2) @map("unit_price")
+  lineTotalPoisha BigInt   @map("line_total_poisha")
+  lineTotal       Decimal  @db.Decimal(10, 2) @map("line_total")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  expense Expense @relation(fields: [expenseId], references: [id], onDelete: Cascade)
+
+  @@index([expenseId])
+  @@map("expense_items")
+}
+
+model BazarSchedule {
+  id                          String              @id @default(cuid())
+  tenantId                    String              @map("tenant_id")
+  dateString                  String              @map("date_string") // "YYYY-MM-DD"
+  assignedMembershipId        String              @map("assigned_membership_id")
+  actualPurchaserMembershipId String?             @map("actual_purchaser_membership_id")
+  status                      BazarScheduleStatus @default(SCHEDULED)
+  notes                       String?
+  createdAt                   DateTime            @default(now()) @map("created_at")
+  updatedAt                   DateTime            @updatedAt @map("updated_at")
+
+  tenant          Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  assignedMember  Membership  @relation("AssignedBazarSchedules", fields: [assignedMembershipId], references: [id], onDelete: Cascade)
+  actualPurchaser Membership? @relation("CompletedBazarSchedules", fields: [actualPurchaserMembershipId], references: [id], onDelete: SetNull)
+  expenses        Expense[]
+
+  @@index([tenantId])
+  @@index([dateString])
+  @@index([assignedMembershipId])
+  @@index([status])
+  @@map("bazar_schedules")
 }
 

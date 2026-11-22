@@ -36,6 +36,10 @@ import type {
   MealOffRequest as PrismaMealOffRequest,
   GuestMeal as PrismaGuestMeal,
   MealPeriodLock as PrismaMealPeriodLock,
+  ExpenseCategory as PrismaExpenseCategory,
+  Expense as PrismaExpense,
+  ExpenseItem as PrismaExpenseItem,
+  BazarSchedule as PrismaBazarSchedule,
   RoomStatus,
   BedStatus,
   AssignmentStatus,
@@ -46,6 +50,8 @@ import type {
   MealType,
   MealOffStatus,
   GuestMealChargeType,
+  ExpenseStatus,
+  BazarScheduleStatus,
   UserStatus,
   TenantType,
   TenantStatus,
@@ -113,6 +119,8 @@ export type {
   MealType,
   MealOffStatus,
   GuestMealChargeType,
+  ExpenseStatus,
+  BazarScheduleStatus,
 };
 
 // Re-export Base Models
@@ -140,6 +148,10 @@ export type MemberMealEntry = PrismaMemberMealEntry;
 export type MealOffRequest = PrismaMealOffRequest;
 export type GuestMeal = PrismaGuestMeal;
 export type MealPeriodLock = PrismaMealPeriodLock;
+export type ExpenseCategory = PrismaExpenseCategory;
+export type Expense = PrismaExpense;
+export type ExpenseItem = PrismaExpenseItem;
+export type BazarSchedule = PrismaBazarSchedule;
 export type CustomPlanInquiry = PrismaCustomPlanInquiry;
 export type CustomQuotation = PrismaCustomQuotation;
 export type Domain = PrismaDomain;

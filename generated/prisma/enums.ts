@@ -384,3 +384,25 @@ export const GuestMealChargeType = {
 } as const
 
 export type GuestMealChargeType = (typeof GuestMealChargeType)[keyof typeof GuestMealChargeType]
+
+
+export const ExpenseStatus = {
+  DRAFT: 'DRAFT',
+  PENDING_REVIEW: 'PENDING_REVIEW',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED',
+  REVERSED: 'REVERSED'
+} as const
+
+export type ExpenseStatus = (typeof ExpenseStatus)[keyof typeof ExpenseStatus]
+
+
+export const BazarScheduleStatus = {
+  SCHEDULED: 'SCHEDULED',
+  COMPLETED: 'COMPLETED',
+  SWAPPED: 'SWAPPED',
+  SKIPPED: 'SKIPPED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type BazarScheduleStatus = (typeof BazarScheduleStatus)[keyof typeof BazarScheduleStatus]

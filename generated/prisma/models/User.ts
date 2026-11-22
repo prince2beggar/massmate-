@@ -255,6 +255,7 @@ export type UserWhereInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestListRelationFilter
   recordedGuestMeals?: Prisma.GuestMealListRelationFilter
   lockedMealPeriods?: Prisma.MealPeriodLockListRelationFilter
+  reviewedExpenses?: Prisma.ExpenseListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -287,6 +288,7 @@ export type UserOrderByWithRelationInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestOrderByRelationAggregateInput
   recordedGuestMeals?: Prisma.GuestMealOrderByRelationAggregateInput
   lockedMealPeriods?: Prisma.MealPeriodLockOrderByRelationAggregateInput
+  reviewedExpenses?: Prisma.ExpenseOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -322,6 +324,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   reviewedMealOffRequests?: Prisma.MealOffRequestListRelationFilter
   recordedGuestMeals?: Prisma.GuestMealListRelationFilter
   lockedMealPeriods?: Prisma.MealPeriodLockListRelationFilter
+  reviewedExpenses?: Prisma.ExpenseListRelationFilter
 }, "id" | "email" | "phone">
 
 export type UserOrderByWithAggregationInput = {
@@ -390,6 +393,7 @@ export type UserCreateInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -422,6 +426,7 @@ export type UserUncheckedCreateInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUpdateInput = {
@@ -454,6 +459,7 @@ export type UserUpdateInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -486,6 +492,7 @@ export type UserUncheckedUpdateInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -878,6 +885,22 @@ export type UserUpdateOneWithoutLockedMealPeriodsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLockedMealPeriodsInput, Prisma.UserUpdateWithoutLockedMealPeriodsInput>, Prisma.UserUncheckedUpdateWithoutLockedMealPeriodsInput>
 }
 
+export type UserCreateNestedOneWithoutReviewedExpensesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedExpensesInput, Prisma.UserUncheckedCreateWithoutReviewedExpensesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedExpensesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutReviewedExpensesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedExpensesInput, Prisma.UserUncheckedCreateWithoutReviewedExpensesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedExpensesInput
+  upsert?: Prisma.UserUpsertWithoutReviewedExpensesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewedExpensesInput, Prisma.UserUpdateWithoutReviewedExpensesInput>, Prisma.UserUncheckedUpdateWithoutReviewedExpensesInput>
+}
+
 export type UserCreateWithoutReviewedVerificationsInput = {
   id?: string
   name: string
@@ -907,6 +930,7 @@ export type UserCreateWithoutReviewedVerificationsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewedVerificationsInput = {
@@ -938,6 +962,7 @@ export type UserUncheckedCreateWithoutReviewedVerificationsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewedVerificationsInput = {
@@ -985,6 +1010,7 @@ export type UserUpdateWithoutReviewedVerificationsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedVerificationsInput = {
@@ -1016,6 +1042,7 @@ export type UserUncheckedUpdateWithoutReviewedVerificationsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserCreateWithoutMembershipsInput = {
@@ -1047,6 +1074,7 @@ export type UserCreateWithoutMembershipsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateWithoutMembershipsInput = {
@@ -1078,6 +1106,7 @@ export type UserUncheckedCreateWithoutMembershipsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -1125,6 +1154,7 @@ export type UserUpdateWithoutMembershipsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMembershipsInput = {
@@ -1156,6 +1186,7 @@ export type UserUncheckedUpdateWithoutMembershipsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -1187,6 +1218,7 @@ export type UserCreateWithoutAuditLogsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -1218,6 +1250,7 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -1265,6 +1298,7 @@ export type UserUpdateWithoutAuditLogsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -1296,6 +1330,7 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserCreateWithoutApprovedSubscriptionsInput = {
@@ -1327,6 +1362,7 @@ export type UserCreateWithoutApprovedSubscriptionsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateWithoutApprovedSubscriptionsInput = {
@@ -1358,6 +1394,7 @@ export type UserUncheckedCreateWithoutApprovedSubscriptionsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserCreateOrConnectWithoutApprovedSubscriptionsInput = {
@@ -1405,6 +1442,7 @@ export type UserUpdateWithoutApprovedSubscriptionsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedSubscriptionsInput = {
@@ -1436,6 +1474,7 @@ export type UserUncheckedUpdateWithoutApprovedSubscriptionsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserCreateWithoutConfirmedInvoicesInput = {
@@ -1467,6 +1506,7 @@ export type UserCreateWithoutConfirmedInvoicesInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateWithoutConfirmedInvoicesInput = {
@@ -1498,6 +1538,7 @@ export type UserUncheckedCreateWithoutConfirmedInvoicesInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserCreateOrConnectWithoutConfirmedInvoicesInput = {
@@ -1545,6 +1586,7 @@ export type UserUpdateWithoutConfirmedInvoicesInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConfirmedInvoicesInput = {
@@ -1576,6 +1618,7 @@ export type UserUncheckedUpdateWithoutConfirmedInvoicesInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserCreateWithoutAssignedInquiriesInput = {
@@ -1607,6 +1650,7 @@ export type UserCreateWithoutAssignedInquiriesInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateWithoutAssignedInquiriesInput = {
@@ -1638,6 +1682,7 @@ export type UserUncheckedCreateWithoutAssignedInquiriesInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserCreateOrConnectWithoutAssignedInquiriesInput = {
@@ -1685,6 +1730,7 @@ export type UserUpdateWithoutAssignedInquiriesInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedInquiriesInput = {
@@ -1716,6 +1762,7 @@ export type UserUncheckedUpdateWithoutAssignedInquiriesInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserCreateWithoutPreparedQuotationsInput = {
@@ -1747,6 +1794,7 @@ export type UserCreateWithoutPreparedQuotationsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateWithoutPreparedQuotationsInput = {
@@ -1778,6 +1826,7 @@ export type UserUncheckedCreateWithoutPreparedQuotationsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserCreateOrConnectWithoutPreparedQuotationsInput = {
@@ -1814,6 +1863,7 @@ export type UserCreateWithoutApprovedQuotationsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateWithoutApprovedQuotationsInput = {
@@ -1845,6 +1895,7 @@ export type UserUncheckedCreateWithoutApprovedQuotationsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserCreateOrConnectWithoutApprovedQuotationsInput = {
@@ -1892,6 +1943,7 @@ export type UserUpdateWithoutPreparedQuotationsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPreparedQuotationsInput = {
@@ -1923,6 +1975,7 @@ export type UserUncheckedUpdateWithoutPreparedQuotationsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUpsertWithoutApprovedQuotationsInput = {
@@ -1965,6 +2018,7 @@ export type UserUpdateWithoutApprovedQuotationsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutApprovedQuotationsInput = {
@@ -1996,6 +2050,7 @@ export type UserUncheckedUpdateWithoutApprovedQuotationsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserCreateWithoutRequestedTicketsInput = {
@@ -2027,6 +2082,7 @@ export type UserCreateWithoutRequestedTicketsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateWithoutRequestedTicketsInput = {
@@ -2058,6 +2114,7 @@ export type UserUncheckedCreateWithoutRequestedTicketsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserCreateOrConnectWithoutRequestedTicketsInput = {
@@ -2094,6 +2151,7 @@ export type UserCreateWithoutAssignedTicketsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateWithoutAssignedTicketsInput = {
@@ -2125,6 +2183,7 @@ export type UserUncheckedCreateWithoutAssignedTicketsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserCreateOrConnectWithoutAssignedTicketsInput = {
@@ -2172,6 +2231,7 @@ export type UserUpdateWithoutRequestedTicketsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRequestedTicketsInput = {
@@ -2203,6 +2263,7 @@ export type UserUncheckedUpdateWithoutRequestedTicketsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUpsertWithoutAssignedTicketsInput = {
@@ -2245,6 +2306,7 @@ export type UserUpdateWithoutAssignedTicketsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedTicketsInput = {
@@ -2276,6 +2338,7 @@ export type UserUncheckedUpdateWithoutAssignedTicketsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserCreateWithoutTicketMessagesInput = {
@@ -2307,6 +2370,7 @@ export type UserCreateWithoutTicketMessagesInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateWithoutTicketMessagesInput = {
@@ -2338,6 +2402,7 @@ export type UserUncheckedCreateWithoutTicketMessagesInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserCreateOrConnectWithoutTicketMessagesInput = {
@@ -2385,6 +2450,7 @@ export type UserUpdateWithoutTicketMessagesInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTicketMessagesInput = {
@@ -2416,6 +2482,7 @@ export type UserUncheckedUpdateWithoutTicketMessagesInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -2447,6 +2514,7 @@ export type UserCreateWithoutNotificationsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -2478,6 +2546,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -2525,6 +2594,7 @@ export type UserUpdateWithoutNotificationsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -2556,6 +2626,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserCreateWithoutAssignedRoomAssignmentsInput = {
@@ -2587,6 +2658,7 @@ export type UserCreateWithoutAssignedRoomAssignmentsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateWithoutAssignedRoomAssignmentsInput = {
@@ -2618,6 +2690,7 @@ export type UserUncheckedCreateWithoutAssignedRoomAssignmentsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserCreateOrConnectWithoutAssignedRoomAssignmentsInput = {
@@ -2665,6 +2738,7 @@ export type UserUpdateWithoutAssignedRoomAssignmentsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput = {
@@ -2696,6 +2770,7 @@ export type UserUncheckedUpdateWithoutAssignedRoomAssignmentsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserCreateWithoutReviewedBookingsInput = {
@@ -2727,6 +2802,7 @@ export type UserCreateWithoutReviewedBookingsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewedBookingsInput = {
@@ -2758,6 +2834,7 @@ export type UserUncheckedCreateWithoutReviewedBookingsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewedBookingsInput = {
@@ -2805,6 +2882,7 @@ export type UserUpdateWithoutReviewedBookingsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedBookingsInput = {
@@ -2836,6 +2914,7 @@ export type UserUncheckedUpdateWithoutReviewedBookingsInput = {
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserCreateWithoutReviewedMealOffRequestsInput = {
@@ -2867,6 +2946,7 @@ export type UserCreateWithoutReviewedMealOffRequestsInput = {
   reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateWithoutReviewedMealOffRequestsInput = {
@@ -2898,6 +2978,7 @@ export type UserUncheckedCreateWithoutReviewedMealOffRequestsInput = {
   reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserCreateOrConnectWithoutReviewedMealOffRequestsInput = {
@@ -2945,6 +3026,7 @@ export type UserUpdateWithoutReviewedMealOffRequestsInput = {
   reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReviewedMealOffRequestsInput = {
@@ -2976,6 +3058,7 @@ export type UserUncheckedUpdateWithoutReviewedMealOffRequestsInput = {
   reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserCreateWithoutRecordedGuestMealsInput = {
@@ -3007,6 +3090,7 @@ export type UserCreateWithoutRecordedGuestMealsInput = {
   reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
   reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
   lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateWithoutRecordedGuestMealsInput = {
@@ -3038,6 +3122,7 @@ export type UserUncheckedCreateWithoutRecordedGuestMealsInput = {
   reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserCreateOrConnectWithoutRecordedGuestMealsInput = {
@@ -3085,6 +3170,7 @@ export type UserUpdateWithoutRecordedGuestMealsInput = {
   reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
   reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRecordedGuestMealsInput = {
@@ -3116,6 +3202,7 @@ export type UserUncheckedUpdateWithoutRecordedGuestMealsInput = {
   reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserCreateWithoutLockedMealPeriodsInput = {
@@ -3147,6 +3234,7 @@ export type UserCreateWithoutLockedMealPeriodsInput = {
   reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
   reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  reviewedExpenses?: Prisma.ExpenseCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserUncheckedCreateWithoutLockedMealPeriodsInput = {
@@ -3178,6 +3266,7 @@ export type UserUncheckedCreateWithoutLockedMealPeriodsInput = {
   reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutReviewedByUserInput
 }
 
 export type UserCreateOrConnectWithoutLockedMealPeriodsInput = {
@@ -3225,6 +3314,7 @@ export type UserUpdateWithoutLockedMealPeriodsInput = {
   reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
   reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUpdateManyWithoutReviewedByUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutLockedMealPeriodsInput = {
@@ -3256,6 +3346,151 @@ export type UserUncheckedUpdateWithoutLockedMealPeriodsInput = {
   reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
   recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  reviewedExpenses?: Prisma.ExpenseUncheckedUpdateManyWithoutReviewedByUserNestedInput
+}
+
+export type UserCreateWithoutReviewedExpensesInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockCreateNestedManyWithoutLockedByUserInput
+}
+
+export type UserUncheckedCreateWithoutReviewedExpensesInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phone?: string | null
+  passwordHash?: string | null
+  profileImage?: string | null
+  status?: $Enums.UserStatus
+  platformRole?: $Enums.PlatformRole | null
+  emailVerifiedAt?: Date | string | null
+  phoneVerifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorUserInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedCreateNestedManyWithoutReviewerInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutApprovedByInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedCreateNestedManyWithoutConfirmedByInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedCreateNestedManyWithoutAssignedToInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutPreparedByInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedCreateNestedManyWithoutApprovedByInput
+  requestedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutRequesterInput
+  assignedTickets?: Prisma.SupportTicketUncheckedCreateNestedManyWithoutAssignedStaffInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedCreateNestedManyWithoutAuthorInput
+  notifications?: Prisma.PlatformNotificationUncheckedCreateNestedManyWithoutUserInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedCreateNestedManyWithoutAssignedByInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedCreateNestedManyWithoutReviewedByInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedCreateNestedManyWithoutRecordedByUserInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedCreateNestedManyWithoutLockedByUserInput
+}
+
+export type UserCreateOrConnectWithoutReviewedExpensesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedExpensesInput, Prisma.UserUncheckedCreateWithoutReviewedExpensesInput>
+}
+
+export type UserUpsertWithoutReviewedExpensesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReviewedExpensesInput, Prisma.UserUncheckedUpdateWithoutReviewedExpensesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedExpensesInput, Prisma.UserUncheckedCreateWithoutReviewedExpensesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReviewedExpensesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReviewedExpensesInput, Prisma.UserUncheckedUpdateWithoutReviewedExpensesInput>
+}
+
+export type UserUpdateWithoutReviewedExpensesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUpdateManyWithoutLockedByUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReviewedExpensesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  platformRole?: Prisma.NullableEnumPlatformRoleFieldUpdateOperationsInput | $Enums.PlatformRole | null
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  phoneVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberships?: Prisma.MembershipUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorUserNestedInput
+  reviewedVerifications?: Prisma.TenantVerificationUncheckedUpdateManyWithoutReviewerNestedInput
+  approvedSubscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutApprovedByNestedInput
+  confirmedInvoices?: Prisma.SubscriptionInvoiceUncheckedUpdateManyWithoutConfirmedByNestedInput
+  assignedInquiries?: Prisma.CustomPlanInquiryUncheckedUpdateManyWithoutAssignedToNestedInput
+  preparedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutPreparedByNestedInput
+  approvedQuotations?: Prisma.CustomQuotationUncheckedUpdateManyWithoutApprovedByNestedInput
+  requestedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutRequesterNestedInput
+  assignedTickets?: Prisma.SupportTicketUncheckedUpdateManyWithoutAssignedStaffNestedInput
+  ticketMessages?: Prisma.SupportTicketMessageUncheckedUpdateManyWithoutAuthorNestedInput
+  notifications?: Prisma.PlatformNotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoomAssignments?: Prisma.RoomAssignmentUncheckedUpdateManyWithoutAssignedByNestedInput
+  reviewedBookings?: Prisma.BookingRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  reviewedMealOffRequests?: Prisma.MealOffRequestUncheckedUpdateManyWithoutReviewedByNestedInput
+  recordedGuestMeals?: Prisma.GuestMealUncheckedUpdateManyWithoutRecordedByUserNestedInput
+  lockedMealPeriods?: Prisma.MealPeriodLockUncheckedUpdateManyWithoutLockedByUserNestedInput
 }
 
 
@@ -3281,6 +3516,7 @@ export type UserCountOutputType = {
   reviewedMealOffRequests: number
   recordedGuestMeals: number
   lockedMealPeriods: number
+  reviewedExpenses: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3301,6 +3537,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   reviewedMealOffRequests?: boolean | UserCountOutputTypeCountReviewedMealOffRequestsArgs
   recordedGuestMeals?: boolean | UserCountOutputTypeCountRecordedGuestMealsArgs
   lockedMealPeriods?: boolean | UserCountOutputTypeCountLockedMealPeriodsArgs
+  reviewedExpenses?: boolean | UserCountOutputTypeCountReviewedExpensesArgs
 }
 
 /**
@@ -3432,6 +3669,13 @@ export type UserCountOutputTypeCountLockedMealPeriodsArgs<ExtArgs extends runtim
   where?: Prisma.MealPeriodLockWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewedExpensesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ExpenseWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -3463,6 +3707,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   reviewedMealOffRequests?: boolean | Prisma.User$reviewedMealOffRequestsArgs<ExtArgs>
   recordedGuestMeals?: boolean | Prisma.User$recordedGuestMealsArgs<ExtArgs>
   lockedMealPeriods?: boolean | Prisma.User$lockedMealPeriodsArgs<ExtArgs>
+  reviewedExpenses?: boolean | Prisma.User$reviewedExpensesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -3530,6 +3775,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   reviewedMealOffRequests?: boolean | Prisma.User$reviewedMealOffRequestsArgs<ExtArgs>
   recordedGuestMeals?: boolean | Prisma.User$recordedGuestMealsArgs<ExtArgs>
   lockedMealPeriods?: boolean | Prisma.User$lockedMealPeriodsArgs<ExtArgs>
+  reviewedExpenses?: boolean | Prisma.User$reviewedExpensesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -3555,6 +3801,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     reviewedMealOffRequests: Prisma.$MealOffRequestPayload<ExtArgs>[]
     recordedGuestMeals: Prisma.$GuestMealPayload<ExtArgs>[]
     lockedMealPeriods: Prisma.$MealPeriodLockPayload<ExtArgs>[]
+    reviewedExpenses: Prisma.$ExpensePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3980,6 +4227,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   reviewedMealOffRequests<T extends Prisma.User$reviewedMealOffRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedMealOffRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MealOffRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   recordedGuestMeals<T extends Prisma.User$recordedGuestMealsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$recordedGuestMealsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GuestMealPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   lockedMealPeriods<T extends Prisma.User$lockedMealPeriodsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$lockedMealPeriodsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MealPeriodLockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewedExpenses<T extends Prisma.User$reviewedExpensesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedExpensesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ExpensePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4819,6 +5067,30 @@ export type User$lockedMealPeriodsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.MealPeriodLockScalarFieldEnum | Prisma.MealPeriodLockScalarFieldEnum[]
+}
+
+/**
+ * User.reviewedExpenses
+ */
+export type User$reviewedExpensesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Expense
+   */
+  select?: Prisma.ExpenseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Expense
+   */
+  omit?: Prisma.ExpenseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ExpenseInclude<ExtArgs> | null
+  where?: Prisma.ExpenseWhereInput
+  orderBy?: Prisma.ExpenseOrderByWithRelationInput | Prisma.ExpenseOrderByWithRelationInput[]
+  cursor?: Prisma.ExpenseWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ExpenseScalarFieldEnum | Prisma.ExpenseScalarFieldEnum[]
 }
 
 /**

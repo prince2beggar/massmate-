@@ -633,8 +633,7 @@ export class MessDashboardService {
         href: `/mess/${slug}/bazar?action=record`,
         permission: 'bazar.create',
         isAllowed: has('bazar.create'),
-        isImplemented: false,
-        moduleNote: 'Bazar & Shared Expense module launches in Task 33',
+        isImplemented: true,
       },
       {
         id: 'record-payment',
