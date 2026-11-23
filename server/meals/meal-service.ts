@@ -615,9 +615,9 @@ export class MealService {
 
       const totalUnits = Number(
         (
-          bf * settings.breakfastWeight +
-          lunch * settings.lunchWeight +
-          dinner * settings.dinnerWeight +
+          (settings.breakfastEnabled ? bf * settings.breakfastWeight : 0) +
+          (settings.lunchEnabled ? lunch * settings.lunchWeight : 0) +
+          (settings.dinnerEnabled ? dinner * settings.dinnerWeight : 0) +
           custom
         ).toFixed(2)
       );
@@ -1688,11 +1688,18 @@ export class MealService {
         let units = 0;
 
         if (entry) {
-          bf = Number(entry.breakfastCount || 0);
-          lunch = Number(entry.lunchCount || 0);
-          dinner = Number(entry.dinnerCount || 0);
+          bf = settings.breakfastEnabled ? Number(entry.breakfastCount || 0) : 0;
+          lunch = settings.lunchEnabled ? Number(entry.lunchCount || 0) : 0;
+          dinner = settings.dinnerEnabled ? Number(entry.dinnerCount || 0) : 0;
           custom = Number(entry.customCount || 0);
-          units = Number(entry.totalChargeableUnits || 0);
+          units = Number(
+            (
+              (settings.breakfastEnabled ? bf * settings.breakfastWeight : 0) +
+              (settings.lunchEnabled ? lunch * settings.lunchWeight : 0) +
+              (settings.dinnerEnabled ? dinner * settings.dinnerWeight : 0) +
+              custom
+            ).toFixed(2)
+          );
         }
 
         const isOff = hasMealOff || (entry && entry.isOff) || units === 0;
@@ -1776,6 +1783,15 @@ export class MealService {
         endDate: end,
         totalDays: dateList.length,
         dates: dateList,
+      },
+      settings: {
+        breakfastEnabled: Boolean(settings.breakfastEnabled),
+        lunchEnabled: Boolean(settings.lunchEnabled),
+        dinnerEnabled: Boolean(settings.dinnerEnabled),
+        breakfastWeight: Number(settings.breakfastWeight ?? 0.5),
+        lunchWeight: Number(settings.lunchWeight ?? 1.0),
+        dinnerWeight: Number(settings.dinnerWeight ?? 1.0),
+        defaultCutoffTime: settings.defaultCutoffTime || '20:00',
       },
       summary: {
         totalMembers: memberRows.length,

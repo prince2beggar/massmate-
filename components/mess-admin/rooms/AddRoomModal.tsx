@@ -56,11 +56,12 @@ export function AddRoomModal({
   if (!isOpen) return null;
 
   const toggleFacility = (facility: string) => {
-    setSelectedFacilities((prev) =>
-      prev.includes(facility)
-        ? prev.filter((f) => f !== facility)
-        : [...prev, facility]
-    );
+    setSelectedFacilities((prev = []) => {
+      const list = Array.isArray(prev) ? prev : [];
+      return list.includes(facility)
+        ? list.filter((f) => f !== facility)
+        : [...list, facility];
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -104,14 +105,20 @@ export function AddRoomModal({
       const json = await res.json().catch(() => ({}));
       if (!res.ok || !json.success) {
         const errorMsg =
+          json.message ||
           json.error?.message ||
           (typeof json.error === 'string' ? json.error : null) ||
-          json.message ||
           'রুম তৈরি করতে সমস্যা হয়েছে। রুম নম্বর ইতোমধ্যে বিদ্যমান থাকতে পারে।';
         throw new Error(errorMsg);
       }
 
-      onRoomAdded(json.data);
+      try {
+        if (typeof onRoomAdded === 'function') {
+          onRoomAdded(json.data);
+        }
+      } catch (cbErr) {
+        console.warn('onRoomAdded callback warning:', cbErr);
+      }
       onClose();
     } catch (err: any) {
       setError(err.message || 'Failed to create room');

@@ -272,12 +272,12 @@ export class RoomService {
       const summary = {
         totalRooms: allTenantRooms.length,
         totalCapacity: allTenantRooms.reduce((acc, rm) => acc + (rm.capacity || 0), 0),
-        totalOccupied: allTenantRooms.reduce((acc, rm) => acc + (rm.assignments || []).length, 0),
-        totalVacant: allTenantRooms.reduce(
+        totalOccupied: (allTenantRooms || []).reduce((acc, rm) => acc + (rm.assignments || []).length, 0),
+        totalVacant: (allTenantRooms || []).reduce(
           (acc, rm) => acc + Math.max(0, (rm.capacity || 0) - (rm.assignments || []).length),
           0
         ),
-        underMaintenance: allTenantRooms.filter((rm) => rm.status === 'MAINTENANCE').length,
+        underMaintenance: (Array.isArray(allTenantRooms) ? allTenantRooms : []).filter((rm) => rm?.status === 'MAINTENANCE').length,
       };
 
       return {
@@ -2452,15 +2452,17 @@ export class RoomService {
       const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
       const dayDate = new Date(`${dateStr}T12:00:00Z`);
 
+      const bookingsList = Array.isArray(bookingsData?.bookings) ? bookingsData.bookings : [];
+
       // Count active guest bookings on this day
-      const approvedBookingsOnDay = bookingsData.bookings.filter((b: any) => {
+      const approvedBookingsOnDay = bookingsList.filter((b: any) => {
         if (b.status !== 'APPROVED') return false;
         const checkIn = new Date(b.checkInDate);
         const checkOut = new Date(b.checkOutDate);
         return dayDate >= checkIn && dayDate < checkOut;
       });
 
-      const pendingBookingsOnDay = bookingsData.bookings.filter((b: any) => {
+      const pendingBookingsOnDay = bookingsList.filter((b: any) => {
         if (b.status !== 'PENDING') return false;
         const checkIn = new Date(b.checkInDate);
         const checkOut = new Date(b.checkOutDate);

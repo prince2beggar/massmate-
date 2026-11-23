@@ -98,7 +98,14 @@ export function RoomDirectoryView({ tenantSlug, initialData }: RoomDirectoryView
     fetchRooms();
   }, [fetchRooms]);
 
-  const handleRoomAdded = (_newRoom: any) => {
+  const handleRoomAdded = (newRoom: any) => {
+    if (newRoom) {
+      setRooms((prev = []) => {
+        const list = Array.isArray(prev) ? prev : [];
+        if (list.some((r) => r.id === newRoom.id)) return list;
+        return [newRoom, ...list];
+      });
+    }
     fetchRooms();
   };
 

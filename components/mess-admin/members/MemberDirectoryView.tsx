@@ -628,9 +628,9 @@ export function MemberDirectoryView({
         isOpen={!!editingMember}
         onClose={() => setEditingMember(null)}
         onMemberUpdated={(updated) => {
-          setData((prev) => ({
+          setData((prev: any) => ({
             ...prev,
-            members: prev.members.map((m) =>
+            members: (prev?.members || []).map((m: any) =>
               m.id === updated.id ? updated : m
             ),
           }));
@@ -644,9 +644,9 @@ export function MemberDirectoryView({
         isOpen={!!quickRoleMember}
         onClose={() => setQuickRoleMember(null)}
         onRoleUpdated={(updated) => {
-          setData((prev) => ({
+          setData((prev: any) => ({
             ...prev,
-            members: prev.members.map((m) =>
+            members: (prev?.members || []).map((m: any) =>
               m.id === updated.id ? updated : m
             ),
           }));

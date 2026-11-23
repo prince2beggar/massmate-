@@ -1,15 +1,11 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import {
   CalendarDays,
   CalendarRange,
-  ChevronLeft,
-  ChevronRight,
-  Filter,
   Search,
   Printer,
-  Sparkles,
   Utensils,
   Sun,
   Moon,
@@ -22,6 +18,12 @@ import {
   Edit2,
   DollarSign,
   Users,
+  Settings,
+  ArrowUpDown,
+  Filter,
+  Sparkles,
+  ToggleLeft,
+  ToggleRight,
 } from 'lucide-react';
 import { ROLE_TEMPLATES_INFO } from '@/server/rbac/role-constants';
 
@@ -36,6 +38,12 @@ export function FullPeriodMealGridView({
 }: FullPeriodMealGridViewProps) {
   // Preset Cycle Mode: 'current-month' | 'previous-month' | 'mid-month' | 'custom'
   const [cycleMode, setCycleMode] = useState<'current-month' | 'previous-month' | 'mid-month' | 'custom'>('current-month');
+
+  // Date Ordering: 'recent-first' (Newest first, today upfront) vs 'oldest-first' (Day 1 to 30)
+  const [dateOrder, setDateOrder] = useState<'recent-first' | 'oldest-first'>('recent-first');
+
+  // Date Scope: 'up-to-today' (Hides future empty days) vs 'full-cycle' (All 30/40 days)
+  const [dateScope, setDateScope] = useState<'up-to-today' | 'full-cycle'>('up-to-today');
 
   // Date ranges
   const today = new Date();
@@ -62,6 +70,34 @@ export function FullPeriodMealGridView({
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
+  // Settings Modal State
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [settingsForm, setSettingsForm] = useState({
+    breakfastEnabled: true,
+    lunchEnabled: true,
+    dinnerEnabled: true,
+    breakfastWeight: 0.5,
+    lunchWeight: 1.0,
+    dinnerWeight: 1.0,
+  });
+  const [savingSettings, setSavingSettings] = useState(false);
+  const [settingsError, setSettingsError] = useState<string | null>(null);
+  const [settingsSuccess, setSettingsSuccess] = useState<string | null>(null);
+
+  // Sync settings when data changes
+  useEffect(() => {
+    if (data?.settings) {
+      setSettingsForm({
+        breakfastEnabled: data.settings.breakfastEnabled ?? true,
+        lunchEnabled: data.settings.lunchEnabled ?? true,
+        dinnerEnabled: data.settings.dinnerEnabled ?? true,
+        breakfastWeight: Number(data.settings.breakfastWeight ?? 0.5),
+        lunchWeight: Number(data.settings.lunchWeight ?? 1.0),
+        dinnerWeight: Number(data.settings.dinnerWeight ?? 1.0),
+      });
+    }
+  }, [data?.settings]);
+
   // Editing Cell State
   const [editingCell, setEditingCell] = useState<{
     membershipId: string;
@@ -78,6 +114,8 @@ export function FullPeriodMealGridView({
 
   const [savingCell, setSavingCell] = useState(false);
   const [editError, setEditError] = useState<string | null>(null);
+
+  const tableContainerRef = useRef<HTMLDivElement>(null);
 
   // Fetch Period Grid
   const fetchGridData = async (start: string, end: string) => {
@@ -125,7 +163,6 @@ export function FullPeriodMealGridView({
       start = `${y}-${m}-01`;
       end = `${y}-${m}-${String(lastDay).padStart(2, '0')}`;
     } else if (preset === 'mid-month') {
-      // 15th of current month to 15th of next month (Bangladeshi typical rental/mess cycle)
       const y = currentYear;
       const m = currentMonth + 1;
       const nextM = m === 12 ? 1 : m + 1;
@@ -133,7 +170,6 @@ export function FullPeriodMealGridView({
       start = `${y}-${String(m).padStart(2, '0')}-15`;
       end = `${nextY}-${String(nextM).padStart(2, '0')}-15`;
     } else {
-      // Custom retains current values
       return;
     }
 
@@ -155,6 +191,47 @@ export function FullPeriodMealGridView({
     fetchGridData(startDate, newEnd);
   };
 
+  // Save Settings (Weights & Meal Toggles)
+  const handleSaveSettings = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSavingSettings(true);
+    setSettingsError(null);
+    setSettingsSuccess(null);
+
+    try {
+      const res = await fetch(`/api/v1/mess/${tenantSlug}/meals/settings`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          breakfastEnabled: settingsForm.breakfastEnabled,
+          lunchEnabled: settingsForm.lunchEnabled,
+          dinnerEnabled: settingsForm.dinnerEnabled,
+          breakfastWeight: Number(settingsForm.breakfastWeight),
+          lunchWeight: Number(settingsForm.lunchWeight),
+          dinnerWeight: Number(settingsForm.dinnerWeight),
+        }),
+      });
+
+      const json = await res.json();
+      if (!res.ok || !json.success) {
+        throw new Error(json.error?.message || json.message || 'সেটিংস আপডেট করতে ব্যর্থ হয়েছে');
+      }
+
+      setSettingsSuccess('মিল ইউনিট ও সেটিংস সফলভাবে সংরক্ষিত হয়েছে!');
+      setTimeout(() => {
+        setIsSettingsOpen(false);
+        setSettingsSuccess(null);
+      }, 1200);
+
+      // Refresh grid with new weights
+      await fetchGridData(startDate, endDate);
+    } catch (err: any) {
+      setSettingsError(err.message || 'সেটিংস সংরক্ষণে সমস্যা হয়েছে');
+    } finally {
+      setSavingSettings(false);
+    }
+  };
+
   // Cell Click -> Open Edit Popover
   const handleCellClick = (
     membershipId: string,
@@ -171,22 +248,22 @@ export function FullPeriodMealGridView({
       dateString,
       dayNumber,
       dayNameBengali,
-      breakfast: currentMeal?.breakfast ?? 0,
-      lunch: currentMeal?.lunch ?? 0,
-      dinner: currentMeal?.dinner ?? 0,
+      breakfast: currentMeal?.breakfast ?? (settingsForm.breakfastEnabled ? 1 : 0),
+      lunch: currentMeal?.lunch ?? (settingsForm.lunchEnabled ? 1 : 0),
+      dinner: currentMeal?.dinner ?? (settingsForm.dinnerEnabled ? 1 : 0),
       custom: currentMeal?.custom ?? 0,
       notes: currentMeal?.notes ?? '',
     });
   };
 
-  // Quick Preset Setter in Modal
+  // Quick Preset Setter in Modal (Adapts dynamically to enabled meals & unit weights)
   const applyMealPreset = (bf: number, lunch: number, dinner: number) => {
     if (!editingCell) return;
     setEditingCell({
       ...editingCell,
-      breakfast: bf,
-      lunch,
-      dinner,
+      breakfast: settingsForm.breakfastEnabled ? bf : 0,
+      lunch: settingsForm.lunchEnabled ? lunch : 0,
+      dinner: settingsForm.dinnerEnabled ? dinner : 0,
     });
   };
 
@@ -203,9 +280,9 @@ export function FullPeriodMealGridView({
         body: JSON.stringify({
           dateString: editingCell.dateString,
           membershipId: editingCell.membershipId,
-          breakfastCount: editingCell.breakfast,
-          lunchCount: editingCell.lunch,
-          dinnerCount: editingCell.dinner,
+          breakfastCount: settingsForm.breakfastEnabled ? editingCell.breakfast : 0,
+          lunchCount: settingsForm.lunchEnabled ? editingCell.lunch : 0,
+          dinnerCount: settingsForm.dinnerEnabled ? editingCell.dinner : 0,
           customCount: editingCell.custom,
           notes: editingCell.notes || null,
         }),
@@ -218,17 +295,21 @@ export function FullPeriodMealGridView({
         );
       }
 
-      // Optimistically update in local state without full reload
+      // Optimistically update local state
       if (data && data.members) {
+        const bfW = settingsForm.breakfastEnabled ? settingsForm.breakfastWeight : 0;
+        const lunchW = settingsForm.lunchEnabled ? settingsForm.lunchWeight : 0;
+        const dinW = settingsForm.dinnerEnabled ? settingsForm.dinnerWeight : 0;
+
         const updatedMembers = data.members.map((m: any) => {
           if (m.membershipId !== editingCell.membershipId) return m;
 
           const oldDay = m.dailyMeals[editingCell.dateString] || {};
           const newUnits = Number(
             (
-              editingCell.breakfast * 0.5 +
-              editingCell.lunch * 1 +
-              editingCell.dinner * 1 +
+              editingCell.breakfast * bfW +
+              editingCell.lunch * lunchW +
+              editingCell.dinner * dinW +
               editingCell.custom
             ).toFixed(2)
           );
@@ -246,7 +327,7 @@ export function FullPeriodMealGridView({
             },
           };
 
-          // Recompute totals for member
+          // Recompute totals
           let totalBf = 0;
           let totalLunch = 0;
           let totalDinner = 0;
@@ -296,6 +377,44 @@ export function FullPeriodMealGridView({
     }
   };
 
+  // Filter & Order dates according to user preference
+  const rawDates = data?.period?.dates || [];
+  const todayStr = useMemo(() => {
+    const y = today.getFullYear();
+    const m = String(today.getMonth() + 1).padStart(2, '0');
+    const d = String(today.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  }, []);
+
+  // Compute tomorrow string for "Up to Today + 1" view
+  const tomorrowStr = useMemo(() => {
+    const tom = new Date(today.getTime() + 24 * 3600 * 1000);
+    const y = tom.getFullYear();
+    const m = String(tom.getMonth() + 1).padStart(2, '0');
+    const d = String(tom.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  }, []);
+
+  const displayDates = useMemo(() => {
+    let list = [...rawDates];
+
+    // 1. Date Scope Filter: 'up-to-today' (show up to tomorrow so future empty days don't crowd the view)
+    if (dateScope === 'up-to-today' && list.length > 0) {
+      // If cycle includes today, limit to dates <= tomorrowStr
+      const hasToday = list.some((d) => d.dateString === todayStr);
+      if (hasToday) {
+        list = list.filter((d) => d.dateString <= tomorrowStr);
+      }
+    }
+
+    // 2. Sort Order: 'recent-first' (Newest date / today upfront) vs 'oldest-first'
+    if (dateOrder === 'recent-first') {
+      list.reverse();
+    }
+
+    return list;
+  }, [rawDates, dateScope, dateOrder, todayStr, tomorrowStr]);
+
   // Filter members by search query
   const filteredMembers = useMemo(() => {
     if (!data?.members) return [];
@@ -309,32 +428,52 @@ export function FullPeriodMealGridView({
     );
   }, [data?.members, searchQuery]);
 
-  const datesList = data?.period?.dates || [];
   const summary = data?.summary;
   const dailyTotals = data?.dailyTotals || {};
 
+  // Dynamic weights from active settings
+  const curBfWeight = settingsForm.breakfastEnabled ? settingsForm.breakfastWeight : 0;
+  const curLunchWeight = settingsForm.lunchEnabled ? settingsForm.lunchWeight : 0;
+  const curDinnerWeight = settingsForm.dinnerEnabled ? settingsForm.dinnerWeight : 0;
+
   return (
     <div className="space-y-5">
-      {/* 1. Header Toolbar & Preset Controls */}
-      <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs space-y-4">
+      {/* 1. Header Toolbar & Controls */}
+      <div className="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-xs space-y-4">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-100 text-emerald-700">
-                <CalendarRange className="h-4 w-4" />
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700 shadow-2xs">
+                <CalendarRange className="h-4.5 w-4.5" />
               </span>
-              <h2 className="text-lg font-bold text-slate-900">
-                মাসিক ও কাস্টম মেস মিল রেজিস্টার শিট (Full Meal Matrix)
-              </h2>
+              <div>
+                <h2 className="text-lg font-bold text-slate-900 leading-tight">
+                  মাসিক ও কাস্টম মেস মিল রেজিস্টার শিট (Full Meal Matrix)
+                </h2>
+                <div className="flex items-center gap-2 mt-0.5">
+                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+                    <Sparkles className="h-3 w-3" />
+                    সকালের ইউনিট: {settingsForm.breakfastEnabled ? settingsForm.breakfastWeight : 'বন্ধ'} | দুপুর: {settingsForm.lunchEnabled ? settingsForm.lunchWeight : 'বন্ধ'} | রাত: {settingsForm.dinnerEnabled ? settingsForm.dinnerWeight : 'বন্ধ'}
+                  </span>
+                </div>
+              </div>
             </div>
-            <p className="text-xs text-slate-500 mt-0.5">
-              মাসের ১ থেকে ৩০ তারিখ বা কাস্টম মেস সাইকেল (যেমন ১৫ তারিখ থেকে ১৫ তারিখ বা ৪০ দিন) অনুযায়ী সবার মিলের পূর্ণাঙ্গ হিসাব
-            </p>
           </div>
 
           {/* Action buttons */}
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            {/* Meal Settings Button */}
             <button
+              type="button"
+              onClick={() => setIsSettingsOpen(true)}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50/80 px-3 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition shadow-2xs"
+            >
+              <Settings className="h-3.5 w-3.5 text-emerald-700" />
+              <span>মিল ইউনিট ও অন/অফ সেটিংস</span>
+            </button>
+
+            <button
+              type="button"
               onClick={() => fetchGridData(startDate, endDate)}
               disabled={loading}
               className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition shadow-2xs"
@@ -342,37 +481,39 @@ export function FullPeriodMealGridView({
               <RefreshCw className={`h-3.5 w-3.5 ${loading ? 'animate-spin' : ''}`} />
               <span>রিফ্রেশ</span>
             </button>
+
             <button
+              type="button"
               onClick={() => window.print()}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-800 hover:bg-emerald-100 transition shadow-2xs"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition shadow-2xs"
             >
               <Printer className="h-3.5 w-3.5" />
-              <span>প্রিন্ট / এক্সপোর্ট শিট</span>
+              <span>প্রিন্ট শিট</span>
             </button>
           </div>
         </div>
 
         {/* Cycle Presets & Date Pickers */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-100">
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-100">
           {/* Preset Buttons */}
-          <div className="flex flex-wrap items-center gap-1.5 bg-slate-100/80 p-1 rounded-xl">
+          <div className="flex flex-wrap items-center gap-1.5 bg-slate-100/90 p-1 rounded-xl">
             <button
               type="button"
               onClick={() => applyPreset('current-month')}
               className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition ${
                 cycleMode === 'current-month'
-                  ? 'bg-white text-emerald-800 shadow-xs'
+                  ? 'bg-white text-emerald-800 shadow-xs font-bold'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              📅 চলতি মাস (১ম-৩০/৩১)
+              📅 চলতি মাস
             </button>
             <button
               type="button"
               onClick={() => applyPreset('previous-month')}
               className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition ${
                 cycleMode === 'previous-month'
-                  ? 'bg-white text-emerald-800 shadow-xs'
+                  ? 'bg-white text-emerald-800 shadow-xs font-bold'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
@@ -383,22 +524,22 @@ export function FullPeriodMealGridView({
               onClick={() => applyPreset('mid-month')}
               className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition ${
                 cycleMode === 'mid-month'
-                  ? 'bg-white text-emerald-800 shadow-xs'
+                  ? 'bg-white text-emerald-800 shadow-xs font-bold'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              🔄 ১৫ তারিখ হতে ১৫ তারিখ
+              🔄 ১৫ হতে ১৫ তারিখ
             </button>
             <button
               type="button"
               onClick={() => applyPreset('custom')}
               className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition ${
                 cycleMode === 'custom'
-                  ? 'bg-white text-emerald-800 shadow-xs'
+                  ? 'bg-white text-emerald-800 shadow-xs font-bold'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              ⚙️ কাস্টম রেঞ্জ (Custom)
+              ⚙️ কাস্টম রেঞ্জ
             </button>
           </div>
 
@@ -433,7 +574,7 @@ export function FullPeriodMealGridView({
             <button
               type="button"
               onClick={() => fetchGridData(startDate, endDate)}
-              className="rounded-xl bg-emerald-600 px-3.5 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700 transition shadow-xs"
+              className="rounded-xl bg-emerald-600 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-emerald-700 transition shadow-xs"
             >
               লোড করুন
             </button>
@@ -441,7 +582,7 @@ export function FullPeriodMealGridView({
             {/* Quick 30d, 40d, 45d badges for Custom Mode */}
             {cycleMode === 'custom' && (
               <div className="flex items-center gap-1 pl-2 border-l border-slate-200">
-                <span className="text-[11px] text-slate-400 font-medium">দ্রুত সাইকেল:</span>
+                <span className="text-[11px] text-slate-400 font-medium">সাইকেল:</span>
                 <button
                   type="button"
                   onClick={() => setCustomDuration(30)}
@@ -465,6 +606,74 @@ export function FullPeriodMealGridView({
                 </button>
               </div>
             )}
+          </div>
+        </div>
+
+        {/* Date Focus & Sorting Controls Bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-100 bg-slate-50/60 -mx-5 -mb-5 px-5 py-3 rounded-b-2xl">
+          {/* Order Switcher: Recent First vs 1 to 30 */}
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold text-slate-700 flex items-center gap-1">
+              <ArrowUpDown className="h-3.5 w-3.5 text-emerald-600" />
+              তারিখের ক্রম:
+            </span>
+            <div className="inline-flex rounded-xl bg-white p-0.5 border border-slate-200 shadow-2xs text-xs">
+              <button
+                type="button"
+                onClick={() => setDateOrder('recent-first')}
+                className={`px-3 py-1 rounded-lg font-semibold transition ${
+                  dateOrder === 'recent-first'
+                    ? 'bg-emerald-600 text-white font-bold shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                ⚡ নতুন/আজ আগে (Recent First)
+              </button>
+              <button
+                type="button"
+                onClick={() => setDateOrder('oldest-first')}
+                className={`px-3 py-1 rounded-lg font-semibold transition ${
+                  dateOrder === 'oldest-first'
+                    ? 'bg-emerald-600 text-white font-bold shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                ১ম হতে শেষ (1st to 30)
+              </button>
+            </div>
+          </div>
+
+          {/* Scope Filter: Up to Today vs Full Month */}
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold text-slate-700 flex items-center gap-1">
+              <Filter className="h-3.5 w-3.5 text-emerald-600" />
+              প্রদর্শন:
+            </span>
+            <div className="inline-flex rounded-xl bg-white p-0.5 border border-slate-200 shadow-2xs text-xs">
+              <button
+                type="button"
+                onClick={() => setDateScope('up-to-today')}
+                className={`px-3 py-1 rounded-lg font-semibold transition ${
+                  dateScope === 'up-to-today'
+                    ? 'bg-slate-800 text-white font-bold shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+                title="আজ পর্যন্ত যে দিনগুলোর মিল হয়েছে সেগুলো দেখাবে, ভবিষ্যতের ফাঁকা দিনগুলো বাদ দিয়ে টেবিল স্পষ্ট রাখবে"
+              >
+                ✨ আজ ও সাম্প্রতিক দিন ({displayDates.length} দিন)
+              </button>
+              <button
+                type="button"
+                onClick={() => setDateScope('full-cycle')}
+                className={`px-3 py-1 rounded-lg font-semibold transition ${
+                  dateScope === 'full-cycle'
+                    ? 'bg-slate-800 text-white font-bold shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                🌐 পুরো সাইকেল ({rawDates.length} দিন)
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -496,19 +705,19 @@ export function FullPeriodMealGridView({
               {summary.totalMeals} <span className="text-xs font-normal text-slate-500">টি</span>
             </p>
             <span className="text-[10px] text-slate-400 font-medium">
-              নাস্তা: {summary.totalBreakfast} | দুপুর: {summary.totalLunch} | রাত: {summary.totalDinner}
+              {settingsForm.breakfastEnabled ? `সকাল: ${summary.totalBreakfast} | ` : ''}দুপুর: {summary.totalLunch} | রাত: {summary.totalDinner}
             </span>
           </div>
 
           <div className="rounded-2xl border border-slate-200/80 bg-white p-3.5 shadow-2xs">
-            <span className="text-[11px] font-semibold text-slate-500">মোট মিল ইউনিট</span>
+            <span className="text-[11px] font-semibold text-slate-500">মোট চার্জেবল ইউনিট</span>
             <p className="text-lg font-bold text-emerald-700 mt-0.5">
               {summary.totalUnits.toFixed(1)}
             </p>
-            <span className="text-[10px] text-emerald-600 font-medium">ওয়েট অনুসারে মোট ইউনিট</span>
+            <span className="text-[10px] text-emerald-600 font-medium">ইউনিট ওয়েট অনুযায়ী মোট</span>
           </div>
 
-          <div className="rounded-2xl border border-emerald-200 bg-emerald-50/70 p-3.5 shadow-2xs">
+          <div className="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-3.5 shadow-2xs">
             <span className="text-[11px] font-bold text-emerald-900">বর্তমান মিল রেট</span>
             <p className="text-lg font-black text-emerald-800 mt-0.5">
               ৳{summary.calculatedMealRateTaka.toFixed(2)}
@@ -526,7 +735,7 @@ export function FullPeriodMealGridView({
         </div>
       )}
 
-      {/* 3. Search and Table Controls */}
+      {/* 3. Search and Quick Legend Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-2.5 h-3.5 w-3.5 text-slate-400" />
@@ -539,7 +748,7 @@ export function FullPeriodMealGridView({
           />
         </div>
 
-        <div className="flex items-center gap-3 text-xs text-slate-500">
+        <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600 bg-white px-3.5 py-2 rounded-xl border border-slate-200/80 shadow-2xs">
           <div className="flex items-center gap-1.5">
             <span className="inline-block h-3 w-3 rounded-sm bg-emerald-100 border border-emerald-300"></span>
             <span>নিয়মিত মিল</span>
@@ -553,25 +762,26 @@ export function FullPeriodMealGridView({
             <span>ছুটির দিন (শুক্র/শনি)</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="inline-block h-2 w-2 rounded-full bg-emerald-600"></span>
-            <span>আজকের দিন</span>
+            <span className="inline-block h-2.5 w-2.5 rounded-full bg-emerald-600 ring-2 ring-emerald-200"></span>
+            <span className="font-semibold text-emerald-800">আজকের দিন</span>
           </div>
         </div>
       </div>
 
-      {/* 4. Full Period Matrix Spreadsheet Grid */}
-      <div className="rounded-2xl border border-slate-200/90 bg-white shadow-xs overflow-hidden">
+      {/* 4. Full Period Matrix Spreadsheet Grid (Zero Bleed-Through, Crystal Clear Layout) */}
+      <div className="rounded-2xl border border-slate-300 bg-white shadow-sm overflow-hidden">
         {loading ? (
           <div className="py-20 text-center">
             <RefreshCw className="h-8 w-8 animate-spin text-emerald-600 mx-auto mb-3" />
-            <p className="text-sm font-semibold text-slate-700">মিল রেজিস্টার শিট প্রস্তুত হচ্ছে...</p>
-            <p className="text-xs text-slate-400 mt-1">সব সদস্যের দৈনিক মিল ও রেট গণনা করা হচ্ছে</p>
+            <p className="text-sm font-semibold text-slate-700">মিল রেজিস্টার শিট লোড হচ্ছে...</p>
+            <p className="text-xs text-slate-400 mt-1">সব সদস্যের দৈনিক মিল ও রেট সমন্বয় করা হচ্ছে</p>
           </div>
         ) : error ? (
           <div className="p-8 text-center">
             <AlertCircle className="h-8 w-8 text-rose-500 mx-auto mb-2" />
             <p className="text-sm font-bold text-rose-700">{error}</p>
             <button
+              type="button"
               onClick={() => fetchGridData(startDate, endDate)}
               className="mt-3 rounded-xl bg-slate-800 px-4 py-2 text-xs font-semibold text-white hover:bg-slate-900"
             >
@@ -579,54 +789,65 @@ export function FullPeriodMealGridView({
             </button>
           </div>
         ) : (
-          <div className="overflow-x-auto max-w-full">
+          <div ref={tableContainerRef} className="overflow-x-auto max-w-full relative">
             <table className="w-full border-collapse text-left text-xs">
               {/* Header Row */}
               <thead>
-                <tr className="bg-slate-50 border-b border-slate-200 text-slate-700 select-none">
-                  {/* Sticky Member Code */}
-                  <th className="sticky left-0 z-20 bg-slate-100 px-3 py-3 font-bold text-slate-800 border-r border-slate-200 min-w-[75px] shadow-sm">
+                <tr className="bg-slate-100 border-b-2 border-slate-300 text-slate-700 select-none">
+                  {/* Sticky Member Code (Solid Background & Z-30) */}
+                  <th className="sticky left-0 z-30 bg-slate-100 px-3 py-3 font-bold text-slate-800 border-r border-slate-200 min-w-[65px] max-w-[65px]">
                     কোড
                   </th>
-                  {/* Sticky Resident Name */}
-                  <th className="sticky left-[75px] z-20 bg-slate-100 px-4 py-3 font-bold text-slate-800 border-r border-slate-300 min-w-[170px] shadow-sm">
+                  {/* Sticky Resident Name (Solid Background, Z-30, Solid Shadow Divider) */}
+                  <th className="sticky left-[65px] z-30 bg-slate-100 px-4 py-3 font-bold text-slate-800 border-r-2 border-slate-300 min-w-[190px] max-w-[190px] shadow-[4px_0_8px_-2px_rgba(0,0,0,0.1)]">
                     মেম্বারের নাম ও রোল
                   </th>
 
                   {/* Day Columns */}
-                  {datesList.map((d: any) => (
+                  {displayDates.map((d: any) => (
                     <th
                       key={d.dateString}
-                      className={`px-1.5 py-2 text-center border-r border-slate-200 min-w-[42px] transition ${
+                      className={`px-1.5 py-2.5 text-center border-r border-slate-200 min-w-[46px] transition ${
                         d.isToday
-                          ? 'bg-emerald-100/80 text-emerald-950 font-black ring-1 ring-emerald-500/30'
+                          ? 'bg-emerald-100 text-emerald-950 font-black ring-2 ring-emerald-500/40 z-10'
                           : d.isWeekend
-                          ? 'bg-amber-50/60 text-amber-900 font-semibold'
-                          : 'text-slate-700'
+                          ? 'bg-amber-50 text-amber-900 font-semibold'
+                          : 'bg-slate-50 text-slate-700'
                       }`}
                     >
-                      <div className="text-[13px] leading-tight font-black">{d.dayNumber}</div>
+                      <div className="text-[13px] leading-tight font-black flex items-center justify-center gap-1">
+                        {d.dayNumber}
+                        {d.isToday && (
+                          <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-600"></span>
+                        )}
+                      </div>
                       <div className="text-[9px] text-slate-500 mt-0.5">{d.dayNameBengali}</div>
                     </th>
                   ))}
 
-                  {/* Sticky Right Summary Columns */}
-                  <th className="sticky right-[270px] z-20 bg-slate-100 px-2 py-3 text-center font-bold text-slate-800 border-l border-slate-300 min-w-[50px]">
-                    নাস্তা
+                  {/* Summary Columns */}
+                  {settingsForm.breakfastEnabled && (
+                    <th className="bg-slate-100 px-2 py-3 text-center font-bold text-slate-700 border-l-2 border-slate-300 min-w-[50px]">
+                      নাস্তা
+                    </th>
+                  )}
+                  {settingsForm.lunchEnabled && (
+                    <th className={`bg-slate-100 px-2 py-3 text-center font-bold text-slate-700 border-r border-slate-200 min-w-[50px] ${!settingsForm.breakfastEnabled ? 'border-l-2 border-slate-300' : ''}`}>
+                      দুপুর
+                    </th>
+                  )}
+                  {settingsForm.dinnerEnabled && (
+                    <th className="bg-slate-100 px-2 py-3 text-center font-bold text-slate-700 border-r border-slate-200 min-w-[50px]">
+                      রাত
+                    </th>
+                  )}
+                  <th className="bg-emerald-50 px-2.5 py-3 text-center font-black text-emerald-900 border-r border-slate-200 min-w-[55px]">
+                    মোট মিল
                   </th>
-                  <th className="sticky right-[220px] z-20 bg-slate-100 px-2 py-3 text-center font-bold text-slate-800 border-r border-slate-200 min-w-[50px]">
-                    দুপুর
-                  </th>
-                  <th className="sticky right-[170px] z-20 bg-slate-100 px-2 py-3 text-center font-bold text-slate-800 border-r border-slate-200 min-w-[50px]">
-                    রাত
-                  </th>
-                  <th className="sticky right-[120px] z-20 bg-emerald-50 px-2 py-3 text-center font-black text-emerald-900 border-r border-slate-200 min-w-[50px]">
-                    মোট
-                  </th>
-                  <th className="sticky right-[60px] z-20 bg-emerald-100 px-2.5 py-3 text-center font-black text-emerald-900 border-r border-slate-200 min-w-[60px]">
+                  <th className="bg-emerald-100 px-3 py-3 text-center font-black text-emerald-950 border-r border-slate-200 min-w-[65px]">
                     ইউনিট
                   </th>
-                  <th className="sticky right-0 z-20 bg-slate-100 px-3 py-3 text-right font-black text-slate-900 min-w-[90px] shadow-sm">
+                  <th className="bg-slate-100 px-3.5 py-3 text-right font-black text-slate-900 min-w-[95px]">
                     খরচ (৳)
                   </th>
                 </tr>
@@ -642,18 +863,18 @@ export function FullPeriodMealGridView({
                   return (
                     <tr
                       key={m.membershipId}
-                      className={`hover:bg-slate-50/80 transition-colors ${
-                        mIdx % 2 === 0 ? 'bg-white' : 'bg-slate-50/30'
+                      className={`group transition-colors ${
+                        mIdx % 2 === 0 ? 'bg-white hover:bg-slate-50' : 'bg-slate-50/40 hover:bg-slate-100/60'
                       }`}
                     >
-                      {/* Sticky Code */}
-                      <td className="sticky left-0 z-10 bg-inherit px-3 py-2 font-mono text-[11px] font-semibold text-slate-600 border-r border-slate-200">
+                      {/* Sticky Code (Solid 100% Opaque bg-white/slate-50 on hover) */}
+                      <td className="sticky left-0 z-20 bg-white group-hover:bg-slate-100 px-3 py-2.5 font-mono text-[11px] font-bold text-slate-600 border-r border-slate-200">
                         {m.memberCode || `M-${mIdx + 1}`}
                       </td>
 
-                      {/* Sticky Resident Name & Roles */}
-                      <td className="sticky left-[75px] z-10 bg-inherit px-4 py-2 border-r border-slate-300">
-                        <div className="font-bold text-slate-900 truncate max-w-[150px]">
+                      {/* Sticky Resident Name (Solid 100% Opaque, Z-20, Right Divider Shadow) */}
+                      <td className="sticky left-[65px] z-20 bg-white group-hover:bg-slate-100 px-4 py-2.5 border-r-2 border-slate-300 shadow-[4px_0_8px_-2px_rgba(0,0,0,0.08)]">
+                        <div className="font-bold text-slate-900 truncate max-w-[170px]" title={m.memberName}>
                           {m.memberName}
                         </div>
                         <div className="flex flex-wrap items-center gap-1 mt-0.5">
@@ -673,8 +894,8 @@ export function FullPeriodMealGridView({
                         </div>
                       </td>
 
-                      {/* Day Cells */}
-                      {datesList.map((d: any) => {
+                      {/* Day Cells (Scrolls freely behind the left sticky columns with ZERO bleed) */}
+                      {displayDates.map((d: any) => {
                         const dayMeal = m.dailyMeals[d.dateString];
                         const totalUnits = dayMeal?.totalUnits ?? 0;
                         const isOff = dayMeal?.isOff;
@@ -692,21 +913,21 @@ export function FullPeriodMealGridView({
                                 dayMeal
                               )
                             }
-                            title={`${m.memberName} (${d.dayNumber} ${d.dayNameBengali}): নাস্তা: ${dayMeal?.breakfast ?? 0}, দুপুর: ${dayMeal?.lunch ?? 0}, রাত: ${dayMeal?.dinner ?? 0}`}
-                            className={`px-1 py-1 text-center border-r border-slate-100 cursor-pointer select-none transition group relative ${
+                            title={`${m.memberName} (${d.dayNumber} ${d.dayNameBengali}): ${settingsForm.breakfastEnabled ? `সকাল: ${dayMeal?.breakfast ?? 0}, ` : ''}দুপুর: ${dayMeal?.lunch ?? 0}, রাত: ${dayMeal?.dinner ?? 0} (ক্লিক করে পরিবর্তন করুন)`}
+                            className={`px-1 py-1.5 text-center border-r border-slate-100 cursor-pointer select-none transition relative ${
                               d.isToday
-                                ? 'bg-emerald-50/50 hover:bg-emerald-100/70'
+                                ? 'bg-emerald-50/70 hover:bg-emerald-100/90'
                                 : d.isWeekend
-                                ? 'bg-amber-50/30 hover:bg-amber-100/50'
+                                ? 'bg-amber-50/40 hover:bg-amber-100/60'
                                 : 'hover:bg-slate-100'
                             }`}
                           >
                             {isOff ? (
-                              <span className="inline-block px-1 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-700">
+                              <span className="inline-block px-1.5 py-0.5 rounded text-[10px] font-black bg-rose-100 text-rose-700 border border-rose-200">
                                 OFF
                               </span>
                             ) : totalUnits > 0 ? (
-                              <span className="font-bold text-slate-800 text-[11px] group-hover:text-emerald-700">
+                              <span className="font-bold text-slate-900 text-[11.5px] hover:text-emerald-700">
                                 {totalUnits % 1 === 0 ? totalUnits.toFixed(0) : totalUnits.toFixed(1)}
                               </span>
                             ) : (
@@ -716,23 +937,29 @@ export function FullPeriodMealGridView({
                         );
                       })}
 
-                      {/* Sticky Right Summary Values */}
-                      <td className="sticky right-[270px] z-10 bg-inherit px-2 py-2 text-center font-medium text-slate-700 border-l border-slate-300">
-                        {m.totals.totalBreakfast}
-                      </td>
-                      <td className="sticky right-[220px] z-10 bg-inherit px-2 py-2 text-center font-medium text-slate-700 border-r border-slate-200">
-                        {m.totals.totalLunch}
-                      </td>
-                      <td className="sticky right-[170px] z-10 bg-inherit px-2 py-2 text-center font-medium text-slate-700 border-r border-slate-200">
-                        {m.totals.totalDinner}
-                      </td>
-                      <td className="sticky right-[120px] z-10 bg-emerald-50 px-2 py-2 text-center font-bold text-emerald-900 border-r border-slate-200">
+                      {/* Summary Columns */}
+                      {settingsForm.breakfastEnabled && (
+                        <td className="px-2 py-2.5 text-center font-medium text-slate-700 border-l-2 border-slate-300 bg-slate-50/60">
+                          {m.totals.totalBreakfast}
+                        </td>
+                      )}
+                      {settingsForm.lunchEnabled && (
+                        <td className={`px-2 py-2.5 text-center font-medium text-slate-700 border-r border-slate-200 bg-slate-50/60 ${!settingsForm.breakfastEnabled ? 'border-l-2 border-slate-300' : ''}`}>
+                          {m.totals.totalLunch}
+                        </td>
+                      )}
+                      {settingsForm.dinnerEnabled && (
+                        <td className="px-2 py-2.5 text-center font-medium text-slate-700 border-r border-slate-200 bg-slate-50/60">
+                          {m.totals.totalDinner}
+                        </td>
+                      )}
+                      <td className="bg-emerald-50 px-2.5 py-2.5 text-center font-bold text-emerald-900 border-r border-slate-200">
                         {m.totals.totalMeals}
                       </td>
-                      <td className="sticky right-[60px] z-10 bg-emerald-100 px-2 py-2 text-center font-black text-emerald-950 border-r border-slate-200">
+                      <td className="bg-emerald-100 px-3 py-2.5 text-center font-black text-emerald-950 border-r border-slate-200">
                         {m.totals.totalUnits.toFixed(1)}
                       </td>
-                      <td className="sticky right-0 z-10 bg-inherit px-3 py-2 text-right font-bold text-slate-900">
+                      <td className="px-3.5 py-2.5 text-right font-black text-slate-900 bg-slate-50/80">
                         ৳{m.totals.estimatedCostTaka.toLocaleString()}
                       </td>
                     </tr>
@@ -743,25 +970,26 @@ export function FullPeriodMealGridView({
               {/* Bottom Summary Row: Daily Mess Totals */}
               <tfoot>
                 <tr className="bg-slate-100 border-t-2 border-slate-300 font-black text-slate-800">
-                  <td className="sticky left-0 z-20 bg-slate-200 px-3 py-2.5 text-slate-700 border-r border-slate-300">
+                  {/* Sticky Total Label (Solid Z-30) */}
+                  <td className="sticky left-0 z-30 bg-slate-200 px-3 py-3 text-slate-700 border-r border-slate-300">
                     মোট
                   </td>
-                  <td className="sticky left-[75px] z-20 bg-slate-200 px-4 py-2.5 text-slate-900 border-r border-slate-300">
+                  <td className="sticky left-[65px] z-30 bg-slate-200 px-4 py-3 text-slate-900 border-r-2 border-slate-300 shadow-[4px_0_8px_-2px_rgba(0,0,0,0.1)]">
                     দৈনিক মেসের সর্বমোট মিল
                   </td>
 
                   {/* Daily Column Sums */}
-                  {datesList.map((d: any) => {
+                  {displayDates.map((d: any) => {
                     const dt = dailyTotals[d.dateString];
                     const count = dt?.totalMeals ?? 0;
                     return (
                       <td
                         key={d.dateString}
-                        className={`px-1 py-2 text-center border-r border-slate-300 text-[11px] ${
+                        className={`px-1 py-2.5 text-center border-r border-slate-300 text-[11px] font-bold ${
                           d.isToday
-                            ? 'bg-emerald-200/90 text-emerald-950'
+                            ? 'bg-emerald-200 text-emerald-950 ring-1 ring-emerald-500/40'
                             : d.isWeekend
-                            ? 'bg-amber-100/80 text-amber-950'
+                            ? 'bg-amber-100 text-amber-950'
                             : 'bg-slate-100'
                         }`}
                       >
@@ -771,22 +999,28 @@ export function FullPeriodMealGridView({
                   })}
 
                   {/* Grand Totals */}
-                  <td className="sticky right-[270px] z-20 bg-slate-200 px-2 py-2.5 text-center border-l border-slate-300">
-                    {summary?.totalBreakfast}
-                  </td>
-                  <td className="sticky right-[220px] z-20 bg-slate-200 px-2 py-2.5 text-center border-r border-slate-300">
-                    {summary?.totalLunch}
-                  </td>
-                  <td className="sticky right-[170px] z-20 bg-slate-200 px-2 py-2.5 text-center border-r border-slate-300">
-                    {summary?.totalDinner}
-                  </td>
-                  <td className="sticky right-[120px] z-20 bg-emerald-200 px-2 py-2.5 text-center text-emerald-950 border-r border-slate-300">
+                  {settingsForm.breakfastEnabled && (
+                    <td className="px-2 py-3 text-center border-l-2 border-slate-300 bg-slate-200">
+                      {summary?.totalBreakfast}
+                    </td>
+                  )}
+                  {settingsForm.lunchEnabled && (
+                    <td className={`px-2 py-3 text-center border-r border-slate-300 bg-slate-200 ${!settingsForm.breakfastEnabled ? 'border-l-2 border-slate-300' : ''}`}>
+                      {summary?.totalLunch}
+                    </td>
+                  )}
+                  {settingsForm.dinnerEnabled && (
+                    <td className="px-2 py-3 text-center border-r border-slate-300 bg-slate-200">
+                      {summary?.totalDinner}
+                    </td>
+                  )}
+                  <td className="bg-emerald-200 px-2.5 py-3 text-center text-emerald-950 border-r border-slate-300 font-black">
                     {summary?.totalMeals}
                   </td>
-                  <td className="sticky right-[60px] z-20 bg-emerald-300 px-2 py-2.5 text-center text-emerald-950 border-r border-slate-300">
+                  <td className="bg-emerald-300 px-3 py-3 text-center text-emerald-950 border-r border-slate-300 font-black">
                     {summary?.totalUnits?.toFixed(1)}
                   </td>
-                  <td className="sticky right-0 z-20 bg-slate-200 px-3 py-2.5 text-right text-slate-900">
+                  <td className="px-3.5 py-3 text-right text-slate-900 bg-slate-200 font-black">
                     ৳{summary?.totalEstimatedMealCostTaka?.toLocaleString()}
                   </td>
                 </tr>
@@ -796,9 +1030,269 @@ export function FullPeriodMealGridView({
         )}
       </div>
 
-      {/* 5. Cell Edit Modal / Floating Editor */}
+      {/* 5. Meal Weights & Toggles Settings Modal */}
+      {isSettingsOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+          <div className="relative w-full max-w-lg rounded-2xl bg-white border border-slate-200 p-6 shadow-2xl space-y-5">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div className="flex items-center gap-2">
+                <span className="p-2 rounded-xl bg-emerald-100 text-emerald-700">
+                  <Settings className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="text-base font-bold text-slate-900">
+                    মিল সেটিংস ও ইউনিট ওজন (Meal Configuration)
+                  </h3>
+                  <p className="text-xs text-slate-500">
+                    কোন মিলগুলো মেসে রান্না হয় এবং প্রতিটির ইউনিট কত গণনা হবে তা নির্ধারণ করুন
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsSettingsOpen(false)}
+                className="rounded-lg p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-700"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            {settingsError && (
+              <div className="flex items-center gap-2 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs text-rose-700">
+                <AlertCircle className="h-4 w-4 shrink-0 text-rose-600" />
+                <span>{settingsError}</span>
+              </div>
+            )}
+
+            {settingsSuccess && (
+              <div className="flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-xs text-emerald-800">
+                <Check className="h-4 w-4 shrink-0 text-emerald-600" />
+                <span>{settingsSuccess}</span>
+              </div>
+            )}
+
+            <form onSubmit={handleSaveSettings} className="space-y-4">
+              {/* 1. Meal ON/OFF Switches */}
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-slate-800 block">
+                  ১. মেসে কোন কোন মিল চালু থাকবে? (Meal Toggles)
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  {/* Breakfast Switch */}
+                  <div className={`p-3 rounded-xl border transition ${settingsForm.breakfastEnabled ? 'bg-amber-50/60 border-amber-300' : 'bg-slate-50 border-slate-200 opacity-60'}`}>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1.5 font-bold text-xs text-slate-800">
+                        <Coffee className="h-3.5 w-3.5 text-amber-600" />
+                        <span>সকাল</span>
+                      </div>
+                      <input
+                        type="checkbox"
+                        checked={settingsForm.breakfastEnabled}
+                        onChange={(e) =>
+                          setSettingsForm({ ...settingsForm, breakfastEnabled: e.target.checked })
+                        }
+                        className="h-4 w-4 rounded accent-emerald-600 cursor-pointer"
+                      />
+                    </div>
+                    <span className="text-[10px] text-slate-500 block mt-1">
+                      {settingsForm.breakfastEnabled ? 'সকালের নাস্তা চালু' : 'নাস্তা বন্ধ'}
+                    </span>
+                  </div>
+
+                  {/* Lunch Switch */}
+                  <div className={`p-3 rounded-xl border transition ${settingsForm.lunchEnabled ? 'bg-orange-50/60 border-orange-300' : 'bg-slate-50 border-slate-200 opacity-60'}`}>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1.5 font-bold text-xs text-slate-800">
+                        <Sun className="h-3.5 w-3.5 text-orange-500" />
+                        <span>দুপুর</span>
+                      </div>
+                      <input
+                        type="checkbox"
+                        checked={settingsForm.lunchEnabled}
+                        onChange={(e) =>
+                          setSettingsForm({ ...settingsForm, lunchEnabled: e.target.checked })
+                        }
+                        className="h-4 w-4 rounded accent-emerald-600 cursor-pointer"
+                      />
+                    </div>
+                    <span className="text-[10px] text-slate-500 block mt-1">
+                      {settingsForm.lunchEnabled ? 'দুপুরের খাবার চালু' : 'দুপুর বন্ধ'}
+                    </span>
+                  </div>
+
+                  {/* Dinner Switch */}
+                  <div className={`p-3 rounded-xl border transition ${settingsForm.dinnerEnabled ? 'bg-indigo-50/60 border-indigo-300' : 'bg-slate-50 border-slate-200 opacity-60'}`}>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1.5 font-bold text-xs text-slate-800">
+                        <Moon className="h-3.5 w-3.5 text-indigo-600" />
+                        <span>রাত</span>
+                      </div>
+                      <input
+                        type="checkbox"
+                        checked={settingsForm.dinnerEnabled}
+                        onChange={(e) =>
+                          setSettingsForm({ ...settingsForm, dinnerEnabled: e.target.checked })
+                        }
+                        className="h-4 w-4 rounded accent-emerald-600 cursor-pointer"
+                      />
+                    </div>
+                    <span className="text-[10px] text-slate-500 block mt-1">
+                      {settingsForm.dinnerEnabled ? 'রাতের খাবার চালু' : 'রাত বন্ধ'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* 2. Meal Unit Weights Configuration */}
+              <div className="space-y-3 pt-2 border-t border-slate-100">
+                <label className="text-xs font-bold text-slate-800 block">
+                  ২. মিলের ইউনিট ওজন নির্ধারণ (Unit Weights)
+                </label>
+                <p className="text-[11px] text-slate-500 -mt-2">
+                  সকালের নাস্তাকে সাধারণত হাফ (০.৫) মিল ধরা হয়, তবে মেসে চাইলে ১ বা ০.৭৫ করে নির্ধারণ করা যাবে।
+                </p>
+
+                {/* Breakfast Weight Input & Presets */}
+                <div className={`space-y-2 p-3 rounded-xl border ${settingsForm.breakfastEnabled ? 'bg-slate-50 border-slate-200' : 'bg-slate-100 border-slate-200 opacity-50'}`}>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                      <Coffee className="h-3.5 w-3.5 text-amber-600" />
+                      সকালের নাস্তার ইউনিট ওজন:
+                    </span>
+                    <input
+                      type="number"
+                      step="0.05"
+                      min="0"
+                      max="3"
+                      disabled={!settingsForm.breakfastEnabled}
+                      value={settingsForm.breakfastWeight}
+                      onChange={(e) =>
+                        setSettingsForm({
+                          ...settingsForm,
+                          breakfastWeight: parseFloat(e.target.value) || 0,
+                        })
+                      }
+                      className="w-20 rounded-lg border border-slate-300 bg-white px-2.5 py-1 text-xs font-bold text-center text-slate-800 outline-none focus:border-emerald-500"
+                    />
+                  </div>
+
+                  {settingsForm.breakfastEnabled && (
+                    <div className="flex items-center gap-1.5 pt-1">
+                      <span className="text-[10px] text-slate-500">প্রিসেট:</span>
+                      <button
+                        type="button"
+                        onClick={() => setSettingsForm({ ...settingsForm, breakfastWeight: 0.5 })}
+                        className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition ${settingsForm.breakfastWeight === 0.5 ? 'bg-emerald-600 text-white' : 'bg-white border border-slate-200 text-slate-700'}`}
+                      >
+                        হাফ (০.৫)
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSettingsForm({ ...settingsForm, breakfastWeight: 1.0 })}
+                        className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition ${settingsForm.breakfastWeight === 1.0 ? 'bg-emerald-600 text-white' : 'bg-white border border-slate-200 text-slate-700'}`}
+                      >
+                        ফুল মিল (১.০)
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSettingsForm({ ...settingsForm, breakfastWeight: 0.75 })}
+                        className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition ${settingsForm.breakfastWeight === 0.75 ? 'bg-emerald-600 text-white' : 'bg-white border border-slate-200 text-slate-700'}`}
+                      >
+                        পৌনে (০.৭৫)
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Lunch & Dinner Weights */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {/* Lunch Weight */}
+                  <div className={`p-3 rounded-xl border ${settingsForm.lunchEnabled ? 'bg-slate-50 border-slate-200' : 'bg-slate-100 border-slate-200 opacity-50'}`}>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                        <Sun className="h-3.5 w-3.5 text-orange-500" />
+                        দুপুরের ইউনিট:
+                      </span>
+                      <input
+                        type="number"
+                        step="0.1"
+                        min="0"
+                        max="3"
+                        disabled={!settingsForm.lunchEnabled}
+                        value={settingsForm.lunchWeight}
+                        onChange={(e) =>
+                          setSettingsForm({
+                            ...settingsForm,
+                            lunchWeight: parseFloat(e.target.value) || 0,
+                          })
+                        }
+                        className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1 text-xs font-bold text-center text-slate-800 outline-none focus:border-emerald-500"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Dinner Weight */}
+                  <div className={`p-3 rounded-xl border ${settingsForm.dinnerEnabled ? 'bg-slate-50 border-slate-200' : 'bg-slate-100 border-slate-200 opacity-50'}`}>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                        <Moon className="h-3.5 w-3.5 text-indigo-600" />
+                        রাতের ইউনিট:
+                      </span>
+                      <input
+                        type="number"
+                        step="0.1"
+                        min="0"
+                        max="3"
+                        disabled={!settingsForm.dinnerEnabled}
+                        value={settingsForm.dinnerWeight}
+                        onChange={(e) =>
+                          setSettingsForm({
+                            ...settingsForm,
+                            dinnerWeight: parseFloat(e.target.value) || 0,
+                          })
+                        }
+                        className="w-16 rounded-lg border border-slate-300 bg-white px-2 py-1 text-xs font-bold text-center text-slate-800 outline-none focus:border-emerald-500"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Form Buttons */}
+              <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+                <button
+                  type="button"
+                  onClick={() => setIsSettingsOpen(false)}
+                  className="rounded-xl px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 transition"
+                >
+                  বাতিল
+                </button>
+                <button
+                  type="submit"
+                  disabled={savingSettings}
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-5 py-2 text-xs font-bold text-white hover:bg-emerald-700 transition shadow-xs disabled:opacity-50"
+                >
+                  {savingSettings ? (
+                    <>
+                      <RefreshCw className="h-3.5 w-3.5 animate-spin" />
+                      <span>সংরক্ষণ হচ্ছে...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Check className="h-3.5 w-3.5" />
+                      <span>সংরক্ষণ করুন</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* 6. Dynamic Cell Edit Modal / Popover */}
       {editingCell && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
           <div className="relative w-full max-w-md rounded-2xl bg-white border border-slate-200 p-6 shadow-2xl space-y-4">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div>
@@ -825,157 +1319,182 @@ export function FullPeriodMealGridView({
               </div>
             )}
 
-            {/* Quick 1-Click Preset Buttons */}
+            {/* Quick 1-Click Preset Buttons (Adapts to Active Settings) */}
             <div className="space-y-1.5">
               <span className="text-xs font-semibold text-slate-700">দ্রুত প্রিসেট নির্বাচন:</span>
               <div className="grid grid-cols-2 gap-2">
                 <button
                   type="button"
                   onClick={() => applyMealPreset(0, 0, 0)}
-                  className="rounded-xl border border-rose-200 bg-rose-50/60 px-3 py-2 text-xs font-bold text-rose-700 hover:bg-rose-100 transition"
+                  className="rounded-xl border border-rose-200 bg-rose-50/70 px-3 py-2 text-xs font-bold text-rose-700 hover:bg-rose-100 transition"
                 >
-                  🚫 মিল অফ / বন্ধ (০)
+                  🚫 মিল বন্ধ / অফ (০)
                 </button>
+
                 <button
                   type="button"
                   onClick={() => applyMealPreset(1, 1, 1)}
-                  className="rounded-xl border border-emerald-200 bg-emerald-50/60 px-3 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition"
+                  className="rounded-xl border border-emerald-200 bg-emerald-50/70 px-3 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition"
                 >
-                  🍳 ফুল মিল (২.৫/৩)
+                  🍳 ফুল মিল ({(curBfWeight + curLunchWeight + curDinnerWeight).toFixed(1)})
                 </button>
-                <button
-                  type="button"
-                  onClick={() => applyMealPreset(0, 1, 1)}
-                  className="rounded-xl border border-blue-200 bg-blue-50/60 px-3 py-2 text-xs font-bold text-blue-800 hover:bg-blue-100 transition"
-                >
-                  🍛 দুপুর + রাত (২.০)
-                </button>
-                <button
-                  type="button"
-                  onClick={() => applyMealPreset(1, 0, 0)}
-                  className="rounded-xl border border-amber-200 bg-amber-50/60 px-3 py-2 text-xs font-bold text-amber-800 hover:bg-amber-100 transition"
-                >
-                  ☕ নাস্তা মাত্র (০.৫)
-                </button>
+
+                {settingsForm.lunchEnabled && settingsForm.dinnerEnabled && (
+                  <button
+                    type="button"
+                    onClick={() => applyMealPreset(0, 1, 1)}
+                    className="rounded-xl border border-blue-200 bg-blue-50/70 px-3 py-2 text-xs font-bold text-blue-800 hover:bg-blue-100 transition"
+                  >
+                    🍛 দুপুর + রাত ({(curLunchWeight + curDinnerWeight).toFixed(1)})
+                  </button>
+                )}
+
+                {settingsForm.breakfastEnabled && (
+                  <button
+                    type="button"
+                    onClick={() => applyMealPreset(1, 0, 0)}
+                    className="rounded-xl border border-amber-200 bg-amber-50/70 px-3 py-2 text-xs font-bold text-amber-800 hover:bg-amber-100 transition"
+                  >
+                    ☕ নাস্তা মাত্র ({curBfWeight.toFixed(1)})
+                  </button>
+                )}
               </div>
             </div>
 
             {/* Meal Items Counters */}
-            <div className="grid grid-cols-3 gap-3 pt-2 border-t border-slate-100">
-              {/* Breakfast */}
-              <div className="rounded-xl border border-slate-200 p-3 text-center space-y-1 bg-slate-50/50">
-                <div className="flex items-center justify-center gap-1 text-slate-600 text-xs font-bold">
-                  <Coffee className="h-3.5 w-3.5 text-amber-600" />
-                  <span>সকাল</span>
+            <div className="grid grid-cols-3 gap-2.5 pt-2 border-t border-slate-100">
+              {/* Breakfast Counter */}
+              {settingsForm.breakfastEnabled ? (
+                <div className="rounded-xl border border-slate-200 p-2.5 text-center space-y-1 bg-amber-50/30">
+                  <div className="flex items-center justify-center gap-1 text-slate-700 text-xs font-bold">
+                    <Coffee className="h-3.5 w-3.5 text-amber-600" />
+                    <span>সকাল ({settingsForm.breakfastWeight})</span>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 pt-1">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setEditingCell({
+                          ...editingCell,
+                          breakfast: Math.max(0, editingCell.breakfast - 1),
+                        })
+                      }
+                      className="h-6 w-6 rounded-md bg-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-300"
+                    >
+                      -
+                    </button>
+                    <span className="text-sm font-black text-slate-900">{editingCell.breakfast}</span>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setEditingCell({
+                          ...editingCell,
+                          breakfast: editingCell.breakfast + 1,
+                        })
+                      }
+                      className="h-6 w-6 rounded-md bg-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-300"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
-                <div className="flex items-center justify-center gap-2 pt-1">
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setEditingCell({
-                        ...editingCell,
-                        breakfast: Math.max(0, editingCell.breakfast - 1),
-                      })
-                    }
-                    className="h-6 w-6 rounded-md bg-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-300"
-                  >
-                    -
-                  </button>
-                  <span className="text-sm font-black text-slate-900">{editingCell.breakfast}</span>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setEditingCell({
-                        ...editingCell,
-                        breakfast: editingCell.breakfast + 1,
-                      })
-                    }
-                    className="h-6 w-6 rounded-md bg-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-300"
-                  >
-                    +
-                  </button>
+              ) : (
+                <div className="rounded-xl border border-slate-200 p-2 text-center bg-slate-100 opacity-60">
+                  <span className="text-[10px] text-slate-400 font-semibold block">নাস্তা বন্ধ</span>
                 </div>
-              </div>
+              )}
 
-              {/* Lunch */}
-              <div className="rounded-xl border border-slate-200 p-3 text-center space-y-1 bg-slate-50/50">
-                <div className="flex items-center justify-center gap-1 text-slate-600 text-xs font-bold">
-                  <Sun className="h-3.5 w-3.5 text-orange-500" />
-                  <span>দুপুর</span>
+              {/* Lunch Counter */}
+              {settingsForm.lunchEnabled ? (
+                <div className="rounded-xl border border-slate-200 p-2.5 text-center space-y-1 bg-orange-50/30">
+                  <div className="flex items-center justify-center gap-1 text-slate-700 text-xs font-bold">
+                    <Sun className="h-3.5 w-3.5 text-orange-500" />
+                    <span>দুপুর ({settingsForm.lunchWeight})</span>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 pt-1">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setEditingCell({
+                          ...editingCell,
+                          lunch: Math.max(0, editingCell.lunch - 1),
+                        })
+                      }
+                      className="h-6 w-6 rounded-md bg-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-300"
+                    >
+                      -
+                    </button>
+                    <span className="text-sm font-black text-slate-900">{editingCell.lunch}</span>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setEditingCell({
+                          ...editingCell,
+                          lunch: editingCell.lunch + 1,
+                        })
+                      }
+                      className="h-6 w-6 rounded-md bg-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-300"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
-                <div className="flex items-center justify-center gap-2 pt-1">
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setEditingCell({
-                        ...editingCell,
-                        lunch: Math.max(0, editingCell.lunch - 1),
-                      })
-                    }
-                    className="h-6 w-6 rounded-md bg-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-300"
-                  >
-                    -
-                  </button>
-                  <span className="text-sm font-black text-slate-900">{editingCell.lunch}</span>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setEditingCell({
-                        ...editingCell,
-                        lunch: editingCell.lunch + 1,
-                      })
-                    }
-                    className="h-6 w-6 rounded-md bg-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-300"
-                  >
-                    +
-                  </button>
+              ) : (
+                <div className="rounded-xl border border-slate-200 p-2 text-center bg-slate-100 opacity-60">
+                  <span className="text-[10px] text-slate-400 font-semibold block">দুপুর বন্ধ</span>
                 </div>
-              </div>
+              )}
 
-              {/* Dinner */}
-              <div className="rounded-xl border border-slate-200 p-3 text-center space-y-1 bg-slate-50/50">
-                <div className="flex items-center justify-center gap-1 text-slate-600 text-xs font-bold">
-                  <Moon className="h-3.5 w-3.5 text-indigo-600" />
-                  <span>রাত</span>
+              {/* Dinner Counter */}
+              {settingsForm.dinnerEnabled ? (
+                <div className="rounded-xl border border-slate-200 p-2.5 text-center space-y-1 bg-indigo-50/30">
+                  <div className="flex items-center justify-center gap-1 text-slate-700 text-xs font-bold">
+                    <Moon className="h-3.5 w-3.5 text-indigo-600" />
+                    <span>রাত ({settingsForm.dinnerWeight})</span>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 pt-1">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setEditingCell({
+                          ...editingCell,
+                          dinner: Math.max(0, editingCell.dinner - 1),
+                        })
+                      }
+                      className="h-6 w-6 rounded-md bg-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-300"
+                    >
+                      -
+                    </button>
+                    <span className="text-sm font-black text-slate-900">{editingCell.dinner}</span>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setEditingCell({
+                          ...editingCell,
+                          dinner: editingCell.dinner + 1,
+                        })
+                      }
+                      className="h-6 w-6 rounded-md bg-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-300"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
-                <div className="flex items-center justify-center gap-2 pt-1">
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setEditingCell({
-                        ...editingCell,
-                        dinner: Math.max(0, editingCell.dinner - 1),
-                      })
-                    }
-                    className="h-6 w-6 rounded-md bg-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-300"
-                  >
-                    -
-                  </button>
-                  <span className="text-sm font-black text-slate-900">{editingCell.dinner}</span>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setEditingCell({
-                        ...editingCell,
-                        dinner: editingCell.dinner + 1,
-                      })
-                    }
-                    className="h-6 w-6 rounded-md bg-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-300"
-                  >
-                    +
-                  </button>
+              ) : (
+                <div className="rounded-xl border border-slate-200 p-2 text-center bg-slate-100 opacity-60">
+                  <span className="text-[10px] text-slate-400 font-semibold block">রাত বন্ধ</span>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Calculated Units Note */}
-            <div className="rounded-xl bg-emerald-50 border border-emerald-200/80 p-2.5 text-center text-xs text-emerald-900 font-semibold">
+            <div className="rounded-xl bg-emerald-50 border border-emerald-200/90 p-2.5 text-center text-xs text-emerald-900 font-semibold">
               মোট প্রযোজ্য ইউনিট:{' '}
               <span className="text-sm font-black text-emerald-800">
                 {(
-                  editingCell.breakfast * 0.5 +
-                  editingCell.lunch * 1 +
-                  editingCell.dinner * 1 +
+                  (settingsForm.breakfastEnabled ? editingCell.breakfast * settingsForm.breakfastWeight : 0) +
+                  (settingsForm.lunchEnabled ? editingCell.lunch * settingsForm.lunchWeight : 0) +
+                  (settingsForm.dinnerEnabled ? editingCell.dinner * settingsForm.dinnerWeight : 0) +
                   editingCell.custom
                 ).toFixed(1)}{' '}
                 ইউনিট

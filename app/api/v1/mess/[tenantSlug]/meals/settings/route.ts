@@ -14,7 +14,7 @@ export const GET = withTenantAuth(
 );
 
 export const PATCH = withTenantAuth(
-  { permission: 'meals.manage_settings' },
+  { permissions: ['meals.manage_settings', 'meals.update', 'meals.create'] },
   async (req, { tenantContext }) => {
     const body = await req.json();
     const updated = await mealService.updateMealSettings(
