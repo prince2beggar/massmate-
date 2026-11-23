@@ -24,6 +24,12 @@ import {
   Sparkles,
   ToggleLeft,
   ToggleRight,
+  Minus,
+  Plus,
+  Maximize2,
+  Minimize2,
+  Wallet,
+  ShoppingBag,
 } from 'lucide-react';
 import { ROLE_TEMPLATES_INFO } from '@/server/rbac/role-constants';
 
@@ -44,6 +50,11 @@ export function FullPeriodMealGridView({
 
   // Date Scope: 'up-to-today' (Hides future empty days) vs 'full-cycle' (All 30/40 days)
   const [dateScope, setDateScope] = useState<'up-to-today' | 'full-cycle'>('up-to-today');
+
+  // Column Section Collapse States ([-] and [+])
+  const [showMealBreakdown, setShowMealBreakdown] = useState<boolean>(true); // নাস্তা, দুপুর, রাত
+  const [showMealCost, setShowMealCost] = useState<boolean>(true); // মিলের খরচ (৳)
+  const [dateDisplayLimit, setDateDisplayLimit] = useState<'all' | 'recent-7'>('all'); // ৭ দিন vs পুরো সাইকেল
 
   // Date ranges
   const today = new Date();
@@ -346,6 +357,9 @@ export function FullPeriodMealGridView({
           }
 
           const mealRate = data.summary?.calculatedMealRateTaka || 49.48;
+          const estimatedCost = Number((totalUnits * mealRate).toFixed(2));
+          const totalBazar = m.totals?.totalBazarTaka || 0;
+          const balance = Number((totalBazar - estimatedCost).toFixed(2));
 
           return {
             ...m,
@@ -358,7 +372,9 @@ export function FullPeriodMealGridView({
               totalMeals: totalBf + totalLunch + totalDinner,
               totalUnits: Number(totalUnits.toFixed(2)),
               totalOffDays: offDays,
-              estimatedCostTaka: Number((totalUnits * mealRate).toFixed(2)),
+              estimatedCostTaka: estimatedCost,
+              totalBazarTaka: totalBazar,
+              balanceTaka: balance,
             },
           };
         });
@@ -412,8 +428,13 @@ export function FullPeriodMealGridView({
       list.reverse();
     }
 
+    // 3. Date Display Limit (e.g. 7 days for screen-fit mode)
+    if (dateDisplayLimit === 'recent-7') {
+      list = list.slice(0, 7);
+    }
+
     return list;
-  }, [rawDates, dateScope, dateOrder, todayStr, tomorrowStr]);
+  }, [rawDates, dateScope, dateOrder, dateDisplayLimit, todayStr, tomorrowStr]);
 
   // Filter members by search query
   const filteredMembers = useMemo(() => {
@@ -768,7 +789,132 @@ export function FullPeriodMealGridView({
         </div>
       </div>
 
-      {/* 4. Full Period Matrix Spreadsheet Grid (Zero Bleed-Through, Crystal Clear Layout) */}
+      {/* 4. Display Modes & Column Collapse Controls (Screen Fit & -/+ Toggles) */}
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-gradient-to-r from-slate-50 via-emerald-50/30 to-slate-50 p-3 rounded-2xl border border-slate-200/90 shadow-2xs">
+        {/* Preset View Buttons: Screen Fit vs Full 30 Days */}
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-xs font-bold text-slate-700 flex items-center gap-1.5 mr-1">
+            <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
+            ভিউ মোড:
+          </span>
+
+          <button
+            type="button"
+            onClick={() => {
+              setDateDisplayLimit('recent-7');
+              setShowMealBreakdown(false);
+              setShowMealCost(true);
+              setDateOrder('recent-first');
+            }}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition shadow-xs ${
+              dateDisplayLimit === 'recent-7' && !showMealBreakdown
+                ? 'bg-emerald-600 text-white shadow-emerald-600/20 ring-2 ring-emerald-500/30'
+                : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100'
+            }`}
+            title="এক নজরে স্ক্রিনে সব দেখতে: সাম্প্রতিক ৭ দিন ও মোট মিল, বাজার ও ব্যালেন্স (নো স্ক্রলিং)"
+          >
+            <Minimize2 className="h-3.5 w-3.5" />
+            <span>🖥️ স্ক্রিন ফিট ভিউ (Fit on Screen)</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              setDateDisplayLimit('all');
+              setDateScope('full-cycle');
+              setShowMealBreakdown(true);
+              setShowMealCost(true);
+            }}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition shadow-xs ${
+              dateDisplayLimit === 'all' && showMealBreakdown && dateScope === 'full-cycle'
+                ? 'bg-slate-800 text-white shadow-slate-800/20 ring-2 ring-slate-700/30'
+                : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100'
+            }`}
+            title="পুরো ৩০ দিনের সকল তারিখ ও নাস্তা/দুপুর/রাতের বিস্তারিত বিবরণ দেখুন"
+          >
+            <Maximize2 className="h-3.5 w-3.5" />
+            <span>📑 পূর্ণাঙ্গ ৩০ দিনের শিট (Full 30 Days)</span>
+          </button>
+        </div>
+
+        {/* Granular [-] / [+] Toggles */}
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-[11px] font-semibold text-slate-500">কলাম কলাপ্স/হাইড:</span>
+
+          {/* Toggle Meal Breakdown (Breakfast/Lunch/Dinner) */}
+          <button
+            type="button"
+            onClick={() => setShowMealBreakdown(!showMealBreakdown)}
+            className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold border transition ${
+              showMealBreakdown
+                ? 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
+                : 'bg-amber-100 text-amber-900 border-amber-300 font-bold'
+            }`}
+            title={showMealBreakdown ? 'নাস্তা, দুপুর ও রাতের কলামগুলো লুকিয়ে টেবিল ছোট করুন' : 'নাস্তা, দুপুর ও রাত প্রদর্শন করুন'}
+          >
+            {showMealBreakdown ? (
+              <>
+                <Minus className="h-3 w-3 text-slate-500" />
+                <span>নাস্তা, দুপুর, রাত</span>
+              </>
+            ) : (
+              <>
+                <Plus className="h-3 w-3 text-amber-700" />
+                <span>নাস্তা, দুপুর, রাত</span>
+              </>
+            )}
+          </button>
+
+          {/* Toggle Meal Cost */}
+          <button
+            type="button"
+            onClick={() => setShowMealCost(!showMealCost)}
+            className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold border transition ${
+              showMealCost
+                ? 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
+                : 'bg-amber-100 text-amber-900 border-amber-300 font-bold'
+            }`}
+            title={showMealCost ? 'মিলের খরচ কলাম লুকান' : 'মিলের খরচ কলাম দেখান'}
+          >
+            {showMealCost ? (
+              <>
+                <Minus className="h-3 w-3 text-slate-500" />
+                <span>মিলের খরচ</span>
+              </>
+            ) : (
+              <>
+                <Plus className="h-3 w-3 text-amber-700" />
+                <span>মিলের খরচ</span>
+              </>
+            )}
+          </button>
+
+          {/* Toggle Date Count: 7 Days vs Full */}
+          <button
+            type="button"
+            onClick={() => setDateDisplayLimit(dateDisplayLimit === 'recent-7' ? 'all' : 'recent-7')}
+            className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold border transition ${
+              dateDisplayLimit === 'recent-7'
+                ? 'bg-amber-100 text-amber-900 border-amber-300 font-bold'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
+            }`}
+          >
+            {dateDisplayLimit === 'recent-7' ? (
+              <>
+                <Plus className="h-3 w-3 text-amber-700" />
+                <span>সব দিন ({rawDates.length} দিন)</span>
+              </>
+            ) : (
+              <>
+                <Minus className="h-3 w-3 text-slate-500" />
+                <span>৭ দিন সীমাবদ্ধ</span>
+              </>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* 5. Full Period Matrix Spreadsheet Grid (Zero Bleed-Through, Crystal Clear Layout) */}
       <div className="rounded-2xl border border-slate-300 bg-white shadow-sm overflow-hidden">
         {loading ? (
           <div className="py-20 text-center">
@@ -799,7 +945,7 @@ export function FullPeriodMealGridView({
                     কোড
                   </th>
                   {/* Sticky Resident Name (Solid Background, Z-30, Solid Shadow Divider) */}
-                  <th className="sticky left-[65px] z-30 bg-slate-100 px-4 py-3 font-bold text-slate-800 border-r-2 border-slate-300 min-w-[190px] max-w-[190px] shadow-[4px_0_8px_-2px_rgba(0,0,0,0.1)]">
+                  <th className="sticky left-[65px] z-30 bg-slate-100 px-4 py-3 font-bold text-slate-800 border-r-2 border-slate-300 min-w-[195px] max-w-[195px] shadow-[4px_0_8px_-2px_rgba(0,0,0,0.1)]">
                     মেম্বারের নাম ও রোল
                   </th>
 
@@ -825,30 +971,84 @@ export function FullPeriodMealGridView({
                     </th>
                   ))}
 
-                  {/* Summary Columns */}
-                  {settingsForm.breakfastEnabled && (
-                    <th className="bg-slate-100 px-2 py-3 text-center font-bold text-slate-700 border-l-2 border-slate-300 min-w-[50px]">
-                      নাস্তা
+                  {/* Optional Meal Breakdown Columns: নাস্তা, দুপুর, রাত */}
+                  {showMealBreakdown && settingsForm.breakfastEnabled && (
+                    <th className="bg-slate-100 px-2 py-3 text-center font-bold text-slate-700 border-l-2 border-slate-300 min-w-[54px]">
+                      <div className="flex items-center justify-center gap-1">
+                        <span>নাস্তা</span>
+                        <button
+                          type="button"
+                          onClick={() => setShowMealBreakdown(false)}
+                          className="h-3.5 w-3.5 rounded bg-slate-200 hover:bg-slate-300 inline-flex items-center justify-center text-slate-600"
+                          title="নাস্তা, দুপুর ও রাত কলাম সংক্ষেপ করুন"
+                        >
+                          <Minus className="h-2.5 w-2.5" />
+                        </button>
+                      </div>
                     </th>
                   )}
-                  {settingsForm.lunchEnabled && (
+                  {showMealBreakdown && settingsForm.lunchEnabled && (
                     <th className={`bg-slate-100 px-2 py-3 text-center font-bold text-slate-700 border-r border-slate-200 min-w-[50px] ${!settingsForm.breakfastEnabled ? 'border-l-2 border-slate-300' : ''}`}>
                       দুপুর
                     </th>
                   )}
-                  {settingsForm.dinnerEnabled && (
+                  {showMealBreakdown && settingsForm.dinnerEnabled && (
                     <th className="bg-slate-100 px-2 py-3 text-center font-bold text-slate-700 border-r border-slate-200 min-w-[50px]">
                       রাত
                     </th>
                   )}
-                  <th className="bg-emerald-50 px-2.5 py-3 text-center font-black text-emerald-900 border-r border-slate-200 min-w-[55px]">
-                    মোট মিল
+
+                  {/* Core Metric 1: মোট মিল ও ইউনিট */}
+                  <th className={`bg-emerald-50 px-2.5 py-3 text-center font-black text-emerald-900 border-r border-slate-200 min-w-[60px] ${!showMealBreakdown ? 'border-l-2 border-slate-300' : ''}`}>
+                    <div className="flex items-center justify-center gap-1">
+                      <span>মোট মিল</span>
+                      {!showMealBreakdown && (
+                        <button
+                          type="button"
+                          onClick={() => setShowMealBreakdown(true)}
+                          className="h-3.5 w-3.5 rounded bg-emerald-200 hover:bg-emerald-300 inline-flex items-center justify-center text-emerald-800"
+                          title="নাস্তা, দুপুর ও রাত বিস্তারিত দেখুন"
+                        >
+                          <Plus className="h-2.5 w-2.5" />
+                        </button>
+                      )}
+                    </div>
                   </th>
                   <th className="bg-emerald-100 px-3 py-3 text-center font-black text-emerald-950 border-r border-slate-200 min-w-[65px]">
                     ইউনিট
                   </th>
-                  <th className="bg-slate-100 px-3.5 py-3 text-right font-black text-slate-900 min-w-[95px]">
-                    খরচ (৳)
+
+                  {/* Meal Cost (Collapsible) */}
+                  {showMealCost && (
+                    <th className="bg-slate-100 px-3 py-3 text-right font-black text-slate-900 border-r border-slate-200 min-w-[85px]">
+                      <div className="flex items-center justify-end gap-1">
+                        <span>খরচ (৳)</span>
+                        <button
+                          type="button"
+                          onClick={() => setShowMealCost(false)}
+                          className="h-3.5 w-3.5 rounded bg-slate-200 hover:bg-slate-300 inline-flex items-center justify-center text-slate-600"
+                          title="মিলের খরচ লুকান"
+                        >
+                          <Minus className="h-2.5 w-2.5" />
+                        </button>
+                      </div>
+                    </th>
+                  )}
+
+                  {/* Core Metric 2: বাজার খরচ (৳) */}
+                  <th className="bg-blue-50/80 px-3 py-3 text-right font-black text-blue-950 border-r border-slate-200 min-w-[95px]">
+                    <div className="flex items-center justify-end gap-1">
+                      <ShoppingBag className="h-3.5 w-3.5 text-blue-600 inline" />
+                      <span>বাজার (৳)</span>
+                    </div>
+                  </th>
+
+                  {/* Core Metric 3: পাবে বা দিবে (৳) */}
+                  <th className="bg-emerald-50/70 px-3.5 py-3 text-center font-black text-slate-900 min-w-[120px]">
+                    <div className="flex items-center justify-center gap-1.5">
+                      <Wallet className="h-3.5 w-3.5 text-emerald-700 inline" />
+                      <span>পাবে বা দিবে (৳)</span>
+                    </div>
                   </th>
                 </tr>
               </thead>
@@ -859,6 +1059,8 @@ export function FullPeriodMealGridView({
                   const roles = m.assignedRoles || [];
                   const primaryRole = roles[0] || 'member';
                   const roleMeta = (ROLE_TEMPLATES_INFO as any)[primaryRole] || ROLE_TEMPLATES_INFO.member;
+                  const balance = m.totals?.balanceTaka ?? 0;
+                  const totalBazar = m.totals?.totalBazarTaka ?? 0;
 
                   return (
                     <tr
@@ -874,7 +1076,7 @@ export function FullPeriodMealGridView({
 
                       {/* Sticky Resident Name (Solid 100% Opaque, Z-20, Right Divider Shadow) */}
                       <td className="sticky left-[65px] z-20 bg-white group-hover:bg-slate-100 px-4 py-2.5 border-r-2 border-slate-300 shadow-[4px_0_8px_-2px_rgba(0,0,0,0.08)]">
-                        <div className="font-bold text-slate-900 truncate max-w-[170px]" title={m.memberName}>
+                        <div className="font-bold text-slate-900 truncate max-w-[175px]" title={m.memberName}>
                           {m.memberName}
                         </div>
                         <div className="flex flex-wrap items-center gap-1 mt-0.5">
@@ -937,30 +1139,60 @@ export function FullPeriodMealGridView({
                         );
                       })}
 
-                      {/* Summary Columns */}
-                      {settingsForm.breakfastEnabled && (
+                      {/* Meal Breakdown Columns */}
+                      {showMealBreakdown && settingsForm.breakfastEnabled && (
                         <td className="px-2 py-2.5 text-center font-medium text-slate-700 border-l-2 border-slate-300 bg-slate-50/60">
                           {m.totals.totalBreakfast}
                         </td>
                       )}
-                      {settingsForm.lunchEnabled && (
+                      {showMealBreakdown && settingsForm.lunchEnabled && (
                         <td className={`px-2 py-2.5 text-center font-medium text-slate-700 border-r border-slate-200 bg-slate-50/60 ${!settingsForm.breakfastEnabled ? 'border-l-2 border-slate-300' : ''}`}>
                           {m.totals.totalLunch}
                         </td>
                       )}
-                      {settingsForm.dinnerEnabled && (
+                      {showMealBreakdown && settingsForm.dinnerEnabled && (
                         <td className="px-2 py-2.5 text-center font-medium text-slate-700 border-r border-slate-200 bg-slate-50/60">
                           {m.totals.totalDinner}
                         </td>
                       )}
-                      <td className="bg-emerald-50 px-2.5 py-2.5 text-center font-bold text-emerald-900 border-r border-slate-200">
+
+                      {/* Core Metric 1: মোট মিল ও ইউনিট */}
+                      <td className={`bg-emerald-50 px-2.5 py-2.5 text-center font-bold text-emerald-900 border-r border-slate-200 ${!showMealBreakdown ? 'border-l-2 border-slate-300' : ''}`}>
                         {m.totals.totalMeals}
                       </td>
                       <td className="bg-emerald-100 px-3 py-2.5 text-center font-black text-emerald-950 border-r border-slate-200">
                         {m.totals.totalUnits.toFixed(1)}
                       </td>
-                      <td className="px-3.5 py-2.5 text-right font-black text-slate-900 bg-slate-50/80">
-                        ৳{m.totals.estimatedCostTaka.toLocaleString()}
+
+                      {/* Meal Cost (Collapsible) */}
+                      {showMealCost && (
+                        <td className="px-3 py-2.5 text-right font-black text-slate-900 bg-slate-50/80 border-r border-slate-200">
+                          ৳{m.totals.estimatedCostTaka.toLocaleString()}
+                        </td>
+                      )}
+
+                      {/* Core Metric 2: বাজার খরচ (৳) */}
+                      <td className="px-3 py-2.5 text-right font-black text-blue-950 bg-blue-50/40 border-r border-slate-200">
+                        ৳{totalBazar.toLocaleString()}
+                      </td>
+
+                      {/* Core Metric 3: পাবে বা দিবে (৳) */}
+                      <td className="px-3 py-2.5 text-center font-bold bg-white">
+                        {balance > 0 ? (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-900 border border-emerald-300 text-[11px] font-black shadow-2xs whitespace-nowrap">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-600"></span>
+                            পাবে ৳{Math.round(balance).toLocaleString()}
+                          </span>
+                        ) : balance < 0 ? (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-amber-100 text-amber-950 border border-amber-300 text-[11px] font-black shadow-2xs whitespace-nowrap">
+                            <span className="h-1.5 w-1.5 rounded-full bg-amber-600"></span>
+                            দিবে ৳{Math.abs(Math.round(balance)).toLocaleString()}
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[11px] font-semibold">
+                            ব্যালেন্স ৳০
+                          </span>
+                        )}
                       </td>
                     </tr>
                   );
@@ -999,29 +1231,37 @@ export function FullPeriodMealGridView({
                   })}
 
                   {/* Grand Totals */}
-                  {settingsForm.breakfastEnabled && (
+                  {showMealBreakdown && settingsForm.breakfastEnabled && (
                     <td className="px-2 py-3 text-center border-l-2 border-slate-300 bg-slate-200">
                       {summary?.totalBreakfast}
                     </td>
                   )}
-                  {settingsForm.lunchEnabled && (
+                  {showMealBreakdown && settingsForm.lunchEnabled && (
                     <td className={`px-2 py-3 text-center border-r border-slate-300 bg-slate-200 ${!settingsForm.breakfastEnabled ? 'border-l-2 border-slate-300' : ''}`}>
                       {summary?.totalLunch}
                     </td>
                   )}
-                  {settingsForm.dinnerEnabled && (
+                  {showMealBreakdown && settingsForm.dinnerEnabled && (
                     <td className="px-2 py-3 text-center border-r border-slate-300 bg-slate-200">
                       {summary?.totalDinner}
                     </td>
                   )}
-                  <td className="bg-emerald-200 px-2.5 py-3 text-center text-emerald-950 border-r border-slate-300 font-black">
+                  <td className={`bg-emerald-200 px-2.5 py-3 text-center text-emerald-950 border-r border-slate-300 font-black ${!showMealBreakdown ? 'border-l-2 border-slate-300' : ''}`}>
                     {summary?.totalMeals}
                   </td>
                   <td className="bg-emerald-300 px-3 py-3 text-center text-emerald-950 border-r border-slate-300 font-black">
                     {summary?.totalUnits?.toFixed(1)}
                   </td>
-                  <td className="px-3.5 py-3 text-right text-slate-900 bg-slate-200 font-black">
-                    ৳{summary?.totalEstimatedMealCostTaka?.toLocaleString()}
+                  {showMealCost && (
+                    <td className="px-3 py-3 text-right text-slate-900 bg-slate-200 font-black border-r border-slate-300">
+                      ৳{summary?.totalEstimatedMealCostTaka?.toLocaleString()}
+                    </td>
+                  )}
+                  <td className="px-3 py-3 text-right text-blue-950 bg-blue-100/70 font-black border-r border-slate-300">
+                    ৳{summary?.totalBazarExpenseTaka?.toLocaleString()}
+                  </td>
+                  <td className="px-3.5 py-3 text-center text-slate-700 bg-slate-200 font-bold">
+                    <span className="text-[11px] text-slate-600 bg-slate-300/60 px-2 py-0.5 rounded-md">ব্যালেন্স সমন্বয়</span>
                   </td>
                 </tr>
               </tfoot>

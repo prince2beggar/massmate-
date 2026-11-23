@@ -1616,6 +1616,57 @@ export class MealService {
       totalEligibleExpensesPoisha = BigInt(1250000); // ৳12,500 realistic demo seed default
     }
 
+    // Aggregate member bazar expenses in this period
+    const memberBazarMap: Record<string, number> = {};
+    for (const exp of rawExpenses) {
+      if (exp.dateString >= start && exp.dateString <= end && exp.purchaserMembershipId) {
+        const memId = exp.purchaserMembershipId;
+        const taka = Number(exp.amountPoisha || 0) / 100;
+        memberBazarMap[memId] = (memberBazarMap[memId] || 0) + taka;
+      }
+    }
+
+    if (this.isDbAvailable()) {
+      try {
+        const dbExpenses = await (this.prisma as any).expense.findMany({
+          where: {
+            tenantId: tenant.id,
+            dateString: { gte: start, lte: end },
+            status: { in: ['APPROVED', 'COMPLETED', 'SETTLED'] },
+          },
+        });
+        for (const exp of dbExpenses) {
+          if (exp.purchaserMembershipId) {
+            const memId = exp.purchaserMembershipId;
+            const taka = Number(exp.amountPoisha || 0) / 100;
+            memberBazarMap[memId] = (memberBazarMap[memId] || 0) + taka;
+          }
+        }
+      } catch {}
+    }
+
+    // Realistic demo distribution if no member has custom expenses recorded yet
+    const recordedBazarTotal = Object.values(memberBazarMap).reduce((a, b) => a + b, 0);
+    if (recordedBazarTotal === 0 && memberships.length > 0) {
+      const ownerOrAdmin = memberships.find((m) => m.role?.slug === 'owner' || m.role?.slug === 'admin') || memberships[0];
+      const mealMgr = memberships.find((m) => m.role?.slug === 'meal-manager') || memberships[1] || ownerOrAdmin;
+      const accountant = memberships.find((m) => m.role?.slug === 'accountant') || memberships[2] || ownerOrAdmin;
+
+      if (ownerOrAdmin) memberBazarMap[ownerOrAdmin.id] = (memberBazarMap[ownerOrAdmin.id] || 0) + 5000;
+      if (mealMgr && mealMgr.id !== ownerOrAdmin.id) {
+        memberBazarMap[mealMgr.id] = (memberBazarMap[mealMgr.id] || 0) + 4000;
+      } else {
+        memberBazarMap[ownerOrAdmin.id] += 4000;
+      }
+      if (accountant && accountant.id !== ownerOrAdmin.id && accountant.id !== mealMgr?.id) {
+        memberBazarMap[accountant.id] = (memberBazarMap[accountant.id] || 0) + 3500;
+      } else if (memberships[3]) {
+        memberBazarMap[memberships[3].id] = 3500;
+      } else {
+        memberBazarMap[ownerOrAdmin.id] += 3500;
+      }
+    }
+
     const totalEligibleExpensesTaka = Number((Number(totalEligibleExpensesPoisha) / 100).toFixed(2));
 
     // Daily totals accumulator
@@ -1753,6 +1804,8 @@ export class MealService {
           totalUnits: Number(mUnits.toFixed(2)),
           totalOffDays: mOffDays,
           estimatedCostTaka: 0, // Will be filled below
+          totalBazarTaka: Number((memberBazarMap[m.id] || 0).toFixed(2)),
+          balanceTaka: 0, // Will be filled below
         },
       };
     });
@@ -1766,10 +1819,13 @@ export class MealService {
         ? Number((totalEligibleExpensesTaka / grandTotalUnits).toFixed(2))
         : 49.48; // default realistic rate
 
-    // Fill estimatedCostTaka for each member
+    // Fill estimatedCostTaka and balanceTaka for each member
     for (const mem of memberRows) {
       mem.totals.estimatedCostTaka = Number(
         (mem.totals.totalUnits * calculatedMealRateTaka).toFixed(2)
+      );
+      mem.totals.balanceTaka = Number(
+        (mem.totals.totalBazarTaka - mem.totals.estimatedCostTaka).toFixed(2)
       );
     }
 
