@@ -6,3 +6,7 @@ coverage/
 cloudflared.exe
 .env*
 !.env.example
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+scratch/
+.turbo/

@@ -1,6 +1,8 @@
 {
-  "name": "ai-studio-applet",
-  "version": "0.1.0",
+  "name": "messmate",
+  "version": "1.0.0",
+  "description": "Smart, Transparent, Multi-Tenant Mess & Shared Living Management SaaS Platform",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "next dev",
