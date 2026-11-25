@@ -11,7 +11,7 @@
   <img src="https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript" alt="TypeScript" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css" alt="Tailwind CSS v4" />
   <img src="https://img.shields.io/badge/Prisma-7.10-2D3748?style=for-the-badge&logo=prisma" alt="Prisma ORM" />
-  <img src="https://img.shields.io/badge/PostgreSQL-Neon-336791?style=for-the-badge&logo=postgresql" alt="PostgreSQL" />
+  <img src="https://img.shields.io/badge/PostgreSQL%20%7C%20MySQL-Supported-336791?style=for-the-badge&logo=postgresql" alt="PostgreSQL & MySQL" />
   <img src="https://img.shields.io/badge/Language-English%20%7C%20বাংলা-emerald?style=for-the-badge" alt="Bilingual" />
 </p>
 
@@ -115,7 +115,7 @@ Alongside the meal sheet, every member sees their real-time financial balance:
 | **UI Components** | Tailwind CSS v4 & shadcn/ui | Atomic modern design with `@base-ui/react` and custom animation tokens |
 | **Icons & Motion** | Lucide React & Motion (Framer) | Intuitive micro-interactions and iconography |
 | **Database ORM** | Prisma 7 (`@prisma/adapter-pg`) | Type-safe queries, migration management, and multi-tenant schema |
-| **Database** | Neon Serverless PostgreSQL | High-availability PostgreSQL database with connection pooling |
+| **Database** | PostgreSQL (Neon) / MySQL / MariaDB | Supports `postgresql://`, `mysql://`, `mysql2://`, `mariadb://` + zero-config in-memory demo fallback |
 | **Timezone & Locale** | `Asia/Dhaka` / `bn-BD` & `en-US` | Bangladesh-standard financial accounting and time cutoff enforcement |
 | **Testing** | Node Native Test Runner (`tsx`) | Comprehensive unit and integration test suites |
 
@@ -142,7 +142,7 @@ messmate/
 ├── docs/                       # Architecture specifications and technical handoff blueprints
 ├── lib/                        # Pure domain math, validators, currency formatting, i18n
 ├── prisma/
-│   ├── schema.prisma           # Multi-tenant PostgreSQL database schema
+│   ├── schema.prisma           # Multi-tenant Prisma database schema (PostgreSQL / MySQL)
 │   └── seed.ts                 # Realistic Bangladesh mess seed data
 ├── server/                     # Backend domain services & business logic
 │   ├── bazar/                  # Bazar expense recording & verification
